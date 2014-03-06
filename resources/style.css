@@ -1,0 +1,93 @@
+
+/* 
+    Created on : 29.10.2013, 12:13:28
+    Author     : Luxo
+*/
+
+body {
+    font-family: sans-serif, arial;
+    font-size: 13px;
+    font-weight: 400;
+    line-height: 19px;
+    direction: ltr;
+    background: url(//tools.wmflabs.org/Tool_Labs_logo_thumb.png) no-repeat scroll 10px 10px;
+    padding: 0;
+    margin: 0;
+}
+
+.maincontent {
+    position: relative;
+    margin-left: 150px;
+    top: 50px;
+    border-top: 1px solid grey;
+    border-left: 1px solid grey;
+    border-bottom: 1px solid grey;
+    border-top-left-radius: 5px;
+    -moz-border-top-left-radius: 5px;
+    -webkit-border-top-left-radius: 5px;
+    padding: 10px;
+    background-color: rgba(250,250,250,255);
+}
+
+.maincontent .header h2{
+    margin: 0;
+    font-size: 25px;
+    font-weight: 400;
+    margin-bottom: 15px;
+}
+.maincontent .header h2 span {
+    color: red;
+    font-size: 15px;
+}
+
+.maincontent .footer {
+    text-align: center;
+    margin-top: 50px;
+}
+
+.maincontent .searchField {
+    border: 1px solid grey;
+    padding: 10px;
+    border-radius: 5px;
+    -moz-border-radius: 5px;
+    -webkit-border-radius: 5px;
+}
+
+.maincontent .results {
+    margin-top: 40px;
+}
+.maincontent .results a { text-decoration: none; color: #0645AD; }
+.maincontent .results a:active { text-decoration: none; }
+.maincontent .results a:hover  { text-decoration: underline; }
+.maincontent .results a:visited { color: #5105ad; }
+.maincontent .results .hostname {
+    background: url(img/icoInfo16.png) no-repeat;
+    padding-left: 19px;
+}
+.maincontent .results .wiki h1, .maincontent .results .error h1 {
+    font-size: 20px;
+    font-weight: 700;
+    border-bottom: 1px solid grey;
+    margin-bottom: 2px;
+}
+.maincontent .results .error h1 { color: red; }
+
+.maincontent .results .noSul {
+    background-color: #ffe0e0;
+}
+
+.maincontent .results .wiki .wikiinfo {
+    color: #7D7D7D;
+    font-size: 84%;
+    margin-top: 0;
+}
+
+.wiki .minor, .wiki .rev_cur {
+    font-weight: bold;
+}
+.wiki .autocomment {
+    font-style: italic;
+    color: #999999;
+}
+
+

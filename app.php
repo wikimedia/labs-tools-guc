@@ -183,7 +183,77 @@ class lb_app {
 
         
         return $sum;
-    }  
+    }
+    
+    /**
+     * Returns the Name of a Namespace, performs a api request if not already cached. 
+     * @staticvar string $cache
+     * @param int $id
+     * @param string $dbName
+     * @param string $url
+     * @return string Namespacename
+     */
+    public function getNamespaceName($id, $dbName, $url) {
+        static $cache = '';
+        $id = intval($id);
+        
+        //Initialize cache
+        if(!is_array($cache)) {
+            $rawCache = file_get_contents(settings::getSetting('cacheFile'));
+            if($rawCache) $cache = json_decode($rawCache, true);
+            else $cache = array();
+        }
+        
+        //Wiki exist in cache?
+        if(key_exists($dbName, $cache)) {
+            //Namespace exist in cache?
+            if(key_exists($id, $cache[$dbName])) return $cache[$dbName][$id];
+        }
+        
+        //get information from API
+        $apiData = $this->apiRequest($url, array('meta' => 'siteinfo', 'siprop' => 'namespaces'));
+        if(!is_array($apiData['query']['namespaces'])) throw new Exception('Error on namespace resolution for '.$url);
+        
+        $cache[$dbName] = array();
+        foreach($apiData['query']['namespaces'] as $ns) {
+            $cache[$dbName][intval($ns['id'])] = $ns['*'];
+        }
+        
+        //save cache
+        file_put_contents(settings::getSetting('cacheFile'), json_encode($cache));
+        
+        //return namespace name
+        if(!key_exists($dbName, $cache) || !key_exists($id, $cache[$dbName]))throw new Exception('Unknown namespace numer '.$id.' for '.$url);
+        return $cache[$dbName][$id];
+    }
+    
+    
+    /**
+     * Performs a api request (post)
+     * @param string $url
+     * @param array $params
+     * @return array or string
+     */
+    public function apiRequest($url, $params) {
+        if(!is_array($params)) throw new Exception('invalid api parameters.');
+        $url = 'https://'.$url.'/w/api.php';
+        //set defaults
+        if(!key_exists('format', $params)) $params['format'] = 'json';
+        if(!key_exists('action', $params)) $params['action'] = 'query';
+        
+        $ch = curl_init();
+        curl_setopt($ch, CURLOPT_URL, $url);
+        curl_setopt($ch, CURLOPT_POST, 1);
+        curl_setopt($ch, CURLOPT_POSTFIELDS, $params);
+        curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);        
+        $data = curl_exec($ch);
+        curl_close($ch);
+        if($params['format'] == 'json') {
+            return json_decode($data, true);
+        } else {
+            return $data;
+        }
+    }
 }
 
 

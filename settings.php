@@ -20,7 +20,10 @@ class settings {
             'guc',
             'wikicontribs',
             'exception'
-        )
+        ),
+            
+        //Paths
+        'cacheFile' => 'cache/namespaces.json'
     );
         return $settings[$setting];
     } 

@@ -116,7 +116,7 @@ class lb_wikicontribs {
         //get namespace
         unset($db);               
         foreach($this->recentchanges as &$rc) {
-            $rc['page_namespace_name'] = $this->getNamespaceName($rc['page_namespace']);
+            $rc['page_namespace_name'] = $this->app->getNamespaceName($rc['page_namespace'], $this->dbname, $this->url);
             $rc['full_page_title'] = ($rc['page_namespace_name']) ? $rc['page_namespace_name'].":".$rc['page_title'] : $rc['page_title'];
             $rc['full_page_title'] = str_replace(" ", "_", $rc['full_page_title']);
         }
@@ -190,87 +190,6 @@ class lb_wikicontribs {
     public function hasContribs() {
         return $this->hasContribs;
     }
-    
-    //TODO: find other way for namespaces
-    public function getNamespaceName($namespace_id) {
-        $namespace_id = (int) $namespace_id;
-        $Ns6Name = '';
-
-        switch($this->family) {
-            case 'wikibooks': $Ns6Name = 'Wikibooks'; break;
-            case 'wiktionary': $Ns6Name = 'Wiktionary'; break;
-            case 'wikiquote': $Ns6Name = 'Wikiquote'; break;
-            case 'wikisource': $Ns6Name = 'Wikisource'; break;
-            case 'wikinews': $Ns6Name = 'Wikinews'; break;
-            case 'wikiversity': $Ns6Name = 'Wikiversity'; break;
-            case 'wikivoyage': $Ns6Name = 'Wikivoyage'; break;
-            case 'wikidata': $Ns6Name = 'Wikidata'; break;
-            case 'wikimania': $Ns6Name = 'Wikimania'; break;
-            default: $Ns6Name = 'Wikipedia'; break;
-        }
-        if($this->dbname == 'commonswiki') $Ns6Name = 'Commons';
-        if($this->dbname == 'metawiki') $Ns6Name = 'Meta';
-        if($this->dbname == 'mediawikiwiki') $Ns6Name = 'Mediawiki';
-        
-        $ns = array(
-            0 => '',
-            1 => 'Talk',
-            2 => 'User',
-            3 => 'User talk',
-            4 => $Ns6Name,
-            5 => $Ns6Name.' talk',
-            6 => 'File',
-            7 => 'File talk',
-            8 => 'MediaWiki',
-            9 => 'MediaWiki talk',
-            10 => 'Template',
-            11 => 'Template talk',
-            12 => 'Help',
-            13 => 'Help talk',
-            14 => 'Category',
-            15 => 'Category talk',
-            100 => 'Portal',
-            101 => 'Portal talk',
-            108 => 'Book',
-            109 => 'Book talk',
-            446 => 'Education Program',
-            447 => 'Education Program talk',
-            710 => 'TimedText',
-            711 => 'TimedText talk',
-            828 => 'Module',
-            829 => 'Module talk',
-            -1 => 'Special',
-            -2 => 'Media'            
-        );
-        
-        //Special namespaces for mediawikiwiki
-        if($this->dbname == 'mediawikiwiki') {
-            $ns[90] = 'Thread';
-            $ns[91] = 'Thread talk';
-            $ns[92] = 'Summary';
-            $ns[93] = 'Summary talk';            
-            $ns[100] = 'Manual';
-            $ns[101] = 'Manual talk';
-            $ns[102] = 'Extension';
-            $ns[103] = 'Extension talk';
-            $ns[104] = 'API';
-            $ns[105] = 'API talk';
-            $ns[106] = 'Skin';            
-            $ns[107] = 'Skin talk';            
-            $ns[1198] = 'Translations';
-            $ns[1199] = 'Translations talk';
-            $ns[2500] = 'VisualEditor';
-            $ns[2501] = 'VisualEditor talk';
-        }
-        
-        if($this->dbname == 'enwikibooks') {
-            $ns[102] = 'Cookbook';
-            $ns[103] = 'Cookbook talk';
-        }
-        
-        if(!key_exists($namespace_id, $ns)) return 'UNKNOWN NAMESPACE '.$namespace_id;//throw new Exception('Unknown namespace number: '.$namespace_id);
-        return $ns[$namespace_id];
-    } 
     
     public function getDataHtml() {
         $return = '';

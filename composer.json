@@ -1,0 +1,8 @@
+{
+	"require-dev": {
+		"squizlabs/php_codesniffer": "1.*"
+	},
+	"scripts": {
+		"test": "phpcs . --standard=phpcs.xml --ignore=vendor/* --extensions=php"
+	}
+}

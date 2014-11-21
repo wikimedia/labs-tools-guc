@@ -1,11 +1,12 @@
 <?php
 
-class lb_Exception extends Exception {
- 
+class lb_Exception extends Exception
+{
+
     public function __construct($message = '', $code = 0, Exception $previous = null) {
         parent::__construct($message, $code, $previous);
     }
-    
+
     public function printDieMessageHTML() {
         $html = '<html>
                     <head>
@@ -19,7 +20,7 @@ class lb_Exception extends Exception {
                         <p style="font-style:italic">'.$this->getCode().': '.$this->getMessage().'</p>
                     </body>
                     </html>';
-        print($html);
+        print $html ;
         die();
     }
 }

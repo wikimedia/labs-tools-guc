@@ -200,9 +200,8 @@ class lb_app
 
         // Initialize cache
         if (!is_array($cache)) {
-            $rawCache = file_get_contents(settings::getSetting('cacheFile'));
-            if ($rawCache) {
-                $cache = json_decode($rawCache, true);
+            if (is_readable(settings::getSetting('cacheFile'))) {
+                $cache = json_decode(file_get_contents(settings::getSetting('cacheFile')), true);
             } else {
                 $cache = array();
             }

@@ -124,8 +124,10 @@ class lb_wikicontribs
         unset($db);
         foreach ($this->recentchanges as &$rc) {
             $rc['page_namespace_name'] = $this->app->getNamespaceName($rc['page_namespace'], $this->dbname, $this->url);
-            $rc['full_page_title'] = ($rc['page_namespace_name']) ? $rc['page_namespace_name'].":".$rc['page_title'] : $rc['page_title'];
-            $rc['full_page_title'] = str_replace(" ", "_", $rc['full_page_title']);
+            $rc['full_page_title'] = $rc['page_namespace_name']
+                ? ($rc['page_namespace_name'] . ":" . $rc['page_title'])
+                : $rc['page_title'];
+            $rc['full_page_title'] = str_replace('_', ' ', $rc['full_page_title']);
         }
     }
 
@@ -228,21 +230,18 @@ class lb_wikicontribs
             // Zeit
             $return .= $this->app->TStoUserTime($w_data['rev_timestamp'], 'H:i, d.m.Y', array()).'&nbsp;';
             // diff-Link full_page_title
-            $return .= '(<a href="//'.$this->url.'/w/index.php?title='.urlencode($w_data['full_page_title']).'&diff=prev&oldid='.urlencode($w_data['rev_id']).'">diff</a>';
+            $return .= '(<a href="//'.$this->url.'/w/index.php?title='._wpurlencode($w_data['full_page_title']).'&diff=prev&oldid='.urlencode($w_data['rev_id']).'">diff</a>';
             $return .= '&nbsp;|&nbsp;';
             // History
-            $return .= '<a href="//'.$this->url.'/w/index.php?title='.urlencode($w_data['full_page_title']).'&action=history">hist</a>)';
+            $return .= '<a href="//'.$this->url.'/w/index.php?title='._wpurlencode($w_data['full_page_title']).'&action=history">hist</a>)';
             // Minor Edit
             if ($w_data['rev_minor_edit']) {
                 $return .= '&nbsp;<span class="minor">M</span>';
             }
 
             // Link to the page
-            $return .= '&nbsp;<a href="//'.$this->url.'/w/index.php?title='.urlencode($w_data['full_page_title']).'">';
-            if ($w_data['page_namespace_name']) {
-                $return .= htmlspecialchars($w_data['page_namespace_name'].":");
-            }
-            $return .= htmlspecialchars($w_data['page_title'])."</a>";
+            $return .= '&nbsp;<a href="//'.$this->url.'/w/index.php?title='._wpurlencode($w_data['full_page_title']).'">';
+            $return .= htmlspecialchars($w_data['full_page_title'])."</a>";
 
             // Comment
             if ($w_data['rev_comment']) {

@@ -298,3 +298,21 @@ function _wpurldecode($str) {
     $str = str_replace(" ", "_", $str);
     return ucwords($str);
 }
+
+/**
+ * Based on mediawiki-core's wfUrlencode()
+ *
+ * @param string $pageName
+ * @return string
+ */
+function _wpurlencode($pageName) {
+    static $needle = null;
+    if ($needle === null) {
+        $needle = array('%3B', '%40', '%24', '%21', '%2A', '%28', '%29', '%2C', '%2F', '%3A');
+    }
+    return str_ireplace(
+        $needle,
+        array(';', '@', '$', '!', '*', '(', ')', ',', '/', ':'),
+        urlencode(str_replace(' ', '_', $pageName))
+    );
+}

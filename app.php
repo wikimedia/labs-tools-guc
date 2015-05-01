@@ -15,8 +15,7 @@
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-class lb_app
-{
+class lb_app {
     private $times = array();
     private $clusters = array();
 
@@ -28,7 +27,7 @@ class lb_app
      * @return PDO
      */
     private function openDB($database = 'wikidatawiki', $cluster = null) {
-        $this->aTP('Open new Connection to '.$cluster);
+        $this->aTP('Create connection to '.$cluster);
         if (is_string($database)) {
             $host = $database.'.labsdb';
             $dbname = $database.'_p';
@@ -43,11 +42,11 @@ class lb_app
             $dbname = (is_string($database)) ? $database.'_p': 'information_schema';
         }
 
-        //Verbindung aufbauen
         try {
+            // Establish connection
             $pdo = new PDO('mysql:host='.$host.';dbname='.$dbname.';', settings::getSetting('user'), settings::getSetting('password'));
         } catch (PDOException $e) {
-            throw new lb_Exception("Database error! can't connect to ".  htmlspecialchars($dbname));
+            throw new lb_Exception('Database error: Unable to connect to '.  $dbname);
         }
         return $pdo;
     }
@@ -60,27 +59,22 @@ class lb_app
      * @return PDO
      */
     public function getDB($database = 'meta', $clusterNr = 's1.labsdb') {
-        $con = null;
 
         if (!$clusterNr) {
-            throw new lb_Exception("try to open DB without cluster specification");
+            throw new lb_Exception('Invalid DB cluster specification');
         }
         // Bereits vorhanden?
-        if (key_exists($clusterNr, $this->clusters)) {
-            $con = $this->clusters[$clusterNr];
-        } else {
-            // Datenbankverbindung öffnen
-            $con = $this->openDB($database, $clusterNr);
+        if (!isset($this->clusters[$clusterNr])) {
+            $this->clusters[$clusterNr] = $this->openDB($database, $clusterNr);
         }
+        $pdo = $this->clusters[$clusterNr];
+
         // Datenbank auswählen
-        $m = $con->prepare('USE `'.$database.'_p`;');
+        $m = $pdo->prepare('USE `'.$database.'_p`;');
         $m->execute();
         unset($m);
 
-        // Verbindung ablegen
-        $this->clusters[$clusterNr] = $con;
-
-        return $con;
+        return $pdo;
     }
 
     public function aTP($text) {
@@ -88,114 +82,96 @@ class lb_app
     }
 
     public function printTimes() {
-        $this->aTP("Finish");
+        print nl2br(htmlspecialchars($this->getTimes()));
+    }
+
+    public function getTimes() {
+        $this->aTP('Finish');
         $timebefore = null;
         $first = null;
+        $out = '';
         foreach ($this->times as $nr => $data) {
 
             $diff = ($timebefore === null) ? 0.0 : $data[0] - $timebefore;
             if ($timebefore === null) {
                 $first = $data[0];
             }
-            print('+' . round($diff, 2) . 's: ' . $data[1] . '<br />');
+            $out .= '+' . round($diff, 2) . 's: ' . $data[1] . "\n";
 
             $timebefore = $data[0];
         }
-        print('<br />Allover:'.round((microtime(true) - $first), 2).'s.<br />');
-        print('the time now is '.date('r'));
+        $out .= "\nTotal: ".round((microtime(true) - $first), 2)."s.\n";
+        $out .= 'Current time: '.date('r');
+        return $out;
     }
 
 
     /**
      * Take a mediawiki timestamp and returns a unix timestamp
      * @param string $tstime
-     * @return int unixtimestamp
+     * @return int UNIX timestamp
      */
     public function TsToUnixTime($tstime) {
-        $regYear  = substr($tstime, 0, 4);
-        $regMonth = substr($tstime, 4, 2);
-        $regDay   = substr($tstime, 6, 2);
-        $regHour  = substr($tstime, 8, 2);
-        $regMin   = substr($tstime, 10, 2);
-        $regSec   = substr($tstime, 12, 2);
+        // Based on MWTimestamp::setTimestamp for TS_MW
+        $da = array();
+        preg_match( '/^(\d{4})(\d\d)(\d\d)(\d\d)(\d\d)(\d\d)$/D', $tstime, $da );
 
-        return mktime($regHour, $regMin, $regSec, $regMonth, $regDay, $regYear);
+        $da = array_map( 'intval', $da );
+        $da[0] = '%04d-%02d-%02dT%02d:%02d:%02d.00+00:00';
+        $strtime = call_user_func_array( 'sprintf', $da );
 
+        #$date = new DateTime( $strtime, new DateTimeZone( 'GMT' ) );
+        #return $date->format($timeformat);
+
+        return strtotime($strtime);
     }
 
     /**
-     * returns a formated timestamp
+     * Take a mediawiki timestamp and convert to a different format
      * @param string $tstime
-     * @param array $months
      * @return string
      */
-    public function TStoUserTime($tstime, $timeformat, $months) {
-        if ($tstime == "infinity") {
+    public function TStoUserTime($tstime, $timeformat = 'H:i, d M Y') {
+        if ($tstime === 'infinity') {
             return $tstime;
-        } else {
-            $regYear = substr($tstime, 0, 4);
-            $regMonth = substr($tstime, 4, 2);
-
-            $tempdates = array("01", "02", "03", "04", "05", "06", "07", "08", "09", "10", "11", "12");
-            $regMonthW = str_replace($tempdates, $months, $regMonth);
-
-            $regDay = substr($tstime, 6, 2);
-            $regHour = substr($tstime, 8, 2);
-            $regMin = substr($tstime, 10, 2);
-            $regSec = substr($tstime, 12, 2);
-
-            /*  variables:
-            Y = year,   eg. "2008"
-            m = month,  eg. "02"
-            F = month,  eg. "February"
-            d = day,    eg. "13"
-            H = hour,   eg. "15"
-            i = minute, eg. "08"
-            s = second, eg. "10"
-            */
-
-            return str_replace(array('Y','m','F','d','H','i','s'), array($regYear, $regMonth, $regMonthW, $regDay, $regHour, $regMin, $regSec), $timeformat);
-
-
         }
+        $time = $this->TsToUnixTime($tstime);
+        return date($timeformat);
     }
 
     /**
-     * parses the summary of contributions
-     * @param type $sum
-     * @param type $page
-     * @param type $project
-     * @return type
+     * Parse the edit summary of a user contribution
+     *
+     * @param string $sum
+     * @param string $page
+     * @param string $server
+     * @return string HTML
      */
-    public function wikiparser($sum, $page, $project)
-    {
-
+    public function wikiparser($sum, $page, $server)  {
         $page = htmlspecialchars($page, ENT_QUOTES);
         $sum = htmlspecialchars($sum);
-        //   Sektionen /* SEKTION */ parsen
-        $sum =preg_replace("/\/\*\s(.*)\s\*\/(.*)$/e", "'<span class=\'autocomment\'><a href=\'//$project/w/index.php?title=$page#'._wpsectdecode('\\1').'\'>→</a> \\1'.((strlen(trim('$2'))>2)?':':'').'</span>'", $sum);
+        // Parse "/* Section */"
+        $sum = preg_replace("/\/\*\s(.*)\s\*\/(.*)$/e", "'<span class=\'autocomment\'><a href=\'$server/w/index.php?title=$page#'._wpsectdecode('\\1').'\'>→</a> \\1'.((strlen(trim('$2'))>2)?':':'').'</span>'", $sum);
 
-        //Interne Links parsen
-        //[[LINK]]
-        //nichts ersetzen falls es ein | enthält
-        $sum =preg_replace("/\[\[([^\|\[\]]*)\]\]/e", "'<a href=\'//$project/w/index.php?title='._wpurldecode('\\1').'\'>\\1</a>'", $sum);
+        // Parse internal links "[[Link]]"
+        // Skip links with piped labels for later ("|")
+        $sum = preg_replace("/\[\[([^\|\[\]]*)\]\]/e", "'<a href=\'$server/w/index.php?title='._wpurldecode('\\1').'\'>\\1</a>'", $sum);
 
-        //[LINK|BESCHREIBUNG]]
-        $sum =preg_replace("/\[\[([^\|\[\]]*)\|{1}([^\|\[\]]*)\]\]/e", "'<a href=\'//$project/w/index.php?title='._wpurldecode('\\1').'\'>\\2</a>'", $sum);
+        // Parse internal links with labels "[[Link|Label]]"
+        $sum = preg_replace("/\[\[([^\|\[\]]*)\|{1}([^\|\[\]]*)\]\]/e", "'<a href=\'$server/w/index.php?title='._wpurldecode('\\1').'\'>\\2</a>'", $sum);
 
         return $sum;
     }
 
     /**
-     * Returns the Name of a Namespace, performs a api request if not already cached.
-     * @staticvar string $cache
+     * Returns the Name of a Namespace, performs an api request if not already cached.
      * @param int $id
      * @param string $dbName
-     * @param string $url
+     * @param string $server
      * @return string Namespace name
      */
-    public function getNamespaceName($id, $dbName, $url) {
-        static $cache = '';
+    public function getNamespaceName($id, $dbName, $server) {
+        static $cache = null;
         $id = intval($id);
 
         // Initialize cache
@@ -207,18 +183,15 @@ class lb_app
             }
         }
 
-        // Wiki exist in cache?
-        if (key_exists($dbName, $cache)) {
-            // Namespace exist in cache?
-            if (key_exists($id, $cache[$dbName])) {
-                return $cache[$dbName][$id];
-            }
+        // Wiki and namespace exist in cache?
+        if (isset($cache[$dbName][$id])) {
+            return $cache[$dbName][$id];
         }
 
         // Get information from API
-        $apiData = $this->apiRequest($url, array('meta' => 'siteinfo', 'siprop' => 'namespaces'));
+        $apiData = $this->apiRequest($server, array('meta' => 'siteinfo', 'siprop' => 'namespaces'));
         if (!is_array($apiData['query']['namespaces'])) {
-            throw new Exception('Error on namespace resolution for '.$url);
+            throw new Exception('Unable to retrieve namespaces from '.$server);
         }
 
         $cache[$dbName] = array();
@@ -226,29 +199,30 @@ class lb_app
             $cache[$dbName][intval($ns['id'])] = $ns['*'];
         }
 
-        //save cache
+        // Save cache
         file_put_contents(settings::getSetting('cacheFile'), json_encode($cache));
 
-        //return namespace name
-        if (!key_exists($dbName, $cache) || !key_exists($id, $cache[$dbName])) {
-            throw new Exception('Unknown namespace numer '.$id.' for '.$url);
+        if (!isset($cache[$dbName][$id])) {
+            throw new Exception('Unknown namespace number '.$id.' for '.$server);
         }
+
+        // Return namespace name
         return $cache[$dbName][$id];
     }
 
 
     /**
      * Performs a api request (post)
-     * @param string $url
+     * @param string $server
      * @param array $params
      * @return array or string
      */
-    public function apiRequest($url, $params) {
+    public function apiRequest($server, $params) {
         if (!is_array($params)) {
-            throw new Exception('invalid api parameters.');
+            throw new Exception('Invalid api parameters.');
         }
-        $url = 'https://'.$url.'/w/api.php';
-        //set defaults
+        $url = $server.'/w/api.php';
+        // Set defaults
         if (!key_exists('format', $params)) {
             $params['format'] = 'json';
         }

@@ -19,92 +19,121 @@
 require_once 'settings.php';
 require_once 'app.php';
 
-error_reporting(E_ALL ^ E_NOTICE);
+error_reporting(E_ALL);
 ini_set('display_errors', 1);
+date_default_timezone_set('UTC');
 
-// Komponenten einbinden
+// Load components
 foreach (settings::getSetting('components') as $cmp) {
-    if (is_file('lb/'.$cmp.'.php')) {
-        require_once 'lb/'.$cmp.'.php';
+    if (is_readable('lb/' . $cmp . '.php')) {
+        require_once 'lb/' . $cmp . '.php';
     }
 }
 
+$data = new stdClass();
+$data->Method = @$_SERVER['REQUEST_METHOD'];
+$data->Referer = @$_SERVER['HTTP_REFERER'];
+$data->Username = @$_REQUEST['user'];
+$data->options = array(
+    'isPrefixPattern' => @$_REQUEST['isPrefixPattern'] === '1',
+);
+
 // Create app
-$app = new lb_app();
-if (key_exists('user', $_POST)) {
-    $app->aTP('got username, start search.');
-    $guc = new guc($app);
-} else {
-    $guc = null;
+$app = $guc = $error = null;
+try {
+    $app = new lb_app();
+    if ($data->Method === 'POST') {
+        $app->aTP('Got input, start search');
+        $guc = new guc($app, $data->Username, $data->options);
+    } else {
+        $guc = null;
+    }
+} catch (Exception $e) {
+    $error = $e;
 }
-$jsData = new stdClass();
-$jsData->Method = $_SERVER["REQUEST_METHOD"];
-$jsData->Referer = $_SERVER['HTTP_REFERER'];
-$jsData->Username = $_REQUEST['user'];
 
 ?>
 <!DOCTYPE html>
 <html>
     <head>
-        <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-        <link rel="stylesheet" href="resources/style.css" type="text/css">
+        <meta charset="UTF-8">
+        <link rel="stylesheet" href="resources/style.css">
         <script src="resources/frontend.js"></script>
         <script src="lib/prototype.js"></script>
         <title>Global user contributions</title>
-        <script type="text/javascript">
-            var data = <?php print json_encode($jsData); ?>;
+        <script>
+            var data = <?php print json_encode($data); ?>;
         </script>
     </head>
     <body>
         <div class="maincontent">
             <div class="header">
-                <h2>global user contributions <span>beta</span></h2>
-            <p>Tool to search contributions of a user in the wikimedia-wikis. Additional features like blocklog, sul-info or translation will follow in the future.</p>
+                <h2>Global user contributions <span>beta</span></h2>
+            <p>Tool to search for contributions of users on the Wikimedia wikis. Additional features like blocklog, sul-info or translation will follow in the future.</p>
             </div>
-            <form method="POST" class="searchField" id="searchForm">
-                <p> IP Address or username: <input name="user" value="<?php
-                    if ($guc) {
-                      print htmlspecialchars($guc->getUsername());
-                    } elseif (key_exists('user', $_GET)) {
-                      print htmlspecialchars($_GET['user']);
+            <form action="./" method="POST" class="searchField" id="searchForm">
+                <p><label>IP address or username: <input name="user" value="<?php
+                    if ($data->Username) {
+                        print htmlspecialchars($data->Username);
                     }
-                ?>" class="usernameOrIp"></p>
+                ?>"></label></p>
+                <p><label>Activate prefix pattern search: <input name="isPrefixPattern" type="checkbox" value="1"<?php
+                    if ($data->options['isPrefixPattern']) {
+                        print ' checked';
+                    }
+                ?>></label></p>
                 <input type="submit" value="Search" class="submitbutton" id="submitButton" onclick="onSearchClick(this);">
                 <div id="loadLine" style="display: none;">&nbsp;</div>
             </form>
             <?php
+            if ($error) {
+                print '<div class="error">';
+                print 'Error: ' . htmlspecialchars($error->getMessage());
+                print '</div>';
+            }
             if ($guc) {
-                print '<p class="statistics">'.$guc->wikisCount." wikis searched. ";
-                if ($guc->getAlloverCount() > 0) {
-                    print $guc->getAlloverCount().' edits found in '.$guc->wikisWithEditscount.' projects.';
+                print '<p class="statistics">'.$guc->getWikiCount()." wikis searched. ";
+                print $guc->getGlobalEditcount().' edits found';
+                if ($guc->getResultWikiCount()) {
+                    print ' in '.$guc->getResultWikiCount().' projects';
                 }
-                print '</p>';
+                print '.</p>';
                 print '<div class="results">';
-                if ($guc->getHostname()) {
-                    print '<div class="hostname">'.$guc->getUsername().' = '.$guc->getHostname().'</div>';
+                $hostnames = array_filter($guc->getHostnames());
+                if ($hostnames) {
+                    print '<div class="box">';
+                    foreach ($guc->getHostnames() as $ip => $hostname) {
+                        print '<div class="hostname">Hostname of ' . htmlspecialchars($ip) . ':&nbsp; <tt>' . htmlspecialchars($hostname).'</tt></div>';
+                    }
+                    if (count($hostnames) >= 10) {
+                        print '<em>(Limited hostname lookups)</em>';
+                    }
+                     print '</div>';
                 }
-                foreach ($guc->getData() as $wiki) {
-                    if (is_object($wiki['data'])) {
-                        if ($wiki['data']->hasContribs()) {
-                            print '<div class="wiki'.(($wiki['data']->markAsNotUnified())?' noSul':'').'">';
-                            print $wiki['data']->getDataHtml();
+                foreach ($guc->getData() as $data) {
+                    if ($data->error) {
+                        print '<div class="error">';
+                        if (isset($data->wiki->domain)) {
+                            print'<h1>'.htmlspecialchars($data->wiki->domain).'</h1>';
+                        }
+                        print htmlspecialchars($data->error->getMessage());
+                        print '</div>';
+                    } else {
+                        if ($data->contribs->hasContribs()) {
+                            print '<div class="wiki'.(($data->contribs->markAsNotUnified())?' noSul':'').'">';
+                            print $data->contribs->getDataHtml();
                             print '</div>';
                         }
-                    } elseif ($wiki['error']) {
-                        print('<div class="error">');
-                        if ($wiki['url']) {
-                            print'<h1>'.htmlspecialchars($wiki['url']).'</h1>';
-                        }
-                        print $wiki['error'];
-                        print '</div>';
                     }
-
                 }
                 print '</div>';
             }
+            // print '<pre>';
+            // $app->printTimes();
+            // print '</pre>';
             ?>
             <div class="footer">
-                by <a href="https://wikitech.wikimedia.org/wiki/User:Luxo">Luxo</a>
+                by <a href="https://wikitech.wikimedia.org/wiki/User:Luxo">Luxo</a> &bull; <a href="https://wikitech.wikimedia.org/wiki/User:Krinkle">Krinkle</a>
             </div>
         </div>
     </body>

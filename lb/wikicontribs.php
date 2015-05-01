@@ -15,67 +15,89 @@
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-class lb_wikicontribs
-{
-    private $contribLimit = 20;
+class lb_wikicontribs {
+    const CONTRIB_LIMIT = 20;
 
-    private $hasContribs = false;
-    private $isIp;
-    private $registeredUser = false;
-    private $justLastHour = false;
     private $app;
-    private $dbname;
-    private $url;
-    private $slice;
-    private $family;
+    private $wiki;
 
-    private $username;
-    private $usernameUnterlined;
-    private $userId;
-    private $userEditCount;
-    private $userRegistration;
+    private $user;
+    private $isIp;
+    private $options;
+
     private $centralAuth;
+    private $hasManyMatches = false;
+    private $recentchanges = null;
+    private $hasContribs = false;
+    private $registeredUsers = array();
 
     /**
      *
-     * @param string $dbname
-     * @param string $url
-     * @param string $slice
+     * @param lb_app $app
+     * @param string $user Search query for wiki users
+     * @param boolean $isIP
+     * @param object $wiki
+     *  - dbname
+     *  - slice
+     *  - family
+     *  - domain
+     *  - url (may be protocol-relative, or HTTPS)
+     *  - canonical_server (HTTP or HTTPS)
+     * @param null|false|object $centralAuth
+     * @param array $options
      */
-    public function __construct(lb_app $app, $username, $dbname, $url, $slice, $family, $centralAuth, $isIP, $justLastHour) {
-        if (!$username) {
-            throw new Exception("No Username or IP");
+    public function __construct(lb_app $app, $user, $isIP, $wiki, $centralAuth, $options = array()) {
+        if (!$user) {
+            throw new Exception("No username or IP");
         }
         $this->app = $app;
-        $this->dbname = $dbname;
-        $this->url = $url;
-        $this->slice = $slice;
-        $this->family = $family;
-        $this->username = str_replace("_", " ", $username);
-        $this->usernameUnterlined = str_replace(" ", "_", $username);
-        $this->recentchanges = null;
+
+        $this->user = $user;
         $this->isIp = $isIP;
-        $this->justLastHour = $justLastHour;
+        $this->options = $options += array(
+            'isPrefixPattern' => false,
+            'onlyRecent' => false,
+        );
+
+        $this->wiki = $wiki;
         $this->centralAuth = $centralAuth;
 
         if ($this->isIp !== true) {
-            //get user data
-            $this->app->aTP('search user data at ' . $url);
-            $db = $this->app->getDB($dbname, $slice)->prepare("SELECT `user_id`, `user_editcount`, `user_registration` FROM `user` WHERE `user_name` = :username LIMIT 1;");
-            $db->bindParam(':username', $this->username);
-            $db->execute();
-            $res = $db->fetch(PDO::FETCH_ASSOC);
-            unset($db);
-
-            if ($res) {
-                //set data
-                $this->registeredUser = true;
-                $this->userId = $res['user_id'];
-                $this->userEditCount = $res['user_editcount'];
-                $this->userRegistration = $res['user_registration'];
+            $this->app->aTP('Query user data for ' . $wiki->domain);
+            // Get user data
+            $statement = $this->app->getDB($wiki->dbname, $wiki->slice)->prepare("SELECT
+                    `user_id`,
+                    `user_name`
+                FROM `user`
+                WHERE ".(
+                    ($this->options['isPrefixPattern'])
+                        ? "`user_name` LIKE :userlike"
+                        : "`user_name` = :user"
+                )."
+                LIMIT 10;"
+            );
+            if ($this->options['isPrefixPattern']) {
+                $statement->bindParam(':userlike', $this->user);
+            } else {
+                $statement->bindParam(':user', $this->user);
             }
+            $statement->execute();
+            $rows = $statement->fetchAll(PDO::FETCH_OBJ);
+            unset($statement);
+
+            // Limit quering of user ids to 10. If it's more than that, make the database
+            // query for contributions like for IP-addresses by using wildcard user_text.
+            if (count($rows) > 10) {
+                $this->hasManyMatches = true;
+            } elseif ($rows) {
+                foreach ($rows as $row) {
+                    $this->registeredUsers[$row->user_id] = $row->user_name;
+                }
+            }
+            // Else: 'user' does not exist, or is an IP, or an IP pattern,
+            // or a user name pattern with many matches.
         }
-        //Beiträge Abfragen
+
         $this->_getRecentChanges();
     }
 
@@ -85,20 +107,27 @@ class lb_wikicontribs
      * @return mixed;
      */
     private function _getRecentChanges() {
-        $this->app->aTP('search recent changes at ' . $this->url);
-        date_default_timezone_set('UTC');
+        $this->app->aTP('Query recent changes for ' . $this->wiki->domain);
         $where = '';
-        if ($this->justLastHour) {
+        if ($this->options['onlyRecent']) {
             $where = " `rev_timestamp` >= '" . date('YmdHis') . "' AND ";
         }
+        $pdo = $this->app->getDB($this->wiki->dbname, $this->wiki->slice);
 
-        $qry = "SELECT
+        if ($this->registeredUsers) {
+            $userIdCond = (count($this->registeredUsers) === 1)
+                ? ' = ' . $pdo->quote(key($this->registeredUsers))
+                : ' IN (' . join(',', array_map(array($pdo, 'quote'), array_keys($this->registeredUsers))) . ')';
+        }
+
+        $sql = "SELECT
                 `rev_comment`,
                 `rev_timestamp`,
                 `rev_minor_edit`,
                 `rev_len`,
                 `rev_id`,
                 `rev_parent_id`,
+                `rev_user_text`,
                 `page_title`,
                 `page_namespace`,
                 `page_latest` = `rev_id` AS `rev_cur`
@@ -109,30 +138,44 @@ class lb_wikicontribs
             WHERE
                 ".$where."
                 `rev_deleted` = 0 AND
-                ".(($this->isIP()) ? "`rev_user_text` = :username" : "`rev_user` = :userid")."
-            ORDER BY `revision_userindex`.`rev_timestamp`  DESC LIMIT 0,".$this->contribLimit.";";
-        $db = $this->app->getDB($this->dbname, $this->slice)->prepare($qry);
-        if ($this->isIP()) {
-            $db->bindParam(':username', $this->username);
-        } else {
-            $db->bindParam(':userid', $this->userId);
+                ".(
+                    ($this->registeredUsers)
+                        ? "`rev_user` $userIdCond"
+                        : (
+                            ($this->options['isPrefixPattern'])
+                                ? 'rev_user_text LIKE :userlike'
+                                : 'rev_user_text = :user'
+                        )
+                )."
+            ORDER BY `revision_userindex`.`rev_timestamp` DESC
+            LIMIT 0, " . intval(self::CONTRIB_LIMIT) .
+            ";";
+        $statement = $pdo->prepare($sql);
+        if (!$this->registeredUsers) {
+            if ($this->options['isPrefixPattern']) {
+                $statement->bindParam(':userlike', $this->user);
+            } else {
+                $statement->bindParam(':user', $this->user);
+            }
         }
-        $db->execute();
-        $this->recentchanges = $db->fetchAll(PDO::FETCH_ASSOC);
+        $statement->execute();
+        $this->recentchanges = $statement->fetchAll(PDO::FETCH_OBJ);
         $this->hasContribs = !!$this->recentchanges;
-        // Get namespace
-        unset($db);
-        foreach ($this->recentchanges as &$rc) {
-            $rc['page_namespace_name'] = $this->app->getNamespaceName($rc['page_namespace'], $this->dbname, $this->url);
-            $rc['full_page_title'] = $rc['page_namespace_name']
-                ? ($rc['page_namespace_name'] . ":" . $rc['page_title'])
-                : $rc['page_title'];
-            $rc['full_page_title'] = str_replace('_', ' ', $rc['full_page_title']);
+        unset($statement);
+        foreach ($this->recentchanges as $rc) {
+            $rc->rev_user_text = str_replace('_', ' ', $rc->rev_user_text);
+
+            // Expand page with prefixed namespace
+            $rc->page_namespace_name = $this->app->getNamespaceName($rc->page_namespace, $this->wiki->dbname, $this->wiki->canonical_server);
+            $rc->full_page_title = $rc->page_namespace_name
+                ? ($rc->page_namespace_name . ':' . $rc->page_title)
+                : $rc->page_title;
+            $rc->full_page_title = str_replace('_', ' ', $rc->full_page_title);
         }
     }
 
     /**
-     * Gibt zurück ob der Benutzer eine IP ist oder nicht.
+     * Whether the user represents a single IP address.
      * @return boolean
      */
     public function isIP() {
@@ -140,28 +183,27 @@ class lb_wikicontribs
     }
 
     /**
-     * Gibt alle letzten 20 Beiträge zurück
-     * @return type
+     * Get the latest contributions
+     * @return array of objects
      */
     public function getRecentChanges() {
         return $this->recentchanges;
     }
 
-    public function getUserRegistration() {
-        return ($this->registeredUser) ? null : $this->userRegistration;
-    }
-
-    public function getUserEditcount() {
-        return ($this->registeredUser) ? null : $this->userEditCount;
+    /**
+     * @return bool|int
+     */
+    public function getRegisteredUsers() {
+        return $this->registeredUsers;
     }
 
 
     /**
-     * gibt die aktuellen Blocks zurück.
-     * @return mixed
+     * Get relevant info about account blocks in recent history.
+     * @return null|array
      */
     public function getBlocks() {
-        return ($this->isIP()) ? $this->getIpBlocks() : $this->getUserBlocks();
+        return $this->getIpBlocks() ?: $this->getUserBlocks();
     }
 
     private function getIpBlocks() {
@@ -173,9 +215,9 @@ class lb_wikicontribs
                     `user`.user_name AS admin_username
             FROM ipblocks
             INNER JOIN `user` ON ipb_by = `user`.user_id
-            WHERE ipblocks.ipb_address = :ipadresse LIMIT 0,100;";
+            WHERE ipblocks.ipb_address = :ipaddress LIMIT 0,100;";
         $db = $this->app->getDB($this->dbname, $this->slice)->prepare($qry);
-        $db->bindParam(':ipadresse', $this->username);
+        $db->bindParam(':ipaddress', $this->user);
         $db->execute();
         $res = $db->fetchAll(PDO::FETCH_ASSOC);
         unset($db);
@@ -183,17 +225,18 @@ class lb_wikicontribs
     }
 
     private function getUserBlocks() {
-        if ($this->isIP()) {
+        if ($this->isIP() || $this->options['isPrefixPattern'] || !$this->registeredUsers) {
             return null;
         }
+        $userId = key($this->registeredUsers);
         $qry = "SELECT
                     ipblocks.*,
                     `user`.user_name AS admin_username
             FROM ipblocks
             INNER JOIN `user` ON ipb_by = `user`.user_id
-            WHERE ipblocks.ipb_user = :userid LIMIT 0,100;";
+            WHERE ipblocks.ipb_user = :id LIMIT 0,100;";
         $db = $this->app->getDB($this->dbname, $this->slice)->prepare($qry);
-        $db->bindParam(':userid', $this->userId);
+        $db->bindParam(':id', $userId);
         $db->execute();
         $res = $db->fetchAll(PDO::FETCH_ASSOC);
         unset($db);
@@ -204,75 +247,107 @@ class lb_wikicontribs
         return $this->hasContribs;
     }
 
+    private function getUrl($pageName) {
+        return $this->wiki->url . '/wiki/' . _wpurlencode($pageName);
+    }
+
+    private function getLongUrl($query) {
+        return $this->wiki->url . '/w/index.php?' . $query;
+    }
+
+    private function getUserTools($userName) {
+        return 'For <a href="'.htmlspecialchars($this->getUrl("User:$userName")).'">'.htmlspecialchars($userName).'</a> ('
+            . '<a href="'.htmlspecialchars($this->getUrl("Special:Contributions/$userName")).'" title="Special:Contributions">contribs</a>&nbsp;| '
+            . '<a href="'.htmlspecialchars($this->getUrl("User_talk:$userName")).'">talk</a>&nbsp;| '
+            . '<a href="'.htmlspecialchars($this->getUrl("Special:Log/block").'?page=User:'._wpurlencode($userName)).'" title="Special:Log/block">block log</a>&nbsp;| '
+            . '<a href="'.htmlspecialchars($this->getUrl("Special:ListFiles/$userName")).'" title="Special:ListFiles">uploads</a>&nbsp;| '
+            . '<a href="'.htmlspecialchars($this->getUrl("Special:Log/$userName")).'" title="Special:Log">logs</a>&nbsp;| '
+            . '<a href="'.htmlspecialchars($this->getUrl("Special:AbuseLog").'wpSearchUser='._wpurlencode($userName)).'" title="Edit Filter log for this user">filter log</a>'
+            . ')';
+    }
+
     public function getDataHtml() {
         $return = '';
-        $return .= '<h1>'.$this->url.'</h1>';
-        $return .= '<p class="wikiinfo">';
-        $return .= 'For <a href="//'.$this->url.'/wiki/User:'.htmlspecialchars($this->usernameUnterlined).'">'.  htmlspecialchars($this->username).'</a> '
-                . '(<a href="//'.$this->url.'/wiki/User_talk:'.htmlspecialchars($this->usernameUnterlined).'">talk</a>&nbsp;| '
-                . '<a href="//'.$this->url.'/w/index.php?title=Special:Log/block&page='.  urlencode('User:'.$this->usernameUnterlined).'" title="Special:Log/block">block log</a>&nbsp;| '
-                . '<a href="//'.$this->url.'/wiki/Special:ListFiles/'.htmlspecialchars($this->usernameUnterlined).'" title="Special:ListFiles">uploads</a>&nbsp;| '
-                . '<a href="//'.$this->url.'/wiki/Special:Log/'.htmlspecialchars($this->usernameUnterlined).'" title="Special:Log">logs</a>&nbsp;| '
-                . '<a href="//'.$this->url.'/w/index.php?title=Special:AbuseLog&wpSearchUser='.  urlencode($this->usernameUnterlined).'" title="Edit Filter log for this user">filter log</a>';
-        if ($this->userEditCount > 0) {
-            $return .= ' | '.  $this->userEditCount.' edits';
+        $return .= '<h1>'.$this->wiki->domain.'</h1>';
+        $userinfo = array();
+        if (!$this->options['isPrefixPattern']) {
+            $userinfo[] = $this->getUserTools($this->user);
+        } else {
+            if ($this->registeredUsers) {
+                if (count($this->registeredUsers) === 1) {
+                    $userinfo[] = $this->getUserTools(current($this->registeredUsers));
+                } else {
+                    $userinfo[] = ($this->hasManyMatches ? 'More than ' : '')
+                        . count($this->registeredUsers) . ' users: '
+                        . implode(', ', array_values($this->registeredUsers));
+                }
+            }
         }
+        $userinfo[] = $this->wiki->_editcount . ' edits';
         if ($this->centralAuth) {
-            $return .= ' | '.'SUL: Account attached at '.$this->app->TStoUserTime($this->centralAuth['lu_attached_timestamp'], 'H:i, d.m.Y', array());
+            $userinfo[] = 'SUL: Account attached at '.$this->app->TStoUserTime($this->centralAuth->lu_attached_timestamp);
         }
-        if ($this->centralAuth === null) {
-            $return .= ' | '.'SUL: Account not attached.';
+        if ($this->markAsNotUnified()) {
+            $userinfo[] = 'SUL: Account not attached.';
         }
-        $return .= ')</p>';
+        if ($userinfo) {
+            $return .= '<p class="wikiinfo">' . join(' | ', $userinfo) . '</p>';
+        }
         $return .= '<ul>';
-        foreach ($this->recentchanges as $w_data) {
-            $return .= '<li>';
-            // Zeit
-            $return .= $this->app->TStoUserTime($w_data['rev_timestamp'], 'H:i, d.m.Y', array()).'&nbsp;';
-            // diff-Link full_page_title
-            $return .= '(<a href="//'.$this->url.'/w/index.php?title='._wpurlencode($w_data['full_page_title']).'&diff=prev&oldid='.urlencode($w_data['rev_id']).'">diff</a>';
-            $return .= '&nbsp;|&nbsp;';
-            // History
-            $return .= '<a href="//'.$this->url.'/w/index.php?title='._wpurlencode($w_data['full_page_title']).'&action=history">hist</a>)';
-            // Minor Edit
-            if ($w_data['rev_minor_edit']) {
-                $return .= '&nbsp;<span class="minor">M</span>';
+        foreach ($this->recentchanges as $rc) {
+            $item = array();
+            // Diff and history
+            $item[] =
+                '(<a href="'.htmlspecialchars($this->getLongUrl('title='._wpurlencode($rc->full_page_title).'&diff=prev&oldid='.urlencode($rc->rev_id))).'">diff</a>'
+                . '&nbsp;|&nbsp;'
+                . '<a href="'.htmlspecialchars($this->getLongUrl('title='._wpurlencode($rc->full_page_title).'&action=history')).'">hist</a>)'
+                ;
+
+            // Date
+            $item[] = $this->app->TStoUserTime($rc->rev_timestamp);
+
+            // Patterns may yield different users for different edits,
+            // provide basic tools for each entry.
+            if ($this->options['isPrefixPattern']) {
+                $item[] = '<a href="'.htmlspecialchars($this->getUrl("User:{$rc->rev_user_text}")).'">'
+                    . htmlspecialchars($rc->rev_user_text).'</a>'
+                    . '&nbsp;(<a href="'.htmlspecialchars($this->getUrl("User_talk:{$this->user}")).'">talk</a>&nbsp;| '
+                    . '<a href="'.htmlspecialchars($this->getUrl("Special:Contributions/{$this->user}")).'" title="Special:Contributions">contribs</a>)';
+                $item[] = '. .';
+            }
+            // Minor edit
+            if ($rc->rev_minor_edit) {
+                $item[] = '<span class="minor">M</span>';
             }
 
             // Link to the page
-            $return .= '&nbsp;<a href="//'.$this->url.'/w/index.php?title='._wpurlencode($w_data['full_page_title']).'">';
-            $return .= htmlspecialchars($w_data['full_page_title'])."</a>";
+            $item[] = '<a href="'.htmlspecialchars($this->getUrl($rc->full_page_title)).'">'
+                . htmlspecialchars($rc->full_page_title)."</a>";
 
-            // Comment
-            if ($w_data['rev_comment']) {
-                $return .= '&nbsp;('.$this->app->wikiparser($w_data['rev_comment'], $w_data['full_page_title'], $this->url).')';
+            // Edit summary
+            if ($rc->rev_comment) {
+                $item[] = '<span class="comment">('.$this->app->wikiparser($rc->rev_comment, $rc->full_page_title, $this->wiki->url).')</span>';
             }
 
             // Cur revision
-            if ($w_data['rev_cur']) {
-                $return .= '&nbsp;<span class="rev_cur">(current)</span>';
+            if ($rc->rev_cur) {
+                $item[] = '<span class="rev_cur">(current)</span>';
             }
-            $return .= '</li>';
+            $return .= '<li>' . join('&nbsp;', $item) . '</li>';
         }
         $return .= '</ul>';
         return $return;
     }
 
     /**
-     * Gibt zurück ob der Beitrag als nicht CentralAuth markiert werden soll.
-     * @return boolen
+     * Whether the user should be considered to be ununified.
+     *
+     * @see guc::_getCentralauthData: False means CentralAuth is unavailable
+     * or the user is an IP or pattern. Null means we're dealing with a proper
+     * user name but the account is not attached on this wiki.
+     * @return boolean
      */
     public function markAsNotUnified() {
         return $this->centralAuth === null;
-    }
-
-    private function _wikiTimestampToNormal($wp_time) {
-        // TODO: Umwandeln
-        return $wp_time;
-    }
-
-    private function _formatComment($unformated, $pageLink = null) {
-        // TODO
-        return $unformated;
     }
 }

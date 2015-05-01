@@ -15,57 +15,115 @@
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-class guc
-{
+class guc {
     private $app;
-    private $isIP;
-    private $hostname;
-    private $username;
+    private $user;
+    private $options;
+
+    private $isIP = false;
+    private $hostnames = array();
+    private $globalEditCount = 0;
+
+    private $data;
     private $wikis;
-    private $alloverCount = 0;
-    public $wikisCount = 0;
-    public $wikisWithEditscount = 0;
 
-    public function __construct(lb_app $app, $closedWikis = false, $justLastHour = false) {
+    public function __construct(lb_app $app, $user, $options = array()) {
         $this->app = $app;
-        $this->username = str_replace("_", " ", ucfirst(trim($_POST['user'])));
-        $wikis = $this->_getWikis($closedWikis);
-        $WikisCountribsCounter = $this->_getWikisWithContribs($wikis);
-        $this->wikisCount = count($wikis);
-        try {
-            $this->hostname = @gethostbyaddr($this->username);
-        } catch (Exception $e) {
-            $this->hostname = '';
-        }
-        $this->isIP = !!$this->hostname;
-        // Check if input is a IP
-        foreach ($wikis as &$wiki) {
-            if ($WikisCountribsCounter[$wiki['dbname']] > 0) {
-                // Strip http://
-                $wiki['url'] = mb_substr($wiki['url'], 7);
-                try {
-                    $wiki['data'] = new lb_wikicontribs($this->app, $this->username, $wiki['dbname'], $wiki['url'], $wiki['slice'], $wiki['family'], $this->_getCentralauthData($wiki['dbname']), $this->isIP, $justLastHour);
-                    $wiki['error'] = null;
-                } catch (Exception $e) {
-                    $wiki['data'] = null;
-                    $wiki['error'] = "Error with ".$wiki['url'].': '.$e->getMessage().'<br>';
-                }
-            } else {
-                // No contribs
-                $wiki['data'] = null;
-                $wiki['error'] = null;
-            }
 
+        // Normalise
+        $this->user = str_replace('_', ' ', ucfirst(trim($user)));
+
+        // Defaults
+        $this->options = $options += array(
+            'isPrefixPattern' => false,
+            'includeClosedWikis' => false,
+            'onlyRecent' => false,
+        );
+
+        if (!$this->user) {
+            throw new Exception('No username or IP');
         }
+
+        // Check if input is a pattern
+        if ($this->options['isPrefixPattern']) {
+            if (strpos($this->user, '_') !== false) {
+                throw new Exception('Illegal "_" character found');
+            }
+            // Pattern search must be prefix-based for performance
+            if (substr($this->user, 0, 1) === '%') {
+                throw new Exception('Wildcard search can not start with "%".');
+            }
+            // Hidden feature: User can specify "%" somewhere in the query.
+            // Though by default we'll assume a prefix search.
+
+            if (substr($this->user, -1) !== '%') {
+                $this->user .= '%';
+            }
+            $this->app->aTP('Perfoming a pattern search: ' . $this->user);
+        } else {
+            // Check if input is an IP
+            if ($this->addIP($this->user)) {
+                $this->isIP = true;
+            }
+        }
+
+        $wikis = $this->_getWikis();
+        // Filter down wikis to only relevant ones.
+        // Attaches 'wiki._editcount' property.
+        $wikisWithEditcount = $this->_getWikisWithContribs($wikis);
+
+        $datas = new stdClass();
+        foreach ($wikisWithEditcount as $dbname => $wiki) {
+            $wiki->canonical_server = $wiki->url;
+            $wiki->domain = preg_replace('#^https?://#', '', $wiki->canonical_server);
+            // Convert "http://" to "//".
+            // Keep https:// as-is since we should not override that. (phabricator:T94351)
+            $wiki->url = preg_replace('#^http://#', '//', $wiki->canonical_server);
+
+            $data = new stdClass();
+            $data->wiki = $wiki;
+            $data->error = null;
+            $data->contribs = null;
+
+            try {
+                $contribs = new lb_wikicontribs(
+                    $this->app,
+                    $this->user,
+                    $this->isIP,
+                    $wiki,
+                    $this->_getCentralauthData($wiki->dbname),
+                    $options
+                );
+                if ($this->options['isPrefixPattern'] && !$contribs->getRegisteredUsers()) {
+                    foreach ($contribs->getRecentChanges() as $rc) {
+                        $this->addIP($rc->rev_user_text);
+                        if (count($this->hostnames) > 10) {
+                            break;
+                        }
+                    }
+                }
+                $data->contribs = $contribs;
+            } catch (Exception $e) {
+                $wiki->error = $e;
+            }
+            unset($contribs);
+            $datas->$dbname = $data;
+        }
+
+        // List of all wikis
         $this->wikis = $wikis;
+        // Array of wikis with edit count, keyed by dbname
+        $this->wikisWithEditcount = $wikisWithEditcount;
+        // Contributions, keyed by dbname
+        $this->datas = $datas;
     }
 
     /**
-     * return all wikis
-     * @return mixed
+     * Get all wikis
+     * @return array of objects
      */
-    private function _getWikis($closedIncluded = false) {
-        $this->app->aTP('get wiki list..');
+    private function _getWikis() {
+        $this->app->aTP('Get list of all wikis');
         $family = array(
             'wikipedia' => 1,
             'wikibooks' => 1,
@@ -82,106 +140,155 @@ class guc
             'wikimania' => 1
         );
         $f_where = array();
-        if (!$closedIncluded) {
+        if (!$this->options['includeClosedWikis']) {
             $f_where[] = 'is_closed = 0';
         }
-        foreach ($family as $name => $include) {
-            if ($include == 0) {
+        foreach ($family as $name => $value) {
+            if ($value !== 1) {
                 $f_where[] = '`family` != \''.$name.'\'';
             }
         }
-        $f_where = implode(" AND ", $f_where);
-        $qry = 'SELECT * FROM `meta_p`.`wiki` WHERE '.$f_where.' LIMIT 1500;';
-        $con = $this->app->getDB()->prepare($qry);
-        $con->execute();
-        $r = $con->fetchAll();
-        unset($con);
-        return $r;
+        $f_where = implode(' AND ', $f_where);
+        $sql = 'SELECT * FROM `meta_p`.`wiki` WHERE '.$f_where.' LIMIT 1500;';
+        $statement = $this->app->getDB()->prepare($sql);
+        $statement->execute();
+        $rows = $statement->fetchAll(PDO::FETCH_OBJ);
+        unset($statement);
+        return $rows;
     }
 
     /**
      * return the wikis with contribs
-     * @param type $wikis
-     * @return type
+     * @param array $wikis
+     * @return array
      */
-    private function _getWikisWithContribs($wikis) {
-        $return = array();
+    private function _getWikisWithContribs(Array $wikis) {
+        $this->app->aTP('Query all wikis for matching revisions');
+        $wikisWithEditcount = array();
+
         $slices = array();
-        $wikisWithEditCount = 0;
+        $wikisByDbname = array();
         foreach ($wikis as $wiki) {
-            if (!is_array($slices[$wiki['slice']])) {
-                $slices[$wiki['slice']] = array();
-            }
-            $slices[$wiki['slice']][] = 'SELECT COUNT(rev_id) AS counter, \''.$wiki['dbname'].'\' AS dbname FROM '.$wiki['dbname'].'_p.revision_userindex WHERE rev_user_text = :username';
+            $wikisByDbname[$wiki->dbname] = $wiki;
+            $slices[$wiki->slice][] = 'SELECT
+                COUNT(rev_id) AS counter,
+                \''.$wiki->dbname.'\' AS dbname
+                FROM '.$wiki->dbname.'_p.revision_userindex
+                WHERE '.(
+                    ($this->options['isPrefixPattern'])
+                        ? 'rev_user_text LIKE :userlike'
+                        : 'rev_user_text = :user'
+                );
         }
-        foreach ($slices as $slicename => $sql) {
-            if ($sql) {
-                $sql = implode(' UNION ALL ', $sql);
-                $qry = $this->app->getDB('meta', $slicename);
-                $con = $qry->prepare($sql);
-                $con->bindParam(':username', $this->username);
-                $con->execute();
-                $r = $con->fetchAll(PDO::FETCH_ASSOC);
-                foreach ($r as $re) {
-                    $return[$re['dbname']] = intval($re['counter']);
-                    if ($re['counter'] > 0) {
-                        $wikisWithEditCount++;
+
+        $globalEditCount = 0;
+        foreach ($slices as $sliceName => $queries) {
+            if ($queries) {
+                $sql = implode(' UNION ALL ', $queries);
+                $pdo = $this->app->getDB('meta', $sliceName);
+                $statement = $pdo->prepare($sql);
+                if ($this->options['isPrefixPattern']) {
+                    $statement->bindParam(':userlike', $this->user);
+                } else {
+                    $statement->bindParam(':user', $this->user);
+                }
+                $statement->execute();
+                $rows = $statement->fetchAll(PDO::FETCH_OBJ);
+                foreach ($rows as $row) {
+                    $wiki = $wikisByDbname[$row->dbname];
+                    $wiki->_editcount = intval($row->counter);
+                    if ($row->counter > 0) {
+                        $globalEditCount += $row->counter;
+                        $wikisWithEditcount[$row->dbname] = $wiki;
                     }
                 }
-                unset($con);
+                unset($statement);
             }
         }
-        $this->alloverCount = array_sum($return);
-        $this->wikisWithEditscount = $wikisWithEditCount;
-        return $return;
+        $this->globalEditCount = $globalEditCount;
+        return $wikisWithEditcount;
     }
 
     /**
-     * returns centralauth information
+     * Get centralauth information
      * @staticvar null $centralauthData
      * @param string $dbname
-     * @return array|null|bool False if no centralauth
+     * @return object|null|bool False if no centralauth
      */
     private function _getCentralauthData($dbname) {
         static $centralauthData = null;
+        if ($this->isIP || $this->options['isPrefixPattern']) {
+            return false;
+        }
         if ($centralauthData === null) {
             $centralauthData = array();
-            $db = $this->app->getDB('centralauth', 'centralauth.labsdb');
-            $qry = $db->prepare('SELECT * FROM localuser WHERE lu_name = :luName;');
-            $qry->bindParam(':luName', $this->username, PDO::PARAM_STR);
-            $qry->execute();
-            $rows = $qry->fetchAll(PDO::FETCH_ASSOC);
-            unset($qry);
+            $pdo = $this->app->getDB('centralauth', 'centralauth.labsdb');
+            $statement = $pdo->prepare('SELECT * FROM localuser WHERE lu_name = :user;');
+            $statement->bindParam(':user', $this->user);
+            $statement->execute();
+            $rows = $statement->fetchAll(PDO::FETCH_OBJ);
+            unset($statement);
             if (!$rows) {
                 return false;
             }
             foreach ($rows as $row) {
-                $centralauthData[$row['lu_wiki']] = $row;
+                $centralauthData[$row->lu_wiki] = $row;
             }
         }
-        if (!key_exists($dbname, $centralauthData)) {
+        if (!isset($centralauthData[$dbname])) {
             return null;
         }
         return $centralauthData[$dbname];
     }
 
     /**
-     * Gibt die Daten zurück
+     * Add IP address to hostname map (if not already).
+     */
+    private function addIP( $ip ) {
+        if (!isset($this->hostnames[$ip])) {
+            $hostname = @gethostbyaddr($ip);
+            $this->hostnames[$ip] = $hostname ?: false;
+        }
+
+        return $this->hostnames[$ip] !== false;
+    }
+
+    /**
+     * Get collected data
+     *
      * @return array
      */
     public function getData() {
-        return $this->wikis;
+        return $this->datas;
     }
 
-    public function getUsername() {
-        return $this->username;
+    /**
+     * @return int
+     */
+    public function getWikiCount() {
+        return count($this->wikis);
     }
 
-    public function getHostname() {
-        return $this->hostname;
+    /**
+     * @return int
+     */
+    public function getResultWikiCount() {
+        return count($this->datas);
     }
 
-    public function getAlloverCount() {
-        return $this->alloverCount;
+    /**
+     * Get hostnames of searched IP(s).
+     *
+     * If IP was not found, or the search for was a user name or pattern,
+     * an empty array is returned.
+     *
+     * @return array
+     */
+    public function getHostnames() {
+        return $this->hostnames;
+    }
+
+    public function getGlobalEditcount() {
+        return $this->globalEditCount;
     }
 }

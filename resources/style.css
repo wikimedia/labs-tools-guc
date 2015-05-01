@@ -1,5 +1,6 @@
+/*
+    Stylesheet for Global user contributions
 
-/* 
     Created on : 29.10.2013, 12:13:28
     Author     : Luxo
 */
@@ -22,11 +23,25 @@ body {
     border-top: 1px solid grey;
     border-left: 1px solid grey;
     border-bottom: 1px solid grey;
-    border-top-left-radius: 5px;
-    -moz-border-top-left-radius: 5px;
     -webkit-border-top-left-radius: 5px;
+    -moz-border-top-left-radius: 5px;
+    border-top-left-radius: 5px;
     padding: 10px;
     background-color: rgba(250,250,250,255);
+}
+.maincontent .box {
+    display: inline-block;
+    margin: 1em 0;
+    border: 1px solid #ccc;
+    background-color: #f2f2f2;
+    padding: .5em 1em;
+}
+.maincontent .error {
+    margin: 1em 0;
+    border: 1px solid #fac5c5;
+    background-color: #fae3e3;
+    padding: .5em 1em;
+    color: #cc0000;
 }
 
 .maincontent .header h2{
@@ -48,32 +63,29 @@ body {
 .maincontent .searchField {
     border: 1px solid grey;
     padding: 10px;
-    border-radius: 5px;
-    -moz-border-radius: 5px;
     -webkit-border-radius: 5px;
+    -moz-border-radius: 5px;
+    border-radius: 5px;
 }
 
-.maincontent .results {
-    margin-top: 40px;
-}
 .maincontent .results a { text-decoration: none; color: #0645AD; }
 .maincontent .results a:active { text-decoration: none; }
 .maincontent .results a:hover  { text-decoration: underline; }
 .maincontent .results a:visited { color: #5105ad; }
 .maincontent .results .hostname {
-    background: url(img/icoInfo16.png) no-repeat;
-    padding-left: 19px;
+    background-image: url(img/icoInfo16.png);
+    background-repeat: no-repeat;
+    padding-left: 21px;
 }
-.maincontent .results .wiki h1, .maincontent .results .error h1 {
+.maincontent h1 {
     font-size: 20px;
     font-weight: 700;
     border-bottom: 1px solid grey;
     margin-bottom: 2px;
 }
-.maincontent .results .error h1 { color: red; }
 
 .maincontent .results .noSul {
-    background-color: #ffe0e0;
+    background-color: #bff2fb;
 }
 
 .maincontent .results .wiki .wikiinfo {
@@ -82,12 +94,17 @@ body {
     margin-top: 0;
 }
 
-.wiki .minor, .wiki .rev_cur {
+.wiki .minor,
+.wiki .rev_cur {
     font-weight: bold;
 }
+
+.comment {
+    font-style: italic;;
+}
+
 .wiki .autocomment {
-    font-style: italic;
-    color: #999999;
+    color: #999;
 }
 
 

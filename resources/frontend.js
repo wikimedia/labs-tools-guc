@@ -1,27 +1,26 @@
-/* 
- * by Luxo 2013
+/*
+    JavaScript for Global user contributions
+
+    Author: Luxo, 2013
+    Author: Krinkle, 2015
  */
 
-
-var timeCounter = 0;
 function onSearchClick(button) {
-    button.hide();    
-    $('loadLine').show();    
-    window.setInterval("setLines()",1000);
+    button.hide();
+    $('loadLine').show();
+    window.setInterval(setLines, 1000);
 }
 
 function setLines() {
-    var content = "|";    
-    for(var i=0;i<timeCounter;i++){
-        content+= "|";
-    }
-    $('loadLine').firstChild.data = content;
-    timeCounter++;
+    $('loadLine').firstChild.nodeValue += '|';
 }
 
-window.onload = function() {
-    //Formular automatisch absenden
-    if(data.Method == 'GET' && data.Username) {
+window.onload = function () {
+    /*global data */
+
+    // Automatically submit the form if the user came here with
+    // a permalink and the username is non-empty.
+    if (data.Method == 'GET' && data.Username) {
         $('searchForm').submit();
         onSearchClick($('submitButton'));
     }

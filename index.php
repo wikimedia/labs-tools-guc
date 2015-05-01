@@ -38,6 +38,11 @@ $data->options = array(
     'isPrefixPattern' => @$_REQUEST['isPrefixPattern'] === '1',
 );
 
+$data->Permalink = './?' . http_build_query(array_merge(
+    array( 'user' => $data->Username ),
+    array_map('intval', array_filter($data->options))
+));
+
 // Create app
 $app = $guc = $error = null;
 try {
@@ -58,8 +63,6 @@ try {
     <head>
         <meta charset="UTF-8">
         <link rel="stylesheet" href="resources/style.css">
-        <script src="resources/frontend.js"></script>
-        <script src="lib/prototype.js"></script>
         <title>Global user contributions</title>
         <script>
             var data = <?php print json_encode($data); ?>;
@@ -82,7 +85,7 @@ try {
                         print ' checked';
                     }
                 ?>></label></p>
-                <input type="submit" value="Search" class="submitbutton" id="submitButton" onclick="onSearchClick(this);">
+                <input type="submit" value="Search" class="submitbutton" id="submitButton">
                 <div id="loadLine" style="display: none;">&nbsp;</div>
             </form>
             <?php
@@ -136,5 +139,6 @@ try {
                 by <a href="https://wikitech.wikimedia.org/wiki/User:Luxo">Luxo</a> &bull; <a href="https://wikitech.wikimedia.org/wiki/User:Krinkle">Krinkle</a>
             </div>
         </div>
+        <script src="resources/frontend.js"></script>
     </body>
 </html>

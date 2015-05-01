@@ -109,9 +109,9 @@ class lb_app {
     /**
      * Take a mediawiki timestamp and returns a unix timestamp
      * @param string $tstime
-     * @return int UNIX timestamp
+     * @return DateTime
      */
-    public function TsToUnixTime($tstime) {
+    public function parseMwDate($tstime) {
         // Based on MWTimestamp::setTimestamp for TS_MW
         $da = array();
         preg_match( '/^(\d{4})(\d\d)(\d\d)(\d\d)(\d\d)(\d\d)$/D', $tstime, $da );
@@ -120,10 +120,7 @@ class lb_app {
         $da[0] = '%04d-%02d-%02dT%02d:%02d:%02d.00+00:00';
         $strtime = call_user_func_array( 'sprintf', $da );
 
-        #$date = new DateTime( $strtime, new DateTimeZone( 'GMT' ) );
-        #return $date->format($timeformat);
-
-        return strtotime($strtime);
+        return new DateTime( $strtime, new DateTimeZone( 'GMT' ) );
     }
 
     /**
@@ -131,12 +128,12 @@ class lb_app {
      * @param string $tstime
      * @return string
      */
-    public function TStoUserTime($tstime, $timeformat = 'H:i, d M Y') {
+    public function formatMwDate($tstime, $timeformat = 'H:i, d M Y') {
         if ($tstime === 'infinity') {
             return $tstime;
         }
-        $time = $this->TsToUnixTime($tstime);
-        return date($timeformat);
+        $date = $this->parseMwDate($tstime);
+        return $date->format($timeformat);
     }
 
     /**

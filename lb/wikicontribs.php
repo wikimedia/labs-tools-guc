@@ -285,7 +285,7 @@ class lb_wikicontribs {
         }
         $userinfo[] = $this->wiki->_editcount . ' edits';
         if ($this->centralAuth) {
-            $userinfo[] = 'SUL: Account attached at '.$this->app->TStoUserTime($this->centralAuth->lu_attached_timestamp);
+            $userinfo[] = 'SUL: Account attached at '.$this->app->formatMwDate($this->centralAuth->lu_attached_timestamp);
         }
         if ($this->markAsNotUnified()) {
             $userinfo[] = 'SUL: Account not attached.';
@@ -304,7 +304,7 @@ class lb_wikicontribs {
                 ;
 
             // Date
-            $item[] = $this->app->TStoUserTime($rc->rev_timestamp);
+            $item[] = $this->app->formatMwDate($rc->rev_timestamp);
 
             // Patterns may yield different users for different edits,
             // provide basic tools for each entry.

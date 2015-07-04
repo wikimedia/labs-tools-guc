@@ -311,8 +311,8 @@ class lb_wikicontribs {
             if ($this->options['isPrefixPattern']) {
                 $item[] = '<a href="'.htmlspecialchars($this->getUrl("User:{$rc->rev_user_text}")).'">'
                     . htmlspecialchars($rc->rev_user_text).'</a>'
-                    . '&nbsp;(<a href="'.htmlspecialchars($this->getUrl("User_talk:{$this->user}")).'">talk</a>&nbsp;| '
-                    . '<a href="'.htmlspecialchars($this->getUrl("Special:Contributions/{$this->user}")).'" title="Special:Contributions">contribs</a>)';
+                    . '&nbsp;(<a href="'.htmlspecialchars($this->getUrl("User_talk:{$rc->rev_user_text}")).'">talk</a>&nbsp;| '
+                    . '<a href="'.htmlspecialchars($this->getUrl("Special:Contributions/{$rc->rev_user_text}")).'" title="Special:Contributions">contribs</a>)';
                 $item[] = '. .';
             }
             // Minor edit

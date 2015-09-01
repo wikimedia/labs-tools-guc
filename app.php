@@ -139,25 +139,94 @@ class lb_app {
     /**
      * Parse the edit summary of a user contribution
      *
-     * @param string $sum
+     * Based on MediaWiki 1.25's Linker::formatComment.
+     *
+     * @param string $comment
      * @param string $page
      * @param string $server
      * @return string HTML
      */
-    public function wikiparser($sum, $page, $server)  {
-        $page = htmlspecialchars($page, ENT_QUOTES);
-        $sum = htmlspecialchars($sum);
-        // Parse "/* Section */"
-        $sum = preg_replace("/\/\*\s(.*)\s\*\/(.*)$/e", "'<span class=\'autocomment\'><a href=\'$server/w/index.php?title=$page#'._wpsectdecode('\\1').'\'>→</a> \\1'.((strlen(trim('$2'))>2)?':':'').'</span>'", $sum);
+    public function wikiparser($comment, $page, $server)  {
+        $comment = str_replace("\n", ' ', $comment);
+        $comment = _mwWikitextHtmlEscape($comment);
 
-        // Parse internal links "[[Link]]"
-        // Skip links with piped labels for later ("|")
-        $sum = preg_replace("/\[\[([^\|\[\]]*)\]\]/e", "'<a href=\'$server/w/index.php?title='._wpurldecode('\\1').'\'>\\1</a>'", $sum);
+        // Simplified version of MediaWiki/Linker::formatAutocomments.
+        // Parse "/* Section */ Comment" into "<a href=#..>→‎</a>Section: Comment"
+        $append = '';
+        $comment = preg_replace_callback(
+            '!(?:(?<=(.)))?/\*\s*(.*?)\s*\*/(?:(?=(.)))?!',
+            function ($match) use ($page, $server, &$append) {
+                $match += array('', '', '', '');
+                $isPre = $match[1] !== '';
+                $auto = $match[2];
+                $isPost = $match[3] !== '';
+                $link = '';
 
-        // Parse internal links with labels "[[Link|Label]]"
-        $sum = preg_replace("/\[\[([^\|\[\]]*)\|{1}([^\|\[\]]*)\]\]/e", "'<a href=\'$server/w/index.php?title='._wpurldecode('\\1').'\'>\\2</a>'", $sum);
+                $section = $auto;
+                // Remove any links
+                $section = str_replace('[[:', '', $section);
+                $section = str_replace('[[', '', $section);
+                $section = str_replace(']]', '', $section);
+                // See MediaWiki/Sanitizer::normalizeSectionNameWhitespace() and Language::getArrow()
+                $section =  trim(preg_replace('/[ _]+/', ' ', $section));
+                $link = '<a href="' . htmlspecialchars(
+                    "$server/w/index.php?title=" . htmlspecialchars(_wpurlencode($page)) . "#$section"
+                    ) . '">→</a>';
 
-        return $sum;
+                if ($isPost) {
+                    // mw-msg: colon-sep
+                    $auto .= ':&#32;';
+                }
+                $auto = '<span class="autocomment">' . $auto . '</span>';
+                // See MediaWiki/Language::getDirMark (LEFT-TO-RIGHT MARK)
+                // Wrap the rest in a <span>. In order to include uncaptured content we use
+                // $append to add the close tag afterwards. But only if there was a match.
+                $html = $link . "\xE2\x80\x8E" . '<span dir="auto">' . $auto;
+                $append .= '</span>';
+                return $html;
+           },
+           $comment
+        );
+        $comment .= $append;
+
+        // Simplified version of MediaWiki/Linker::formatLinksInComment.
+        // Parse "[[Link]]" into "<a href=..>Linker</a>"
+        $comment = preg_replace_callback(
+            '/
+                \[\[
+                :? # ignore optional leading colon
+                ([^\]|]+) # 1. link target
+                (?:\|
+                    # 2. a pipe-separated substring; stop match at | and ]]
+                    ((?:]?[^\]|])*+)
+                )*
+                \]\]
+                ([^[]*) # 3. link trail
+            /x',
+            function ($match) use ($page, $server) {
+                $comment = $match[0];
+                $text = $match[2] != '' ? $match[2] : $match[1];
+
+                if (isset($match[1][0]) && $match[1][0] === ':') {
+                    $match[1] = substr($match[1], 1);
+                }
+                $target = $match[1];
+
+                $link = '<a href="' . htmlspecialchars("$server/w/index.php?title="
+                    . htmlspecialchars(_wpurlencode($target)))
+                    . '">' . htmlspecialchars($text) . '</a>';
+                $comment = preg_replace(
+                    '/\[\[(.*?)\]\]/',
+                    _mwPregReplaceEscape($link),
+                    $comment,
+                    1
+                );
+                return $comment;
+            },
+            $comment
+        );
+
+        return $comment;
     }
 
     /**
@@ -242,36 +311,10 @@ class lb_app {
     }
 }
 
-
 // Funktionen innerhalb von regexp = global.....
-/**
- * Decode section links to mediawiki's comical code
- * @param string $str
- * @return stromg
- */
-function _wpsectdecode($str){
-    $str = trim($str);
-    $str = str_replace(" ", "_", $str);
-    $str = urlencode($str);
-    $str = ucwords($str);
-    $str = str_replace("%", ".", $str);
-    return $str;
-}
-
 
 /**
- * Decode Mediawiki url's
- * @param string $str
- * @return string
- */
-function _wpurldecode($str) {
-    $str = trim($str);
-    $str = str_replace(" ", "_", $str);
-    return ucwords($str);
-}
-
-/**
- * Based on mediawiki-core's wfUrlencode()
+ * Based on MediaWiki's wfUrlencode()
  *
  * @param string $pageName
  * @return string
@@ -286,4 +329,28 @@ function _wpurlencode($pageName) {
         array(';', '@', '$', '!', '*', '(', ')', ',', '/', ':'),
         urlencode(str_replace(' ', '_', $pageName))
     );
+}
+
+/**
+ * Based on MediaWiki 1.25's Sanitizer::escapeHtmlAllowEntities
+ *
+ * @param string $wikitext
+ * @return string HTML
+ */
+function _mwWikitextHtmlEscape($wikitext) {
+    $text = html_entity_decode($wikitext);
+    $html = htmlspecialchars($text, ENT_QUOTES);
+    return $html;
+}
+
+/**
+ * Based on MediaWiki 1.25's StringUtils::escapeRegexReplacement
+ *
+ * @param string $str
+ * @return string
+ */
+function _mwPregReplaceEscape($str) {
+    $str = str_replace('\\', '\\\\', $str);
+    $str = str_replace('$', '\\$', $str);
+    return $str;
 }

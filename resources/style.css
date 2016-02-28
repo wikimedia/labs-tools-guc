@@ -1,7 +1,7 @@
 /*
     Stylesheet for Global user contributions
 
-    Created on : 29.10.2013, 12:13:28
+    Created on : 29.10.2013
     Author     : Luxo
 */
 
@@ -23,8 +23,6 @@ body {
     border-top: 1px solid grey;
     border-left: 1px solid grey;
     border-bottom: 1px solid grey;
-    -webkit-border-top-left-radius: 5px;
-    -moz-border-top-left-radius: 5px;
     border-top-left-radius: 5px;
     padding: 10px;
     background-color: rgba(250,250,250,255);

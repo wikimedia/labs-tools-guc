@@ -44,30 +44,43 @@ $data->Permalink = './?' . http_build_query(array_merge(
 ));
 
 // Create app
-$app = $guc = $error = null;
+$app = $guc = $error = $robotsPolicy = $canonicalUrl = null;
 try {
     $app = new lb_app();
     if ($data->Method === 'POST') {
         $app->aTP('Got input, start search');
         $guc = new guc($app, $data->Username, $data->options);
+        $robotsPolicy = 'noindex,follow';
     } else {
         $guc = null;
+        if ($data->Username) {
+            $robotsPolicy = 'noindex,follow';
+        }
+        $canonicalUrl = './';
     }
 } catch (Exception $e) {
     $error = $e;
 }
 
+$headRobots = !$robotsPolicy ? '' :
+    '<meta name="robots" content="' . htmlspecialchars( $robotsPolicy ) . '">';
+$headCanonical = !$canonicalUrl ? '' :
+    '<link rel="canonical" href="' . htmlspecialchars( $canonicalUrl ) . '">';
+
 ?>
 <!DOCTYPE html>
 <html>
-    <head>
-        <meta charset="UTF-8">
-        <link rel="stylesheet" href="resources/style.css">
-        <title>Global user contributions</title>
-        <script>
-            var data = <?php print json_encode($data); ?>;
-        </script>
-    </head>
+<head>
+<meta charset="UTF-8">
+<link rel="stylesheet" href="resources/style.css">
+<title>Global user contributions</title>
+<?php
+    if ($headRobots) print "$headRobots\n";
+    if ($headCanonical) print "$headCanonical\n";
+?><script>
+    var data = <?php print json_encode($data); ?>;
+</script>
+</head>
     <body>
         <div class="maincontent">
             <div class="header">

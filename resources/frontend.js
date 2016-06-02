@@ -7,7 +7,8 @@
 (function () {
     if (!(
         document.getElementById &&
-        'addEventListener' in window
+        'addEventListener' in window &&
+        !/bot|spider/i.test( navigator.userAgent )
     )) {
         // Unsupported browser
         return;

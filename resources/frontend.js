@@ -14,7 +14,7 @@
         return;
     }
 
-    function getId (id) {
+    function getId(id) {
         return document.getElementById(id);
     }
 

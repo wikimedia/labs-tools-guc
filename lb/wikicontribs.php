@@ -27,8 +27,7 @@ class lb_wikicontribs {
 
     private $centralAuth;
     private $hasManyMatches = false;
-    private $recentchanges = null;
-    private $hasContribs = false;
+    private $contribs = null;
     private $registeredUsers = array();
 
     /**
@@ -48,7 +47,7 @@ class lb_wikicontribs {
      */
     public function __construct(lb_app $app, $user, $isIP, $wiki, $centralAuth, $options = array()) {
         if (!$user) {
-            throw new Exception("No username or IP");
+            throw new Exception('No username or IP');
         }
         $this->app = $app;
 
@@ -56,7 +55,6 @@ class lb_wikicontribs {
         $this->isIp = $isIP;
         $this->options = $options += array(
             'isPrefixPattern' => false,
-            'onlyRecent' => false,
         );
 
         $this->wiki = $wiki;
@@ -98,28 +96,25 @@ class lb_wikicontribs {
             // or a user name pattern with many matches.
         }
 
-        $this->_getRecentChanges();
+        $this->contribs = $this->fetchContribs();
     }
 
-
     /**
-     * gibt die letzten 20 änderungen zurück
-     * @return mixed;
+     * @param PDO $pdo
+     * @param array $userIds
+     * @return PDOStatement
      */
-    private function _getRecentChanges() {
-        $this->app->aTP('Query recent changes for ' . $this->wiki->domain);
-        $where = '';
-        if ($this->options['onlyRecent']) {
-            $where = " `rev_timestamp` >= '" . date('YmdHis') . "' AND ";
-        }
-        $pdo = $this->app->getDB($this->wiki->dbname, $this->wiki->slice);
-
+    private function prepareRevisionQuery(PDO $pdo) {
+        // Optimisation: Use rev_user index where possible
+        $userIdCond = '';
         if ($this->registeredUsers) {
             $userIdCond = (count($this->registeredUsers) === 1)
-                ? ' = ' . $pdo->quote(key($this->registeredUsers))
-                : ' IN (' . join(',', array_map(array($pdo, 'quote'), array_keys($this->registeredUsers))) . ')';
+                ? '`rev_user` = ' . $pdo->quote(key($this->registeredUsers))
+                : '`rev_user` IN (' . join(',', array_map(
+                    array($pdo, 'quote'),
+                    array_keys($this->registeredUsers))
+                ) . ')';
         }
-
         $sql = "SELECT
                 `rev_comment`,
                 `rev_timestamp`,
@@ -130,17 +125,16 @@ class lb_wikicontribs {
                 `rev_user_text`,
                 `page_title`,
                 `page_namespace`,
-                `page_latest` = `rev_id` AS `rev_cur`
+                `page_latest` = `rev_id` AS `guc_is_cur`
             FROM
                 `revision_userindex`
             INNER JOIN
                 `page` ON `rev_page` = `page_id`
             WHERE
-                ".$where."
                 `rev_deleted` = 0 AND
                 ".(
-                    ($this->registeredUsers)
-                        ? "`rev_user` $userIdCond"
+                    ($userIdCond)
+                        ? $userIdCond
                         : (
                             ($this->options['isPrefixPattern'])
                                 ? 'rev_user_text LIKE :userlike'
@@ -151,27 +145,48 @@ class lb_wikicontribs {
             LIMIT 0, " . intval(self::CONTRIB_LIMIT) .
             ";";
         $statement = $pdo->prepare($sql);
-        if (!$this->registeredUsers) {
+        if (!$userIdCond) {
             if ($this->options['isPrefixPattern']) {
                 $statement->bindParam(':userlike', $this->user);
             } else {
                 $statement->bindParam(':user', $this->user);
             }
         }
+        return $statement;
+    }
+
+    /**
+     * Fetch contributions from the database
+     */
+    private function fetchContribs() {
+        $this->app->aTP('Query contributions on ' . $this->wiki->domain);
+        $pdo = $this->app->getDB($this->wiki->dbname, $this->wiki->slice);
+
+        $statement = $this->prepareRevisionQuery($pdo);
         $statement->execute();
-        $this->recentchanges = $statement->fetchAll(PDO::FETCH_OBJ);
-        $this->hasContribs = !!$this->recentchanges;
-        unset($statement);
-        foreach ($this->recentchanges as $rc) {
+
+        $contribs = $statement->fetchAll(PDO::FETCH_OBJ);
+
+        foreach ($contribs as $rc) {
+            // Normalise
             $rc->rev_user_text = str_replace('_', ' ', $rc->rev_user_text);
 
-            // Expand page with prefixed namespace
-            $rc->page_namespace_name = $this->app->getNamespaceName($rc->page_namespace, $this->wiki->dbname, $this->wiki->canonical_server);
-            $rc->full_page_title = $rc->page_namespace_name
-                ? ($rc->page_namespace_name . ':' . $rc->page_title)
+            // Localised namespace prefix
+            $rc->guc_namespace_name = $this->app->getNamespaceName(
+                $rc->page_namespace,
+                $this->wiki->dbname,
+                $this->wiki->canonical_server
+            );
+            // Full page name
+            $rc->guc_pagename = $rc->guc_namespace_name
+                ? ($rc->guc_namespace_name . ':' . $rc->page_title)
+                // Main namespace
                 : $rc->page_title;
-            $rc->full_page_title = str_replace('_', ' ', $rc->full_page_title);
+            // Normalise
+            $rc->guc_pagename = str_replace('_', ' ', $rc->guc_pagename);
         }
+
+        return $contribs;
     }
 
     /**
@@ -183,15 +198,35 @@ class lb_wikicontribs {
     }
 
     /**
-     * Get the latest contributions
-     * @return array of objects
+     * Get the fetched contributions
+     * @return array of objects with the following properties:
+     * - page_namespace
+     * - page_title
+     * - rev_comment
+     * - rev_id
+     * - rev_len
+     * - rev_minor_edit
+     * - rev_parent_id
+     * - rev_timestamp
+     * - rev_user_text (Normalised)
+     * - guc_is_cur
+     * - guc_namespace_name (Localised namespace prefix)
+     * - guc_pagename (Full page name)
      */
-    public function getRecentChanges() {
-        return $this->recentchanges;
+    public function getContribs() {
+        return $this->contribs;
+    }
+
+
+    /**
+     * @return boolean
+     */
+    public function hasContribs() {
+        return !!$this->contribs;
     }
 
     /**
-     * @return bool|int
+     * @return array Map of user id to user name
      */
     public function getRegisteredUsers() {
         return $this->registeredUsers;
@@ -243,10 +278,6 @@ class lb_wikicontribs {
         return $res;
     }
 
-    public function hasContribs() {
-        return $this->hasContribs;
-    }
-
     private function getUrl($pageName) {
         return $this->wiki->url . '/wiki/' . _wpurlencode($pageName);
     }
@@ -294,13 +325,13 @@ class lb_wikicontribs {
             $return .= '<p class="wikiinfo">' . join(' | ', $userinfo) . '</p>';
         }
         $return .= '<ul>';
-        foreach ($this->recentchanges as $rc) {
+        foreach ($this->getContribs() as $rc) {
             $item = array();
             // Diff and history
             $item[] =
-                '(<a href="'.htmlspecialchars($this->getLongUrl('title='._wpurlencode($rc->full_page_title).'&diff=prev&oldid='.urlencode($rc->rev_id))).'">diff</a>'
+                '(<a href="'.htmlspecialchars($this->getLongUrl('title='._wpurlencode($rc->guc_pagename).'&diff=prev&oldid='.urlencode($rc->rev_id))).'">diff</a>'
                 . '&nbsp;|&nbsp;'
-                . '<a href="'.htmlspecialchars($this->getLongUrl('title='._wpurlencode($rc->full_page_title).'&action=history')).'">hist</a>)'
+                . '<a href="'.htmlspecialchars($this->getLongUrl('title='._wpurlencode($rc->guc_pagename).'&action=history')).'">hist</a>)'
                 ;
 
             // Date
@@ -321,16 +352,16 @@ class lb_wikicontribs {
             }
 
             // Link to the page
-            $item[] = '<a href="'.htmlspecialchars($this->getUrl($rc->full_page_title)).'">'
-                . htmlspecialchars($rc->full_page_title)."</a>";
+            $item[] = '<a href="'.htmlspecialchars($this->getUrl($rc->guc_pagename)).'">'
+                . htmlspecialchars($rc->guc_pagename)."</a>";
 
             // Edit summary
             if ($rc->rev_comment) {
-                $item[] = '<span class="comment">('.$this->app->wikiparser($rc->rev_comment, $rc->full_page_title, $this->wiki->url).')</span>';
+                $item[] = '<span class="comment">('.$this->app->wikiparser($rc->rev_comment, $rc->guc_pagename, $this->wiki->url).')</span>';
             }
 
             // Cur revision
-            if ($rc->rev_cur) {
+            if ($rc->guc_is_cur) {
                 $item[] = '<span class="rev_cur">(current)</span>';
             }
             $return .= '<li>' . join('&nbsp;', $item) . '</li>';

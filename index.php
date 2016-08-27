@@ -15,7 +15,7 @@
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-// Standard-Dateien
+require_once __DIR__ . '/vendor/autoload.php';
 require_once 'settings.php';
 require_once 'app.php';
 
@@ -31,17 +31,12 @@ foreach (settings::getSetting('components') as $cmp) {
 }
 
 $data = new stdClass();
-$data->Method = @$_SERVER['REQUEST_METHOD'];
-$data->Referer = @$_SERVER['HTTP_REFERER'];
-$data->Username = @$_REQUEST['user'];
+$data->Method = @$_SERVER['REQUEST_METHOD'] ?: 'GET';
+$data->Referer = @$_SERVER['HTTP_REFERER'] ?: null;
+$data->Username = @$_REQUEST['user'] ?: null;
 $data->options = array(
     'isPrefixPattern' => @$_REQUEST['isPrefixPattern'] === '1',
 );
-
-$data->Permalink = './?' . http_build_query(array_merge(
-    array( 'user' => $data->Username ),
-    array_map('intval', array_filter($data->options))
-));
 
 // Create app
 $app = $guc = $error = $robotsPolicy = $canonicalUrl = null;
@@ -61,6 +56,14 @@ try {
 } catch (Exception $e) {
     $error = $e;
 }
+
+$query = $data->options;
+if ($data->Username) {
+    $query['user'] = $data->Username;
+}
+// Strip defaults
+$query = array_diff_assoc( $query, guc::getDefaultOptions() );
+$data->Permalink = './' . ( !$query ? '' : '?' . http_build_query( $query ) );
 
 $headRobots = !$robotsPolicy ? '' :
     '<meta name="robots" content="' . htmlspecialchars( $robotsPolicy ) . '">';
@@ -108,7 +111,7 @@ $headCanonical = !$canonicalUrl ? '' :
                 print '</div>';
             }
             if ($guc) {
-                print '<p class="statistics">'.$guc->getWikiCount()." wikis searched. ";
+                print '<p class="statistics">'.$guc->getWikiCount().' wikis searched. ';
                 print $guc->getGlobalEditcount().' edits found';
                 if ($guc->getResultWikiCount()) {
                     print ' in '.$guc->getResultWikiCount().' projects';
@@ -149,7 +152,7 @@ $headCanonical = !$canonicalUrl ? '' :
             // print '</pre>';
             ?>
             <div class="footer">
-                by <a href="https://wikitech.wikimedia.org/wiki/User:Luxo">Luxo</a> &bull; <a href="https://wikitech.wikimedia.org/wiki/User:Krinkle">Krinkle</a>
+                by <a href="https://wikitech.wikimedia.org/wiki/User:Luxo">Luxo</a> &bull; <a href="https://meta.wikimedia.org/wiki/User:Krinkle">Krinkle</a>
             </div>
         </div>
         <script src="resources/frontend.js"></script>

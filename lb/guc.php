@@ -27,6 +27,13 @@ class guc {
     private $data;
     private $wikis;
 
+    public static function getDefaultOptions() {
+        return array(
+            'isPrefixPattern' => false,
+            'includeClosedWikis' => false,
+        );
+    }
+
     public function __construct(lb_app $app, $user, $options = array()) {
         $this->app = $app;
 
@@ -34,11 +41,7 @@ class guc {
         $this->user = str_replace('_', ' ', ucfirst(trim($user)));
 
         // Defaults
-        $this->options = $options += array(
-            'isPrefixPattern' => false,
-            'includeClosedWikis' => false,
-            'onlyRecent' => false,
-        );
+        $this->options = $options += self::getDefaultOptions();
 
         if (!$this->user) {
             throw new Exception('No username or IP');
@@ -95,7 +98,7 @@ class guc {
                     $options
                 );
                 if ($this->options['isPrefixPattern'] && !$contribs->getRegisteredUsers()) {
-                    foreach ($contribs->getRecentChanges() as $rc) {
+                    foreach ($contribs->getContribs() as $rc) {
                         $this->addIP($rc->rev_user_text);
                         if (count($this->hostnames) > 10) {
                             break;
@@ -152,9 +155,7 @@ class guc {
         $sql = 'SELECT * FROM `meta_p`.`wiki` WHERE '.$f_where.' LIMIT 1500;';
         $statement = $this->app->getDB()->prepare($sql);
         $statement->execute();
-        $rows = $statement->fetchAll(PDO::FETCH_OBJ);
-        unset($statement);
-        return $rows;
+        return $statement->fetchAll(PDO::FETCH_OBJ);
     }
 
     /**
@@ -193,6 +194,7 @@ class guc {
                     $statement->bindParam(':user', $this->user);
                 }
                 $statement->execute();
+
                 $rows = $statement->fetchAll(PDO::FETCH_OBJ);
                 foreach ($rows as $row) {
                     $wiki = $wikisByDbname[$row->dbname];
@@ -202,7 +204,6 @@ class guc {
                         $wikisWithEditcount[$row->dbname] = $wiki;
                     }
                 }
-                unset($statement);
             }
         }
         $this->globalEditCount = $globalEditCount;

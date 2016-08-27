@@ -36,6 +36,7 @@ $data->Referer = @$_SERVER['HTTP_REFERER'] ?: null;
 $data->Username = @$_REQUEST['user'] ?: null;
 $data->options = array(
     'isPrefixPattern' => @$_REQUEST['isPrefixPattern'] === '1',
+    'src' => @$_REQUEST['src'] ?: 'all',
 );
 
 // Create app
@@ -101,6 +102,16 @@ $headCanonical = !$canonicalUrl ? '' :
                         print ' checked';
                     }
                 ?>></label></p>
+                <p><label>Results from: <?php
+                    $resultSelect = new HtmlSelect([
+                        'all' => 'All contributions',
+                        'rc' => 'Recent changes (last 30 days)',
+                        'hr' => 'Last hour only'
+                    ]);
+                    $resultSelect->setDefault( $data->options['src'] );
+                    $resultSelect->setName( 'src' );
+                    print $resultSelect->getHTML();
+                ?></label></p>
                 <input type="submit" value="Search" class="submitbutton" id="submitButton">
                 <div id="loadLine" style="display: none;">&nbsp;</div>
             </form>

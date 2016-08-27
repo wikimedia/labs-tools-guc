@@ -30,6 +30,7 @@ class guc {
     public static function getDefaultOptions() {
         return array(
             'isPrefixPattern' => false,
+            'src' => 'all',
             'includeClosedWikis' => false,
         );
     }
@@ -167,19 +168,40 @@ class guc {
         $this->app->aTP('Query all wikis for matching revisions');
         $wikisWithEditcount = array();
 
+        // Copied from lb_wikicontribs::prepareLastHourQuery
+        // (TODO: Refactor somehow)
+        $cutoff = gmdate(lb_wikicontribs::MW_DATE_FORMAT, time() - 3600);
+
         $slices = array();
         $wikisByDbname = array();
         foreach ($wikis as $wiki) {
             $wikisByDbname[$wiki->dbname] = $wiki;
-            $slices[$wiki->slice][] = 'SELECT
-                COUNT(rev_id) AS counter,
-                \''.$wiki->dbname.'\' AS dbname
-                FROM '.$wiki->dbname.'_p.revision_userindex
-                WHERE '.(
-                    ($this->options['isPrefixPattern'])
-                        ? 'rev_user_text LIKE :userlike'
-                        : 'rev_user_text = :user'
-                );
+            if ($this->options['src'] === 'rc' || $this->options['src'] === 'hr') {
+                $sql = 'SELECT
+                    COUNT(*) AS counter,
+                    \''.$wiki->dbname.'\' AS dbname
+                    FROM '.$wiki->dbname.'_p.recentchanges_userindex
+                    WHERE '.(
+                        ($this->options['isPrefixPattern'])
+                            ? 'rc_user_text LIKE :userlike'
+                            : 'rc_user_text = :user'
+                    ).(
+                        ($this->options['src'] === 'hr')
+                            ? ' AND rc_timestamp >= :hrcutoff'
+                            : ''
+                    );
+            } else {
+                $sql = 'SELECT
+                    COUNT(rev_id) AS counter,
+                    \''.$wiki->dbname.'\' AS dbname
+                    FROM '.$wiki->dbname.'_p.revision_userindex
+                    WHERE '.(
+                        ($this->options['isPrefixPattern'])
+                            ? 'rev_user_text LIKE :userlike'
+                            : 'rev_user_text = :user'
+                    );
+            }
+            $slices[$wiki->slice][] = $sql;
         }
 
         $globalEditCount = 0;
@@ -192,6 +214,9 @@ class guc {
                     $statement->bindParam(':userlike', $this->user);
                 } else {
                     $statement->bindParam(':user', $this->user);
+                }
+                if ($this->options['src'] === 'hr') {
+                    $statement->bindValue(':hrcutoff', $cutoff);
                 }
                 $statement->execute();
 

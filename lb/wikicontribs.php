@@ -17,6 +17,7 @@
 
 class lb_wikicontribs {
     const CONTRIB_LIMIT = 20;
+    const MW_DATE_FORMAT = 'YmdHis';
 
     private $app;
     private $wiki;
@@ -55,6 +56,7 @@ class lb_wikicontribs {
         $this->isIp = $isIP;
         $this->options = $options += array(
             'isPrefixPattern' => false,
+            'src' => 'all',
         );
 
         $this->wiki = $wiki;
@@ -156,13 +158,75 @@ class lb_wikicontribs {
     }
 
     /**
+     * @param PDO $pdo
+     * @param array $extraConds
+     * @return PDOStatement
+     */
+    private function prepareRecentchangesQuery(PDO $pdo, $extraConds = []) {
+        // Avoid use of rc_user. Contrary to revision table, it has no index.
+        // Simply use rc_user_text instead, which has a good index.
+        $conds = [
+            '`rc_deleted` = 0',
+            ($this->options['isPrefixPattern'])
+                ? 'rc_user_text LIKE :userlike'
+                : 'rc_user_text = :user'
+        ];
+        $conds = array_merge($conds, $extraConds);
+        $sqlCond = implode(' AND ', $conds);
+        $sql = 'SELECT
+                `rc_comment` as `rev_comment`,
+                `rc_timestamp` as `rev_timestamp`,
+                `rc_minor` as `rev_minor_edit`,
+                `rc_new_len` as `rev_len`,
+                `rc_this_oldid` as `rev_id`,
+                `rc_last_oldid` as `rev_parent_id`,
+                `rc_user_text` as `rev_user_text`,
+                `rc_title` as `page_title`,
+                `rc_namespace` as `page_namespace`,
+                "0" AS `guc_is_cur`
+            FROM
+                `recentchanges_userindex`
+            WHERE
+                ' . $sqlCond . '
+            ORDER BY `recentchanges_userindex`.`rc_timestamp` DESC
+            LIMIT 0, ' . intval(self::CONTRIB_LIMIT) .
+            ';';
+        $statement = $pdo->prepare($sql);
+        if ($this->options['isPrefixPattern']) {
+            $statement->bindParam(':userlike', $this->user);
+        } else {
+            $statement->bindParam(':user', $this->user);
+        }
+        return $statement;
+    }
+
+    /**
+     * @param PDO $pdo
+     * @return PDOStatement
+     */
+    private function prepareLastHourQuery(PDO $pdo) {
+        // UTC timestamp of 1 hour ago
+        $cutoff = gmdate(self::MW_DATE_FORMAT, time() - 3600);
+        $conds = [
+            'rc_timestamp >= ' . $pdo->quote($cutoff)
+        ];
+        return $this->prepareRecentchangesQuery($pdo, $conds);
+    }
+
+    /**
      * Fetch contributions from the database
      */
     private function fetchContribs() {
         $this->app->aTP('Query contributions on ' . $this->wiki->domain);
         $pdo = $this->app->getDB($this->wiki->dbname, $this->wiki->slice);
 
-        $statement = $this->prepareRevisionQuery($pdo);
+        if ($this->options['src'] === 'rc') {
+            $statement = $this->prepareRecentchangesQuery($pdo);
+        } elseif ($this->options['src'] === 'hr') {
+            $statement = $this->prepareLastHourQuery($pdo);
+        } else {
+            $statement = $this->prepareRevisionQuery($pdo);
+        }
         $statement->execute();
 
         $contribs = $statement->fetchAll(PDO::FETCH_OBJ);

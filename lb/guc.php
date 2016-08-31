@@ -273,7 +273,7 @@ class guc {
      * @return int
      */
     public function getResultWikiCount() {
-        return count($this->datas);
+        return count($this->wikisWithEditcount);
     }
 
     /**

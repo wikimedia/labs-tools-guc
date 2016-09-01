@@ -18,6 +18,9 @@
 class lb_wikicontribs {
     const CONTRIB_LIMIT = 20;
     const MW_DATE_FORMAT = 'YmdHis';
+    const MW_RC_EDIT = 0;
+    const MW_RC_NEW = 1;
+    // Other RC types: Log events, Categorization, External (e.g. Wikidata)
 
     private $app;
     private $wiki;
@@ -114,8 +117,8 @@ class lb_wikicontribs {
                 ? '`rev_user` = ' . $pdo->quote(key($this->registeredUsers))
                 : '`rev_user` IN (' . join(',', array_map(
                     array($pdo, 'quote'),
-                    array_keys($this->registeredUsers))
-                ) . ')';
+                    array_keys($this->registeredUsers)
+                )) . ')';
         }
         $sql = "SELECT
                 `rev_comment`,
@@ -143,7 +146,7 @@ class lb_wikicontribs {
                                 : 'rev_user_text = :user'
                         )
                 )."
-            ORDER BY `revision_userindex`.`rev_timestamp` DESC
+            ORDER BY `rev_timestamp` DESC
             LIMIT 0, " . intval(self::CONTRIB_LIMIT) .
             ";";
         $statement = $pdo->prepare($sql);
@@ -169,7 +172,13 @@ class lb_wikicontribs {
             '`rc_deleted` = 0',
             ($this->options['isPrefixPattern'])
                 ? 'rc_user_text LIKE :userlike'
-                : 'rc_user_text = :user'
+                : 'rc_user_text = :user',
+            // Ignore RC entries for log events and things like
+            // Wikidata and categorization updates
+            '`rc_type` IN (' . join(',', array_map(
+                    'intval',
+                    array(self::MW_RC_EDIT, self::MW_RC_NEW)
+                )) . ')'
         ];
         $conds = array_merge($conds, $extraConds);
         $sqlCond = implode(' AND ', $conds);
@@ -188,7 +197,7 @@ class lb_wikicontribs {
                 `recentchanges_userindex`
             WHERE
                 ' . $sqlCond . '
-            ORDER BY `recentchanges_userindex`.`rc_timestamp` DESC
+            ORDER BY `rc_timestamp` DESC
             LIMIT 0, ' . intval(self::CONTRIB_LIMIT) .
             ';';
         $statement = $pdo->prepare($sql);

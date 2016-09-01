@@ -189,7 +189,12 @@ class guc {
                         ($this->options['src'] === 'hr')
                             ? ' AND rc_timestamp >= :hrcutoff'
                             : ''
-                    );
+                    // Ignore RC entries for log events and things like
+                    // Wikidata and categorization updates
+                    ).' AND `rc_type` IN (' . join(',', array_map(
+                        'intval',
+                        array(lb_wikicontribs::MW_RC_EDIT, lb_wikicontribs::MW_RC_NEW)
+                    )) . ')';
             } else {
                 $sql = 'SELECT
                     COUNT(rev_id) AS counter,

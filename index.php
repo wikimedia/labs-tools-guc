@@ -63,13 +63,13 @@ if ($data->Username) {
     $query['user'] = $data->Username;
 }
 // Strip defaults
-$query = array_diff_assoc( $query, guc::getDefaultOptions() );
-$data->Permalink = './' . ( !$query ? '' : '?' . http_build_query( $query ) );
+$query = array_diff_assoc($query, guc::getDefaultOptions());
+$data->Permalink = './' . ( !$query ? '' : '?' . http_build_query($query) );
 
 $headRobots = !$robotsPolicy ? '' :
-    '<meta name="robots" content="' . htmlspecialchars( $robotsPolicy ) . '">';
+    '<meta name="robots" content="' . htmlspecialchars($robotsPolicy) . '">';
 $headCanonical = !$canonicalUrl ? '' :
-    '<link rel="canonical" href="' . htmlspecialchars( $canonicalUrl ) . '">';
+    '<link rel="canonical" href="' . htmlspecialchars($canonicalUrl) . '">';
 
 ?>
 <!DOCTYPE html>
@@ -79,8 +79,12 @@ $headCanonical = !$canonicalUrl ? '' :
 <link rel="stylesheet" href="resources/style.css">
 <title>Global user contributions</title>
 <?php
-    if ($headRobots) print "$headRobots\n";
-    if ($headCanonical) print "$headCanonical\n";
+if ($headRobots) {
+print "$headRobots\n";
+}
+if ($headCanonical) {
+print "$headCanonical\n";
+}
 ?><script>
     var data = <?php print json_encode($data); ?>;
 </script>
@@ -93,14 +97,14 @@ $headCanonical = !$canonicalUrl ? '' :
             </div>
             <form action="./" method="POST" class="searchField" id="searchForm">
                 <p><label>IP address or username: <input name="user" value="<?php
-                    if ($data->Username) {
-                        print htmlspecialchars($data->Username);
-                    }
+                if ($data->Username) {
+                    print htmlspecialchars($data->Username);
+                }
                 ?>"></label></p>
                 <p><label>Activate prefix pattern search: <input name="isPrefixPattern" type="checkbox" value="1"<?php
-                    if ($data->options['isPrefixPattern']) {
-                        print ' checked';
-                    }
+                if ($data->options['isPrefixPattern']) {
+                    print ' checked';
+                }
                 ?>></label></p>
                 <p><label>Results from: <?php
                     $resultSelect = new HtmlSelect([
@@ -108,8 +112,8 @@ $headCanonical = !$canonicalUrl ? '' :
                         'rc' => 'Recent changes (last 30 days)',
                         'hr' => 'Last hour only'
                     ]);
-                    $resultSelect->setDefault( $data->options['src'] );
-                    $resultSelect->setName( 'src' );
+                    $resultSelect->setDefault($data->options['src']);
+                    $resultSelect->setName('src');
                     print $resultSelect->getHTML();
                 ?></label></p>
                 <input type="submit" value="Search" class="submitbutton" id="submitButton">

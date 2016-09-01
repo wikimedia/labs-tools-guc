@@ -164,7 +164,7 @@ class guc {
      * @param array $wikis
      * @return array
      */
-    private function _getWikisWithContribs(Array $wikis) {
+    private function _getWikisWithContribs(array $wikis) {
         $this->app->aTP('Query all wikis for matching revisions');
         $wikisWithEditcount = array();
 
@@ -258,7 +258,6 @@ class guc {
             $statement->bindParam(':user', $this->user);
             $statement->execute();
             $rows = $statement->fetchAll(PDO::FETCH_OBJ);
-            unset($statement);
             if (!$rows) {
                 return false;
             }
@@ -275,7 +274,7 @@ class guc {
     /**
      * Add IP address to hostname map (if not already).
      */
-    private function addIP( $ip ) {
+    private function addIP($ip) {
         if (!isset($this->hostnames[$ip])) {
             $hostname = @gethostbyaddr($ip);
             $this->hostnames[$ip] = $hostname ?: false;

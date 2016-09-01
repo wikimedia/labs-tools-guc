@@ -68,7 +68,8 @@ class lb_wikicontribs {
         if ($this->isIp !== true) {
             $this->app->aTP('Query user data for ' . $wiki->domain);
             // Get user data
-            $statement = $this->app->getDB($wiki->dbname, $wiki->slice)->prepare("SELECT
+            $statement = $this->app->getDB($wiki->dbname, $wiki->slice)->prepare(
+                "SELECT
                     `user_id`,
                     `user_name`
                 FROM `user`
@@ -86,7 +87,6 @@ class lb_wikicontribs {
             }
             $statement->execute();
             $rows = $statement->fetchAll(PDO::FETCH_OBJ);
-            unset($statement);
 
             // Limit quering of user ids to 10. If it's more than that, make the database
             // query for contributions like for IP-addresses by using wildcard user_text.
@@ -176,9 +176,9 @@ class lb_wikicontribs {
             // Ignore RC entries for log events and things like
             // Wikidata and categorization updates
             '`rc_type` IN (' . join(',', array_map(
-                    'intval',
-                    array(self::MW_RC_EDIT, self::MW_RC_NEW)
-                )) . ')'
+                'intval',
+                array(self::MW_RC_EDIT, self::MW_RC_NEW)
+            )) . ')'
         ];
         $conds = array_merge($conds, $extraConds);
         $sqlCond = implode(' AND ', $conds);
@@ -328,7 +328,6 @@ class lb_wikicontribs {
         $db->bindParam(':ipaddress', $this->user);
         $db->execute();
         $res = $db->fetchAll(PDO::FETCH_ASSOC);
-        unset($db);
         return $res;
     }
 
@@ -347,7 +346,6 @@ class lb_wikicontribs {
         $db->bindParam(':id', $userId);
         $db->execute();
         $res = $db->fetchAll(PDO::FETCH_ASSOC);
-        unset($db);
         return $res;
     }
 

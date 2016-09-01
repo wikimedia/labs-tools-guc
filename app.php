@@ -59,7 +59,6 @@ class lb_app {
      * @return PDO
      */
     public function getDB($database = 'meta', $clusterNr = 's1.labsdb') {
-
         if (!$clusterNr) {
             throw new lb_Exception('Invalid DB cluster specification');
         }
@@ -69,10 +68,9 @@ class lb_app {
         }
         $pdo = $this->clusters[$clusterNr];
 
-        // Datenbank auswählen
+        // Select the right database on this cluster server
         $m = $pdo->prepare('USE `'.$database.'_p`;');
         $m->execute();
-        unset($m);
 
         return $pdo;
     }
@@ -91,7 +89,6 @@ class lb_app {
         $first = null;
         $out = '';
         foreach ($this->times as $nr => $data) {
-
             $diff = ($timebefore === null) ? 0.0 : $data[0] - $timebefore;
             if ($timebefore === null) {
                 $first = $data[0];
@@ -114,13 +111,13 @@ class lb_app {
     public function parseMwDate($tstime) {
         // Based on MWTimestamp::setTimestamp for TS_MW
         $da = array();
-        preg_match( '/^(\d{4})(\d\d)(\d\d)(\d\d)(\d\d)(\d\d)$/D', $tstime, $da );
+        preg_match('/^(\d{4})(\d\d)(\d\d)(\d\d)(\d\d)(\d\d)$/D', $tstime, $da);
 
-        $da = array_map( 'intval', $da );
+        $da = array_map('intval', $da);
         $da[0] = '%04d-%02d-%02dT%02d:%02d:%02d.00+00:00';
-        $strtime = call_user_func_array( 'sprintf', $da );
+        $strtime = call_user_func_array('sprintf', $da);
 
-        return new DateTime( $strtime, new DateTimeZone( 'GMT' ) );
+        return new DateTime($strtime, new DateTimeZone('GMT'));
     }
 
     /**
@@ -171,7 +168,7 @@ class lb_app {
                 $section =  trim(preg_replace('/[ _]+/', ' ', $section));
                 $link = '<a href="' . htmlspecialchars(
                     "$server/w/index.php?title=" . htmlspecialchars(_wpurlencode($page)) . "#$section"
-                    ) . '">→</a>';
+                ) . '">→</a>';
 
                 if ($isPost) {
                     // mw-msg: colon-sep
@@ -184,8 +181,8 @@ class lb_app {
                 $html = $link . "\xE2\x80\x8E" . '<span dir="auto">' . $auto;
                 $append .= '</span>';
                 return $html;
-           },
-           $comment
+            },
+            $comment
         );
         $comment .= $append;
 

@@ -364,7 +364,7 @@ class lb_wikicontribs {
             . '<a href="'.htmlspecialchars($this->getUrl("Special:Log/block").'?page=User:'._wpurlencode($userName)).'" title="Special:Log/block">block log</a>&nbsp;| '
             . '<a href="'.htmlspecialchars($this->getUrl("Special:ListFiles/$userName")).'" title="Special:ListFiles">uploads</a>&nbsp;| '
             . '<a href="'.htmlspecialchars($this->getUrl("Special:Log/$userName")).'" title="Special:Log">logs</a>&nbsp;| '
-            . '<a href="'.htmlspecialchars($this->getUrl("Special:AbuseLog").'wpSearchUser='._wpurlencode($userName)).'" title="Edit Filter log for this user">filter log</a>'
+            . '<a href="'.htmlspecialchars($this->getUrl("Special:AbuseLog").'?wpSearchUser='._wpurlencode($userName)).'" title="Edit Filter log for this user">filter log</a>'
             . ')';
     }
 

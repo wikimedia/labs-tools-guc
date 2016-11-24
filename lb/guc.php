@@ -77,12 +77,8 @@ class guc {
         $wikisWithEditcount = $this->_getWikisWithContribs($wikis);
 
         $datas = new stdClass();
-        foreach ($wikisWithEditcount as $dbname => $wiki) {
-            $wiki->canonical_server = $wiki->url;
-            $wiki->domain = preg_replace('#^https?://#', '', $wiki->canonical_server);
-            // Convert "http://" to "//".
-            // Keep https:// as-is since we should not override that. (phabricator:T94351)
-            $wiki->url = preg_replace('#^http://#', '//', $wiki->canonical_server);
+        foreach ($wikisWithEditcount as $dbname => $wikiRow) {
+            $wiki = guc_Wiki::newFromRow($wikiRow);
 
             $data = new stdClass();
             $data->wiki = $wiki;
@@ -95,7 +91,8 @@ class guc {
                     $this->user,
                     $this->isIP,
                     $wiki,
-                    $this->_getCentralauthData($wiki->dbname),
+                    $wikiRow->_editcount,
+                    $this->_getCentralauthData($wikiRow->dbname),
                     $options
                 );
                 if ($this->options['isPrefixPattern'] && !$contribs->getRegisteredUsers()) {
@@ -108,7 +105,7 @@ class guc {
                 }
                 $data->contribs = $contribs;
             } catch (Exception $e) {
-                $wiki->error = $e;
+                $data->error = $e;
             }
             unset($contribs);
             $datas->$dbname = $data;
@@ -161,7 +158,7 @@ class guc {
 
     /**
      * return the wikis with contribs
-     * @param array $wikis
+     * @param array $wikis List of meta_p rows
      * @return array
      */
     private function _getWikisWithContribs(array $wikis) {

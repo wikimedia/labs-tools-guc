@@ -21,6 +21,7 @@ class settings
                     // Components
                     'components' => array(
                         'guc',
+                        'wiki',
                         'wikicontribs',
                         'exception',
                     ),

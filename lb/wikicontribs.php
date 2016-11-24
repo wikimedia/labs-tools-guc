@@ -29,6 +29,7 @@ class lb_wikicontribs {
     private $isIp;
     private $options;
 
+    private $editcount;
     private $centralAuth;
     private $hasManyMatches = false;
     private $contribs = null;
@@ -39,21 +40,17 @@ class lb_wikicontribs {
      * @param lb_app $app
      * @param string $user Search query for wiki users
      * @param boolean $isIP
-     * @param object $wiki
-     *  - dbname
-     *  - slice
-     *  - family
-     *  - domain
-     *  - url (may be protocol-relative, or HTTPS)
-     *  - canonical_server (HTTP or HTTPS)
+     * @param guc_Wiki $wiki
+     * @param int $editcount
      * @param null|false|object $centralAuth
      * @param array $options
      */
-    public function __construct(lb_app $app, $user, $isIP, $wiki, $centralAuth, $options = array()) {
+    public function __construct(lb_app $app, $user, $isIP, $wiki, $editcount, $centralAuth, $options = array()) {
         if (!$user) {
             throw new Exception('No username or IP');
         }
         $this->app = $app;
+        $this->wiki = $wiki;
 
         $this->user = $user;
         $this->isIp = $isIP;
@@ -62,7 +59,7 @@ class lb_wikicontribs {
             'src' => 'all',
         );
 
-        $this->wiki = $wiki;
+        $this->editcount = $editcount;
         $this->centralAuth = $centralAuth;
 
         if ($this->isIp !== true) {
@@ -248,7 +245,7 @@ class lb_wikicontribs {
             $rc->guc_namespace_name = $this->app->getNamespaceName(
                 $rc->page_namespace,
                 $this->wiki->dbname,
-                $this->wiki->canonical_server
+                $this->wiki->canonicalServer
             );
             // Full page name
             $rc->guc_pagename = $rc->guc_namespace_name
@@ -349,22 +346,14 @@ class lb_wikicontribs {
         return $res;
     }
 
-    private function getUrl($pageName) {
-        return $this->wiki->url . '/wiki/' . _wpurlencode($pageName);
-    }
-
-    private function getLongUrl($query) {
-        return $this->wiki->url . '/w/index.php?' . $query;
-    }
-
     private function getUserTools($userName) {
-        return 'For <a href="'.htmlspecialchars($this->getUrl("User:$userName")).'">'.htmlspecialchars($userName).'</a> ('
-            . '<a href="'.htmlspecialchars($this->getUrl("Special:Contributions/$userName")).'" title="Special:Contributions">contribs</a>&nbsp;| '
-            . '<a href="'.htmlspecialchars($this->getUrl("User_talk:$userName")).'">talk</a>&nbsp;| '
-            . '<a href="'.htmlspecialchars($this->getUrl("Special:Log/block").'?page=User:'._wpurlencode($userName)).'" title="Special:Log/block">block log</a>&nbsp;| '
-            . '<a href="'.htmlspecialchars($this->getUrl("Special:ListFiles/$userName")).'" title="Special:ListFiles">uploads</a>&nbsp;| '
-            . '<a href="'.htmlspecialchars($this->getUrl("Special:Log/$userName")).'" title="Special:Log">logs</a>&nbsp;| '
-            . '<a href="'.htmlspecialchars($this->getUrl("Special:AbuseLog").'?wpSearchUser='._wpurlencode($userName)).'" title="Edit Filter log for this user">filter log</a>'
+        return 'For <a href="'.htmlspecialchars($this->wiki->getUrl("User:$userName")).'">'.htmlspecialchars($userName).'</a> ('
+            . '<a href="'.htmlspecialchars($this->wiki->getUrl("Special:Contributions/$userName")).'" title="Special:Contributions">contribs</a>&nbsp;| '
+            . '<a href="'.htmlspecialchars($this->wiki->getUrl("User_talk:$userName")).'">talk</a>&nbsp;| '
+            . '<a href="'.htmlspecialchars($this->wiki->getUrl("Special:Log/block").'?page=User:'._wpurlencode($userName)).'" title="Special:Log/block">block log</a>&nbsp;| '
+            . '<a href="'.htmlspecialchars($this->wiki->getUrl("Special:ListFiles/$userName")).'" title="Special:ListFiles">uploads</a>&nbsp;| '
+            . '<a href="'.htmlspecialchars($this->wiki->getUrl("Special:Log/$userName")).'" title="Special:Log">logs</a>&nbsp;| '
+            . '<a href="'.htmlspecialchars($this->wiki->getUrl("Special:AbuseLog").'?wpSearchUser='._wpurlencode($userName)).'" title="Edit Filter log for this user">filter log</a>'
             . ')';
     }
 
@@ -385,7 +374,7 @@ class lb_wikicontribs {
                 }
             }
         }
-        $userinfo[] = $this->wiki->_editcount . ' edits';
+        $userinfo[] = $this->editcount . ' edits';
         if ($this->centralAuth) {
             $userinfo[] = 'SUL: Account attached at '.$this->app->formatMwDate($this->centralAuth->lu_attached_timestamp);
         }
@@ -397,48 +386,59 @@ class lb_wikicontribs {
         }
         $return .= '<ul>';
         foreach ($this->getContribs() as $rc) {
-            $item = array();
-            // Diff and history
-            $item[] =
-                '(<a href="'.htmlspecialchars($this->getLongUrl('title='._wpurlencode($rc->guc_pagename).'&diff=prev&oldid='.urlencode($rc->rev_id))).'">diff</a>'
-                . '&nbsp;|&nbsp;'
-                . '<a href="'.htmlspecialchars($this->getLongUrl('title='._wpurlencode($rc->guc_pagename).'&action=history')).'">hist</a>)'
-                ;
-
-            // Date
-            $item[] = $this->app->formatMwDate($rc->rev_timestamp);
-
-            // Patterns may yield different users for different edits,
-            // provide basic tools for each entry.
-            if ($this->options['isPrefixPattern']) {
-                $item[] = '<a href="'.htmlspecialchars($this->getUrl("User:{$rc->rev_user_text}")).'">'
-                    . htmlspecialchars($rc->rev_user_text).'</a>'
-                    . '&nbsp;(<a href="'.htmlspecialchars($this->getUrl("User_talk:{$rc->rev_user_text}")).'">talk</a>&nbsp;| '
-                    . '<a href="'.htmlspecialchars($this->getUrl("Special:Contributions/{$rc->rev_user_text}")).'" title="Special:Contributions">contribs</a>)';
-                $item[] = '. .';
-            }
-            // Minor edit
-            if ($rc->rev_minor_edit) {
-                $item[] = '<span class="minor">M</span>';
-            }
-
-            // Link to the page
-            $item[] = '<a href="'.htmlspecialchars($this->getUrl($rc->guc_pagename)).'">'
-                . htmlspecialchars($rc->guc_pagename)."</a>";
-
-            // Edit summary
-            if ($rc->rev_comment) {
-                $item[] = '<span class="comment">('.$this->app->wikiparser($rc->rev_comment, $rc->guc_pagename, $this->wiki->url).')</span>';
-            }
-
-            // Cur revision
-            if ($rc->guc_is_cur) {
-                $item[] = '<span class="rev_cur">(current)</span>';
-            }
-            $return .= '<li>' . join('&nbsp;', $item) . '</li>';
+            $return .= $this->formatChangeLine($rc);
         }
         $return .= '</ul>';
         return $return;
+    }
+
+    protected function formatChangeLine($rc) {
+        $chunks = self::formatChange($this->app, $this->wiki, $rc);
+        if (!$this->options['isPrefixPattern']) {
+            unset($chunks['user']);
+        }
+        return '<li>' . join('&nbsp;', $chunks) . '</li>';
+    }
+
+    public static function formatChange(lb_app $app, guc_Wiki $wiki, stdClass $rc) {
+        $item = array();
+        // Diff and history
+        $item[] =
+            '(<a href="'.htmlspecialchars($wiki->getLongUrl('title='._wpurlencode($rc->guc_pagename).'&diff=prev&oldid='.urlencode($rc->rev_id))).'">diff</a>'
+            . '&nbsp;|&nbsp;'
+            . '<a href="'.htmlspecialchars($wiki->getLongUrl('title='._wpurlencode($rc->guc_pagename).'&action=history')).'">hist</a>)'
+            ;
+
+        // Date
+        $item[] = $app->formatMwDate($rc->rev_timestamp);
+
+        // When using isPrefixPattern, different edits may be from different users.
+        // Show user name and basic tools for each entry.
+        $item['user'] = '<a href="'.htmlspecialchars($wiki->getUrl("User:{$rc->rev_user_text}")).'">'
+            . htmlspecialchars($rc->rev_user_text).'</a>'
+            . '&nbsp;(<a href="'.htmlspecialchars($wiki->getUrl("User_talk:{$rc->rev_user_text}")).'">talk</a>&nbsp;| '
+            . '<a href="'.htmlspecialchars($wiki->getUrl("Special:Contributions/{$rc->rev_user_text}")).'" title="Special:Contributions">contribs</a>)&nbsp;. .&nbsp;';
+
+        // Minor edit
+        if ($rc->rev_minor_edit) {
+            $item[] = '<span class="minor">M</span>';
+        }
+
+        // Link to the page
+        $item[] = '<a href="'.htmlspecialchars($wiki->getUrl($rc->guc_pagename)).'">'
+            . htmlspecialchars($rc->guc_pagename)."</a>";
+
+        // Edit summary
+        if ($rc->rev_comment) {
+            $item[] = '<span class="comment">('.$app->wikiparser($rc->rev_comment, $rc->guc_pagename, $wiki->url).')</span>';
+        }
+
+        // Cur revision
+        if ($rc->guc_is_cur) {
+            $item[] = '<span class="rev_cur">(current)</span>';
+        }
+
+        return $item;
     }
 
     /**

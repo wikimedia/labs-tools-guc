@@ -20,6 +20,7 @@ class settings
 
                     // Components
                     'components' => array(
+                        'dateresults',
                         'guc',
                         'wiki',
                         'wikicontribs',

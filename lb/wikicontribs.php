@@ -15,6 +15,11 @@
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
 
+/**
+ * Represents the contributions query and results for one wiki.
+ *
+ * @class
+ */
 class lb_wikicontribs {
     const CONTRIB_LIMIT = 20;
     const MW_DATE_FORMAT = 'YmdHis';
@@ -358,8 +363,8 @@ class lb_wikicontribs {
     }
 
     public function getDataHtml() {
-        $return = '';
-        $return .= '<h1>'.$this->wiki->domain.'</h1>';
+        $html = '';
+        $html .= '<h1>'.$this->wiki->domain.'</h1>';
         $userinfo = array();
         if (!$this->options['isPrefixPattern']) {
             $userinfo[] = $this->getUserTools($this->user);
@@ -382,18 +387,19 @@ class lb_wikicontribs {
             $userinfo[] = 'SUL: Account not attached.';
         }
         if ($userinfo) {
-            $return .= '<p class="wikiinfo">' . join(' | ', $userinfo) . '</p>';
+            $html .= '<p class="wikiinfo">' . join(' | ', $userinfo) . '</p>';
         }
-        $return .= '<ul>';
+        $html .= '<ul>';
         foreach ($this->getContribs() as $rc) {
-            $return .= $this->formatChangeLine($rc);
+            $html .= $this->formatChangeLine($rc);
         }
-        $return .= '</ul>';
-        return $return;
+        $html .= '</ul>';
+        return $html;
     }
 
     protected function formatChangeLine($rc) {
         $chunks = self::formatChange($this->app, $this->wiki, $rc);
+        unset($chunks['wiki']);
         if (!$this->options['isPrefixPattern']) {
             unset($chunks['user']);
         }
@@ -402,6 +408,7 @@ class lb_wikicontribs {
 
     public static function formatChange(lb_app $app, guc_Wiki $wiki, stdClass $rc) {
         $item = array();
+
         // Diff and history
         $item[] =
             '(<a href="'.htmlspecialchars($wiki->getLongUrl('title='._wpurlencode($rc->guc_pagename).'&diff=prev&oldid='.urlencode($rc->rev_id))).'">diff</a>'
@@ -412,12 +419,15 @@ class lb_wikicontribs {
         // Date
         $item[] = $app->formatMwDate($rc->rev_timestamp);
 
+        // Wiki (used by guc_ChronologyContribs)
+        $item['wiki'] = '. .&nbsp;' . $wiki->domain . '&nbsp;. .';
+
         // When using isPrefixPattern, different edits may be from different users.
         // Show user name and basic tools for each entry.
         $item['user'] = '<a href="'.htmlspecialchars($wiki->getUrl("User:{$rc->rev_user_text}")).'">'
             . htmlspecialchars($rc->rev_user_text).'</a>'
             . '&nbsp;(<a href="'.htmlspecialchars($wiki->getUrl("User_talk:{$rc->rev_user_text}")).'">talk</a>&nbsp;| '
-            . '<a href="'.htmlspecialchars($wiki->getUrl("Special:Contributions/{$rc->rev_user_text}")).'" title="Special:Contributions">contribs</a>)&nbsp;. .&nbsp;';
+            . '<a href="'.htmlspecialchars($wiki->getUrl("Special:Contributions/{$rc->rev_user_text}")).'" title="Special:Contributions">contribs</a>)&nbsp;. .';
 
         // Minor edit
         if ($rc->rev_minor_edit) {

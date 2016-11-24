@@ -31,6 +31,7 @@ class guc {
         return array(
             'isPrefixPattern' => false,
             'src' => 'all',
+            'by' => 'wiki',
             'includeClosedWikis' => false,
         );
     }
@@ -107,7 +108,6 @@ class guc {
             } catch (Exception $e) {
                 $data->error = $e;
             }
-            unset($contribs);
             $datas->$dbname = $data;
         }
 
@@ -281,9 +281,14 @@ class guc {
     }
 
     /**
-     * Get collected data
+     * Get collected data grouped by wiki
      *
-     * @return array
+     * Each entry will contain:
+     * - {string} wiki
+     * - {null|Exception} error
+     * - {null|lb_wikicontribs} contribs
+     *
+     * @return array[]
      */
     public function getData() {
         return $this->datas;

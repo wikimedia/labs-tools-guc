@@ -75,11 +75,15 @@ body {
     background-repeat: no-repeat;
     padding-left: 21px;
 }
-.maincontent h1 {
+.maincontent h1,
+.maincontent h2 {
     font-size: 20px;
     font-weight: 700;
     border-bottom: 1px solid grey;
     margin-bottom: 2px;
+}
+.maincontent h2 {
+    font-size: 15px;
 }
 
 .maincontent .results .noSul {
@@ -92,16 +96,16 @@ body {
     margin-top: 0;
 }
 
-.wiki .minor,
-.wiki .rev_cur {
+.results .minor,
+.results .rev_cur {
     font-weight: bold;
 }
 
-.comment {
+.results .comment {
     font-style: italic;;
 }
 
-.wiki .autocomment {
+.results .autocomment {
     color: #999;
 }
 

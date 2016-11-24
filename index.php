@@ -37,10 +37,11 @@ $data->Username = @$_REQUEST['user'] ?: null;
 $data->options = array(
     'isPrefixPattern' => @$_REQUEST['isPrefixPattern'] === '1',
     'src' => @$_REQUEST['src'] ?: 'all',
+    'by' => @$_REQUEST['by'] ?: 'wiki',
 );
 
 // Create app
-$app = $guc = $error = $robotsPolicy = $canonicalUrl = null;
+$app = $guc = $appError = $robotsPolicy = $canonicalUrl = null;
 try {
     $app = new lb_app();
     if ($data->Method === 'POST') {
@@ -55,7 +56,7 @@ try {
         $canonicalUrl = './';
     }
 } catch (Exception $e) {
-    $error = $e;
+    $appError = $e;
 }
 
 $query = $data->options;
@@ -116,13 +117,24 @@ print "$headCanonical\n";
                     $resultSelect->setName('src');
                     print $resultSelect->getHTML();
                 ?></label></p>
+                <p>Sort results:
+                <label><input name="by" type="radio" value="wiki"<?php
+                if ($data->options['by'] !== 'date') {
+                    print ' checked';
+                }
+                ?>> By wiki</label>
+                <label><input name="by" type="radio" value="date"<?php
+                if ($data->options['by'] === 'date') {
+                    print ' checked';
+                }
+                ?>> By date and time</label></p>
                 <input type="submit" value="Search" class="submitbutton" id="submitButton">
                 <div id="loadLine" style="display: none;">&nbsp;</div>
             </form>
             <?php
-            if ($error) {
+            if ($appError) {
                 print '<div class="error">';
-                print 'Error: ' . htmlspecialchars($error->getMessage());
+                print 'Error: ' . htmlspecialchars($appError->getMessage());
                 print '</div>';
             }
             if ($guc) {
@@ -142,25 +154,31 @@ print "$headCanonical\n";
                     if (count($hostnames) >= 10) {
                         print '<em>(Limited hostname lookups)</em>';
                     }
-                     print '</div>';
+                    print '</div>';
                 }
-                foreach ($guc->getData() as $data) {
-                    if ($data->error) {
-                        print '<div class="error">';
-                        if (isset($data->wiki->domain)) {
-                            print'<h1>'.htmlspecialchars($data->wiki->domain).'</h1>';
-                        }
-                        print htmlspecialchars($data->error->getMessage());
-                        print '</div>';
-                    } else {
-                        if ($data->contribs->hasContribs()) {
+                if ($data->options['by'] !== 'date') {
+                    // Sort results by wiki
+                    foreach ($guc->getData() as $data) {
+                        if ($data->error) {
+                            print '<div class="error">';
+                            if (isset($data->wiki->domain)) {
+                                print '<h1>'.htmlspecialchars($data->wiki->domain).'</h1>';
+                            }
+                            print htmlspecialchars($data->error->getMessage());
+                            print '</div>';
+                        } elseif ($data->contribs->hasContribs()) {
                             print '<div class="wiki'.(($data->contribs->markAsNotUnified())?' noSul':'').'">';
                             print $data->contribs->getDataHtml();
                             print '</div>';
                         }
                     }
+                } else {
+                    // Sort results by date
+                    $formatter = new guc_ChronologyContribs($app, $guc->getData());
+                    $formatter->output();
                 }
                 print '</div>';
+                print '<p>Limited to ' . intval(lb_wikicontribs::CONTRIB_LIMIT) . ' results per wiki.</p>';
             }
             // print '<pre>';
             // $app->printTimes();

@@ -15,7 +15,7 @@ body {
     line-height: 19px;
     direction: ltr;
     /* 150px sidebar width - 122px logo width = 28px spacing = 14px from left */
-    background: #f8f8f8 url(//tools.wmflabs.org/Tool_Labs_logo_thumb.png) no-repeat scroll 14px 14px;
+    background: #fafafa url(//tools.wmflabs.org/Tool_Labs_logo_thumb.png) no-repeat scroll 14px 14px;
 }
 
 a {
@@ -33,12 +33,18 @@ a:hover { text-decoration: underline; }
     padding: 10px;
     background-color: #fff;
 }
+.maincontent .searchField {
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    background: #fafafa;
+    padding: 0 10px 10px 10px;
+}
 .maincontent .box {
     display: inline-block;
     margin: 1em 0;
     border: 1px solid #ccc;
-    background-color: #f2f2f2;
-    padding: .5em 1em;
+    background-color: #fafafa;
+    padding: .5em 1em .5em .5em;
 }
 .maincontent .error {
     margin: 1em 0;
@@ -62,13 +68,6 @@ a:hover { text-decoration: underline; }
     margin: 25px 0 0 150px;
     text-align: center;
     color: #777;
-}
-
-.maincontent .searchField {
-    border: 1px solid #e5e5e5;
-    padding: 0 10px 10px 10px;
-    border-radius: 5px;
-    background: #f8f8f8;
 }
 
 .maincontent .results a:visited { color: #5105ad; }
@@ -108,7 +107,5 @@ a:hover { text-decoration: underline; }
 }
 
 .results .autocomment {
-    color: #999;
+    color: #777;
 }
-
-

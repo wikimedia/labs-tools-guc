@@ -15,7 +15,11 @@
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-class guc_Wiki {
+namespace Guc;
+
+use stdClass;
+
+class Wiki {
     public $dbname;
     public $slice;
     public $family;
@@ -41,10 +45,10 @@ class guc_Wiki {
     }
 
     /**
-     * See guc::_getWikis().
+     * See Main::getWikis().
      *
      * @param stdClass $metaRow Row from meta_p table
-     * @return guc_Wiki
+     * @return Wiki
      */
     public static function newFromRow(stdClass $row) {
         $wiki = new self();
@@ -65,10 +69,54 @@ class guc_Wiki {
     }
 
     public function getUrl($pageName) {
-        return $this->url . '/wiki/' . _wpurlencode($pageName);
+        return $this->url . '/wiki/' . Wiki::urlencode($pageName);
     }
 
     public function getLongUrl($query) {
         return $this->url . '/w/index.php?' . $query;
+    }
+
+    /**
+     * Based on MediaWiki's wfUrlencode()
+     *
+     * @param string $pageName
+     * @return string
+     */
+    public static function urlencode($pageName) {
+        static $needle = null;
+        if ($needle === null) {
+            $needle = array('%3B', '%40', '%24', '%21', '%2A', '%28', '%29', '%2C', '%2F', '%3A');
+        }
+        return str_ireplace(
+            $needle,
+            array(';', '@', '$', '!', '*', '(', ')', ',', '/', ':'),
+            urlencode(str_replace(' ', '_', $pageName))
+        );
+    }
+
+    /**
+     * Based on MediaWiki 1.25's Sanitizer::escapeHtmlAllowEntities
+     *
+     * @param string $wikitext
+     * @return string HTML
+     */
+    public static function wikitextHtmlEscape($wikitext) {
+        $text = html_entity_decode($wikitext);
+        $html = htmlspecialchars($text, ENT_QUOTES);
+        return $html;
+    }
+
+    /**
+     * Escape a string for use as preg_replace() replacement parameter.
+     *
+     * Based on MediaWiki 1.25's StringUtils::escapeRegexReplacement
+     *
+     * @param string $str
+     * @return string
+     */
+    public static function pregReplaceEscape($str) {
+        $str = str_replace('\\', '\\\\', $str);
+        $str = str_replace('$', '\\$', $str);
+        return $str;
     }
 }

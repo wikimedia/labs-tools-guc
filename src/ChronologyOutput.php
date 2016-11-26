@@ -15,13 +15,17 @@
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-class guc_ChronologyContribs {
+namespace Guc;
+
+use stdClass;
+
+class ChronologyOutput {
     private $app;
     private $datas;
     private $changes = array();
     private $prevDate;
 
-    public function __construct(lb_app $app, stdClass $datas) {
+    public function __construct(App $app, stdClass $datas) {
         $this->app = $app;
         $this->datas = $datas;
     }
@@ -42,8 +46,6 @@ class guc_ChronologyContribs {
         $this->sort();
         $inList = false;
         foreach ($this->changes as $rc) {
-            // list($timestamp, $changeHtml) = $rc;
-            // $date = $this->app->formatMwDate($timestamp, 'd M Y');
             $date = $this->app->formatMwDate($rc->rev_timestamp, 'd M Y');
             if ($date !== $this->prevDate) {
                 $this->prevDate = $date;
@@ -58,11 +60,10 @@ class guc_ChronologyContribs {
                 print "\n<ul>\n";
             }
             print $this->makeChangeLine($rc);
-            // print $changeHtml;
         }
     }
 
-    private function add(guc_Wiki $wiki, lb_wikicontribs $contribs) {
+    private function add(Wiki $wiki, Contribs $contribs) {
         if ($contribs->hasContribs()) {
             foreach ($contribs->getContribs() as $rc) {
                 $rc->guc_wiki = $wiki;
@@ -72,13 +73,6 @@ class guc_ChronologyContribs {
     }
 
     private function sort() {
-        // usort($this->changes, function ($a, $b) {
-        //     if ($a[0] == $b[0]) {
-        //         return 0;
-        //     }
-        //     // DESC
-        //     return $a[0] < $b[0] ? 1 : -1;
-        // });
         usort($this->changes, function ($a, $b) {
             if ($a->rev_timestamp == $b->rev_timestamp) {
                 return 0;
@@ -93,7 +87,7 @@ class guc_ChronologyContribs {
     }
 
     private function makeChangeLine(stdClass $rc) {
-        $chunks = lb_wikicontribs::formatChange($this->app, $rc->guc_wiki, $rc);
+        $chunks = Contribs::formatChange($this->app, $rc->guc_wiki, $rc);
         return '<li>' . join('&nbsp;', $chunks) . '</li>';
     }
 }

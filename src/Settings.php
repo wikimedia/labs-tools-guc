@@ -1,7 +1,10 @@
 <?php
 
-class settings
-{
+namespace Guc;
+
+use Exception;
+
+class Settings {
 
     /**
      * Gibt eine Einstellung zurück.
@@ -11,21 +14,11 @@ class settings
     public static function getSetting($setting) {
         static $settings = null;
         if ($settings === null) {
-                $cnf = self::_getMySQLloginFromFile();
+               $cnf = self::getMySQLloginFromFile();
                 $settings = array(
                     // Database
                     'user' => $cnf['user'],
                     'password' => $cnf['password'],
-
-
-                    // Components
-                    'components' => array(
-                        'dateresults',
-                        'guc',
-                        'wiki',
-                        'wikicontribs',
-                        'exception',
-                    ),
 
                     // Paths
                     'cacheFile' => 'cache/namespaces.json',
@@ -35,7 +28,7 @@ class settings
     }
 
 
-    private static function _getMySQLloginFromFile() {
+    private static function getMySQLloginFromFile() {
         static $cnf = null;
         if ($cnf === null) {
             $uinfo = posix_getpwuid(posix_geteuid());

@@ -15,7 +15,13 @@
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-class guc {
+namespace Guc;
+
+use Exception;
+use PDO;
+use stdClass;
+
+class Main {
     private $app;
     private $user;
     private $options;
@@ -36,7 +42,7 @@ class guc {
         );
     }
 
-    public function __construct(lb_app $app, $user, $options = array()) {
+    public function __construct(App $app, $user, $options = array()) {
         $this->app = $app;
 
         // Normalise
@@ -72,14 +78,14 @@ class guc {
             }
         }
 
-        $wikis = $this->_getWikis();
+        $wikis = $this->getWikis();
         // Filter down wikis to only relevant ones.
         // Attaches 'wiki._editcount' property.
-        $wikisWithEditcount = $this->_getWikisWithContribs($wikis);
+        $wikisWithEditcount = $this->getWikisWithContribs($wikis);
 
         $datas = new stdClass();
         foreach ($wikisWithEditcount as $dbname => $wikiRow) {
-            $wiki = guc_Wiki::newFromRow($wikiRow);
+            $wiki = Wiki::newFromRow($wikiRow);
 
             $data = new stdClass();
             $data->wiki = $wiki;
@@ -87,13 +93,13 @@ class guc {
             $data->contribs = null;
 
             try {
-                $contribs = new lb_wikicontribs(
+                $contribs = new Contribs(
                     $this->app,
                     $this->user,
                     $this->isIP,
                     $wiki,
                     $wikiRow->_editcount,
-                    $this->_getCentralauthData($wikiRow->dbname),
+                    $this->getCentralauthData($wikiRow->dbname),
                     $options
                 );
                 if ($this->options['isPrefixPattern'] && !$contribs->getRegisteredUsers()) {
@@ -123,7 +129,7 @@ class guc {
      * Get all wikis
      * @return array of objects
      */
-    private function _getWikis() {
+    private function getWikis() {
         $this->app->aTP('Get list of all wikis');
         $family = array(
             'wikipedia' => 1,
@@ -161,13 +167,13 @@ class guc {
      * @param array $wikis List of meta_p rows
      * @return array
      */
-    private function _getWikisWithContribs(array $wikis) {
+    private function getWikisWithContribs(array $wikis) {
         $this->app->aTP('Query all wikis for matching revisions');
         $wikisWithEditcount = array();
 
-        // Copied from lb_wikicontribs::prepareLastHourQuery
+        // Copied from Contribs::prepareLastHourQuery
         // (TODO: Refactor somehow)
-        $cutoff = gmdate(lb_wikicontribs::MW_DATE_FORMAT, time() - 3600);
+        $cutoff = gmdate(Contribs::MW_DATE_FORMAT, time() - 3600);
 
         $slices = array();
         $wikisByDbname = array();
@@ -190,7 +196,7 @@ class guc {
                     // Wikidata and categorization updates
                     ).' AND `rc_type` IN (' . join(',', array_map(
                         'intval',
-                        array(lb_wikicontribs::MW_RC_EDIT, lb_wikicontribs::MW_RC_NEW)
+                        array(Contribs::MW_RC_EDIT, Contribs::MW_RC_NEW)
                     )) . ')';
             } else {
                 $sql = 'SELECT
@@ -243,7 +249,7 @@ class guc {
      * @param string $dbname
      * @return object|null|bool False if no centralauth
      */
-    private function _getCentralauthData($dbname) {
+    private function getCentralauthData($dbname) {
         static $centralauthData = null;
         if ($this->isIP || $this->options['isPrefixPattern']) {
             return false;
@@ -284,9 +290,10 @@ class guc {
      * Get collected data grouped by wiki
      *
      * Each entry will contain:
-     * - {string} wiki
+     *
+     * - {string} wiki Database name
      * - {null|Exception} error
-     * - {null|lb_wikicontribs} contribs
+     * - {null|Contribs} contribs
      *
      * @return array[]
      */

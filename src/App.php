@@ -15,7 +15,15 @@
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-class lb_app {
+namespace Guc;
+
+use DateTime;
+use DateTimeZone;
+use Exception;
+use PDO;
+use PDOException;
+
+class App {
     private $times = array();
     private $clusters = array();
 
@@ -44,9 +52,9 @@ class lb_app {
 
         try {
             // Establish connection
-            $pdo = new PDO('mysql:host='.$host.';dbname='.$dbname.';', settings::getSetting('user'), settings::getSetting('password'));
+            $pdo = new PDO('mysql:host='.$host.';dbname='.$dbname.';', Settings::getSetting('user'), Settings::getSetting('password'));
         } catch (PDOException $e) {
-            throw new lb_Exception('Database error: Unable to connect to '.  $dbname);
+            throw new Exception('Database error: Unable to connect to '.  $dbname);
         }
         return $pdo;
     }
@@ -60,7 +68,7 @@ class lb_app {
      */
     public function getDB($database = 'meta', $clusterNr = 's1.labsdb') {
         if (!$clusterNr) {
-            throw new lb_Exception('Invalid DB cluster specification');
+            throw new Exception('Invalid DB cluster specification');
         }
         // Bereits vorhanden?
         if (!isset($this->clusters[$clusterNr])) {
@@ -145,7 +153,7 @@ class lb_app {
      */
     public function wikiparser($comment, $page, $server)  {
         $comment = str_replace("\n", ' ', $comment);
-        $comment = _mwWikitextHtmlEscape($comment);
+        $comment = Wiki::wikitextHtmlEscape($comment);
 
         // Simplified version of MediaWiki/Linker::formatAutocomments.
         // Parse "/* Section */ Comment" into "<a href=#..>→‎</a>Section: Comment"
@@ -167,7 +175,7 @@ class lb_app {
                 // See MediaWiki/Sanitizer::normalizeSectionNameWhitespace() and Language::getArrow()
                 $section =  trim(preg_replace('/[ _]+/', ' ', $section));
                 $link = '<a href="' . htmlspecialchars(
-                    "$server/w/index.php?title=" . htmlspecialchars(_wpurlencode($page)) . "#$section"
+                    "$server/w/index.php?title=" . htmlspecialchars(Wiki::urlencode($page)) . "#$section"
                 ) . '">→</a>';
 
                 if ($isPost) {
@@ -210,11 +218,11 @@ class lb_app {
                 $target = $match[1];
 
                 $link = '<a href="' . htmlspecialchars("$server/w/index.php?title="
-                    . htmlspecialchars(_wpurlencode($target)))
+                    . htmlspecialchars(Wiki::urlencode($target)))
                     . '">' . htmlspecialchars($text) . '</a>';
                 $comment = preg_replace(
                     '/\[\[(.*?)\]\]/',
-                    _mwPregReplaceEscape($link),
+                    Wiki::pregReplaceEscape($link),
                     $comment,
                     1
                 );
@@ -306,48 +314,4 @@ class lb_app {
             return $data;
         }
     }
-}
-
-// Funktionen innerhalb von regexp = global.....
-
-/**
- * Based on MediaWiki's wfUrlencode()
- *
- * @param string $pageName
- * @return string
- */
-function _wpurlencode($pageName) {
-    static $needle = null;
-    if ($needle === null) {
-        $needle = array('%3B', '%40', '%24', '%21', '%2A', '%28', '%29', '%2C', '%2F', '%3A');
-    }
-    return str_ireplace(
-        $needle,
-        array(';', '@', '$', '!', '*', '(', ')', ',', '/', ':'),
-        urlencode(str_replace(' ', '_', $pageName))
-    );
-}
-
-/**
- * Based on MediaWiki 1.25's Sanitizer::escapeHtmlAllowEntities
- *
- * @param string $wikitext
- * @return string HTML
- */
-function _mwWikitextHtmlEscape($wikitext) {
-    $text = html_entity_decode($wikitext);
-    $html = htmlspecialchars($text, ENT_QUOTES);
-    return $html;
-}
-
-/**
- * Based on MediaWiki 1.25's StringUtils::escapeRegexReplacement
- *
- * @param string $str
- * @return string
- */
-function _mwPregReplaceEscape($str) {
-    $str = str_replace('\\', '\\\\', $str);
-    $str = str_replace('$', '\\$', $str);
-    return $str;
 }

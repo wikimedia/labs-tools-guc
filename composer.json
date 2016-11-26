@@ -1,4 +1,9 @@
 {
+	"autoload": {
+		"psr-0": {
+			"Guc\\": "src/"
+		}
+	},
 	"require": {
 		"php": ">=5.4",
 		"Krinkle/toollabs-base": "^0.8.0"

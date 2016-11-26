@@ -15,20 +15,16 @@
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
 
+use Guc\App;
+use Guc\ChronologyOutput;
+use Guc\Contribs;
+use Guc\Main;
+
 require_once __DIR__ . '/vendor/autoload.php';
-require_once 'settings.php';
-require_once 'app.php';
 
 error_reporting(E_ALL);
 ini_set('display_errors', 1);
 date_default_timezone_set('UTC');
-
-// Load components
-foreach (settings::getSetting('components') as $cmp) {
-    if (is_readable('lb/' . $cmp . '.php')) {
-        require_once 'lb/' . $cmp . '.php';
-    }
-}
 
 $data = new stdClass();
 $data->Method = @$_SERVER['REQUEST_METHOD'] ?: 'GET';
@@ -43,10 +39,10 @@ $data->options = array(
 // Create app
 $app = $guc = $appError = $robotsPolicy = $canonicalUrl = null;
 try {
-    $app = new lb_app();
+    $app = new App();
     if ($data->Method === 'POST') {
         $app->aTP('Got input, start search');
-        $guc = new guc($app, $data->Username, $data->options);
+        $guc = new Main($app, $data->Username, $data->options);
         $robotsPolicy = 'noindex,follow';
     } else {
         $guc = null;
@@ -64,7 +60,7 @@ if ($data->Username) {
     $query['user'] = $data->Username;
 }
 // Strip defaults
-$query = array_diff_assoc($query, guc::getDefaultOptions());
+$query = array_diff_assoc($query, Main::getDefaultOptions());
 $data->Permalink = './' . ( !$query ? '' : '?' . http_build_query($query) );
 
 $headRobots = !$robotsPolicy ? '' :
@@ -108,7 +104,7 @@ print "$headCanonical\n";
                 }
                 ?>></label></p>
                 <p><label>Results from: <?php
-                    $resultSelect = new HtmlSelect([
+                    $resultSelect = new \HtmlSelect([
                         'all' => 'All contributions',
                         'rc' => 'Recent changes (last 30 days)',
                         'hr' => 'Last hour only'
@@ -174,11 +170,11 @@ print "$headCanonical\n";
                     }
                 } else {
                     // Sort results by date
-                    $formatter = new guc_ChronologyContribs($app, $guc->getData());
+                    $formatter = new ChronologyOutput($app, $guc->getData());
                     $formatter->output();
                 }
                 print '</div>';
-                print '<p>Limited to ' . intval(lb_wikicontribs::CONTRIB_LIMIT) . ' results per wiki.</p>';
+                print '<p>Limited to ' . intval(Contribs::CONTRIB_LIMIT) . ' results per wiki.</p>';
             }
             // print '<pre>';
             // $app->printTimes();

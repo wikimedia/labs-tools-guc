@@ -15,12 +15,17 @@
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
 
+namespace Guc;
+
+use PDO;
+use stdClass;
+
 /**
  * Represents the contributions query and results for one wiki.
  *
  * @class
  */
-class lb_wikicontribs {
+class Contribs {
     const CONTRIB_LIMIT = 20;
     const MW_DATE_FORMAT = 'YmdHis';
     const MW_RC_EDIT = 0;
@@ -42,15 +47,15 @@ class lb_wikicontribs {
 
     /**
      *
-     * @param lb_app $app
+     * @param App $app
      * @param string $user Search query for wiki users
      * @param boolean $isIP
-     * @param guc_Wiki $wiki
+     * @param Wiki $wiki
      * @param int $editcount
      * @param null|false|object $centralAuth
      * @param array $options
      */
-    public function __construct(lb_app $app, $user, $isIP, $wiki, $editcount, $centralAuth, $options = array()) {
+    public function __construct(App $app, $user, $isIP, Wiki $wiki, $editcount, $centralAuth, $options = array()) {
         if (!$user) {
             throw new Exception('No username or IP');
         }
@@ -355,10 +360,10 @@ class lb_wikicontribs {
         return 'For <a href="'.htmlspecialchars($this->wiki->getUrl("User:$userName")).'">'.htmlspecialchars($userName).'</a> ('
             . '<a href="'.htmlspecialchars($this->wiki->getUrl("Special:Contributions/$userName")).'" title="Special:Contributions">contribs</a>&nbsp;| '
             . '<a href="'.htmlspecialchars($this->wiki->getUrl("User_talk:$userName")).'">talk</a>&nbsp;| '
-            . '<a href="'.htmlspecialchars($this->wiki->getUrl("Special:Log/block").'?page=User:'._wpurlencode($userName)).'" title="Special:Log/block">block log</a>&nbsp;| '
+            . '<a href="'.htmlspecialchars($this->wiki->getUrl("Special:Log/block").'?page=User:'.Wiki::urlencode($userName)).'" title="Special:Log/block">block log</a>&nbsp;| '
             . '<a href="'.htmlspecialchars($this->wiki->getUrl("Special:ListFiles/$userName")).'" title="Special:ListFiles">uploads</a>&nbsp;| '
             . '<a href="'.htmlspecialchars($this->wiki->getUrl("Special:Log/$userName")).'" title="Special:Log">logs</a>&nbsp;| '
-            . '<a href="'.htmlspecialchars($this->wiki->getUrl("Special:AbuseLog").'?wpSearchUser='._wpurlencode($userName)).'" title="Edit Filter log for this user">filter log</a>'
+            . '<a href="'.htmlspecialchars($this->wiki->getUrl("Special:AbuseLog").'?wpSearchUser='.Wiki::urlencode($userName)).'" title="Edit Filter log for this user">filter log</a>'
             . ')';
     }
 
@@ -406,14 +411,14 @@ class lb_wikicontribs {
         return '<li>' . join('&nbsp;', $chunks) . '</li>';
     }
 
-    public static function formatChange(lb_app $app, guc_Wiki $wiki, stdClass $rc) {
+    public static function formatChange(App $app, Wiki $wiki, stdClass $rc) {
         $item = array();
 
         // Diff and history
         $item[] =
-            '(<a href="'.htmlspecialchars($wiki->getLongUrl('title='._wpurlencode($rc->guc_pagename).'&diff=prev&oldid='.urlencode($rc->rev_id))).'">diff</a>'
+            '(<a href="'.htmlspecialchars($wiki->getLongUrl('title='.Wiki::urlencode($rc->guc_pagename).'&diff=prev&oldid='.urlencode($rc->rev_id))).'">diff</a>'
             . '&nbsp;|&nbsp;'
-            . '<a href="'.htmlspecialchars($wiki->getLongUrl('title='._wpurlencode($rc->guc_pagename).'&action=history')).'">hist</a>)'
+            . '<a href="'.htmlspecialchars($wiki->getLongUrl('title='.Wiki::urlencode($rc->guc_pagename).'&action=history')).'">hist</a>)'
             ;
 
         // Date

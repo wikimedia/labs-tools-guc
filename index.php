@@ -17,6 +17,7 @@
 
 use Guc\App;
 use Guc\ChronologyOutput;
+use Guc\PerWikiOutput;
 use Guc\Contribs;
 use Guc\Main;
 
@@ -152,27 +153,14 @@ print "$headCanonical\n";
                     }
                     print '</div>';
                 }
-                if ($data->options['by'] !== 'date') {
-                    // Sort results by wiki
-                    foreach ($guc->getData() as $data) {
-                        if ($data->error) {
-                            print '<div class="error">';
-                            if (isset($data->wiki->domain)) {
-                                print '<h1>'.htmlspecialchars($data->wiki->domain).'</h1>';
-                            }
-                            print htmlspecialchars($data->error->getMessage());
-                            print '</div>';
-                        } elseif ($data->contribs->hasContribs()) {
-                            print '<div class="wiki'.(($data->contribs->markAsNotUnified())?' noSul':'').'">';
-                            print $data->contribs->getDataHtml();
-                            print '</div>';
-                        }
-                    }
-                } else {
+                if ($data->options['by'] === 'date') {
                     // Sort results by date
                     $formatter = new ChronologyOutput($app, $guc->getData());
-                    $formatter->output();
+                } else {
+                    // Sort results by wiki
+                    $formatter = new PerWikiOutput($app, $guc->getData());
                 }
+                $formatter->output();
                 print '</div>';
                 print '<p>Limited to ' . intval(Contribs::CONTRIB_LIMIT) . ' results per wiki.</p>';
             }

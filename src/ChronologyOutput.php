@@ -19,7 +19,7 @@ namespace Guc;
 
 use stdClass;
 
-class ChronologyOutput {
+class ChronologyOutput implements IOutput {
     private $app;
     private $datas;
     private $changes = array();

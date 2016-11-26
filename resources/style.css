@@ -65,7 +65,7 @@ a:hover { text-decoration: underline; }
 }
 
 .footer {
-    margin: 25px 0 0 150px;
+    margin: 25px 0 25px 150px;
     text-align: center;
     color: #777;
 }

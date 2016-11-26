@@ -88,7 +88,8 @@ a:hover { text-decoration: underline; }
 }
 
 .maincontent .results .noSul {
-    background-color: #bff2fb;
+    background-color: #cffaff;
+    outline: 5px solid #cffaff;
 }
 
 .maincontent .results .wiki .wikiinfo {

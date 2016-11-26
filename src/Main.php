@@ -247,7 +247,9 @@ class Main {
      * Get centralauth information
      * @staticvar null $centralauthData
      * @param string $dbname
-     * @return object|null|bool False if no centralauth
+     * @return object|null|bool False means CentralAuth query failed
+     *  or the user is an IP or pattern. Null means we're dealing with a
+     *  proper user name but the account is not attached on this wiki.
      */
     private function getCentralauthData($dbname) {
         static $centralauthData = null;

@@ -158,7 +158,9 @@ print "$headCanonical\n";
                     $formatter = new ChronologyOutput($app, $guc->getData());
                 } else {
                     // Sort results by wiki
-                    $formatter = new PerWikiOutput($app, $guc->getData());
+                    $formatter = new PerWikiOutput($app, $guc->getData(), array(
+                        'rcUser' => $data->options['isPrefixPattern']
+                    ));
                 }
                 $formatter->output();
                 print '</div>';

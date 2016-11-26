@@ -25,7 +25,7 @@ class ChronologyOutput implements IOutput {
     private $changes = array();
     private $prevDate;
 
-    public function __construct(App $app, stdClass $datas) {
+    public function __construct(App $app, stdClass $datas, array $options = array()) {
         $this->app = $app;
         $this->datas = $datas;
     }

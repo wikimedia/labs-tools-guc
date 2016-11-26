@@ -297,12 +297,25 @@ class Contribs {
         return $this->contribs;
     }
 
-
     /**
      * @return boolean
      */
     public function hasContribs() {
         return !!$this->contribs;
+    }
+
+    public function getUsers() {
+        if (!$this->options['isPrefixPattern']) {
+            // Single IP or user name
+            return array($this->user);
+        }
+        // Multiple user names
+        // If pattern matches multiple IPs, user info is not shown
+        return $this->getRegisteredUsers();
+    }
+
+    public function hasManyUsers() {
+        return !!$this->hasManyMatches;
     }
 
     /**
@@ -311,7 +324,6 @@ class Contribs {
     public function getRegisteredUsers() {
         return $this->registeredUsers;
     }
-
 
     /**
      * Get relevant info about account blocks in recent history.
@@ -354,61 +366,6 @@ class Contribs {
         $db->execute();
         $res = $db->fetchAll(PDO::FETCH_ASSOC);
         return $res;
-    }
-
-    private function getUserTools($userName) {
-        return 'For <a href="'.htmlspecialchars($this->wiki->getUrl("User:$userName")).'">'.htmlspecialchars($userName).'</a> ('
-            . '<a href="'.htmlspecialchars($this->wiki->getUrl("Special:Contributions/$userName")).'" title="Special:Contributions">contribs</a>&nbsp;| '
-            . '<a href="'.htmlspecialchars($this->wiki->getUrl("User_talk:$userName")).'">talk</a>&nbsp;| '
-            . '<a href="'.htmlspecialchars($this->wiki->getUrl("Special:Log/block").'?page=User:'.Wiki::urlencode($userName)).'" title="Special:Log/block">block log</a>&nbsp;| '
-            . '<a href="'.htmlspecialchars($this->wiki->getUrl("Special:ListFiles/$userName")).'" title="Special:ListFiles">uploads</a>&nbsp;| '
-            . '<a href="'.htmlspecialchars($this->wiki->getUrl("Special:Log/$userName")).'" title="Special:Log">logs</a>&nbsp;| '
-            . '<a href="'.htmlspecialchars($this->wiki->getUrl("Special:AbuseLog").'?wpSearchUser='.Wiki::urlencode($userName)).'" title="Edit Filter log for this user">filter log</a>'
-            . ')';
-    }
-
-    public function getDataHtml() {
-        $html = '';
-        $html .= '<h1>'.$this->wiki->domain.'</h1>';
-        $userinfo = array();
-        if (!$this->options['isPrefixPattern']) {
-            $userinfo[] = $this->getUserTools($this->user);
-        } else {
-            if ($this->registeredUsers) {
-                if (count($this->registeredUsers) === 1) {
-                    $userinfo[] = $this->getUserTools(current($this->registeredUsers));
-                } else {
-                    $userinfo[] = ($this->hasManyMatches ? 'More than ' : '')
-                        . count($this->registeredUsers) . ' users: '
-                        . implode(', ', array_values($this->registeredUsers));
-                }
-            }
-        }
-        $userinfo[] = $this->editcount . ' edits';
-        if ($this->centralAuth) {
-            $userinfo[] = 'SUL: Account attached at '.$this->app->formatMwDate($this->centralAuth->lu_attached_timestamp);
-        }
-        if ($this->markAsNotUnified()) {
-            $userinfo[] = 'SUL: Account not attached.';
-        }
-        if ($userinfo) {
-            $html .= '<p class="wikiinfo">' . join(' | ', $userinfo) . '</p>';
-        }
-        $html .= '<ul>';
-        foreach ($this->getContribs() as $rc) {
-            $html .= $this->formatChangeLine($rc);
-        }
-        $html .= '</ul>';
-        return $html;
-    }
-
-    protected function formatChangeLine($rc) {
-        $chunks = self::formatChange($this->app, $this->wiki, $rc);
-        unset($chunks['wiki']);
-        if (!$this->options['isPrefixPattern']) {
-            unset($chunks['user']);
-        }
-        return '<li>' . join('&nbsp;', $chunks) . '</li>';
     }
 
     public static function formatChange(App $app, Wiki $wiki, stdClass $rc) {
@@ -457,14 +414,27 @@ class Contribs {
     }
 
     /**
-     * Whether the user should be considered to be ununified.
+     * @return int
+     */
+    public function getEditcount() {
+        return $this->editcount;
+    }
+
+    /**
+     * Whether the user should be as unattached.
      *
-     * @see guc::_getCentralauthData: False means CentralAuth is unavailable
-     * or the user is an IP or pattern. Null means we're dealing with a proper
-     * user name but the account is not attached on this wiki.
+     * @see Main::getCentralauthData()
      * @return boolean
      */
-    public function markAsNotUnified() {
+    public function isUnattached() {
         return $this->centralAuth === null;
+    }
+
+    /**
+     * @see Main::getCentralauthData()
+     * @return stdClass|bool False if data is unavailable
+     */
+    public function getCentralAuth() {
+        return $this->centralAuth;
     }
 }

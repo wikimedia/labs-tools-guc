@@ -104,10 +104,11 @@ class Main {
                 );
                 if ($this->options['isPrefixPattern'] && !$contribs->getRegisteredUsers()) {
                     foreach ($contribs->getContribs() as $rc) {
-                        $this->addIP($rc->rev_user_text);
+                        // Check before adding because this loop runs for each wiki
                         if (count($this->ipInfos) > 10) {
                             break;
                         }
+                        $this->addIP($rc->rev_user_text);
                     }
                 }
                 $data->contribs = $contribs;

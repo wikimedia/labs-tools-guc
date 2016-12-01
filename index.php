@@ -166,7 +166,7 @@ print "$headCanonical\n";
                             . '</tr>';
                     }
                     if (count($infos) >= 10) {
-                        print '<tr><td colspan="3">(Limited hostname lookups)</td></tr>';
+                        print '<tr><td colspan="3"><em>(Limited hostname lookups)</em></td></tr>';
                     }
                     print '</table>';
                 }

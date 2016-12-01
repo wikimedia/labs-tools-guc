@@ -40,10 +40,23 @@ a:hover { text-decoration: underline; }
     padding: 0 10px 10px 10px;
 }
 .maincontent .box {
+    display: inline-block;
     margin: 1em 0;
-    border: 1px solid #ccc;
     background-color: #fafafa;
-    padding: .5em 1em .5em .5em;
+    border-spacing: 0;
+    border-collapse: collapse;
+}
+.maincontent .box tr {
+    border-bottom: 1px solid #ccc;
+}
+.maincontent .box tr:first-child {
+    border-top: 1px solid #ccc;
+}
+.maincontent .box td {
+    padding: .2em .5em;
+}
+.maincontent .box tr:nth-child(even) {
+    background-color: #fff;
 }
 .maincontent .error {
     margin: 1em 0;
@@ -71,8 +84,9 @@ a:hover { text-decoration: underline; }
 
 .maincontent .results a:visited { color: #5105ad; }
 .maincontent .results .hostname {
-    background-image: url(img/icoInfo16.png);
-    background-repeat: no-repeat;
+    display: inline-block;
+    background: url(img/icoInfo16.png) no-repeat;
+    min-height: 16px;
     padding-left: 21px;
 }
  .results h1,

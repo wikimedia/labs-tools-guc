@@ -147,13 +147,16 @@ print "$headCanonical\n";
                     print '<table class="box">';
                     foreach ($infos as $ip => $info) {
                         print '<tr>'
-                            . '<td class="hostname">' . htmlspecialchars($ip) . '</td>'
+                            . '<td><span class="hostname"></span>' . htmlspecialchars($ip) . '</td>'
                             . '<td>' . (isset($info['host'])
                                 ? (' <tt>' . htmlspecialchars($info['host']) .'</tt>')
                                 : ''
                             ) . '</td>'
-                            . '<td>' . (isset($info['description'])
-                                ? (' ' . htmlspecialchars($info['description']))
+                            . '<td>' . (isset($info['asn'])
+                                ? (' <a href="http://bgp.he.net/AS' . htmlspecialchars($info['asn']) . '#_whois" target="_blank" rel="noopener noreferrer">AS' . htmlspecialchars($info['asn']) . '</a>')
+                                : ''
+                            ) . (isset($info['description'])
+                                ? (' <a href="https://ipinfo.io/AS' . htmlspecialchars($info['asn']) . '" target="_blank" rel="noopener noreferrer">' . htmlspecialchars($info['description']) . '</a>')
                                 : ''
                             ) . '</td>'
                             . '<td>' . (isset($info['range'])

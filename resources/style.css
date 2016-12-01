@@ -40,7 +40,6 @@ a:hover { text-decoration: underline; }
     padding: 0 10px 10px 10px;
 }
 .maincontent .box {
-    display: inline-block;
     margin: 1em 0;
     border: 1px solid #ccc;
     background-color: #fafafa;

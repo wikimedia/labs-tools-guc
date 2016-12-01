@@ -142,16 +142,30 @@ print "$headCanonical\n";
                 }
                 print '.</p>';
                 print '<div class="results">';
-                $hostnames = array_filter($guc->getHostnames());
-                if ($hostnames) {
-                    print '<div class="box">';
-                    foreach ($guc->getHostnames() as $ip => $hostname) {
-                        print '<div class="hostname">Hostname of ' . htmlspecialchars($ip) . ':&nbsp; <tt>' . htmlspecialchars($hostname).'</tt></div>';
+                $infos = array_filter($guc->getIPInfos());
+                if ($infos) {
+                    print '<table class="box">';
+                    foreach ($infos as $ip => $info) {
+                        print '<tr>'
+                            . '<td class="hostname">' . htmlspecialchars($ip) . '</td>'
+                            . '<td>' . (isset($info['host'])
+                                ? (' <tt>' . htmlspecialchars($info['host']) .'</tt>')
+                                : ''
+                            ) . '</td>'
+                            . '<td>' . (isset($info['description'])
+                                ? (' ' . htmlspecialchars($info['description']))
+                                : ''
+                            ) . '</td>'
+                            . '<td>' . (isset($info['range'])
+                                ? (' <tt>' . htmlspecialchars($info['range']) .'</tt>')
+                                : ''
+                            ) . '</td>'
+                            . '</tr>';
                     }
-                    if (count($hostnames) >= 10) {
-                        print '<em>(Limited hostname lookups)</em>';
+                    if (count($infos) >= 10) {
+                        print '<tr><td colspan="3">(Limited hostname lookups)</td></tr>';
                     }
-                    print '</div>';
+                    print '</table>';
                 }
                 if ($data->options['by'] === 'date') {
                     // Sort results by date

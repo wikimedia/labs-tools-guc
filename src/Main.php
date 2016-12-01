@@ -27,7 +27,7 @@ class Main {
     private $options;
 
     private $isIP = false;
-    private $hostnames = array();
+    private $ipInfos = array();
     private $globalEditCount = 0;
 
     private $data;
@@ -105,7 +105,7 @@ class Main {
                 if ($this->options['isPrefixPattern'] && !$contribs->getRegisteredUsers()) {
                     foreach ($contribs->getContribs() as $rc) {
                         $this->addIP($rc->rev_user_text);
-                        if (count($this->hostnames) > 10) {
+                        if (count($this->ipInfos) > 10) {
                             break;
                         }
                     }
@@ -277,15 +277,14 @@ class Main {
     }
 
     /**
-     * Add IP address to hostname map (if not already).
+     * Add IP address to IP info map (if not already).
      */
     private function addIP($ip) {
-        if (!isset($this->hostnames[$ip])) {
-            $hostname = @gethostbyaddr($ip);
-            $this->hostnames[$ip] = $hostname ?: false;
+        if (!isset($this->ipInfos[$ip])) {
+            $this->ipInfos[$ip] = IPInfo::get($ip);
         }
 
-        return $this->hostnames[$ip] !== false;
+        return $this->ipInfos[$ip] !== false;
     }
 
     /**
@@ -318,15 +317,15 @@ class Main {
     }
 
     /**
-     * Get hostnames of searched IP(s).
+     * Get information about searched IP(s).
      *
      * If IP was not found, or the search for was a user name or pattern,
      * an empty array is returned.
      *
      * @return array
      */
-    public function getHostnames() {
-        return $this->hostnames;
+    public function getIPInfos() {
+        return $this->ipInfos;
     }
 
     public function getGlobalEditcount() {

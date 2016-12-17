@@ -73,8 +73,9 @@ class Main {
             $this->app->aTP('Perfoming a pattern search: ' . $this->user);
         } else {
             // Check if input is an IP
-            if ($this->addIP($this->user)) {
+            if (IPInfo::valid($this->user)) {
                 $this->isIP = true;
+                $this->addIP($this->user);
             }
         }
 

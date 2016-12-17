@@ -18,6 +18,13 @@
 namespace Guc;
 
 class IPInfo {
+    /**
+     * @param string $ip
+     * @return bool
+     */
+    public static function valid($ip) {
+        return filter_var($ip, FILTER_VALIDATE_IP);
+    }
 
     /**
      * @return array|bool

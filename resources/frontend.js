@@ -54,7 +54,14 @@
     };
 
     getId('submitButton').addEventListener('click', function () {
-        onSearchClick(this);
+        var button = this;
+        onSearchClick(button);
+        getId('searchForm').onchange = function () {
+            // Once
+            this.onchange = null;
+            // Undo hidden button
+            button.display.none = '';
+        };
     }, false);
 
 }());

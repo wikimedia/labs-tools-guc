@@ -76,6 +76,10 @@ $headCanonical = !$canonicalUrl ? '' :
 <meta charset="UTF-8">
 <link rel="stylesheet" href="resources/style.css">
 <title>Global user contributions</title>
+<script>
+GucData = <?php print json_encode($data); ?>;
+</script>
+<script defer src="resources/frontend.js"></script>
 <?php
 if ($headRobots) {
 print "$headRobots\n";
@@ -83,10 +87,7 @@ print "$headRobots\n";
 if ($headCanonical) {
 print "$headCanonical\n";
 }
-?><script>
-    var data = <?php print json_encode($data); ?>;
-</script>
-</head>
+?></head>
     <body>
         <div class="maincontent">
             <div class="header">
@@ -193,6 +194,5 @@ print "$headCanonical\n";
             <br>
             <a href="https://github.com/wikimedia/labs-tools-guc">Source repository</a> · <a href="https://phabricator.wikimedia.org/tag/guc/">Issue tracker</a>
         </div>
-        <script src="resources/frontend.js"></script>
     </body>
 </html>

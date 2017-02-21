@@ -51,15 +51,15 @@
     }
 
     window.onload = function () {
-        /*global data */
+        /*global GucData */
 
         // Automatically submit the form if the user came here with
         // a permalink and the username is non-empty.
-        if (data.Method == 'GET' && data.Username) {
+        if (GucData.Method == 'GET' && GucData.Username) {
             getId('searchForm').submit();
             onSearchClick(getId('submitButton'));
-        } else if (data.Method == 'POST') {
-            setLocation(data);
+        } else if (GucData.Method == 'POST') {
+            setLocation(GucData);
         }
     };
 

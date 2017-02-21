@@ -42,7 +42,7 @@
             // Once
             this.onchange = null;
             // Undo hidden button
-            button.display.none = '';
+            button.style.display = '';
         };
     }
 

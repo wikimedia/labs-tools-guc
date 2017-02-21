@@ -34,6 +34,16 @@
         setInterval(function () {
             setLines(loaderNode);
         }, 1000);
+
+        // Unhide the button if the form fields are changed
+        // by the user. No need to force them to wait out
+        // the current query.
+        getId('searchForm').onchange = function () {
+            // Once
+            this.onchange = null;
+            // Undo hidden button
+            button.display.none = '';
+        };
     }
 
     function setLines(loader) {
@@ -54,14 +64,7 @@
     };
 
     getId('submitButton').addEventListener('click', function () {
-        var button = this;
-        onSearchClick(button);
-        getId('searchForm').onchange = function () {
-            // Once
-            this.onchange = null;
-            // Undo hidden button
-            button.display.none = '';
-        };
+        onSearchClick(this);
     }, false);
 
 }());

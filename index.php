@@ -210,7 +210,9 @@ $sep = $int->msg('colon-separator', array('domain' => 'general'));
                 }
                 $formatter->output();
                 print '</div>';
-                print '<p>Limited to ' . intval(Contribs::CONTRIB_LIMIT) . ' results per wiki.</p>';
+                print '<p>' . htmlspecialchars($int->msg('results-limited', [
+                    'variables' => [ (int)Contribs::CONTRIB_LIMIT ]
+                ])) . '</p>';
             }
             if ($data->debug) {
                 print '<pre class="guc-debug">';

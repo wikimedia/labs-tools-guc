@@ -11,5 +11,6 @@
 	"form-sort": "Sort results",
 	"form-sort-wiki": "By wiki",
 	"form-sort-date": "By date",
-	"form-submit": "Search"
+	"form-submit": "Search",
+	"results-limited": "Limited to $1 results per wiki."
 }

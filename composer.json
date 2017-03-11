@@ -1,8 +1,12 @@
 {
 	"autoload": {
-		"psr-0": {
+		"psr-4": {
 			"Guc\\": "src/"
 		}
+	},
+	"config": {
+		"classmap-authoritative": true,
+		"optimize-autoloader": true
 	},
 	"require": {
 		"php": ">=5.4",

@@ -123,3 +123,21 @@ a:hover { text-decoration: underline; }
 .results .autocomment {
     color: #777;
 }
+
+.guc-debug {
+    position: relative;
+    margin: 20px 0;
+    border: 1px solid #ccc;
+    padding: 10px;
+    background: #fafafa;
+}
+.guc-debug:before {
+    display: inline-block;
+    content: 'debug';
+    position: absolute;
+    top: -15px;
+    left: 5px;
+    border: 1px solid #ccc;
+    padding: 0 5px;
+    background: #fff;
+}

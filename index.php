@@ -31,6 +31,7 @@ $data = new stdClass();
 $data->Method = @$_SERVER['REQUEST_METHOD'] ?: 'GET';
 $data->Referer = @$_SERVER['HTTP_REFERER'] ?: null;
 $data->Username = @$_REQUEST['user'] ?: null;
+$data->debug = isset($_REQUEST['debug']);
 $data->options = array(
     'isPrefixPattern' => @$_REQUEST['isPrefixPattern'] === '1',
     'src' => @$_REQUEST['src'] ?: 'all',
@@ -184,9 +185,11 @@ print "$headCanonical\n";
                 print '</div>';
                 print '<p>Limited to ' . intval(Contribs::CONTRIB_LIMIT) . ' results per wiki.</p>';
             }
-            // print '<pre>';
-            // $app->printTimes();
-            // print '</pre>';
+            if ($data->debug) {
+                print '<pre class="guc-debug">';
+                $app->printTimes();
+                print '</pre>';
+            }
             ?>
         </div>
         <div class="footer">

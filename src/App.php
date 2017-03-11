@@ -88,7 +88,7 @@ class App {
     }
 
     public function printTimes() {
-        print nl2br(htmlspecialchars($this->getTimes()));
+        print htmlspecialchars($this->getTimes());
     }
 
     public function getTimes() {

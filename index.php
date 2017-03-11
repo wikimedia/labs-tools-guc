@@ -95,9 +95,9 @@ print "$headRobots\n";
 }
 if ($headCanonical) {
 print "$headCanonical\n";
+}
 
 $sep = $int->msg('colon-separator', array('domain' => 'general'));
-}
 ?></head>
     <body>
         <div class="maincontent">
@@ -139,7 +139,19 @@ $sep = $int->msg('colon-separator', array('domain' => 'general'));
                 ?>> <?php echo htmlspecialchars($int->msg('form-sort-date')); ?></label></p>
                 <?php
                 if ($data->debug) {
-                    echo '<input type="hidden" name="debug" value="1">';
+                    echo '<input type="hidden" name="debug" value="1">' . "\n";
+                }
+                ?>
+                <?php
+                if ($int->getUseRequestParam()) {
+                    $paramName = $int->getParamName('userlang');
+                    if (isset($_GET[$paramName]) || isset($_POST[$paramName])) {
+                        echo Html::input(
+                            $paramName,
+                            $int->getLang(),
+                            'hidden'
+                        ) . "\n";
+                    }
                 }
                 ?>
                 <input type="submit" value="<?php echo htmlspecialchars($int->msg('form-submit')); ?>" class="submitbutton" id="submitButton">

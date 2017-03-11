@@ -127,6 +127,11 @@ print "$headCanonical\n";
                     print ' checked';
                 }
                 ?>> By date and time</label></p>
+                <?php
+                if ($data->debug) {
+                    echo '<input type="hidden" name="debug" value="1">';
+                }
+                ?>
                 <input type="submit" value="Search" class="submitbutton" id="submitButton">
                 <div id="loadLine" style="display: none;">&nbsp;</div>
             </form>

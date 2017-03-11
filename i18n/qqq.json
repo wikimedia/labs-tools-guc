@@ -1,0 +1,15 @@
+{
+	"@metadata": [],
+	"title": "Name of the tool as used in the first heading and title of the web browser window.",
+	"description": "Caption below the first heading that describes the tool.",
+	"form-user": "Label for input field.\n\nMessage is followed by {{msg-intuition|general-colon-separator}}",
+	"form-isPrefixPattern": "Label for checkbox.\n\nMessage is followed by {{msg-intuition|general-colon-separator}}",
+	"form-from": "Label for dropdown menu with choices of different sources of contributions (All, Recent changes, Last hour).\n\nMessage is followed by {{msg-intuition|general-colon-separator}}",
+	"form-from-all": "Option in dropdown menu choices.\n\nSee {{msg-intuition|guc-form-from}}",
+	"form-from-rc": "Option in dropdown menu choices.\n\nSee {{msg-intuition|guc-form-from}}",
+	"form-from-hr": "Option in dropdown menu choices.\n\nSee {{msg-intuition|guc-form-from}}",
+	"form-sort": "Label for two radio buttons for deciding how the results are grouped and sorted.\n\nMessage is followed by {{msg-intuition|general-colon-separator}}",
+	"form-sort-wiki": "Label for radio button to group results by wiki.\n\nSee {{msg-intuition|guc-form-sort}}",
+	"form-sort-date": "Label for radio button to sort results chronologically, by date.\n\nSee {{msg-intuition|guc-form-sort}}",
+	"form-submit": "Label for button to submit the form to start the search and show the results.\n{{Identical|Go}}"
+}

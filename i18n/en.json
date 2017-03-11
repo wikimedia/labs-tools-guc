@@ -1,0 +1,15 @@
+{
+	"@metadata": [],
+	"title": "Global user contributions",
+	"description": "Show user contributions from all Wikimedia wikis.",
+	"form-user": "IP address or username",
+	"form-isPrefixPattern": "Enable prefix search",
+	"form-from": "Include results from",
+	"form-from-all": "All contributions",
+	"form-from-rc": "Recent changes only (last 30 days)",
+	"form-from-hr": "Last hour only",
+	"form-sort": "Sort results",
+	"form-sort-wiki": "By wiki",
+	"form-sort-date": "By date",
+	"form-submit": "Search"
+}

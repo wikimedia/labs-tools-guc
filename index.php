@@ -38,6 +38,12 @@ $data->options = array(
     'by' => @$_REQUEST['by'] ?: 'wiki',
 );
 
+$int = new Intuition(array(
+    'domain' => 'guc',
+    'globalfunctions' => false,
+));
+$int->registerDomain('guc', __DIR__ . '/i18n');
+
 // Create app
 $app = $guc = $appError = $robotsPolicy = $canonicalUrl = null;
 try {
@@ -70,13 +76,15 @@ $headRobots = !$robotsPolicy ? '' :
 $headCanonical = !$canonicalUrl ? '' :
     '<link rel="canonical" href="' . htmlspecialchars($canonicalUrl) . '">';
 
+$langCode = $int->getLang();
+$langDir = $int->getDir();
 ?>
 <!DOCTYPE html>
-<html>
+<?php echo \Html::openElement('html', ['dir' => $langDir, 'lang' => $langCode]); ?>
 <head>
 <meta charset="UTF-8">
 <link rel="stylesheet" href="resources/style.css">
-<title>Global user contributions</title>
+<title><?php echo htmlspecialchars($int->msg('title')); ?></title>
 <script>
 GucData = <?php print json_encode($data); ?>;
 </script>
@@ -87,52 +95,54 @@ print "$headRobots\n";
 }
 if ($headCanonical) {
 print "$headCanonical\n";
+
+$sep = $int->msg('colon-separator', array('domain' => 'general'));
 }
 ?></head>
     <body>
         <div class="maincontent">
             <div class="header">
-                <h2>Global user contributions <span>beta</span></h2>
-            <p>Tool to search for contributions of users on the Wikimedia wikis. Additional features like blocklog, sul-info or translation will follow in the future.</p>
+                <h2><?php echo htmlspecialchars($int->msg('title')); ?></h2>
+            <p><?php echo htmlspecialchars($int->msg('description')); ?></p>
             </div>
             <form action="./" method="POST" class="searchField" id="searchForm">
-                <p><label>IP address or username: <input name="user" value="<?php
+                <p><label><?php echo htmlspecialchars($int->msg('form-user') . $sep); ?> <input name="user" value="<?php
                 if ($data->Username) {
                     print htmlspecialchars($data->Username);
                 }
                 ?>"></label></p>
-                <p><label>Activate prefix pattern search: <input name="isPrefixPattern" type="checkbox" value="1"<?php
+                <p><label><?php echo htmlspecialchars($int->msg('form-isPrefixPattern') . $sep); ?> <input name="isPrefixPattern" type="checkbox" value="1"<?php
                 if ($data->options['isPrefixPattern']) {
                     print ' checked';
                 }
                 ?>></label></p>
-                <p><label>Results from: <?php
+                <p><label><?php echo htmlspecialchars($int->msg('form-from') . $sep); ?> <?php
                     $resultSelect = new \HtmlSelect([
-                        'all' => 'All contributions',
-                        'rc' => 'Recent changes (last 30 days)',
-                        'hr' => 'Last hour only'
+                        'all' => $int->msg('form-from-all'),
+                        'rc' => $int->msg('form-from-rc'),
+                        'hr' => $int->msg('form-from-hr'),
                     ]);
                     $resultSelect->setDefault($data->options['src']);
                     $resultSelect->setName('src');
                     print $resultSelect->getHTML();
                 ?></label></p>
-                <p>Sort results:
+                <p><?php echo htmlspecialchars($int->msg('form-sort') . $sep); ?>
                 <label><input name="by" type="radio" value="wiki"<?php
                 if ($data->options['by'] !== 'date') {
                     print ' checked';
                 }
-                ?>> By wiki</label>
+                ?>> <?php echo htmlspecialchars($int->msg('form-sort-wiki')); ?></label>
                 <label><input name="by" type="radio" value="date"<?php
                 if ($data->options['by'] === 'date') {
                     print ' checked';
                 }
-                ?>> By date and time</label></p>
+                ?>> <?php echo htmlspecialchars($int->msg('form-sort-date')); ?></label></p>
                 <?php
                 if ($data->debug) {
                     echo '<input type="hidden" name="debug" value="1">';
                 }
                 ?>
-                <input type="submit" value="Search" class="submitbutton" id="submitButton">
+                <input type="submit" value="<?php echo htmlspecialchars($int->msg('form-submit')); ?>" class="submitbutton" id="submitButton">
                 <div id="loadLine" style="display: none;">&nbsp;</div>
             </form>
             <?php

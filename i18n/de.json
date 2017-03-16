@@ -1,0 +1,19 @@
+{
+	"@metadata": {
+		"authors": [
+			"Metalhead64"
+		]
+	},
+	"description": "Zeigt Benutzerbeiträge aller Wikimedia-Wikis.",
+	"form-user": "IP-Adresse oder Benutzername",
+	"form-isPrefixPattern": "Präfixsuche aktivieren",
+	"form-from": "Ergebnisse einschließen von",
+	"form-from-all": "Alle Beiträge",
+	"form-from-rc": "Nur Letzte Änderungen (letzte 30 Tage)",
+	"form-from-hr": "Nur letzte Stunde",
+	"form-sort": "Ergebnisse sortieren",
+	"form-sort-wiki": "Nach Wiki",
+	"form-sort-date": "Nach Datum",
+	"form-submit": "Suchen",
+	"results-limited": "Auf $1 Ergebnisse pro Wiki begrenzt"
+}

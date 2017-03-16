@@ -1,0 +1,16 @@
+{
+	"@metadata": {
+		"authors": [
+			"Nitch",
+			"Redredsonia"
+		]
+	},
+	"form-user": "IP-адрес или имя участника",
+	"form-from": "Включать результаты из",
+	"form-from-all": "Все вклады",
+	"form-from-rc": "Только последние изменения (последние 30 дней)",
+	"form-from-hr": "Только за последний час",
+	"form-sort": "Сортировать результаты",
+	"form-sort-date": "По дате",
+	"form-submit": "Поиск"
+}

@@ -1,0 +1,19 @@
+{
+	"@metadata": {
+		"authors": [
+			"Amire80"
+		]
+	},
+	"description": "הצגת תרומות משתמש מכל אתרי הוויקי של ויקימדיה.",
+	"form-user": "כתובת IP או שם משתמש",
+	"form-isPrefixPattern": "להפעיל חיפוש תחילית",
+	"form-from": "לכלול תוצאות מתוך",
+	"form-from-all": "כל התרומות",
+	"form-from-rc": "רק שינויים אחרונים (30 הימים האחרונים)",
+	"form-from-hr": "רק השעה האחרונה",
+	"form-sort": "מיון תוצאות",
+	"form-sort-wiki": "לפי ויקי",
+	"form-sort-date": "לפי תאריך",
+	"form-submit": "חיפוש",
+	"results-limited": "מוגבל ל־$1 תוצאות לוויקי."
+}

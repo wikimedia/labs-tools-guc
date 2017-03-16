@@ -1,0 +1,19 @@
+{
+	"@metadata": {
+		"authors": [
+			"Gomoko"
+		]
+	},
+	"description": "Afficher les contributions de l’utilisateur sur tous les wikis de Wikimédia.",
+	"form-user": "Adresse IP ou nom d’utilisateur",
+	"form-isPrefixPattern": "Activer la recherche par préfixe",
+	"form-from": "Inclure les résultats de",
+	"form-from-all": "Toutes les contributions",
+	"form-from-rc": "Uniquement les modifications récentes (30 derniers jours)",
+	"form-from-hr": "Uniquement la dernière heure",
+	"form-sort": "Trier les résultats",
+	"form-sort-wiki": "Par wiki",
+	"form-sort-date": "Par date",
+	"form-submit": "Rechercher",
+	"results-limited": "Limité à $1 résultats par wiki."
+}

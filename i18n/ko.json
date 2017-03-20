@@ -1,0 +1,14 @@
+{
+	"@metadata": {
+		"authors": [
+			"Ykhwong"
+		]
+	},
+	"description": "모든 위키미디어 위키의 사용자 기여를 표시합니다.",
+	"form-user": "IP 주소 또는 사용자 이름",
+	"form-from-all": "모든 기여",
+	"form-from-rc": "최근 바뀜만 (지난 30일)",
+	"form-from-hr": "지난 1시간만",
+	"form-sort": "정렬 결과",
+	"form-submit": "검색"
+}

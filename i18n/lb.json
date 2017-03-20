@@ -4,7 +4,9 @@
 			"Robby"
 		]
 	},
+	"description": "Benotzerkontributioune vun alle Wikimedia Wikie weisen",
 	"form-user": "IP-Adress oder Benotzernumm",
+	"form-from": "Resultater drasetze vu(n)",
 	"form-from-all": "All Kontributiounen",
 	"form-from-rc": "Nëmme rezent Ännerungen (lescht 30 Deeg)",
 	"form-from-hr": "Nëmmen déi lescht Stonn",

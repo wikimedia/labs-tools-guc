@@ -1,0 +1,19 @@
+{
+	"@metadata": {
+		"authors": [
+			"Liuxinyu970226"
+		]
+	},
+	"description": "显示来自所有维基媒体wiki的用户贡献。",
+	"form-user": "IP地址或用户名",
+	"form-isPrefixPattern": "启用前缀搜索",
+	"form-from": "包含结果来自",
+	"form-from-all": "所有贡献",
+	"form-from-rc": "仅限最近更改（最近30天）",
+	"form-from-hr": "仅限最近1小时",
+	"form-sort": "排序结果",
+	"form-sort-wiki": "按wiki",
+	"form-sort-date": "按日期",
+	"form-submit": "搜索",
+	"results-limited": "已限制为每个wiki$1条结果。"
+}

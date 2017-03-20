@@ -1,0 +1,19 @@
+{
+	"@metadata": {
+		"authors": [
+			"Kly"
+		]
+	},
+	"description": "顯示來自所有維基媒體 wikis 的用戶貢獻。",
+	"form-user": "IP 位址或使用者名稱",
+	"form-isPrefixPattern": "啟用前綴搜尋",
+	"form-from": "包含結果自",
+	"form-from-all": "所有貢獻",
+	"form-from-rc": "僅限近期更改（最近30天）",
+	"form-from-hr": "僅最近 1 小時",
+	"form-sort": "排序結果",
+	"form-sort-wiki": "依 wiki",
+	"form-sort-date": "依日期",
+	"form-submit": "搜尋",
+	"results-limited": "已限制為各 wiki $1個結果。"
+}

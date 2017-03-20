@@ -1,7 +1,8 @@
 {
 	"@metadata": {
 		"authors": [
-			"Amire80"
+			"Amire80",
+			"Uziel302"
 		]
 	},
 	"description": "הצגת תרומות משתמש מכל אתרי הוויקי של ויקימדיה.",
@@ -10,7 +11,7 @@
 	"form-from": "לכלול תוצאות מתוך",
 	"form-from-all": "כל התרומות",
 	"form-from-rc": "רק שינויים אחרונים (30 הימים האחרונים)",
-	"form-from-hr": "רק השעה האחרונה",
+	"form-from-hr": "בשעה האחרונה בלבד",
 	"form-sort": "מיון תוצאות",
 	"form-sort-wiki": "לפי ויקי",
 	"form-sort-date": "לפי תאריך",

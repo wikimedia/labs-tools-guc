@@ -1,5 +1,9 @@
 {
-	"@metadata": [],
+	"@metadata": {
+		"authors": [
+			"Liuxinyu970226"
+		]
+	},
 	"title": "Name of the tool as used in the first heading and title of the web browser window.",
 	"description": "Caption below the first heading that describes the tool.",
 	"form-user": "Label for input field.\n\nMessage is followed by {{msg-intuition|general-colon-separator}}",
@@ -11,6 +15,6 @@
 	"form-sort": "Label for two radio buttons for deciding how the results are grouped and sorted.\n\nMessage is followed by {{msg-intuition|general-colon-separator}}",
 	"form-sort-wiki": "Label for radio button to group results by wiki.\n\nSee {{msg-intuition|guc-form-sort}}",
 	"form-sort-date": "Label for radio button to sort results chronologically, by date.\n\nSee {{msg-intuition|guc-form-sort}}",
-	"form-submit": "Label for button to submit the form to start the search and show the results.\n{{Identical|Go}}",
+	"form-submit": "Label for button to submit the form to start the search and show the results.\n{{Identical|Search}}",
 	"results-limited": "Note below the seach results\n\n* $1 - the maximum number of results loaded from one wiki (e.g. 20, 50 or 100)."
 }

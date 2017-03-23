@@ -1,0 +1,14 @@
+{
+	"@metadata": {
+		"authors": [
+			"Notramo",
+			"Tacsipacsi"
+		]
+	},
+	"form-user": "IP-cím vagy felhasználónév",
+	"form-from-all": "Minden közreműködés",
+	"form-from-rc": "Legutóbbi változtatások (elmúlt 30 nap)",
+	"form-from-hr": "Csak a legutóbbi óra",
+	"form-sort-wiki": "Wiki szerint",
+	"form-submit": "Keresés"
+}

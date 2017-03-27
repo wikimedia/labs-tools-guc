@@ -1,0 +1,19 @@
+{
+	"@metadata": {
+		"authors": [
+			"Jon Harald Søby"
+		]
+	},
+	"description": "Vis brukerbidrag fra alle Wikimedia-wikier.",
+	"form-user": "IP-adresse eller brukernavn",
+	"form-isPrefixPattern": "Slå på prefikssøk",
+	"form-from": "Inkluder resultater fra",
+	"form-from-all": "Alle bidrag",
+	"form-from-rc": "Kun nylige endringer (siste 30 dager)",
+	"form-from-hr": "Kun den siste timen",
+	"form-sort": "Sorter resultater",
+	"form-sort-wiki": "Etter wiki",
+	"form-sort-date": "Etter dato",
+	"form-submit": "Søk",
+	"results-limited": "Begrenset til $1 resultater per wiki."
+}

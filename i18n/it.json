@@ -6,6 +6,7 @@
 	},
 	"description": "Mostra i contributi dell'utente da tutti i progetti Wikimedia.",
 	"form-user": "Indirizzo IP o nome utente",
+	"form-isPrefixPattern": "Attiva la ricerca per prefisso",
 	"form-from": "Includi risultati da",
 	"form-from-all": "Tutti i contributi",
 	"form-from-rc": "Solo modifiche recenti (ultimi 30 giorni)",

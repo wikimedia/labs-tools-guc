@@ -1,0 +1,19 @@
+{
+	"@metadata": {
+		"authors": [
+			"Snævar"
+		]
+	},
+	"description": "Sýna framlög notanda frá öllum Wikimedia wiki vefsvæðum.",
+	"form-user": "Vistfang eða notandanafn",
+	"form-isPrefixPattern": "Virkja leit að forskeytum",
+	"form-from": "Innifela niðurstöður frá",
+	"form-from-all": "Öll framlög",
+	"form-from-rc": "Aðeins nýjustu framlög (síðustu 30 dagar)",
+	"form-from-hr": "Síðasti klukkutíminn eingöngu",
+	"form-sort": "Raða niðurstöðum",
+	"form-sort-wiki": "Eftir wiki",
+	"form-sort-date": "Eftir dagsetningu",
+	"form-submit": "Leita",
+	"results-limited": "Takmarkað við $1 niðurstöður á hvern wiki"
+}

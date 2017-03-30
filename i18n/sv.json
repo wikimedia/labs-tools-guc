@@ -1,0 +1,16 @@
+{
+	"@metadata": {
+		"authors": [
+			"WikiPhoenix"
+		]
+	},
+	"description": "Visa användarbidrag från alla Wikimedia-wikis.",
+	"form-user": "IP-adress eller användarnamn",
+	"form-from-all": "Alla bidrag",
+	"form-from-hr": "Endast senaste timmen",
+	"form-sort": "Sortera resultat",
+	"form-sort-wiki": "Efter wiki",
+	"form-sort-date": "Efter datum",
+	"form-submit": "Sök",
+	"results-limited": "Begränsas till $1 resultat per wiki."
+}

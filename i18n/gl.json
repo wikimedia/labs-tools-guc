@@ -1,0 +1,19 @@
+{
+	"@metadata": {
+		"authors": [
+			"Banjo"
+		]
+	},
+	"description": "Amosar as contribucións de usuario en tódolos wikis de Wikimedia",
+	"form-user": "Enderezo IP ou nome de usuario",
+	"form-isPrefixPattern": "Habilitar a procura por prefixo",
+	"form-from": "Incluír resultados de",
+	"form-from-all": "Tódalas contribucións",
+	"form-from-rc": "Só cambios recentes (últimos 30 días)",
+	"form-from-hr": "Só última hora",
+	"form-sort": "Ordenar resultados",
+	"form-sort-wiki": "Por wiki",
+	"form-sort-date": "Por data",
+	"form-submit": "Procura",
+	"results-limited": "Limitado a $1 resultados por wiki."
+}

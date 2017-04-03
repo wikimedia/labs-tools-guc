@@ -1,0 +1,18 @@
+{
+	"@metadata": {
+		"authors": [
+			"AmaryllisGardener"
+		]
+	},
+	"description": "Shaw uiser contreibutions frae aw Wikimedia wikis.",
+	"form-user": "IP address or uisername",
+	"form-isPrefixPattern": "Enable prefix sairch",
+	"form-from": "Include results frae",
+	"form-from-all": "Aw contreibutions",
+	"form-from-rc": "Recent chynges anly (last 30 days)",
+	"form-from-hr": "Last oor anerly",
+	"form-sort-wiki": "Bi wiki",
+	"form-sort-date": "Bi date",
+	"form-submit": "Sairch",
+	"results-limited": "Leemitit tae $1 results per wiki."
+}

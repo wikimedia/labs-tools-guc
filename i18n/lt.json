@@ -7,6 +7,7 @@
 	},
 	"form-user": "IP adresas arba vartotojo vardas",
 	"form-from": "Įtraukti rezultatus iš",
+	"form-from-all": "Visi įnašai",
 	"form-from-rc": "Tik naujausi pakeitimai (30 pastarųjų dienų)",
 	"form-from-hr": "Tik paskutinė valanda",
 	"form-sort": "Rūšiuoti rezultatus",

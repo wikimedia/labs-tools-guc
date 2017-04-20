@@ -10,5 +10,7 @@
 	"form-from-rc": "최근 바뀜만 (지난 30일)",
 	"form-from-hr": "지난 1시간만",
 	"form-sort": "정렬 결과",
+	"form-sort-wiki": "위키순",
+	"form-sort-date": "날짜순",
 	"form-submit": "검색"
 }

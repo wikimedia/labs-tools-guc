@@ -1,0 +1,15 @@
+{
+	"@metadata": {
+		"authors": [
+			"Fulup"
+		]
+	},
+	"form-from-all": "An holl degasadennoù",
+	"form-from-rc": "(Kemmoù diwezhañ nemetken (30 deiz diwezhañ)",
+	"form-from-hr": "Eurvezh diwezhañ hepken",
+	"form-sort": "Urzhiañ an disoc'hoù",
+	"form-sort-wiki": "Dre wiki",
+	"form-sort-date": "Dre zeiziad",
+	"form-submit": "Klask",
+	"results-limited": "Bevennet da $1 disoc'h dre wiki"
+}

@@ -2,15 +2,20 @@
 	"@metadata": {
 		"authors": [
 			"Nitch",
-			"Redredsonia"
+			"Redredsonia",
+			"Facenapalm"
 		]
 	},
+	"description": "Показывать вклад участника со всех проектов Викимедиа.",
 	"form-user": "IP-адрес или имя участника",
+	"form-isPrefixPattern": "Активировать поиск по префиксу",
 	"form-from": "Включать результаты из",
 	"form-from-all": "Все вклады",
 	"form-from-rc": "Только последние изменения (последние 30 дней)",
 	"form-from-hr": "Только за последний час",
 	"form-sort": "Сортировать результаты",
+	"form-sort-wiki": "По вики",
 	"form-sort-date": "По дате",
-	"form-submit": "Поиск"
+	"form-submit": "Поиск",
+	"results-limited": "Ограничить $1 результатами с одной вики."
 }

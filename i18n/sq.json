@@ -1,0 +1,19 @@
+{
+	"@metadata": {
+		"authors": [
+			"Denisa"
+		]
+	},
+	"description": "Trego kontributet e përdoruesve nga të gjitha Wikimedia wikit",
+	"form-user": "Adresë IP ose emër përdoruesi",
+	"form-isPrefixPattern": "Aktivizo kërkimin me parashtesë",
+	"form-from": "Përfshi rezultatet nga",
+	"form-from-all": "Të gjitha kontributet",
+	"form-from-rc": "Ndryshimet më të fundit vetëm (30 ditët e fundit)",
+	"form-from-hr": "Ora e fundit vetëm",
+	"form-sort": "Rendit rezultatet",
+	"form-sort-wiki": "Prej wiki",
+	"form-sort-date": "Prej datës",
+	"form-submit": "Kërko",
+	"results-limited": "Kufizuar në $1 rezultate për wiki"
+}

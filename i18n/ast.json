@@ -1,0 +1,19 @@
+{
+	"@metadata": {
+		"authors": [
+			"Xuacu"
+		]
+	},
+	"description": "Amosar les contribuciones de los usuarios de toles wikis de Wikimedia.",
+	"form-user": "Direición IP o nome d'usuariu",
+	"form-isPrefixPattern": "Activar la gueta por prefixos",
+	"form-from": "Incluyir les resultancies de",
+	"form-from-all": "Toles contribuciones",
+	"form-from-rc": "Namái los cambeos recién (últimos 30 díes)",
+	"form-from-hr": "Namái la última hora",
+	"form-sort": "Ordenar resultancies",
+	"form-sort-wiki": "Per wiki",
+	"form-sort-date": "Per data",
+	"form-submit": "Guetar",
+	"results-limited": "Llindáu a $1 resultancies per cada wiki."
+}

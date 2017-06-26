@@ -1,0 +1,12 @@
+{
+	"@metadata": {
+		"authors": [
+			"InternerowyGołąb"
+		]
+	},
+	"form-sort": "Rezultaty sortowania",
+	"form-sort-wiki": "Przez Wiki",
+	"form-sort-date": "według daty",
+	"form-submit": "Szukaj",
+	"results-limited": "Limit do $1 na wiki."
+}

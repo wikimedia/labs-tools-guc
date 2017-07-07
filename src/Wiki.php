@@ -95,6 +95,24 @@ class Wiki {
     }
 
     /**
+     * Based on MediaWiki's Sanitizer::escapeId()
+     *
+     * @param string $id
+     * @return string
+     */
+    public static function escapeId($id) {
+        // HTML4-style escaping
+        static $replace = [
+            '%3A' => ':',
+            '%' => '.',
+        ];
+
+        $id = urlencode(strtr($id, ' ', '_'));
+        $id = strtr($id, $replace);
+        return $id;
+    }
+
+    /**
      * Based on MediaWiki 1.25's Sanitizer::escapeHtmlAllowEntities
      *
      * @param string $wikitext

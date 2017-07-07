@@ -174,8 +174,11 @@ class App {
                 $section = str_replace(']]', '', $section);
                 // See MediaWiki/Sanitizer::normalizeSectionNameWhitespace() and Language::getArrow()
                 $section =  trim(preg_replace('/[ _]+/', ' ', $section));
+                // See MediaWiki/Sanitizer::escapeId() – called by Linker::makeCommentLink(),
+                // via LinkerRenderer, via Title::escapeFragmentForURL().
                 $link = '<a href="' . htmlspecialchars(
-                    "$server/w/index.php?title=" . htmlspecialchars(Wiki::urlencode($page)) . "#$section"
+                    "$server/w/index.php?title=" . Wiki::urlencode($page) .
+                    "#" . Wiki::escapeId($section)
                 ) . '">→</a>';
 
                 if ($isPost) {

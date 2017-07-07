@@ -1,3 +1,4 @@
-vendor
-composer.lock
-cache/*.json
+/cache/*.json
+/composer.lock
+/coverage
+/vendor

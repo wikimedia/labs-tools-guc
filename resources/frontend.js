@@ -24,6 +24,44 @@
         }
     }
 
+    function checkReplag() {
+        if (typeof fetch === 'undefined') {
+            return;
+        }
+        fetch(
+            'https://tools.wmflabs.org/guc/api.php?q=replag',
+            // Enable credentials so that any Intuition cookie will be
+            // available to the API for the lagged warning message.
+            { method: 'GET', credentials: 'same-origin' }
+        )
+            .then(function (resp) {
+                return resp.json();
+            })
+            .then(function (data) {
+                if (data.error) {
+                    return Promise.reject(data.error);
+                }
+                return data.lagged;
+            })
+            .then(function (lagged) {
+                if (!lagged) {
+                    return;
+                }
+                var node = document.createElement('div');
+                node.className = 'error';
+                node.innerHTML = lagged.html;
+                var target = document.querySelector('.maincontent form');
+                target.parentNode.insertBefore(node, target.nextSibling);
+            })
+            .catch(function (err) {
+                if (!window.console || !console.error) {
+                    return;
+                }
+                console.warn('Failed to fetch replag information');
+                console.error('[Replag API] ' + err);
+            });
+    }
+
     function onSearchClick(button) {
         // Remove button
         button.style.display = 'none';
@@ -60,6 +98,7 @@
             onSearchClick(getId('submitButton'));
         } else if (GucData.Method == 'POST') {
             setLocation(GucData);
+            checkReplag();
         }
     };
 

@@ -16,5 +16,6 @@
 	"form-sort-wiki": "לפי ויקי",
 	"form-sort-date": "לפי תאריך",
 	"form-submit": "חיפוש",
-	"results-limited": "מוגבל ל־$1 תוצאות לוויקי."
+	"results-limited": "מוגבל ל־$1 תוצאות לוויקי.",
+	"results-lag-warning": "ייתכן שתוצאות עבור העריכות החדשות ביותר. שכפולי מסד נתונים עבור כלים (Tools) כרגע מעוכבים. ר' [https://tools.wmflabs.org/replag/ Replag]."
 }

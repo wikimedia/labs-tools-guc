@@ -15,5 +15,6 @@
 	"form-sort-wiki": "Per wiki",
 	"form-sort-date": "Per data",
 	"form-submit": "Guetar",
-	"results-limited": "Llindáu a $1 resultancies per cada wiki."
+	"results-limited": "Llindáu a $1 resultancies per cada wiki.",
+	"results-lag-warning": "Nos resultaos pueden faltar les ediciones más recién. Los duplicaos de la base de datos pa Tools tienen retrasu nestos momentos. Visita [https://tools.wmflabs.org/replag/ Replag] pa más información."
 }

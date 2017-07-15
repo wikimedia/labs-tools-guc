@@ -15,5 +15,6 @@
 	"form-sort-wiki": "按wiki",
 	"form-sort-date": "按日期",
 	"form-submit": "搜索",
-	"results-limited": "已限制为每个wiki$1条结果。"
+	"results-limited": "已限制为每个wiki$1条结果。",
+	"results-lag-warning": "结果可能缺少最近的编辑。工具的数据库复制目前存在延迟。请参阅[https://tools.wmflabs.org/replag/ Replag]。"
 }

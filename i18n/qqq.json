@@ -16,6 +16,6 @@
 	"form-sort-wiki": "Label for radio button to group results by wiki.\n\nSee {{msg-intuition|guc-form-sort}}",
 	"form-sort-date": "Label for radio button to sort results chronologically, by date.\n\nSee {{msg-intuition|guc-form-sort}}",
 	"form-submit": "Label for button to submit the form to start the search and show the results.\n{{Identical|Search}}",
-	"results-lag-warning": "Note shown above the search results if the tools database replicas are currently lagged.",
-	"results-limited": "Note below the seach results\n\n* $1 - the maximum number of results loaded from one wiki (e.g. 20, 50 or 100)."
+	"results-limited": "Note below the seach results\n\n* $1 - the maximum number of results loaded from one wiki (e.g. 20, 50 or 100).",
+	"results-lag-warning": "Note shown above the search results if the tools database replicas are currently lagged."
 }

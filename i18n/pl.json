@@ -1,12 +1,21 @@
 {
 	"@metadata": {
 		"authors": [
-			"InternerowyGołąb"
+			"InternerowyGołąb",
+			"Woytecr"
 		]
 	},
-	"form-sort": "Rezultaty sortowania",
-	"form-sort-wiki": "Przez Wiki",
-	"form-sort-date": "według daty",
+	"description": "Pokazuje wkład użytkownika ze wszystkich wiki Wikimedia.",
+	"form-user": "Adres IP lub nazwa użytkownika",
+	"form-isPrefixPattern": "Włącz wyszukiwanie jako prefiks",
+	"form-from": "Pokaż wyniki",
+	"form-from-all": "Wszystkie edycje",
+	"form-from-rc": "Tylko niedawne zmiany (ostatnie 30 dni)",
+	"form-from-hr": "Tylko z ostatniej godziny",
+	"form-sort": "Sortuj wyniki",
+	"form-sort-wiki": "Według wiki",
+	"form-sort-date": "Według daty",
 	"form-submit": "Szukaj",
-	"results-limited": "Limit do $1 na wiki."
+	"results-limited": "Ograniczono do $1 wyników na wiki.",
+	"results-lag-warning": "W wynikach mogły nie pojawić się najnowsze edycje. Replikacja bazy danych serwera narzędziowego jest teraz spowolniona. Zobacz [https://tools.wmflabs.org/replag/ Replag]."
 }

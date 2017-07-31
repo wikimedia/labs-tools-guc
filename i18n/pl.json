@@ -5,6 +5,7 @@
 			"Woytecr"
 		]
 	},
+	"title": "Globalny wkład użytkownika",
 	"description": "Pokazuje wkład użytkownika ze wszystkich wiki Wikimedia.",
 	"form-user": "Adres IP lub nazwa użytkownika",
 	"form-isPrefixPattern": "Włącz wyszukiwanie jako prefiks",

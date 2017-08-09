@@ -63,9 +63,9 @@ try {
                 'SELECT lag FROM heartbeat WHERE shard = ?',
                 [ $cluster ]
             );
-            $data['lag'][$cluster] = $res[0]['lag'];
+            $data['lag'][$cluster] = (int)$res[0]['lag'];
         }
-        $max = max($data['lag'][$cluster]);
+        $max = max($data['lag']);
         if ($max > 0) {
             $int = new Intuition(array(
                 'domain' => 'guc',

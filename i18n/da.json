@@ -1,0 +1,20 @@
+{
+	"@metadata": {
+		"authors": [
+			"Joedalton"
+		]
+	},
+	"description": "Vis brugerbidrag fra alle Wikimedia-wikier.",
+	"form-user": "IP-adresse eller brugernavn",
+	"form-isPrefixPattern": "Aktiver præfikssøgning",
+	"form-from": "Inkluder resultater fra",
+	"form-from-all": "Alle bidrag",
+	"form-from-rc": "Kun de seneste ændringer (sidste 30 dage)",
+	"form-from-hr": "Kun den sidste time",
+	"form-sort": "Sorter resultater",
+	"form-sort-wiki": "Efter wiki",
+	"form-sort-date": "Efter dato",
+	"form-submit": "Søg",
+	"results-limited": "Begrænset til $1 resultater per wiki.",
+	"results-lag-warning": "Resultaterne kan mangle de seneste redigeringer. Det er efterslæb på databasekopierne, som Tools anvender. Se [https://tools.wmflabs.org/replag/ Replag]."
+}

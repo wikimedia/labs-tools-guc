@@ -44,26 +44,30 @@ try {
             'error' => 'Invalid query. Available query: q=replag',
         ];
     } else {
-        $servers = [
-            's1' => 's1.labsdb',
-            's2' => 's2.labsdb',
-            's3' => 's3.labsdb',
-            's4' => 's4.labsdb',
-            's5' => 's5.labsdb',
-            's6' => 's6.labsdb',
-            's7' => 's7.labsdb',
-        ];
         $data = [
             'lagged' => false,
+            'lag' => [],
         ];
-        foreach ($servers as $cluster => $host) {
-            $conn = \LabsDB::getConnection($host, 'heartbeat');
-            $res = \LabsDB::query(
-                $conn,
-                'SELECT lag FROM heartbeat WHERE shard = ?',
-                [ $cluster ]
-            );
-            $data['lag'][$cluster] = (int)$res[0]['lag'];
+        $metaRows = \LabsDB::query(
+            \LabsDB::getMetaDB(),
+            'SELECT DISTINCT(slice) as slice FROM wiki ORDER BY slice ASC'
+        );
+        if ($metaRows) {
+            foreach ($metaRows as $row) {
+                $host = $row['slice'];
+                list($shard) = explode('.', $host);
+                $res = \LabsDB::query(
+                    \LabsDB::getConnection($host, 'heartbeat'),
+                    'SELECT lag FROM heartbeat WHERE shard = ?',
+                    [ $shard ]
+                );
+                if ($res) {
+                    $lag = (int)$res[0]['lag'];
+                    if (!isset($data['lag'][$shard]) || $data['lag'][$shard] < $lag) {
+                        $data['lag'][$shard] = $lag;
+                    }
+                }
+            }
         }
         $max = max($data['lag']);
         if ($max > 0) {

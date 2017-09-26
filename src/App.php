@@ -35,20 +35,20 @@ class App {
      * @return PDO
      */
     private function openDB($database = 'wikidatawiki', $cluster = null) {
-        $this->aTP('Create connection to '.$cluster);
-        if (is_string($database)) {
-            $host = $database.'.labsdb';
-            $dbname = $database.'_p';
-        }
-        if (is_int($cluster)) {
-            $host = 's'.$cluster.'.labsdb';
-            $dbname = (is_string($database)) ? $database.'_p': 'information_schema';
-        }
+        $dbname = "{$database}_p";
 
         if (is_string($cluster)) {
-            $host = $cluster;
-            $dbname = (is_string($database)) ? $database.'_p': 'information_schema';
+            if (strpos($cluster, '.') === false) {
+                // Default suffix
+                $host = "{$cluster}.labsdb";
+            } else {
+                $host = $cluster;
+            }
+        } else {
+            $host = "{$database}.labsdb";
         }
+
+        $this->aTP('Create connection to ' . $cluster);
 
         try {
             // Establish connection
@@ -63,18 +63,18 @@ class App {
      * Gibt die Verbindung zu einem Wiki zurück (cache)
      *
      * @param string $database
-     * @param $clusterNr
+     * @param string $cluster
      * @return PDO
      */
-    public function getDB($database = 'meta', $clusterNr = 's1.labsdb') {
+    public function getDB($database = 'meta', $cluster = 's1') {
         if (!$clusterNr) {
             throw new Exception('Invalid DB cluster specification');
         }
-        // Bereits vorhanden?
-        if (!isset($this->clusters[$clusterNr])) {
-            $this->clusters[$clusterNr] = $this->openDB($database, $clusterNr);
+        // Reuse existing connection if possible
+        if (!isset($this->clusters[$cluster])) {
+            $this->clusters[$cluster] = $this->openDB($database, $cluster);
         }
-        $pdo = $this->clusters[$clusterNr];
+        $pdo = $this->clusters[$cluster];
 
         // Select the right database on this cluster server
         $m = $pdo->prepare('USE `'.$database.'_p`;');

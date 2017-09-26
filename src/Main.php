@@ -260,7 +260,7 @@ class Main {
         }
         if ($centralauthData === null) {
             $centralauthData = array();
-            $pdo = $this->app->getDB('centralauth', 'centralauth.labsdb');
+            $pdo = $this->app->getDB('centralauth', 'centralauth');
             $statement = $pdo->prepare('SELECT * FROM localuser WHERE lu_name = :user;');
             $statement->bindParam(':user', $this->user);
             $statement->execute();

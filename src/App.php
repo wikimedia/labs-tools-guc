@@ -67,7 +67,7 @@ class App {
      * @return PDO
      */
     public function getDB($database = 'meta', $cluster = 's1') {
-        if (!$clusterNr) {
+        if (!$cluster) {
             throw new Exception('Invalid DB cluster specification');
         }
         // Reuse existing connection if possible

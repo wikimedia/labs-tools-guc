@@ -1,7 +1,8 @@
 {
 	"@metadata": {
 		"authors": [
-			"WikiPhoenix"
+			"WikiPhoenix",
+			"Bengtsson96"
 		]
 	},
 	"description": "Visa användarbidrag från alla Wikimedia-wikis.",
@@ -15,5 +16,6 @@
 	"form-sort-wiki": "Efter wiki",
 	"form-sort-date": "Efter datum",
 	"form-submit": "Sök",
-	"results-limited": "Begränsas till $1 resultat per wiki."
+	"results-limited": "Begränsas till $1 resultat per wiki.",
+	"results-lag-warning": "Resultaten kan sakna de senaste ändringarna. verktygsserverns databaskopior har hög fördröjning just nu. Se [https://tools.wmflabs.org/replag/ fördröjningsstatistik] för mer information."
 }

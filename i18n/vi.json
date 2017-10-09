@@ -1,0 +1,21 @@
+{
+	"@metadata": {
+		"authors": [
+			"Minh Nguyen"
+		]
+	},
+	"title": "Đóng góp người dùng toàn cục",
+	"description": "Xem đóng góp người dùng từ tất cả các wiki của Wikimedia.",
+	"form-user": "Địa chỉ IP hoặc tên người dùng",
+	"form-isPrefixPattern": "Tìm kiếm tiền tố",
+	"form-from": "Bao gồm kết quả từ",
+	"form-from-all": "Tất cả các đóng góp",
+	"form-from-rc": "Chỉ các thay đổi gần đây (30 ngày qua)",
+	"form-from-hr": "Chỉ giờ trước",
+	"form-sort": "Sắp xếp các thứ tự",
+	"form-sort-wiki": "Theo wiki",
+	"form-sort-date": "Theo ngày",
+	"form-submit": "Tìm kiếm",
+	"results-limited": "Mỗi wiki giới hạn $1 kết quả.",
+	"results-lag-warning": "Các kết quả này có thể thiếu các sửa đổi gần đây nhất. Các bản sao cơ sở dữ liệu Tools đang trễ. Xem [https://tools.wmflabs.org/replag/ Replag]."
+}

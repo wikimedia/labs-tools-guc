@@ -1,0 +1,15 @@
+{
+	"@metadata": {
+		"authors": [
+			"Obaid Raza"
+		]
+	},
+	"description": "صارف کی ویکیمیڈیا کی تمام ویکیوں پر شراکتیں دیکھیں",
+	"form-user": "آئی پی پتے یا صارف نام",
+	"form-from-all": "تمام شراکتیں",
+	"form-from-rc": "حالیہ ترامیم صرف (آخری 30 دن)",
+	"form-from-hr": "صرف آخری گھنٹہ",
+	"form-sort-wiki": "بلحاظ ویکی",
+	"form-sort-date": "بلحاظ تاریخ",
+	"form-submit": "تلاش"
+}

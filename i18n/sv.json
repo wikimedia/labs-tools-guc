@@ -5,6 +5,7 @@
 			"Bengtsson96"
 		]
 	},
+	"title": "Globala användarbidrag",
 	"description": "Visa användarbidrag från alla Wikimedia-wikis.",
 	"form-user": "IP-adress eller användarnamn",
 	"form-isPrefixPattern": "Aktivera prefixsökning",

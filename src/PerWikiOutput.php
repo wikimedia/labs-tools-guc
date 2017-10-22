@@ -25,7 +25,7 @@ class PerWikiOutput implements IOutput {
     public function output() {
         foreach ($this->datas as $data) {
             if ($data->error) {
-                print '<div class="error">';
+                print '<div class="wiki wiki--error">';
                 if (isset($data->wiki->domain)) {
                     print '<h1>'.htmlspecialchars($data->wiki->domain).'</h1>';
                 }
@@ -34,7 +34,7 @@ class PerWikiOutput implements IOutput {
             } else {
                 $contribs = $data->contribs;
                 if ($contribs->hasContribs()) {
-                    print '<div class="wiki'.($contribs->isUnattached()?' noSul':'').'">';
+                    print '<div class="wiki'.($contribs->isUnattached()?' wiki--noSul':'').'">';
                     print $this->makeWikiSection($data->wiki, $contribs);
                     print '</div>';
                 }
@@ -72,7 +72,7 @@ class PerWikiOutput implements IOutput {
         }
 
         if ($userinfo) {
-            $html .= '<p class="wikiinfo">' . join(' | ', $userinfo) . '</p>';
+            $html .= '<p class="wiki-info">' . join(' | ', $userinfo) . '</p>';
         }
 
         $html .= '<ul>';

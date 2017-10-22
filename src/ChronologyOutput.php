@@ -22,12 +22,12 @@ class ChronologyOutput implements IOutput {
     public function output() {
         foreach ($this->datas as $key => $data) {
             if ($data->error) {
-                print '<div class="error">'
+                print '<div class="error"><p>'
                     . '<strong>'
                     . htmlspecialchars($data->wiki->domain ?: $data->wiki->dbname)
                     .'</strong><br/>'
                     . htmlspecialchars($data->error->getMessage())
-                    . '</div>';
+                    . '</p></div>';
             } else {
                 $this->add($data->wiki, $data->contribs);
             }

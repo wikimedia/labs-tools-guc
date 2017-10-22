@@ -14,8 +14,7 @@ body {
     font-size: 13px;
     font-weight: 400;
     line-height: 19px;
-    /* 150px sidebar width - 122px logo width = 28px spacing = 14px from left */
-    background: #fafafa url(//tools.wmflabs.org/Tool_Labs_logo_thumb.png) no-repeat scroll 14px 14px;
+    background: #fafafa;
 }
 
 a {
@@ -25,90 +24,90 @@ a {
 a:active { text-decoration: none; }
 a:hover { text-decoration: underline; }
 
-.maincontent {
-    margin: 50px 0 0 150px;
-    border: 1px solid #e7e7e7;
-    border-right: 0;
-    border-top-left-radius: 5px;
-    padding: 10px;
-    background-color: #fff;
+.header {
+    margin: 0 0 10px 0;
+    padding: 10px 25px 0 25px;
+    border-bottom: 1px solid #e7e7e7;
+    background: #fff;
 }
-.maincontent .searchField {
+.header h2 {
+    margin: 10px 0 15px 0;
+    font-size: 25px;
+    font-weight: 400;
+}
+
+.container {
+    margin: 10px 25px 0 25px;
+    /* No before/after padding because containers should contain
+       only block elements (e.g. heading, paragraph) that already have
+       margins, which don't collapse into padding. */
+    padding: 0 10px;
+    background: #fff;
     border: 1px solid #ccc;
-    border-radius: 5px;
-    background: #fafafa;
-    padding: 0 10px 10px 10px;
 }
+
 .form-progress {
     display: inline-block;
 }
-.maincontent .box {
-    display: inline-block;
+
+.error {
+    /* For errors inside containers */
+    padding: 0 10px;
+}
+.error,
+.container.error {
+    background: #fae3e3;
+    border: 1px solid #fac5c5;
+    color: #cc0000;
+}
+
+.box {
     margin: 1em 0;
     background-color: #fafafa;
     border-spacing: 0;
     border-collapse: collapse;
 }
-.maincontent .box tr {
+.box tr {
     border-bottom: 1px solid #ccc;
 }
-.maincontent .box tr:first-child {
+.box tr:first-child {
     border-top: 1px solid #ccc;
 }
-.maincontent .box td {
+.box td {
     padding: .2em .5em;
 }
-.maincontent .box tr:nth-child(even) {
+.box tr:nth-child(even) {
     background-color: #fff;
 }
-.maincontent .error {
-    margin: 1em 0;
-    border: 1px solid #fac5c5;
-    background-color: #fae3e3;
-    padding: .5em 1em;
-    color: #cc0000;
-}
 
-.maincontent .header h2 {
-    margin: 10px 0 15px 0;
-    font-size: 25px;
-    font-weight: 400;
-}
-.maincontent .header h2 span {
-    color: red;
-    font-size: 15px;
-}
-
-.footer {
-    margin: 25px 0 25px 150px;
-    text-align: center;
-    color: #777;
-}
-
-.maincontent .results a:visited { color: #5105ad; }
-.maincontent .results .hostname {
+.results a:visited { color: #5105ad; }
+.results .hostname {
     display: inline-block;
     background: url(img/icoInfo16.png) no-repeat;
     min-height: 16px;
     padding-left: 21px;
 }
- .results h1,
- .results h2 {
+.results h1,
+.results h2 {
     font-size: 20px;
     font-weight: 700;
     border-bottom: 1px solid grey;
-    margin-bottom: 2px;
+    margin-bottom: 0;
 }
- .results h2 {
+.results h2 {
     font-size: 15px;
 }
 
-.maincontent .results .noSul {
-    background-color: #cffaff;
-    outline: 5px solid #cffaff;
+.wiki--noSul {
+    outline: 10px solid #e3fafd;
+    background-color: #e3fafd;
 }
-
-.maincontent .results .wiki .wikiinfo {
+.wiki--error {
+    outline: 10px solid #fae3e3;
+    background: #fae3e3;
+    color: #cc0000;
+}
+.wiki-info {
     color: #777;
     font-size: 84%;
     margin-top: 0;
@@ -118,31 +117,36 @@ a:hover { text-decoration: underline; }
 .results .rev_cur {
     font-weight: bold;
 }
-
 .results .comment {
     font-style: italic;;
 }
-
 .results .autocomment {
     color: #777;
 }
 
 .guc-debug {
     position: relative;
-    margin: 20px 0;
     border: 1px solid #ccc;
-    padding: 10px;
+    /* Increase margin from .container for "debug" caption */
+    margin-top: 20px;
+    padding: 15px 10px 10px 10px;
     background: #fafafa;
 }
 .guc-debug:before {
     display: inline-block;
     content: 'debug';
     position: absolute;
-    top: -15px;
+    top: -10px;
     left: 5px;
     border: 1px solid #ccc;
     padding: 0 5px;
     background: #fff;
+}
+
+.footer {
+    margin: 25px;
+    text-align: center;
+    color: #777;
 }
 
 .results,

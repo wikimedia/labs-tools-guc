@@ -144,8 +144,7 @@ $sep = $int->msg('colon-separator', array('domain' => 'general'));
                     }
                 }
                 ?>
-                <input type="submit" value="<?php echo htmlspecialchars($int->msg('form-submit')); ?>" class="submitbutton" id="submitButton">
-                <div id="loadLine" style="display: none;">&nbsp;</div>
+                <input type="submit" value="<?php echo htmlspecialchars($int->msg('form-submit')); ?>" class="submitbutton" id="submitButton"><span id="loadLine" class="form-progress" style="display: none;">&nbsp;</span>
             </form>
             <?php
             if ($appError) {

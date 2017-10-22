@@ -39,6 +39,9 @@ a:hover { text-decoration: underline; }
     background: #fafafa;
     padding: 0 10px 10px 10px;
 }
+.form-progress {
+    display: inline-block;
+}
 .maincontent .box {
     display: inline-block;
     margin: 1em 0;

@@ -64,30 +64,28 @@
             });
     }
 
-    function onSearchClick(button) {
-        // Remove button
-        button.style.display = 'none';
-        // Add loader
-        var loaderNode = getId('loadLine');
+    function onFormSubmit(button, form, loaderNode) {
+        // Disable button
+        button.disabled = true;
+        // Show loader
         loaderNode.style.display = '';
 
         setInterval(function () {
-            setLines(loaderNode);
+            addLoaderLine(loaderNode);
         }, 1000);
-
         // Unhide the button if the form fields are changed
         // by the user. No need to force them to wait out
         // the current query.
-        getId('searchForm').onchange = function () {
+        form.onchange = function () {
             // Once
             this.onchange = null;
-            // Undo hidden button
-            button.style.display = '';
+            // Re-enable button
+            button.disabled = false;
         };
     }
 
-    function setLines(loader) {
-        loader.firstChild.nodeValue += '|';
+    function addLoaderLine(loaderNode) {
+        loaderNode.firstChild.nodeValue += '|';
     }
 
     window.onload = function () {
@@ -97,15 +95,14 @@
         // a permalink and the username is non-empty.
         if (GucData.Method == 'GET' && GucData.Username) {
             getId('searchForm').submit();
-            onSearchClick(getId('submitButton'));
         } else if (GucData.Method == 'POST') {
             setLocation(GucData);
             checkReplag();
         }
     };
 
-    getId('submitButton').addEventListener('click', function () {
-        onSearchClick(this);
+    getId('searchForm').addEventListener('submit', function () {
+        onFormSubmit(getId('submitButton'), this, getId('loadLine'));
     }, false);
 
 }());

@@ -13,7 +13,6 @@ class ChronologyOutput implements IOutput {
     private $app;
     private $datas;
     private $changes = array();
-    private $prevDate;
 
     public function __construct(App $app, stdClass $datas, array $options = array()) {
         $this->app = $app;
@@ -34,22 +33,34 @@ class ChronologyOutput implements IOutput {
             }
         }
         $this->sort();
+        $prevDate = null;
         $inList = false;
         foreach ($this->changes as $rc) {
             $date = $this->app->formatMwDate($rc->rev_timestamp, 'd M Y');
-            if ($date !== $this->prevDate) {
-                $this->prevDate = $date;
+            // If this is the first result, or this result is the first
+            // one on a different date, add a date heading.
+            if ($date !== $prevDate) {
+                $prevDate = $date;
                 if ($inList) {
+                    // If we already had results before this,
+                    // end the previous list.
                     $inList = false;
                     print '</ul>';
                 }
                 print $this->makeDateLine($date);
             }
             if (!$inList) {
+                // If this is the first result after a new heading,
+                // start a list.
                 $inList = true;
                 print "\n<ul>\n";
             }
             print $this->makeChangeLine($rc);
+        }
+        if ($inList) {
+            // Make sure we close the last list
+            $inList = false;
+            print '</ul>';
         }
     }
 

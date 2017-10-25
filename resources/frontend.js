@@ -64,7 +64,11 @@
             });
     }
 
-    function onFormSubmit(button, form, loaderNode) {
+    function onFormSubmit() {
+        var button = getId('submitButton');
+        var form = getId('searchForm');
+        var loaderNode = getId('loadLine');
+
         // Disable button
         button.disabled = true;
         // Show loader
@@ -72,7 +76,8 @@
 
         setInterval(function () {
             addLoaderLine(loaderNode);
-        }, 1000);
+        }, 800);
+
         // Unhide the button if the form fields are changed
         // by the user. No need to force them to wait out
         // the current query.
@@ -95,14 +100,13 @@
         // a permalink and the username is non-empty.
         if (GucData.Method == 'GET' && GucData.Username) {
             getId('searchForm').submit();
+            onFormSubmit();
         } else if (GucData.Method == 'POST') {
             setLocation(GucData);
             checkReplag();
         }
     };
 
-    getId('searchForm').addEventListener('submit', function () {
-        onFormSubmit(getId('submitButton'), this, getId('loadLine'));
-    }, false);
+    getId('searchForm').addEventListener('submit', onFormSubmit, false);
 
 }());

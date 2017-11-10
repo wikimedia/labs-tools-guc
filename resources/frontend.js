@@ -49,10 +49,12 @@
                 if (!lagged) {
                     return;
                 }
+                var p = document.createElement('p');
+                p.innerHTML = lagged.html;
                 var node = document.createElement('div');
-                node.className = 'error';
-                node.innerHTML = lagged.html;
-                var target = document.querySelector('.maincontent form');
+                node.className = 'container error';
+                node.appendChild(p);
+                var target = document.querySelector('#searchForm');
                 target.parentNode.insertBefore(node, target.nextSibling);
             })
             .catch(function (err) {

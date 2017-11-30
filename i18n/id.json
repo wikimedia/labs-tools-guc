@@ -1,0 +1,17 @@
+{
+	"@metadata": {
+		"authors": [
+			"Hidayatsrf"
+		]
+	},
+	"form-user": "Alamat IP atau nama pengguna",
+	"form-isPrefixPattern": "Hidupkan pencarian awalan",
+	"form-from-all": "Semua kontribusi",
+	"form-from-rc": "Hanya perubahan terbaru (30 hari terakhir)",
+	"form-from-hr": "Hanya jam terakhir",
+	"form-sort": "Urutkan hasil",
+	"form-sort-wiki": "Berdasarkan wiki",
+	"form-sort-date": "Berdasarkan tanggal",
+	"form-submit": "Cari",
+	"results-limited": "Dibatasi hingga $1 hasil per wiki."
+}

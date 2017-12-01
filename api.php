@@ -54,7 +54,12 @@ try {
         );
         if ($metaRows) {
             foreach ($metaRows as $row) {
-                $host = $row['slice'];
+                // FIXME: Workaround https://phabricator.wikimedia.org/T176686
+                $host = preg_replace(
+                    '/\.labsdb$/',
+                    '.web.db.svc.eqiad.wmflabs',
+                    $row['slice']
+                );
                 list($shard) = explode('.', $host);
                 $res = \LabsDB::query(
                     \LabsDB::getConnection($host, 'heartbeat'),

@@ -55,6 +55,13 @@ class App {
             $host = $cluster;
         }
 
+        // FIXME: Workaround https://phabricator.wikimedia.org/T176686
+        $host = preg_replace(
+            '/\.labsdb$/',
+            '.web.db.svc.eqiad.wmflabs',
+            $host
+        );
+
         $dbname = "{$database}_p";
 
         // Reuse existing connection if possible

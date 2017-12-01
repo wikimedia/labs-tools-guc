@@ -20,54 +20,51 @@ class App {
     /**
      * Open a connection to the database.
      *
-     * @param string $database
-     * @param int|string $cluster
+     * @param string $dbname
+     * @param string $host
      * @return PDO
      */
-    private function openDB($database = 'wikidatawiki', $cluster = null) {
-        $dbname = "{$database}_p";
-
-        if (is_string($cluster)) {
-            if (strpos($cluster, '.') === false) {
-                // Default suffix
-                $host = "{$cluster}.labsdb";
-            } else {
-                $host = $cluster;
-            }
-        } else {
-            $host = "{$database}.labsdb";
-        }
-
-        $this->aTP('Create connection to ' . $cluster);
+    private function openDB($dbname, $host) {
+        $this->aTP('Create connection to ' . $host);
 
         try {
-            // Establish connection
+            // Establish a connection
             $pdo = new PDO('mysql:host='.$host.';dbname='.$dbname.';', Settings::getSetting('user'), Settings::getSetting('password'));
         } catch (PDOException $e) {
-            throw new Exception('Database error: Unable to connect to '.  $dbname);
+            throw new Exception('Database error: Unable to connect to '.  $host);
         }
+
         return $pdo;
     }
 
     /**
-     * Gibt die Verbindung zu einem Wiki zurück (cache)
+     * Get a connection to a database (cached)
      *
      * @param string $database
      * @param string $cluster
      * @return PDO
      */
     public function getDB($database = 'meta', $cluster = 's1') {
-        if (!$cluster) {
+        if (!is_string($cluster)) {
             throw new Exception('Invalid DB cluster specification');
         }
+        if (strpos($cluster, '.') === false) {
+            // Default suffix
+            $host = "{$cluster}.labsdb";
+        } else {
+            $host = $cluster;
+        }
+
+        $dbname = "{$database}_p";
+
         // Reuse existing connection if possible
         if (!isset($this->clusters[$cluster])) {
-            $this->clusters[$cluster] = $this->openDB($database, $cluster);
+            $this->clusters[$cluster] = $this->openDB($dbname, $cluster);
         }
         $pdo = $this->clusters[$cluster];
 
         // Select the right database on this cluster server
-        $m = $pdo->prepare('USE `'.$database.'_p`;');
+        $m = $pdo->prepare('USE `' . $dbname . '`;');
         $m->execute();
 
         return $pdo;

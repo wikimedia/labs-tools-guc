@@ -58,12 +58,12 @@ class App {
         $dbname = "{$database}_p";
 
         // Reuse existing connection if possible
-        if (!isset($this->clusters[$cluster])) {
-            $this->clusters[$cluster] = $this->openDB($dbname, $cluster);
+        if (!isset($this->clusters[$host])) {
+            $this->clusters[$host] = $this->openDB($dbname, $host);
         }
-        $pdo = $this->clusters[$cluster];
+        $pdo = $this->clusters[$host];
 
-        // Select the right database on this cluster server
+        // Select the right database on this host
         $m = $pdo->prepare('USE `' . $dbname . '`;');
         $m->execute();
 

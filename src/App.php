@@ -24,7 +24,7 @@ class App {
      * @param string $host
      * @return PDO
      */
-    private function openDB($dbname, $host) {
+    protected function openDB($dbname, $host) {
         $this->aTP('Create connection to ' . $host);
 
         try {

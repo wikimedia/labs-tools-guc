@@ -1,7 +1,8 @@
 {
 	"@metadata": {
 		"authors": [
-			"Macofe"
+			"Macofe",
+			"KATRINE1992"
 		]
 	},
 	"description": "Mostrar las contribuciones de los usuarios de todos los wikis de Wikimedia.",
@@ -15,5 +16,6 @@
 	"form-sort-wiki": "Por wiki",
 	"form-sort-date": "Por fecha",
 	"form-submit": "Buscar",
-	"results-limited": "Limitado a $1 resultados por cada wiki."
+	"results-limited": "Limitado a $1 resultados por cada wiki.",
+	"results-lag-warning": "No hay resultados tambien en las ediciones mas recientes. Las replicas de base de datos para Herramientas son ahora lagged. Ver a{https://tools.wmflabs.org/replag/Replag}."
 }

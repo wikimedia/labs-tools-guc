@@ -2,7 +2,8 @@
 	"@metadata": {
 		"authors": [
 			"Macofe",
-			"KATRINE1992"
+			"KATRINE1992",
+			"Fitoschido"
 		]
 	},
 	"description": "Mostrar las contribuciones de los usuarios de todos los wikis de Wikimedia.",
@@ -17,5 +18,5 @@
 	"form-sort-date": "Por fecha",
 	"form-submit": "Buscar",
 	"results-limited": "Limitado a $1 resultados por cada wiki.",
-	"results-lag-warning": "No hay resultados tambien en las ediciones mas recientes. Las replicas de base de datos para Herramientas son ahora lagged. Ver a{https://tools.wmflabs.org/replag/Replag}."
+	"results-lag-warning": "En los resultados podrían faltar las ediciones más recientes. Las bases de datos de réplica de Tools presentan rezagos en estos momentos. Visita [https://tools.wmflabs.org/replag/ Replag] para conocer más."
 }

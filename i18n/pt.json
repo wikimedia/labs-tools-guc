@@ -1,0 +1,15 @@
+{
+	"@metadata": {
+		"authors": [
+			"Athena in Wonderland"
+		]
+	},
+	"form-user": "Endereço IP ou nome do utilizador",
+	"form-isPrefixPattern": "Ativar a procura por prefixo",
+	"form-from": "Incluir os resultados de",
+	"form-from-all": "Todas as contribuições",
+	"form-sort-wiki": "Por wiki",
+	"form-sort-date": "Por data",
+	"form-submit": "Procurar",
+	"results-limited": "Limitado a $1 resultados por wiki."
+}

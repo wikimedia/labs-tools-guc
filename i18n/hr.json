@@ -1,0 +1,20 @@
+{
+	"@metadata": {
+		"authors": [
+			"MaGa"
+		]
+	},
+	"description": "Prikaz suradničkih doprinosa sa svih wikija.",
+	"form-user": "IP adresa ili suradničko ime",
+	"form-isPrefixPattern": "Omogući pretragu prema prefiksu",
+	"form-from": "Uključujući i rezultate",
+	"form-from-all": "svi doprinosi",
+	"form-from-rc": "samo nedavne promjene (posljednjih 30 dana)",
+	"form-from-hr": "doprinosi u proteklih sat vremena",
+	"form-sort": "Sortiranje rezultata",
+	"form-sort-wiki": "po wikiju",
+	"form-sort-date": "po datumu",
+	"form-submit": "Pretraži",
+	"results-limited": "Ograničenje: $1 rezultata po wikiju.",
+	"results-lag-warning": "Nedavna uređivanja mogu biti izostavljena iz rezultata zbog kašnjenja baze podataka. Više informacija: [https://tools.wmflabs.org/replag/ Replag]."
+}

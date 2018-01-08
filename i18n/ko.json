@@ -4,8 +4,11 @@
 			"Ykhwong"
 		]
 	},
+	"title": "전역 사용자 기여",
 	"description": "모든 위키미디어 위키의 사용자 기여를 표시합니다.",
 	"form-user": "IP 주소 또는 사용자 이름",
+	"form-isPrefixPattern": "접두어 검색 사용",
+	"form-from": "다음 결과를 포함",
 	"form-from-all": "모든 기여",
 	"form-from-rc": "최근 바뀜만 (지난 30일)",
 	"form-from-hr": "지난 1시간만",

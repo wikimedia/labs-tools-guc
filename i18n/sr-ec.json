@@ -1,0 +1,20 @@
+{
+	"@metadata": {
+		"authors": [
+			"Acamicamacaraca",
+			"Obsuser"
+		]
+	},
+	"title": "Глобални кориснички доприноси",
+	"form-user": "IP адреса или корисничко име",
+	"form-isPrefixPattern": "Омогући претраживање помоћу префикса",
+	"form-from": "Обухвати резултате из",
+	"form-from-all": "Сви доприноси",
+	"form-from-rc": "Само скорашње измене (задњих 30 дана)",
+	"form-from-hr": "Само задњи час",
+	"form-sort": "Сортирај резултате",
+	"form-sort-wiki": "Од вики",
+	"form-sort-date": "По датуму",
+	"form-submit": "Претрага",
+	"results-limited": "Лимитиран(о) $1 резултат(а) по вики."
+}

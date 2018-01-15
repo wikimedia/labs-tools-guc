@@ -8,7 +8,7 @@
 	},
 	"description": "Mostrar las contribuciones de los usuarios de todos los wikis de Wikimedia.",
 	"form-user": "Dirección IP o nombre de usuario",
-	"form-isPrefixPattern": "Habilitar la búsqueda por prefijos",
+	"form-isPrefixPattern": "Activar la búsqueda por prefijos",
 	"form-from": "Incluir los resultados de",
 	"form-from-all": "Todas las contribuciones",
 	"form-from-rc": "Únicamente los cambios recientes (últimos 30 días)",

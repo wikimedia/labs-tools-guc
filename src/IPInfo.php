@@ -84,7 +84,9 @@ class IPInfo {
     }
 
     private static function getDnsText($hostname) {
-        $tmp = dns_get_record($hostname, DNS_TXT);
+        // Disable warnings with @
+        // Avoid log flood from https://bugs.php.net/bug.php?id=73149
+        $tmp = @dns_get_record($hostname, DNS_TXT);
         if (!isset($tmp[0]['type']) || $tmp[0]['type'] !== 'TXT' || !isset($tmp[0]['txt'])) {
             return false;
         }

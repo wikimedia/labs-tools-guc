@@ -84,6 +84,7 @@ class Contribs {
             }
             $statement->execute();
             $rows = $statement->fetchAll(PDO::FETCH_OBJ);
+            $statement = null;
 
             // Limit quering of user ids to 10. If it's more than that, make the database
             // query for contributions like for IP-addresses by using wildcard user_text.
@@ -233,9 +234,10 @@ class Contribs {
         } else {
             $statement = $this->prepareRevisionQuery($pdo);
         }
-        $statement->execute();
 
+        $statement->execute();
         $contribs = $statement->fetchAll(PDO::FETCH_OBJ);
+        $statement = null;
 
         foreach ($contribs as $rc) {
             // Normalise
@@ -333,10 +335,11 @@ class Contribs {
             FROM ipblocks
             INNER JOIN `user` ON ipb_by = `user`.user_id
             WHERE ipblocks.ipb_address = :ipaddress LIMIT 0,100;";
-        $db = $this->app->getDB($this->dbname, $this->slice)->prepare($qry);
-        $db->bindParam(':ipaddress', $this->user);
-        $db->execute();
-        $res = $db->fetchAll(PDO::FETCH_ASSOC);
+        $statement = $this->app->getDB($this->dbname, $this->slice)->prepare($qry);
+        $statement->bindParam(':ipaddress', $this->user);
+        $statement->execute();
+        $res = $statement->fetchAll(PDO::FETCH_ASSOC);
+        $statement = null;
         return $res;
     }
 
@@ -351,10 +354,11 @@ class Contribs {
             FROM ipblocks
             INNER JOIN `user` ON ipb_by = `user`.user_id
             WHERE ipblocks.ipb_user = :id LIMIT 0,100;";
-        $db = $this->app->getDB($this->dbname, $this->slice)->prepare($qry);
-        $db->bindParam(':id', $userId);
-        $db->execute();
-        $res = $db->fetchAll(PDO::FETCH_ASSOC);
+        $statement = $this->app->getDB($this->dbname, $this->slice)->prepare($qry);
+        $statement->bindParam(':id', $userId);
+        $statement->execute();
+        $res = $statement->fetchAll(PDO::FETCH_ASSOC);
+        $statement = null;
         return $res;
     }
 

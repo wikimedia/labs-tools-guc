@@ -151,7 +151,9 @@ class Main {
         $sql = 'SELECT * FROM `meta_p`.`wiki` WHERE '.$f_where.' LIMIT 1500;';
         $statement = $this->app->getDB()->prepare($sql);
         $statement->execute();
-        return $statement->fetchAll(PDO::FETCH_OBJ);
+        $rows = $statement->fetchAll(PDO::FETCH_OBJ);
+        $statement = null;
+        return $rows;
     }
 
     /**
@@ -219,8 +221,9 @@ class Main {
                     $statement->bindValue(':hrcutoff', $cutoff);
                 }
                 $statement->execute();
-
                 $rows = $statement->fetchAll(PDO::FETCH_OBJ);
+                $statement = null;
+
                 foreach ($rows as $row) {
                     $wiki = $wikisByDbname[$row->dbname];
                     $wiki->_editcount = intval($row->counter);
@@ -255,6 +258,7 @@ class Main {
             $statement->bindParam(':user', $this->user);
             $statement->execute();
             $rows = $statement->fetchAll(PDO::FETCH_OBJ);
+            $statement = null;
             if (!$rows) {
                 return false;
             }

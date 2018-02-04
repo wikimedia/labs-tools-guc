@@ -71,8 +71,9 @@ class App {
         $pdo = $this->clusters[$host];
 
         // Select the right database on this host
-        $m = $pdo->prepare('USE `' . $dbname . '`;');
-        $m->execute();
+        $statement = $pdo->prepare('USE `' . $dbname . '`;');
+        $statement->execute();
+        $statement = null;
 
         return $pdo;
     }

@@ -17,7 +17,9 @@ class App {
     private $times = array();
     private $openDbCount = 0;
     private $maxConSeen = 0;
-    private $clusters = array();
+
+    /** Map of host name to PDO */
+    private $connections = array();
 
     /**
      * Open a connection to the database.
@@ -80,12 +82,12 @@ class App {
         $dbname = $database === null ? null : "{$database}_p";
 
         // Reuse existing connection if possible
-        if (!isset($this->clusters[$host])) {
-            $this->clusters[$host] = $this->openDB($host, $dbname);
+        if (!isset($this->connections[$host])) {
+            $this->connections[$host] = $this->openDB($host, $dbname);
             $this->openDbCount++;
-            $this->maxConSeen = max($this->maxConSeen, count($this->clusters));
+            $this->maxConSeen = max($this->maxConSeen, count($this->connections));
         }
-        $pdo = $this->clusters[$host];
+        $pdo = $this->connections[$host];
 
         // Select the right database on this host
         if ($dbname !== null) {
@@ -103,14 +105,14 @@ class App {
      */
     public function closeDB($cluster = 's1') {
         $host = $this->normaliseHost($cluster);
-        if (isset($this->clusters[$host])) {
+        if (isset($this->connections[$host])) {
             $this->aTP('Close connection to ' . $host);
-            $this->clusters[$host] = null;
+            $this->connections[$host] = null;
         }
     }
 
     public function closeAllDBs($cluster = 's1') {
-        foreach (array_keys($this->clusters) as $cluster) {
+        foreach (array_keys($this->connections) as $cluster) {
             $this->closeDB($cluster);
         }
     }

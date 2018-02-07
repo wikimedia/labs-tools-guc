@@ -258,7 +258,12 @@ class Main {
             $statement->bindParam(':user', $this->user);
             $statement->execute();
             $rows = $statement->fetchAll(PDO::FETCH_OBJ);
+
             $statement = null;
+            $pdo = null;
+            // Close early, no re-use expected.
+            $this->app->closeDB('centralauth');
+
             if (!$rows) {
                 return false;
             }

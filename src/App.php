@@ -24,6 +24,15 @@ class App {
     /** Map of host name to IP */
     private $hostIPs = array();
 
+    /**
+     * Map of IP to hostnames we gave connections for.
+     * This is used as basic ref-counting approach to only close DBs once we
+     * know it is truly intended to do so. E.g. if host A and B are the same IP,
+     * and closeDB('A') is called, but getDB('B') was also called, then we only
+     * close the connection once closeDB('B') is also called.
+     */
+    private $ipHostsInUse = array();
+
     /** Map of IP to PDO and original hostname */
     private $connections = array();
 
@@ -116,6 +125,9 @@ class App {
         }
         $pdo = $this->connections[$ip][self::FLD_PDO];
 
+        // Record ip con as in-use for host
+        $this->ipHostsInUse[$ip][$host] = true;
+
         // Select the right database on this host
         if ($dbname !== null) {
           $statement = $pdo->prepare('USE `' . $dbname . '`;');
@@ -131,13 +143,14 @@ class App {
      * @throws Exception Invalid DB cluster
      */
     public function closeDB($cluster = 's1') {
-        $key = $this->normaliseHost($cluster);
-        if (isset($this->hostIPs[$key])) {
-          $key = $this->hostIPs[$key];
-        }
-        if (isset($this->connections[$key])) {
-            $this->aTP('Close connection to ' . $cluster);
-            unset($this->connections[$key]);
+        $host = $this->normaliseHost($cluster);
+        $ip = isset($this->hostIPs[$host]) ? $this->hostIPs[$host] : $host;
+
+        unset($this->ipHostsInUse[$ip][$host]);
+
+        if (isset($this->connections[$ip]) && !$this->ipHostsInUse[$ip]) {
+            $this->aTP('Close connection to ' . $host);
+            unset($this->connections[$ip]);
         }
     }
 

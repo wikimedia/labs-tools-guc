@@ -244,4 +244,44 @@ class AppTest extends PHPUnit_Framework_TestCase {
         $this->assertInstanceOf(PDO::class, $app->getDB('eg4'), 'eg4 uses its own');
         $this->assertInstanceOf(PDO::class, $app->getDB('eg3'), 'eg3 fails, reuses its own (repeat)');
     }
+
+    public function testCloseDbWithReusedIp() {
+        $app = $this->getMockBuilder(App::class)
+            ->setMethods(['openDB', 'getHostIp'])
+            ->getMock();
+        $pdo = $this->createMock(PDO::class);
+        $pdo->method('prepare')->willReturn($this->createMock(PDOStatement::class));
+
+        $app->method('getHostIp')->will($this->returnValueMap([
+          ['eg1.web.db.svc.eqiad.wmflabs', '10.0.0.1'],
+          // eg2 same as eg1
+          ['eg2.web.db.svc.eqiad.wmflabs', '10.0.0.1'],
+          // eg3 separate
+          ['eg3.web.db.svc.eqiad.wmflabs', '10.0.0.3'],
+        ]));
+        $app->expects($this->exactly(3))->method('openDB')
+            ->withConsecutive(
+                // a: connect eg1
+                ['eg1.web.db.svc.eqiad.wmflabs', 'a_p'],
+                // b: reuse eg1 for eg2 (same ip)
+                // c: connect eg3: (diff ip)
+                ['eg3.web.db.svc.eqiad.wmflabs', 'c_p'],
+                // d: reuse eg1 for eg2 (still open)
+                // e: reopen eg1 for eg2 (was finally closed)
+                ['eg2.web.db.svc.eqiad.wmflabs', 'e_p']
+            )
+            ->willReturn($pdo);
+
+        $this->assertInstanceOf(PDO::class, $app->getDB('eg1', 'a'));
+        $this->assertInstanceOf(PDO::class, $app->getDB('eg2', 'b'));
+        $this->assertInstanceOf(PDO::class, $app->getDB('eg3', 'c'));
+
+        $app->closeDB('eg1');
+
+        $this->assertInstanceOf(PDO::class, $app->getDB('eg2', 'd'));
+
+        $app->closeDB('eg2');
+
+        $this->assertInstanceOf(PDO::class, $app->getDB('eg2', 'e'));
+    }
 }

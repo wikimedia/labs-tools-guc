@@ -14,6 +14,9 @@ use PDO;
 use PDOException;
 
 class App {
+    const FLD_PDO = 0;
+    const FLD_HOST = 1;
+
     private $times = array();
     private $openDbCount = 0;
     private $maxConSeen = 0;
@@ -21,7 +24,7 @@ class App {
     /** Map of host name to IP */
     private $hostIPs = array();
 
-    /** Map of IP to PDO */
+    /** Map of IP to PDO and original hostname */
     private $connections = array();
 
     /**
@@ -104,11 +107,14 @@ class App {
 
         // Reuse existing connection if possible
         if (!isset($this->connections[$ip])) {
-            $this->connections[$ip] = $this->openDB($host, $dbname);
+            $this->connections[$ip] = [
+              self::FLD_PDO => $this->openDB($host, $dbname),
+              self::FLD_HOST => $host
+            ];
             $this->openDbCount++;
             $this->maxConSeen = max($this->maxConSeen, count($this->connections));
         }
-        $pdo = $this->connections[$ip];
+        $pdo = $this->connections[$ip][self::FLD_PDO];
 
         // Select the right database on this host
         if ($dbname !== null) {
@@ -121,20 +127,24 @@ class App {
     }
 
     /**
-     * @param string $cluster
+     * @param string $cluster Cluster name, host name or IP
      * @throws Exception Invalid DB cluster
      */
     public function closeDB($cluster = 's1') {
-        $host = $this->normaliseHost($cluster);
-        if (isset($this->connections[$host])) {
-            $this->aTP('Close connection to ' . $host);
-            $this->connections[$host] = null;
+        $key = $this->normaliseHost($cluster);
+        if (isset($this->hostIPs[$key])) {
+          $key = $this->hostIPs[$key];
+        }
+        if (isset($this->connections[$key])) {
+            $this->aTP('Close connection to ' . $cluster);
+            $this->connections[$key] = null;
         }
     }
 
-    public function closeAllDBs($cluster = 's1') {
-        foreach (array_keys($this->connections) as $cluster) {
-            $this->closeDB($cluster);
+    public function closeAllDBs() {
+        foreach ($this->connections as $pair) {
+            // Use original name instead of IP for better logging
+            $this->closeDB($pair[self::FLD_HOST]);
         }
     }
 

@@ -205,7 +205,7 @@ $sep = $int->msg('colon-separator', array('domain' => 'general'));
         print '</div>';
     }
     if ($data->debug) {
-        $app->logMaxConSeen();
+        $app->preShutdown();
         print '<pre class="container guc-debug">';
         $app->printTimes();
         print '</pre>';

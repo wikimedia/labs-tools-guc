@@ -146,4 +146,34 @@ class AppTest extends PHPUnit_Framework_TestCase {
             'C on eg1'
         );
     }
+
+    public function testCloseAllDBs() {
+        $app = $this->getMockBuilder(App::class)
+            ->setMethods(['openDB'])
+            ->getMock();
+        $pdo = $this->createMock(PDO::class);
+        $pdo->method('prepare')->willReturn($this->createMock(PDOStatement::class));
+
+        $app->expects($this->exactly(2))->method('openDB')
+            ->withConsecutive(
+                ['wikione_a_p', 'eg1.example'],
+                // Re-open connection after close
+                ['wikione_b_p', 'eg1.example']
+            )
+            ->willReturn($pdo);
+
+        $this->assertInstanceOf(
+            PDO::class,
+            $app->getDB('wikione_a', 'eg1.example'),
+            'A on eg1'
+        );
+
+        $app->closeAllDBs();
+
+        $this->assertInstanceOf(
+            PDO::class,
+            $app->getDB('wikione_b', 'eg1.example'),
+            'C on eg1'
+        );
+    }
 }

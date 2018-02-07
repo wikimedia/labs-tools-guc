@@ -105,7 +105,15 @@ class App {
         }
     }
 
-    public function logMaxConSeen() {
+    public function closeAllDBs($cluster = 's1') {
+        foreach (array_keys($this->clusters) as $cluster) {
+            $this->closeDB($cluster);
+        }
+    }
+
+    public function preShutdown() {
+      // Try to close any remaining connections
+      $this->closeAllDBs();
       $this->aTP('Connections opened: ' . intval($this->openDbCount));
       $this->aTP('Highest connection count: ' . intval($this->maxConSeen));
     }

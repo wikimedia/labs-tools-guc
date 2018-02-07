@@ -197,6 +197,7 @@ $sep = $int->msg('colon-separator', array('domain' => 'general'));
                'rcUser' => $data->options['isPrefixPattern']
             ));
         }
+        $app->closeAllDBs();
         $formatter->output();
         print '</div>';
         print '<p>' . htmlspecialchars($int->msg('results-limited', [

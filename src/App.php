@@ -15,6 +15,8 @@ use PDOException;
 
 class App {
     private $times = array();
+    private $openDbCount = 0;
+    private $maxConSeen = 0;
     private $clusters = array();
 
     /**
@@ -79,6 +81,8 @@ class App {
         // Reuse existing connection if possible
         if (!isset($this->clusters[$host])) {
             $this->clusters[$host] = $this->openDB($dbname, $host);
+            $this->openDbCount++;
+            $this->maxConSeen = max($this->maxConSeen, count($this->clusters));
         }
         $pdo = $this->clusters[$host];
 
@@ -99,6 +103,11 @@ class App {
         if (isset($this->clusters[$host])) {
             $this->clusters[$host] = null;
         }
+    }
+
+    public function logMaxConSeen() {
+      $this->aTP('Connections opened: ' . intval($this->openDbCount));
+      $this->aTP('Highest connection count: ' . intval($this->maxConSeen));
     }
 
     public function aTP($text) {

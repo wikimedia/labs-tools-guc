@@ -190,7 +190,7 @@ class Main {
         foreach ($slices as $sliceName => $queries) {
             if ($queries) {
                 $sql = implode(' UNION ALL ', $queries);
-                $pdo = $this->app->getDB($sliceName, 'meta');
+                $pdo = $this->app->getDB($sliceName);
                 $statement = $pdo->prepare($sql);
                 if ($this->options['isPrefixPattern']) {
                     $statement->bindParam(':userlike', $this->user);
@@ -233,8 +233,8 @@ class Main {
         }
         if ($centralauthData === null) {
             $centralauthData = array();
-            $pdo = $this->app->getDB('centralauth', 'centralauth');
-            $statement = $pdo->prepare('SELECT * FROM localuser WHERE lu_name = :user;');
+            $pdo = $this->app->getDB('centralauth');
+            $statement = $pdo->prepare('SELECT * FROM `centralauth_p`.`localuser` WHERE lu_name = :user;');
             $statement->bindParam(':user', $this->user);
             $statement->execute();
             $rows = $statement->fetchAll(PDO::FETCH_OBJ);

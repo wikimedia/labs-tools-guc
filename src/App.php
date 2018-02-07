@@ -101,6 +101,7 @@ class App {
     public function closeDB($cluster = 's1') {
         $host = $this->normaliseHost($cluster);
         if (isset($this->clusters[$host])) {
+            $this->aTP('Close connection to ' . $host);
             $this->clusters[$host] = null;
         }
     }

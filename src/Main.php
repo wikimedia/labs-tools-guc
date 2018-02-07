@@ -190,7 +190,7 @@ class Main {
         foreach ($slices as $sliceName => $queries) {
             if ($queries) {
                 $sql = implode(' UNION ALL ', $queries);
-                $pdo = $this->app->getDB('meta', $sliceName);
+                $pdo = $this->app->getDB($sliceName, 'meta');
                 $statement = $pdo->prepare($sql);
                 if ($this->options['isPrefixPattern']) {
                     $statement->bindParam(':userlike', $this->user);

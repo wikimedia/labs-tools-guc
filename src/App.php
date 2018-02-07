@@ -22,16 +22,17 @@ class App {
     /**
      * Open a connection to the database.
      *
-     * @param string $dbname
      * @param string $host
+     * @param string|null $dbname
      * @return PDO
      */
-    protected function openDB($dbname, $host) {
+    protected function openDB($host, $dbname = null) {
         $this->aTP('Create connection to ' . $host);
 
         try {
             // Establish a connection
-            $pdo = new PDO('mysql:host='.$host.';dbname='.$dbname.';', Settings::getSetting('user'), Settings::getSetting('password'));
+            $dbFrag = $dbname === null ? '' : ('dname=' . $dbname . ';');
+            $pdo = new PDO('mysql:host='.$host.';' . $dbFrag, Settings::getSetting('user'), Settings::getSetting('password'));
         } catch (PDOException $e) {
             throw new Exception('Database error: Unable to connect to '.  $host);
         }
@@ -68,28 +69,30 @@ class App {
     /**
      * Get a connection to a database (cached)
      *
-     * @param string $database
      * @param string $cluster
+     * @param string|null $database
      * @return PDO
      * @throws Exception Invalid DB cluster
      */
-    public function getDB($database = 'meta', $cluster = 's1') {
+    public function getDB($cluster = 's1', $database = null) {
         $host = $this->normaliseHost($cluster);
 
-        $dbname = "{$database}_p";
+        $dbname = $database === null ? null : "{$database}_p";
 
         // Reuse existing connection if possible
         if (!isset($this->clusters[$host])) {
-            $this->clusters[$host] = $this->openDB($dbname, $host);
+            $this->clusters[$host] = $this->openDB($host, $dbname);
             $this->openDbCount++;
             $this->maxConSeen = max($this->maxConSeen, count($this->clusters));
         }
         $pdo = $this->clusters[$host];
 
         // Select the right database on this host
-        $statement = $pdo->prepare('USE `' . $dbname . '`;');
-        $statement->execute();
-        $statement = null;
+        if ($dbname !== null) {
+          $statement = $pdo->prepare('USE `' . $dbname . '`;');
+          $statement->execute();
+          $statement = null;
+        }
 
         return $pdo;
     }

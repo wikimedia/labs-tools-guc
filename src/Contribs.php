@@ -65,7 +65,7 @@ class Contribs {
         if ($this->isIp !== true) {
             $this->app->aTP('Query user data for ' . $wiki->domain);
             // Get user data
-            $statement = $this->app->getDB($wiki->dbname, $wiki->slice)->prepare(
+            $statement = $this->app->getDB($wiki->slice, $wiki->dbname)->prepare(
                 "SELECT
                     `user_id`,
                     `user_name`
@@ -225,7 +225,7 @@ class Contribs {
      */
     private function fetchContribs() {
         $this->app->aTP('Query contributions on ' . $this->wiki->domain);
-        $pdo = $this->app->getDB($this->wiki->dbname, $this->wiki->slice);
+        $pdo = $this->app->getDB($this->wiki->slice, $this->wiki->dbname);
 
         if ($this->options['src'] === 'rc') {
             $statement = $this->prepareRecentchangesQuery($pdo);
@@ -335,7 +335,7 @@ class Contribs {
             FROM ipblocks
             INNER JOIN `user` ON ipb_by = `user`.user_id
             WHERE ipblocks.ipb_address = :ipaddress LIMIT 0,100;";
-        $statement = $this->app->getDB($this->dbname, $this->slice)->prepare($qry);
+        $statement = $this->app->getDB($this->slice, $this->dbname)->prepare($qry);
         $statement->bindParam(':ipaddress', $this->user);
         $statement->execute();
         $res = $statement->fetchAll(PDO::FETCH_ASSOC);
@@ -354,7 +354,7 @@ class Contribs {
             FROM ipblocks
             INNER JOIN `user` ON ipb_by = `user`.user_id
             WHERE ipblocks.ipb_user = :id LIMIT 0,100;";
-        $statement = $this->app->getDB($this->dbname, $this->slice)->prepare($qry);
+        $statement = $this->app->getDB($this->slice, $this->dbname)->prepare($qry);
         $statement->bindParam(':id', $userId);
         $statement->execute();
         $res = $statement->fetchAll(PDO::FETCH_ASSOC);

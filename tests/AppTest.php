@@ -16,12 +16,12 @@ class AppTest extends PHPUnit_Framework_TestCase {
 
         $app->expects($this->once())->method('openDB')
             // 'eg1' is expanded
-            ->with('testwiki_p', 'eg1.web.db.svc.eqiad.wmflabs')
+            ->with('eg1.web.db.svc.eqiad.wmflabs', 'testwiki_p')
             ->willReturn($pdo);
 
         $this->assertInstanceOf(
             PDO::class,
-            $app->getDB('testwiki', 'eg1')
+            $app->getDB('eg1', 'testwiki')
         );
     }
 
@@ -37,12 +37,12 @@ class AppTest extends PHPUnit_Framework_TestCase {
 
         $app->expects($this->once())->method('openDB')
             // 'eg1.example' is not expanded
-            ->with('testwiki_p', 'eg1.example')
+            ->with('eg1.example', 'testwiki_p')
             ->willReturn($pdo);
 
         $this->assertInstanceOf(
             PDO::class,
-            $app->getDB('testwiki', 'eg1.example')
+            $app->getDB('eg1.example', 'testwiki')
         );
     }
 
@@ -74,7 +74,7 @@ class AppTest extends PHPUnit_Framework_TestCase {
         $app->expects($this->never())->method('openDB');
 
         $this->expectException(Exception::class);
-        $app->getDB('testwiki', $host);
+        $app->getDB($host, 'testwiki');
     }
 
     public function testGetDBCached() {
@@ -86,26 +86,26 @@ class AppTest extends PHPUnit_Framework_TestCase {
 
         $app->expects($this->exactly(2))->method('openDB')
             ->withConsecutive(
-                ['testwiki_p', 'eg1.web.db.svc.eqiad.wmflabs'],
-                ['otherwiki_p', 'eg2.web.db.svc.eqiad.wmflabs']
+                ['eg1.web.db.svc.eqiad.wmflabs', 'testwiki_p'],
+                ['eg2.web.db.svc.eqiad.wmflabs', 'otherwiki_p']
             )
             ->willReturn($pdo);
 
         $this->assertInstanceOf(
             PDO::class,
-            $app->getDB('testwiki', 'eg1'),
+            $app->getDB('eg1', 'testwiki'),
             'First on eg1'
         );
 
         $this->assertInstanceOf(
             PDO::class,
-            $app->getDB('otherwiki', 'eg1'),
+            $app->getDB('eg1', 'otherwiki'),
             'Second on eg1'
         );
 
         $this->assertInstanceOf(
             PDO::class,
-            $app->getDB('otherwiki', 'eg2'),
+            $app->getDB('eg2', 'otherwiki'),
             'First on eg2'
         );
     }
@@ -119,22 +119,22 @@ class AppTest extends PHPUnit_Framework_TestCase {
 
         $app->expects($this->exactly(2))->method('openDB')
             ->withConsecutive(
-                ['wikione_a_p', 'eg1.web.db.svc.eqiad.wmflabs'],
+                ['eg1.web.db.svc.eqiad.wmflabs', 'wikione_a_p'],
                 // wikione_b: Use cached eg1 connection
                 // wikione_c: Re-open eg1 connection after close
-                ['wikione_c_p', 'eg1.web.db.svc.eqiad.wmflabs']
+                ['eg1.web.db.svc.eqiad.wmflabs', 'wikione_c_p']
             )
             ->willReturn($pdo);
 
         $this->assertInstanceOf(
             PDO::class,
-            $app->getDB('wikione_a', 'eg1'),
+            $app->getDB('eg1', 'wikione_a'),
             'A on eg1'
         );
 
         $this->assertInstanceOf(
             PDO::class,
-            $app->getDB('wikione_b', 'eg1'),
+            $app->getDB('eg1', 'wikione_b'),
             'B on eg1'
         );
 
@@ -142,7 +142,7 @@ class AppTest extends PHPUnit_Framework_TestCase {
 
         $this->assertInstanceOf(
             PDO::class,
-            $app->getDB('wikione_c', 'eg1'),
+            $app->getDB('eg1', 'wikione_c'),
             'C on eg1'
         );
     }
@@ -156,15 +156,15 @@ class AppTest extends PHPUnit_Framework_TestCase {
 
         $app->expects($this->exactly(2))->method('openDB')
             ->withConsecutive(
-                ['wikione_a_p', 'eg1.example'],
+                ['eg1.example', 'wikione_a_p'],
                 // Re-open connection after close
-                ['wikione_b_p', 'eg1.example']
+                ['eg1.example', 'wikione_b_p']
             )
             ->willReturn($pdo);
 
         $this->assertInstanceOf(
             PDO::class,
-            $app->getDB('wikione_a', 'eg1.example'),
+            $app->getDB('eg1.example', 'wikione_a'),
             'A on eg1'
         );
 
@@ -172,7 +172,7 @@ class AppTest extends PHPUnit_Framework_TestCase {
 
         $this->assertInstanceOf(
             PDO::class,
-            $app->getDB('wikione_b', 'eg1.example'),
+            $app->getDB('eg1.example', 'wikione_b'),
             'C on eg1'
         );
     }

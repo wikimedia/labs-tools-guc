@@ -123,29 +123,9 @@ class Main {
      */
     private function getWikis() {
         $this->app->aTP('Get list of all wikis');
-        $family = array(
-            'wikipedia' => 1,
-            'wikibooks' => 1,
-            'wiktionary' => 1,
-            'special' => 1,
-            'wikiquote' => 1,
-            'wikisource' => 1,
-            'wikimedia' => 1,
-            'wikinews' => 1,
-            'wikiversity' => 1,
-            'centralauth' => 0,
-            'wikivoyage' => 1,
-            'wikidata' => 1,
-            'wikimania' => 1
-        );
         $f_where = array();
         if (!$this->options['includeClosedWikis']) {
             $f_where[] = 'is_closed = 0';
-        }
-        foreach ($family as $name => $value) {
-            if ($value !== 1) {
-                $f_where[] = '`family` != \''.$name.'\'';
-            }
         }
         $f_where = implode(' AND ', $f_where);
         $sql = 'SELECT * FROM `meta_p`.`wiki` WHERE '.$f_where.' LIMIT 1500;';

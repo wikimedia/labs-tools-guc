@@ -137,7 +137,7 @@ class App {
         }
         if (isset($this->connections[$key])) {
             $this->aTP('Close connection to ' . $cluster);
-            $this->connections[$key] = null;
+            unset($this->connections[$key]);
         }
     }
 

@@ -183,6 +183,31 @@ class AppTest extends PHPUnit_Framework_TestCase {
         );
     }
 
+    public function testCloseAllDBs_multiple() {
+        $app = $this->getMockBuilder(App::class)
+            ->setMethods(['openDB', 'getHostIp'])
+            ->getMock();
+        $pdo = $this->createMock(PDO::class);
+        $pdo->method('prepare')->willReturn($this->createMock(PDOStatement::class));
+
+        $app->method('getHostIp')->willReturn(false);
+        $app->expects($this->once())->method('openDB')
+            ->with('eg1.example', 'wikione_a_p')
+            ->willReturn($pdo);
+
+        $this->assertInstanceOf(
+            PDO::class,
+            $app->getDB('eg1.example', 'wikione_a'),
+            'A on eg1'
+        );
+
+        $app->closeAllDBs();
+        $app->closeAllDBs();
+        // Ensure that calling multiple times doesn't cause problems
+        // Previously this failed because isset() tolerates NULL,
+        // but foreach() as used by closeAllDBs does not.
+    }
+
     public function testGetDbReuseSameIp() {
         $app = $this->getMockBuilder(App::class)
             ->setMethods(['openDB', 'getHostIp'])

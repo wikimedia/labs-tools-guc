@@ -4,7 +4,7 @@ use Guc\Wiki;
 
 class WikiTest extends PHPUnit_Framework_TestCase {
 
-    public function provideEscapeId() {
+    public static function provideEscapeId() {
         return [
             ['Foo bar', 'Foo_bar'],
             ['Foo/bar', 'Foo.2Fbar'],

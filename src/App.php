@@ -38,13 +38,11 @@ class App {
     }
 
     /**
-     * Get a connection to a database (cached)
-     *
-     * @param string $database
      * @param string $cluster
-     * @return PDO
+     * @return string
+     * @throws Exception Invalid DB cluster
      */
-    public function getDB($database = 'meta', $cluster = 's1') {
+    private function normaliseHost($cluster = 's1') {
         if (!is_string($cluster)) {
             throw new Exception('Invalid DB cluster specification');
         }
@@ -62,6 +60,20 @@ class App {
             $host
         );
 
+        return $host;
+    }
+
+    /**
+     * Get a connection to a database (cached)
+     *
+     * @param string $database
+     * @param string $cluster
+     * @return PDO
+     * @throws Exception Invalid DB cluster
+     */
+    public function getDB($database = 'meta', $cluster = 's1') {
+        $host = $this->normaliseHost($cluster);
+
         $dbname = "{$database}_p";
 
         // Reuse existing connection if possible
@@ -76,6 +88,17 @@ class App {
         $statement = null;
 
         return $pdo;
+    }
+
+    /**
+     * @param string $cluster
+     * @throws Exception Invalid DB cluster
+     */
+    public function closeDB($cluster = 's1') {
+        $host = $this->normaliseHost($cluster);
+        if (isset($this->clusters[$host])) {
+            $this->clusters[$host] = null;
+        }
     }
 
     public function aTP($text) {

@@ -156,9 +156,10 @@ class App {
 
     public function closeAllDBs() {
         foreach ($this->connections as $pair) {
-            // Use original name instead of IP for better logging
-            $this->closeDB($pair[self::FLD_HOST]);
+            $this->aTP('Close remaining connection for ' . $pair[self::FLD_HOST]);
         }
+        $this->ipHostsInUse = [];
+        $this->connections = [];
     }
 
     public function preShutdown() {

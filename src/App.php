@@ -18,8 +18,19 @@ class App {
     private $openDbCount = 0;
     private $maxConSeen = 0;
 
-    /** Map of host name to PDO */
+    /** Map of host name to IP */
+    private $hostIPs = array();
+
+    /** Map of IP to PDO */
     private $connections = array();
+
+    /**
+     * @param string $host
+     * @return string|false
+     */
+    protected function getHostIp($host) {
+      return @gethostbyname($host);
+    }
 
     /**
      * Open a connection to the database.
@@ -78,16 +89,26 @@ class App {
      */
     public function getDB($cluster = 's1', $database = null) {
         $host = $this->normaliseHost($cluster);
-
         $dbname = $database === null ? null : "{$database}_p";
 
+        // Resolve hostname to IP address to reduce connections, because
+        // the Wiki Replicas in Wikimedia Cloud, while logically represented
+        // with hostnames matching production clusters, their replicas are
+        // more consolidated.
+        // - Fixes https://phabricator.wikimedia.org/T186436
+        // - Works around https://phabricator.wikimedia.org/T186675
+        if (!isset($this->hostIPs[$host])) {
+          $this->hostIPs[$host] = $this->getHostIp($host) ?: $host;
+        }
+        $ip = $this->hostIPs[$host];
+
         // Reuse existing connection if possible
-        if (!isset($this->connections[$host])) {
-            $this->connections[$host] = $this->openDB($host, $dbname);
+        if (!isset($this->connections[$ip])) {
+            $this->connections[$ip] = $this->openDB($host, $dbname);
             $this->openDbCount++;
             $this->maxConSeen = max($this->maxConSeen, count($this->connections));
         }
-        $pdo = $this->connections[$host];
+        $pdo = $this->connections[$ip];
 
         // Select the right database on this host
         if ($dbname !== null) {

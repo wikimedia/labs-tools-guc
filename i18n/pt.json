@@ -1,7 +1,8 @@
 {
 	"@metadata": {
 		"authors": [
-			"Athena in Wonderland"
+			"Athena in Wonderland",
+			"Hamilton Abreu"
 		]
 	},
 	"description": "Mostrar as contribuições dos utilizadores em todas as wikis da Wikimedia.",
@@ -16,5 +17,5 @@
 	"form-sort-date": "Por data",
 	"form-submit": "Procurar",
 	"results-limited": "Limitado a $1 resultados por wiki.",
-	"results-lag-warning": "Os resultados podem não conter as edições mais recentes. As réplicas da base de dados do Tools tem registado atrasos neste momento. Visite [https://tools.wmflabs.org/replag/ Replag]."
+	"results-lag-warning": "Os resultados podem não conter as edições mais recentes. As réplicas das bases de dados para o Tools estão atrasadas neste momento. Visite [https://tools.wmflabs.org/replag/ Replag]."
 }

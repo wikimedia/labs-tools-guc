@@ -159,6 +159,9 @@ $sep = $int->msg('colon-separator', array('domain' => 'general'));
             print ' in '.$guc->getResultWikiCount().' projects';
         }
         print '.</p>';
+        print '<p>' . htmlspecialchars($int->msg('results-limited', [
+            'variables' => [ (int)Contribs::CONTRIB_LIMIT ]
+        ])) . '</p>';
         print '<div class="results">';
         $infos = array_filter($guc->getIPInfos());
         if ($infos) {
@@ -200,9 +203,6 @@ $sep = $int->msg('colon-separator', array('domain' => 'general'));
         $app->closeAllDBs();
         $formatter->output();
         print '</div>';
-        print '<p>' . htmlspecialchars($int->msg('results-limited', [
-            'variables' => [ (int)Contribs::CONTRIB_LIMIT ]
-        ])) . '</p>';
         print '</div>';
     }
     if ($data->debug) {

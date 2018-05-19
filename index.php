@@ -153,7 +153,7 @@ $sep = $int->msg('colon-separator', array('domain' => 'general'));
     }
     if ($guc) {
         print '<div class="container">';
-        print '<p class="statistics">'.$guc->getWikiCount().' wikis searched. ';
+        print '<p>'.$guc->getWikiCount().' wikis searched. ';
         print $guc->getGlobalEditcount().' edits found';
         if ($guc->getResultWikiCount()) {
             print ' in '.$guc->getResultWikiCount().' projects';

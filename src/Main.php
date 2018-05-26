@@ -189,6 +189,7 @@ class Main {
         $globalEditCount = 0;
         foreach ($slices as $sliceName => $queries) {
             if ($queries) {
+                $this->app->aTP("Quering wikis on `$sliceName` for matching revisions");
                 $sql = implode(' UNION ALL ', $queries);
                 $pdo = $this->app->getDB($sliceName);
                 $statement = $pdo->prepare($sql);

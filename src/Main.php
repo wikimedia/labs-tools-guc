@@ -130,6 +130,7 @@ class Main {
         $f_where = implode(' AND ', $f_where);
         $sql = 'SELECT * FROM `meta_p`.`wiki` WHERE '.$f_where.' LIMIT 1500;';
         $statement = $this->app->getDB()->prepare($sql);
+        $this->app->aTP("[SQL] " . preg_replace('#\s+#', ' ', $sql));
         $statement->execute();
         $rows = $statement->fetchAll(PDO::FETCH_OBJ);
         $statement = null;
@@ -142,7 +143,6 @@ class Main {
      * @return array
      */
     private function getWikisWithContribs(array $wikis) {
-        $this->app->aTP('Query all wikis for matching revisions');
         $wikisWithEditcount = array();
 
         // Copied from Contribs::prepareLastHourQuery
@@ -189,10 +189,11 @@ class Main {
         $globalEditCount = 0;
         foreach ($slices as $sliceName => $queries) {
             if ($queries) {
-                $this->app->aTP("Quering wikis on `$sliceName` for matching revisions");
                 $sql = implode(' UNION ALL ', $queries);
+                $this->app->aTP("Quering wikis on `$sliceName` for matching revisions");
                 $pdo = $this->app->getDB($sliceName);
                 $statement = $pdo->prepare($sql);
+                $this->app->aTP("[SQL] " . preg_replace('#\s+#', ' ', $sql));
                 if ($this->options['isPrefixPattern']) {
                     $statement->bindParam(':userlike', $this->user);
                 } else {
@@ -235,7 +236,9 @@ class Main {
         if ($centralauthData === null) {
             $centralauthData = array();
             $pdo = $this->app->getDB('centralauth');
-            $statement = $pdo->prepare('SELECT * FROM `centralauth_p`.`localuser` WHERE lu_name = :user;');
+            $sql = 'SELECT * FROM `centralauth_p`.`localuser` WHERE lu_name = :user;';
+            $statement = $pdo->prepare($sql);
+            $this->app->aTP("[SQL] " . preg_replace('#\s+#', ' ', $sql));
             $statement->bindParam(':user', $this->user);
             $statement->execute();
             $rows = $statement->fetchAll(PDO::FETCH_OBJ);

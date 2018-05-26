@@ -64,19 +64,19 @@ class Contribs {
 
         if ($this->isIp !== true) {
             $this->app->aTP('Query user data for ' . $wiki->domain);
-            // Get user data
-            $statement = $this->app->getDB($wiki->slice, $wiki->dbname)->prepare(
-                "SELECT
-                    `user_id`,
-                    `user_name`
+            $sql = "SELECT
+                `user_id`,
+                `user_name`
                 FROM `user`
                 WHERE ".(
                     ($this->options['isPrefixPattern'])
                         ? "`user_name` LIKE :userlike"
                         : "`user_name` = :user"
                 )."
-                LIMIT 10;"
-            );
+                LIMIT 10;";
+            // Get user data
+            $statement = $this->app->getDB($wiki->slice, $wiki->dbname)->prepare($sql);
+            $this->app->aTP("[SQL] " . preg_replace('#\s+#', ' ', $sql));
             if ($this->options['isPrefixPattern']) {
                 $statement->bindParam(':userlike', $this->user);
             } else {
@@ -147,6 +147,7 @@ class Contribs {
             ORDER BY `rev_timestamp` DESC
             LIMIT 0, " . intval(self::CONTRIB_LIMIT) .
             ";";
+        $this->app->aTP("[SQL] " . preg_replace('#\s+#', ' ', $sql));
         $statement = $pdo->prepare($sql);
         if (!$userIdCond) {
             if ($this->options['isPrefixPattern']) {
@@ -199,6 +200,7 @@ class Contribs {
             LIMIT 0, ' . intval(self::CONTRIB_LIMIT) .
             ';';
         $statement = $pdo->prepare($sql);
+        $this->app->aTP("[SQL] " . preg_replace('#\s+#', ' ', $sql));
         if ($this->options['isPrefixPattern']) {
             $statement->bindParam(':userlike', $this->user);
         } else {

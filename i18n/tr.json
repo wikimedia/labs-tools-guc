@@ -1,0 +1,20 @@
+{
+	"@metadata": {
+		"authors": [
+			"Hedda"
+		]
+	},
+	"description": "Tüm Wikimedia vikilerinden kullanıcı katkılarını göster.",
+	"form-user": "IP adresi veya kullanıcı adı",
+	"form-isPrefixPattern": "Önek aramayı etkinleştir",
+	"form-from": "Şuradaki sonuçları dahil et:",
+	"form-from-all": "Tüm katkılar",
+	"form-from-rc": "Yalnızca son değişiklikler (son 30 gün)",
+	"form-from-hr": "Sadece son saat",
+	"form-sort": "Sonuçları sırala",
+	"form-sort-wiki": "Vikiye göre",
+	"form-sort-date": "Tarihe göre",
+	"form-submit": "Ara",
+	"results-limited": "Viki başına $1 sonuçla sınırlıdır.",
+	"results-lag-warning": "Sonuçlar en son düzenlemeleri içermiyor olabilir. Araçlar için veritabanı kopyaları şu anda gecikmeli. Bkz.  [https://tools.wmflabs.org/replag/ Replag]"
+}

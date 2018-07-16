@@ -1,0 +1,20 @@
+{
+	"@metadata": {
+		"authors": [
+			"Janezdrilc"
+		]
+	},
+	"description": "Prikaži uporabnikove prispevke iz vseh Wikimedijinih wikijev.",
+	"form-user": "IP naslov ali uporabniško ime",
+	"form-isPrefixPattern": "Omogoči iskanje po predponi",
+	"form-from": "Vključi rezultate iz",
+	"form-from-all": "Vsi prispevki",
+	"form-from-rc": "Samo zadnje spremembe (zadnjih 30 dni)",
+	"form-from-hr": "Samo zadnja ura",
+	"form-sort": "Razvrsti rezultate",
+	"form-sort-wiki": "Po wikiju",
+	"form-sort-date": "Po datumu",
+	"form-submit": "Iskanje",
+	"results-limited": "Omejeno na $1 rezultatov na wiki.",
+	"results-lag-warning": "Rezultatu morda nevključujejo najnovejša urejanja. Podatkovni vzorci za Orodja so trenutno v zaostanku. Glej [https://tools.wmflabs.org/replag/ Replag]."
+}

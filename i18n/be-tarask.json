@@ -1,0 +1,21 @@
+{
+	"@metadata": {
+		"authors": [
+			"Red Winged Duck",
+			"Renessaince"
+		]
+	},
+	"description": "Паказаць унёсак удзельніка з усіх праектаў Вікімэдыі.",
+	"form-user": "IP-адрас ці імя ўдзельніка",
+	"form-isPrefixPattern": "Уключыць пошук па прэфіксе",
+	"form-from": "Уключыць вынікі з",
+	"form-from-all": "Увесь унёсак",
+	"form-from-rc": "Толькі нядаўнія зьмяненьні (апошнія 30 дзён)",
+	"form-from-hr": "Толькі за апошнюю гадзіну",
+	"form-sort": "Сартаваць вынікі",
+	"form-sort-wiki": "Паводле вікі",
+	"form-sort-date": "Паводле даты",
+	"form-submit": "Пошук",
+	"results-limited": "Абмежавана да $1 зь вікі.",
+	"results-lag-warning": "У выніках могуць адсутнічаць найноўшыя рэдагаваньні. Рэплікацыі баз зьвестак Сэрвэру прыладаў затрымліваюцца. Глядзіце [https://tools.wmflabs.org/replag/ Replag]."
+}

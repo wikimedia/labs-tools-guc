@@ -4,6 +4,7 @@
 			"Janezdrilc"
 		]
 	},
+	"title": "Globalni uporabnikovi prispevki",
 	"description": "Prikaži uporabnikove prispevke iz vseh Wikimedijinih wikijev.",
 	"form-user": "IP naslov ali uporabniško ime",
 	"form-isPrefixPattern": "Omogoči iskanje po predponi",
@@ -14,7 +15,7 @@
 	"form-sort": "Razvrsti rezultate",
 	"form-sort-wiki": "Po wikiju",
 	"form-sort-date": "Po datumu",
-	"form-submit": "Iskanje",
+	"form-submit": "Išči",
 	"results-limited": "Omejeno na $1 rezultatov na wiki.",
-	"results-lag-warning": "Rezultatu morda nevključujejo najnovejša urejanja. Podatkovni vzorci za Orodja so trenutno v zaostanku. Glej [https://tools.wmflabs.org/replag/ Replag]."
+	"results-lag-warning": "Rezultati morda ne vključujejo najnovejših urejanj. Podatkovni vzorci za Orodja so trenutno v zaostanku. Glej [https://tools.wmflabs.org/replag/ Replag]."
 }

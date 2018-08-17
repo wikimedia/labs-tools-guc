@@ -1,0 +1,20 @@
+{
+	"@metadata": {
+		"authors": [
+			"ديفيد"
+		]
+	},
+	"description": "عرض مساهمات المستخدم من جميع ويكيات ويكيميديا.",
+	"form-user": "عنوان آيبي أو اسم المستخدم",
+	"form-isPrefixPattern": "تمكين البحث عن البادئة",
+	"form-from": "تضمين نتائج من",
+	"form-from-all": "كل المساهمات",
+	"form-from-rc": "التغييرات الأخيرة فقط (آخر 30 يوما)",
+	"form-from-hr": "الساعة الماضية فقط",
+	"form-sort": "فرز النتائج",
+	"form-sort-wiki": "حسب الويكي",
+	"form-sort-date": "حسب التاريخ",
+	"form-submit": "بحث",
+	"results-limited": "تقتصر على $1 نتائج لكل الويكي.",
+	"results-lag-warning": "قد تفتقد النتائج لأحدث التعديلات، النسخ المتماثلة لقاعدة البيانات لأدوات حاليا متخلفة، انظر [https://tools.wmflabs.org/replag/ Replag]."
+}

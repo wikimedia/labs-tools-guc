@@ -1,0 +1,20 @@
+{
+	"@metadata": {
+		"authors": [
+			"Shinjiman"
+		]
+	},
+	"description": "顯示由全部維基媒體wiki嘅用戶貢獻。",
+	"form-user": "IP地址或者用戶名",
+	"form-isPrefixPattern": "開前掇搵",
+	"form-from": "包埋結果自",
+	"form-from-all": "全部貢獻",
+	"form-from-rc": "只有最近嘅改嘢（最近30日）",
+	"form-from-hr": "只有最近一個鐘頭",
+	"form-sort": "排序結果",
+	"form-sort-wiki": "按wiki",
+	"form-sort-date": "按日子",
+	"form-submit": "搵",
+	"results-limited": "每個wiki限制到$1項結果。",
+	"results-lag-warning": "個結果可能會冇咗多數最近嘅編輯。俾工具用嘅數據庫副本現時有延遲。睇吓[https://tools.wmflabs.org/replag/ Replag]。"
+}

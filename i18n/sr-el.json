@@ -1,0 +1,19 @@
+{
+	"@metadata": {
+		"authors": [
+			"Obsuser"
+		]
+	},
+	"title": "Globalni korisnički doprinosi",
+	"form-user": "IP adresa ili korisničko ime",
+	"form-isPrefixPattern": "Omogući pretraživanje pomoću prefiksa",
+	"form-from": "Obuhvati rezultate iz",
+	"form-from-all": "Svi doprinosi",
+	"form-from-rc": "Samo nedavne promene (poslednjih 30 dana)",
+	"form-from-hr": "Samo zadnji čas",
+	"form-sort": "Sortiraj rezultate",
+	"form-sort-wiki": "Od viki",
+	"form-sort-date": "Po datumu",
+	"form-submit": "Pretraga",
+	"results-limited": "Limitiran(o) $1 rezultat(a) po viki."
+}

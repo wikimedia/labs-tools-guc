@@ -1,10 +1,12 @@
 {
 	"@metadata": {
 		"authors": [
-			"Obsuser"
+			"Obsuser",
+			"Zoranzoki21"
 		]
 	},
 	"title": "Globalni korisnički doprinosi",
+	"description": "Prikaži doprinose korisnika sa svih Vikimedijinih vikija.",
 	"form-user": "IP adresa ili korisničko ime",
 	"form-isPrefixPattern": "Omogući pretraživanje pomoću prefiksa",
 	"form-from": "Obuhvati rezultate iz",
@@ -15,5 +17,6 @@
 	"form-sort-wiki": "Od viki",
 	"form-sort-date": "Po datumu",
 	"form-submit": "Pretraga",
-	"results-limited": "Limitiran(o) $1 rezultat(a) po viki."
+	"results-limited": "Limitiran(o) $1 rezultat(a) po viki.",
+	"results-lag-warning": "U rezultatima možda nedostaju najnovije izmene. Kopije baze podataka za alatke trenutno zaostaju. Vidi [https://tools.wmflabs.org/replag/ Replag]."
 }

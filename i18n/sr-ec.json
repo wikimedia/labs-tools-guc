@@ -3,10 +3,12 @@
 		"authors": [
 			"Acamicamacaraca",
 			"Obsuser",
-			"BadDog"
+			"BadDog",
+			"Zoranzoki21"
 		]
 	},
 	"title": "Глобални кориснички доприноси",
+	"description": "Прикажи доприносе корисника са свих Викимедијиних викија.",
 	"form-user": "IP адреса или корисничко име",
 	"form-isPrefixPattern": "Омогући претраживање помоћу префикса",
 	"form-from": "Обухвати резултате из",
@@ -17,5 +19,6 @@
 	"form-sort-wiki": "Од вики",
 	"form-sort-date": "По датуму",
 	"form-submit": "Претрага",
-	"results-limited": "Лимитиран(о) $1 резултат(а) по вики."
+	"results-limited": "Лимитиран(о) $1 резултат(а) по вики.",
+	"results-lag-warning": "У резултатима можда недостају најновије измене. Копије базе података за алатке тренутно заостају. Види [https://tools.wmflabs.org/replag/ Replag]."
 }

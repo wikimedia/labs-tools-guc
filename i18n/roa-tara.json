@@ -1,0 +1,20 @@
+{
+	"@metadata": {
+		"authors": [
+			"Joetaras"
+		]
+	},
+	"description": "Face ìndrucà le condrebbute de l'utende da tutte le uicchi de UicchiMedie.",
+	"form-user": "Indirizze IP o nome de l'utende",
+	"form-isPrefixPattern": "Abbilite 'a recerche pe prefisse",
+	"form-from": "'Nglude le resultate da",
+	"form-from-all": "Tutte le condrebbute",
+	"form-from-rc": "Sulamende le urteme cangiaminde (urteme 30 sciurne)",
+	"form-from-hr": "Sulamende l'urtema ore",
+	"form-sort": "Ordine le resultate",
+	"form-sort-wiki": "Pe uicchi",
+	"form-sort-date": "Pe date",
+	"form-submit": "Cirche",
+	"results-limited": "Limitate a $1 resultate pe uicchi.",
+	"results-lag-warning": "Jndr'à le resultate ponne mangà le urteme cangiaminde. Le repleche de le database pe Struminde pe mò vonne lende. 'Ndruche [https://tools.wmflabs.org/replag/ Replag]."
+}

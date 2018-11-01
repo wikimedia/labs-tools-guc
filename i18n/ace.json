@@ -1,0 +1,19 @@
+{
+	"@metadata": {
+		"authors": [
+			"Si Gam Acèh"
+		]
+	},
+	"description": "Peuleumah beuneuri ureueng ngui nibak ban dum wiki Wikimedia.",
+	"form-user": "Alamat IP atawa nan ureueng ngui",
+	"form-isPrefixPattern": "Peuudép mita awalan",
+	"form-from": "Peurôh hasé nibak",
+	"form-from-all": "Ban dum beuneuri",
+	"form-from-rc": "Neuubah barô sagai (30 uroe seuneulheueh)",
+	"form-from-hr": "Jeum seuneulheueh mantöng",
+	"form-sort": "Urôt hasé",
+	"form-sort-wiki": "Meunurôt wiki",
+	"form-sort-date": "Meunurôt uroe buleuen",
+	"form-submit": "Mita",
+	"results-limited": "'Èt $1 hasé tiep wiki."
+}

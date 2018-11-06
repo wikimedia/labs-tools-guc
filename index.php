@@ -70,7 +70,7 @@ $langCode = $int->getLang();
 $langDir = $int->getDir();
 ?>
 <!DOCTYPE html>
-<?php echo \Html::openElement('html', ['dir' => $langDir, 'lang' => $langCode]); ?>
+<html dir="<?php echo htmlspecialchars($langDir); ?>" lang="<?php echo htmlspecialchars($langCode); ?>">
 <head>
 <meta charset="UTF-8">
 <link rel="stylesheet" href="resources/style.css">
@@ -135,11 +135,11 @@ $sep = $int->msg('colon-separator', array('domain' => 'general'));
         if ($int->getUseRequestParam()) {
             $paramName = $int->getParamName('userlang');
             if (isset($_GET[$paramName]) || isset($_POST[$paramName])) {
-                echo Html::input(
-                    $paramName,
-                    $int->getLang(),
-                    'hidden'
-                ) . "\n";
+                echo \Html::element('input', [
+                    'type' => 'hidden',
+                    'name' => $paramName,
+                    'value' => $int->getLang(),
+                ]) . "\n";
             }
         }
         ?>

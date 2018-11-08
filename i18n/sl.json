@@ -5,7 +5,7 @@
 		]
 	},
 	"title": "Globalni uporabnikovi prispevki",
-	"description": "Prikaži uporabnikove prispevke iz vseh Wikimedijinih wikijev.",
+	"description": "Prikaz uporabnikovih prispevkov vseh Wikimedijinih wikijev.",
 	"form-user": "IP naslov ali uporabniško ime",
 	"form-isPrefixPattern": "Omogoči iskanje po predponi",
 	"form-from": "Vključi rezultate iz",

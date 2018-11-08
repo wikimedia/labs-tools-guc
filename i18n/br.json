@@ -5,8 +5,10 @@
 			"Gwenn-Ael"
 		]
 	},
+	"description": "Diskwel degasadennoù an implijer war holl wikioù Wikimedia",
 	"form-user": "Chomlec'h IP pe anv implijer",
 	"form-isPrefixPattern": "Diskwel an enklask dre rakger",
+	"form-from": "Enlakaat disoc'hoù",
 	"form-from-all": "An holl degasadennoù",
 	"form-from-rc": "(Kemmoù diwezhañ nemetken (30 deiz diwezhañ)",
 	"form-from-hr": "Eurvezh diwezhañ hepken",

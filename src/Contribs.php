@@ -119,7 +119,7 @@ class Contribs {
                 )) . ')';
         }
         $sql = "SELECT
-                `rev_comment`,
+                `comment_text`,
                 `rev_timestamp`,
                 `rev_minor_edit`,
                 `rev_len`,
@@ -133,6 +133,8 @@ class Contribs {
                 `revision_userindex`
             INNER JOIN
                 `page` ON `rev_page` = `page_id`
+            LEFT OUTER JOIN
+                `comment` ON `rev_comment_id` = `comment_id`
             WHERE
                 `rev_deleted` = 0 AND
                 ".(
@@ -182,7 +184,7 @@ class Contribs {
         $conds = array_merge($conds, $extraConds);
         $sqlCond = implode(' AND ', $conds);
         $sql = 'SELECT
-                `rc_comment` as `rev_comment`,
+                `comment_text`,
                 `rc_timestamp` as `rev_timestamp`,
                 `rc_minor` as `rev_minor_edit`,
                 `rc_new_len` as `rev_len`,
@@ -194,6 +196,8 @@ class Contribs {
                 "0" AS `guc_is_cur`
             FROM
                 `recentchanges_userindex`
+            LEFT OUTER JOIN
+                `comment` ON `rc_comment_id` = `comment_id`
             WHERE
                 ' . $sqlCond . '
             ORDER BY `rc_timestamp` DESC
@@ -276,13 +280,13 @@ class Contribs {
      * @return array of objects with the following properties:
      * - page_namespace
      * - page_title
-     * - rev_comment
      * - rev_id
      * - rev_len
      * - rev_minor_edit
      * - rev_parent_id
      * - rev_timestamp
      * - rev_user_text (Normalised)
+     * - comment_text
      * - guc_is_cur
      * - guc_namespace_name (Localised namespace prefix)
      * - guc_pagename (Full page name)
@@ -397,8 +401,8 @@ class Contribs {
             . htmlspecialchars($rc->guc_pagename)."</a>";
 
         // Edit summary
-        if ($rc->rev_comment) {
-            $item[] = '<span class="comment">('.$app->wikiparser($rc->rev_comment, $rc->guc_pagename, $wiki->url).')</span>';
+        if ($rc->comment_text) {
+            $item[] = '<span class="comment">('.$app->wikiparser($rc->comment_text, $rc->guc_pagename, $wiki->url).')</span>';
         }
 
         // Cur revision

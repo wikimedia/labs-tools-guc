@@ -1,0 +1,11 @@
+{
+	"@metadata": {
+		"authors": [
+			"Pyscowicz"
+		]
+	},
+	"description": "Näytä käyttäjien muokkaukset kaikista Wikimedian wikeistä.",
+	"form-user": "IP-osoite tai käyttäjänimi",
+	"form-from-all": "Kaikki muokkaukset",
+	"form-submit": "Hae"
+}

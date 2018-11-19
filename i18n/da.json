@@ -1,9 +1,11 @@
 {
 	"@metadata": {
 		"authors": [
-			"Joedalton"
+			"Joedalton",
+			"Saederup92"
 		]
 	},
+	"title": "Globale brugerbidrag",
 	"description": "Vis brugerbidrag fra alle Wikimedia-wikier.",
 	"form-user": "IP-adresse eller brugernavn",
 	"form-isPrefixPattern": "Aktiver præfikssøgning",

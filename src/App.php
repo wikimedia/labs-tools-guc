@@ -52,7 +52,7 @@ class App {
      * @return PDO
      */
     protected function openDB($host, $dbname = null) {
-        $this->aTP('Create connection to ' . $host);
+        $this->debug('Create connection to ' . $host);
 
         try {
             // Establish a connection
@@ -149,14 +149,14 @@ class App {
         unset($this->ipHostsInUse[$ip][$host]);
 
         if (isset($this->connections[$ip]) && !$this->ipHostsInUse[$ip]) {
-            $this->aTP('Close connection to ' . $host);
+            $this->debug('Close connection to ' . $host);
             unset($this->connections[$ip]);
         }
     }
 
     public function closeAllDBs() {
         foreach ($this->connections as $pair) {
-            $this->aTP('Close remaining connection for ' . $pair[self::FLD_HOST]);
+            $this->debug('Close remaining connection for ' . $pair[self::FLD_HOST]);
         }
         $this->ipHostsInUse = [];
         $this->connections = [];
@@ -165,11 +165,11 @@ class App {
     public function preShutdown() {
       // Try to close any remaining connections
       $this->closeAllDBs();
-      $this->aTP('Connections opened: ' . intval($this->openDbCount));
-      $this->aTP('Highest connection count: ' . intval($this->maxConSeen));
+      $this->debug('Connections opened: ' . intval($this->openDbCount));
+      $this->debug('Highest connection count: ' . intval($this->maxConSeen));
     }
 
-    public function aTP($text) {
+    public function debug($text) {
         $this->times[] = array(microtime(true), $text);
     }
 
@@ -178,7 +178,7 @@ class App {
     }
 
     public function getTimes() {
-        $this->aTP('Finish');
+        $this->debug('Finish');
         $timebefore = null;
         $first = null;
         $out = '';

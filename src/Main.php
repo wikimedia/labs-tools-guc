@@ -60,7 +60,7 @@ class Main {
             if (substr($this->user, -1) !== '%') {
                 $this->user .= '%';
             }
-            $this->app->aTP('Perfoming a pattern search: ' . $this->user);
+            $this->app->debug('Perfoming a pattern search: ' . $this->user);
         } else {
             // Check if input is an IP
             if (IPInfo::valid($this->user)) {
@@ -122,7 +122,7 @@ class Main {
      * @return array of objects
      */
     private function getWikis() {
-        $this->app->aTP('Get list of all wikis');
+        $this->app->debug('Get list of all wikis');
         $f_where = array();
         if (!$this->options['includeClosedWikis']) {
             $f_where[] = 'is_closed = 0';
@@ -130,7 +130,7 @@ class Main {
         $f_where = implode(' AND ', $f_where);
         $sql = 'SELECT * FROM `meta_p`.`wiki` WHERE '.$f_where.' LIMIT 1500;';
         $statement = $this->app->getDB()->prepare($sql);
-        $this->app->aTP("[SQL] " . preg_replace('#\s+#', ' ', $sql));
+        $this->app->debug("[SQL] " . preg_replace('#\s+#', ' ', $sql));
         $statement->execute();
         $rows = $statement->fetchAll(PDO::FETCH_OBJ);
         $statement = null;
@@ -190,10 +190,10 @@ class Main {
         foreach ($slices as $sliceName => $queries) {
             if ($queries) {
                 $sql = implode(' UNION ALL ', $queries);
-                $this->app->aTP("Quering wikis on `$sliceName` for matching revisions");
+                $this->app->debug("Quering wikis on `$sliceName` for matching revisions");
                 $pdo = $this->app->getDB($sliceName);
                 $statement = $pdo->prepare($sql);
-                $this->app->aTP("[SQL] " . preg_replace('#\s+#', ' ', $sql));
+                $this->app->debug("[SQL] " . preg_replace('#\s+#', ' ', $sql));
                 if ($this->options['isPrefixPattern']) {
                     $statement->bindParam(':userlike', $this->user);
                 } else {
@@ -238,7 +238,7 @@ class Main {
             $pdo = $this->app->getDB('centralauth');
             $sql = 'SELECT * FROM `centralauth_p`.`localuser` WHERE lu_name = :user;';
             $statement = $pdo->prepare($sql);
-            $this->app->aTP("[SQL] " . preg_replace('#\s+#', ' ', $sql));
+            $this->app->debug("[SQL] " . preg_replace('#\s+#', ' ', $sql));
             $statement->bindParam(':user', $this->user);
             $statement->execute();
             $rows = $statement->fetchAll(PDO::FETCH_OBJ);

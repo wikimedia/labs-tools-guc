@@ -63,7 +63,7 @@ class Contribs {
         $this->centralAuth = $centralAuth;
 
         if ($this->isIp !== true) {
-            $this->app->aTP('Query user data for ' . $wiki->domain);
+            $this->app->debug('Query user data for ' . $wiki->domain);
             $sql = "SELECT
                 `user_id`,
                 `user_name`
@@ -76,7 +76,7 @@ class Contribs {
                 LIMIT 10;";
             // Get user data
             $statement = $this->app->getDB($wiki->slice, $wiki->dbname)->prepare($sql);
-            $this->app->aTP("[SQL] " . preg_replace('#\s+#', ' ', $sql));
+            $this->app->debug("[SQL] " . preg_replace('#\s+#', ' ', $sql));
             if ($this->options['isPrefixPattern']) {
                 $statement->bindParam(':userlike', $this->user);
             } else {
@@ -149,7 +149,7 @@ class Contribs {
             ORDER BY `rev_timestamp` DESC
             LIMIT 0, " . intval(self::CONTRIB_LIMIT) .
             ";";
-        $this->app->aTP("[SQL] " . preg_replace('#\s+#', ' ', $sql));
+        $this->app->debug("[SQL] " . preg_replace('#\s+#', ' ', $sql));
         $statement = $pdo->prepare($sql);
         if (!$userIdCond) {
             if ($this->options['isPrefixPattern']) {
@@ -204,7 +204,7 @@ class Contribs {
             LIMIT 0, ' . intval(self::CONTRIB_LIMIT) .
             ';';
         $statement = $pdo->prepare($sql);
-        $this->app->aTP("[SQL] " . preg_replace('#\s+#', ' ', $sql));
+        $this->app->debug("[SQL] " . preg_replace('#\s+#', ' ', $sql));
         if ($this->options['isPrefixPattern']) {
             $statement->bindParam(':userlike', $this->user);
         } else {
@@ -230,7 +230,7 @@ class Contribs {
      * Fetch contributions from the database
      */
     private function fetchContribs() {
-        $this->app->aTP('Query contributions on ' . $this->wiki->domain);
+        $this->app->debug('Query contributions on ' . $this->wiki->domain);
         $pdo = $this->app->getDB($this->wiki->slice, $this->wiki->dbname);
 
         if ($this->options['src'] === 'rc') {

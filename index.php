@@ -39,7 +39,7 @@ $app = $guc = $appError = $robotsPolicy = $canonicalUrl = null;
 try {
     $app = new App();
     if ($data->Method === 'POST') {
-        $app->debug('Received POST request');
+        $app->debug('Handling form submission');
         $guc = new Main($app, $data->Username, $data->options);
         $robotsPolicy = 'noindex,follow';
     } else {

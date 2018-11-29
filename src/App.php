@@ -179,20 +179,22 @@ class App {
 
     public function getTimes() {
         $this->debug('Finish');
-        $timebefore = null;
-        $first = null;
-        $out = '';
+        $start = $_SERVER['REQUEST_TIME_FLOAT'];
+        $end = microtime(true);
+        $out = "* Starting PHP process for web request\n";
+        $previous = $start;
         foreach ($this->times as $nr => $data) {
-            $diff = ($timebefore === null) ? 0.0 : $data[0] - $timebefore;
-            if ($timebefore === null) {
-                $first = $data[0];
+            $diff = round($data[0] - $previous, 2);
+            $previous = $data[0];
+            if ($diff > 0.0) {
+              $out .= '  ⤷ +' . $diff . 's' . "\n";
             }
-            $out .= '+' . round($diff, 2) . 's: ' . $data[1] . "\n";
+            $out .= '* ' . $data[1] . "\n";
 
             $timebefore = $data[0];
         }
-        $out .= "\nTotal: ".round((microtime(true) - $first), 2)."s.\n";
-        $out .= 'Current time: '.date('r');
+        $out .= "\nTotal backend time: " . round($end - $start, 2) . "s.\n";
+        $out .= 'Current time: ' . date('r');
         return $out;
     }
 

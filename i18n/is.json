@@ -1,7 +1,8 @@
 {
 	"@metadata": {
 		"authors": [
-			"Snævar"
+			"Snævar",
+			"Sveinn í Felli"
 		]
 	},
 	"description": "Sýna framlög notanda frá öllum Wikimedia wiki vefsvæðum.",
@@ -15,5 +16,6 @@
 	"form-sort-wiki": "Eftir wiki",
 	"form-sort-date": "Eftir dagsetningu",
 	"form-submit": "Leita",
-	"results-limited": "Takmarkað við $1 niðurstöður á hvern wiki"
+	"results-limited": "Takmarkað við $1 niðurstöður á hvern wiki",
+	"results-lag-warning": "Í niðurstöðurnar gæti vantað allra nýjustu breytingar. Gagnagrunnaafritun fyrir verkfærin er núna aðeins á eftir í tíma. Sjá [https://tools.wmflabs.org/replag/ Replag]."
 }

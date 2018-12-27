@@ -6,6 +6,13 @@
 	},
 	"description": "Näytä käyttäjien muokkaukset kaikista Wikimedian wikeistä.",
 	"form-user": "IP-osoite tai käyttäjänimi",
+	"form-isPrefixPattern": "Ota etuliitteen haku käyttöön",
 	"form-from-all": "Kaikki muokkaukset",
-	"form-submit": "Hae"
+	"form-from-rc": "Vain tuoreet muutokset (viimeiset 30 päivää)",
+	"form-from-hr": "Vain viime tunti",
+	"form-sort": "Järjestä tulokset",
+	"form-sort-wiki": "wikin mukaan",
+	"form-sort-date": "päiväyksen mukaan",
+	"form-submit": "Hae",
+	"results-limited": "Rajoitettu $1 tulokseen per wiki."
 }

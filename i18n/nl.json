@@ -1,0 +1,22 @@
+{
+	"@metadata": {
+		"authors": [
+			"Festina90",
+			"Marcelhospers",
+			"Optilete"
+		]
+	},
+	"description": "Toon gebruikersbijdragen van alle Wikimedia wiki's.",
+	"form-user": "IP-adres of gebruikersnaam",
+	"form-isPrefixPattern": "Schakel zoeken met prefix in",
+	"form-from": "Resultaten opnemen van",
+	"form-from-all": "Alle bijdragen",
+	"form-from-rc": "Alleen recente wijzigingen (afgelopen 30 dagen)",
+	"form-from-hr": "Alleen afgelopen uur",
+	"form-sort": "Sorteer resultaten",
+	"form-sort-wiki": "Per wiki",
+	"form-sort-date": "Per datum",
+	"form-submit": "Zoek",
+	"results-limited": "Beperk resultaten tot $1 per wiki.",
+	"results-lag-warning": "De resultaten kunnen zoek zijn in de meest recente aanpassingen. De database replica's voor gereedschappen zijn momenteel niet beschikbaar. Kijk naar [https://tools.wmflabs.org/replag/ Replag]."
+}

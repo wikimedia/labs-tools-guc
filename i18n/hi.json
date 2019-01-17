@@ -1,0 +1,20 @@
+{
+	"@metadata": {
+		"authors": [
+			"Shypoetess"
+		]
+	},
+	"description": "सभी विकिमीडिया विकियों से उपयोगकर्ता योगदान दिखाएँ।",
+	"form-user": "आईपी पता या सदस्यनाम",
+	"form-isPrefixPattern": "उपसर्ग खोज सक्षम करें",
+	"form-from": "से परिणाम शामिल करें",
+	"form-from-all": "सभी योगदान",
+	"form-from-rc": "केवल हाल के परिवर्तन (पिछले 30 दिन)",
+	"form-from-hr": "पिछले घंटे ही",
+	"form-sort": "परिणामों को क्रमबद्ध करें",
+	"form-sort-wiki": "विकि अनुसार",
+	"form-sort-date": "तिथि अनुसार",
+	"form-submit": "खोजें",
+	"results-limited": "प्रति विकि $1 परिणामों तक सीमित।",
+	"results-lag-warning": "परिणामों में सबसे हाल के संपादन गायब हो सकते हैं। उपकरण के लिए डेटाबेस प्रतिकृतियां वर्तमान में पिछड़ी हुई हैं। [Https://tools.wmflabs.org/replag/ Replag] देखें।"
+}

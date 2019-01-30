@@ -1,0 +1,21 @@
+{
+	"@metadata": {
+		"authors": [
+			"Mirzali",
+			"Orbot707"
+		]
+	},
+	"description": "Wikiyanê Wikimedya pêroyıne ra iştırakanê karberi bımocne.",
+	"form-user": "Adresê IPyi ya ki nameyê karberi",
+	"form-isPrefixPattern": "Prefiks cıgeyrayışi faal kerê",
+	"form-from": "Enê netican zi tede kerê",
+	"form-from-all": "İştıraki pêro",
+	"form-from-rc": "Teyna vurnayışanê peyênan (peyên 30 roca)",
+	"form-from-hr": "Tetna seata peyên",
+	"form-sort": "Neticeya rêz kerê",
+	"form-sort-wiki": "Gorey wiki",
+	"form-sort-date": "Gorey tarix",
+	"form-submit": "Cı geyre",
+	"results-limited": "Her wiki re $1 netican ra sinor erziyayo",
+	"results-lag-warning": "Neticey belka vurnayışanê peyênan mhtewa nêkenê Sonuçlar en son düzenlemeleri içermiyor olabilir. Seba haceta qopyay  database peyra mendeyê. Bıvinê [https://tools.wmflabs.org/replag/ Replag]"
+}

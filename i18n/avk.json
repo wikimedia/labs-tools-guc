@@ -1,0 +1,20 @@
+{
+	"@metadata": {
+		"authors": [
+			"Axel xadolik"
+		]
+	},
+	"description": "Va webereem denu koto Wikimedia wiki xo nedir.",
+	"form-user": "IP mane ok favesikyolt",
+	"form-isPrefixPattern": "Va abduosta koaneyar",
+	"form-from": "Kodoplekura va trasiks denu",
+	"form-from-all": "Webekseem",
+	"form-from-rc": "Anton noeltaf betakseem ( daref 30 viel )",
+	"form-from-hr": "Anton daref bartiv",
+	"form-sort": "Mubera va trasiks",
+	"form-sort-wiki": "Kare wiki xo",
+	"form-sort-date": "Kare evla",
+	"form-submit": "Aneyara",
+	"results-limited": "Kima : $1 trasiks denu koto wiki xo.",
+	"results-lag-warning": "Trasiks va noeltaf betaks romenyurnad. Database replicas for Tools are currently lagged. See [https://tools.wmflabs.org/replag/ Replag]."
+}

@@ -12,10 +12,10 @@
 	"form-from-all": "İştıraki pêro",
 	"form-from-rc": "Teyna vurnayışanê peyênan (peyên 30 roca)",
 	"form-from-hr": "Tetna seata peyên",
-	"form-sort": "Neticeya rêz kerê",
-	"form-sort-wiki": "Gorey wiki",
-	"form-sort-date": "Gorey tarix",
+	"form-sort": "Neticeyan rêz ke",
+	"form-sort-wiki": "Goreyê wiki",
+	"form-sort-date": "Goreyê tarixi",
 	"form-submit": "Cı geyre",
-	"results-limited": "Her wiki re $1 netican ra sinor erziyayo",
-	"results-lag-warning": "Neticey belka vurnayışanê peyênan mhtewa nêkenê Sonuçlar en son düzenlemeleri içermiyor olabilir. Seba haceta qopyay  database peyra mendeyê. Bıvinê [https://tools.wmflabs.org/replag/ Replag]"
+	"results-limited": "Her wiki rê $1 netican ra sinor erziyayo.",
+	"results-lag-warning": "Neticeyi belkiya vurnayışanê peyênan muhtewa nêkenê. Seba hacetê kopya database peyra mendeyê. [https://tools.wmflabs.org/replag/ Replag] bıvêne."
 }

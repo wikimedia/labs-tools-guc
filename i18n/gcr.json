@@ -1,0 +1,20 @@
+{
+	"@metadata": {
+		"authors": [
+			"Léon973"
+		]
+	},
+	"description": "Afiché kontribisyon-yan di itilizatò-a asou tout wiki-ya di Wikimédja.",
+	"form-user": "Adrès IP oben non di itilizatò :",
+	"form-isPrefixPattern": "Agtivé sasé-a pa préfigs",
+	"form-from": "Enkli rézilta-ya di",
+	"form-from-all": "Tout kontribisyon-yan",
+	"form-from-rc": "Rounso modifikasyon-yan ki résan (30 dannyé jou)",
+	"form-from-hr": "Rounso dannyé lèr-a",
+	"form-sort": "Triyé rézilta-ya",
+	"form-sort-wiki": "Pa wiki",
+	"form-sort-date": "Pa dat",
+	"form-submit": "Sasé",
+	"results-limited": "Limité à $1 rézilta pa wiki.",
+	"results-lag-warning": "Rézilta-ya pouvé pa kontni modifikasyon-yanki pi résan. Réplikasyon-yan di baz di data pou Tools sa atchwèlman an atant. Wè [https://tools.wmflabs.org/replag/ Replag]."
+}

@@ -1,0 +1,20 @@
+{
+	"@metadata": {
+		"authors": [
+			"ネイ"
+		]
+	},
+	"description": "ウィキメディアの全てのウィキにおける投稿記録を表示します。",
+	"form-user": "IPアドレスまたは利用者名",
+	"form-isPrefixPattern": "プレフィックス検索を有効にする",
+	"form-from": "日付の絞り込み",
+	"form-from-all": "全ての投稿記録",
+	"form-from-rc": "最近の投稿のみ（過去30日間）",
+	"form-from-hr": "過去1時間のみ",
+	"form-sort": "検索結果の並べ替え",
+	"form-sort-wiki": "ウィキ順",
+	"form-sort-date": "日付順",
+	"form-submit": "検索",
+	"results-limited": "1ウィキ毎に$1件表示しています。",
+	"results-lag-warning": "現在、Tools用のデータベース複製に遅れが生じているので、直近の編集が検索結果に表示されない可能性があります。詳しくは[https://tools.wmflabs.org/replag/ Replag]をご参照ください。"
+}

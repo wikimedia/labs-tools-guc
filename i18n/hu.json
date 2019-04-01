@@ -2,13 +2,21 @@
 	"@metadata": {
 		"authors": [
 			"Notramo",
-			"Tacsipacsi"
+			"Tacsipacsi",
+			"R-Joe"
 		]
 	},
+	"description": "A Wikimedia wikik összes felhasználói hozzászólásának megjelenítése.",
 	"form-user": "IP-cím vagy felhasználónév",
+	"form-isPrefixPattern": "Előtagkeresés engedélyezése",
+	"form-from": "Tartalmazza az eredményeket",
 	"form-from-all": "Minden közreműködés",
 	"form-from-rc": "Legutóbbi változtatások (elmúlt 30 nap)",
 	"form-from-hr": "Csak a legutóbbi óra",
+	"form-sort": "Eredmények rendezése",
 	"form-sort-wiki": "Wiki szerint",
-	"form-submit": "Keresés"
+	"form-sort-date": "Dátum szerint",
+	"form-submit": "Keresés",
+	"results-limited": "Wikinként korlátozott $1 eredményre.",
+	"results-lag-warning": "Az eredményekből hiányoznak a legutóbbi módosítások. Az\nEszközök adatbázis-replikái jelenleg elmaradtak. Lásd: [https://tools.wmflabs.org/replag/ Replag]."
 }

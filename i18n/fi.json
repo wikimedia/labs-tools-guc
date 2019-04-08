@@ -7,6 +7,7 @@
 	"description": "Näytä käyttäjien muokkaukset kaikista Wikimedian wikeistä.",
 	"form-user": "IP-osoite tai käyttäjänimi",
 	"form-isPrefixPattern": "Ota etuliitteen haku käyttöön",
+	"form-from": "Sisällytä tulokset",
 	"form-from-all": "Kaikki muokkaukset",
 	"form-from-rc": "Vain tuoreet muutokset (viimeiset 30 päivää)",
 	"form-from-hr": "Vain viime tunti",

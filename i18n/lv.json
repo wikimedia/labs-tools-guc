@@ -1,0 +1,20 @@
+{
+	"@metadata": {
+		"authors": [
+			"Silraks"
+		]
+	},
+	"description": "Rādīt lietotāja devumu no visiem Wikimedia viki.",
+	"form-user": "IP adrese vai lietotājvārds",
+	"form-isPrefixPattern": "Iespējot prefiksu meklēšanu",
+	"form-from": "Iekļaut rezultātus no",
+	"form-from-all": "Viss devums",
+	"form-from-rc": "Tikai pēdējās izmaiņas (pēdējās 30 dienas)",
+	"form-from-hr": "Tikai pēdējās stundas",
+	"form-sort": "Kārtot rezultātus",
+	"form-sort-wiki": "Pēc viki",
+	"form-sort-date": "Pēc datuma",
+	"form-submit": "Meklēt",
+	"results-limited": "Ierobežots līdz $1 katram viki.",
+	"results-lag-warning": "Rezultātos var trūkt visjaunākie labojumi. Datubāžu kopijas Tools vietnei pašlaik kavējas. Skatīt [https://tools.wmflabs.org/replag/ Replag]."
+}

@@ -1,0 +1,20 @@
+{
+	"@metadata": {
+		"authors": [
+			"Aguve"
+		]
+	},
+	"description": "Nu siwo katã ezãla wɔ le Wikimedia ƒe wikiwo katã dzi nedze.",
+	"form-user": "IP adrɛs alo ezazãŋkɔ",
+	"form-isPrefixPattern": "Ɖe ne wòazã nyanuwuwuwo adi nu",
+	"form-from": "Ŋuɖoɖo siwo le afi siawo hã",
+	"form-from-all": "Tɔtrɔ siwo katã wowɔ",
+	"form-from-rc": "Tɔtrɔ yeyewo ko (ŋkeke 30 siwo va yi)",
+	"form-from-hr": "Gaƒoƒo si va yi ɖeɖe tɔ",
+	"form-sort": "Ɖo ŋuɖoɖoawo",
+	"form-sort-wiki": "Le wikiwo nu",
+	"form-sort-date": "Le ŋkekewo nu",
+	"form-submit": "Dii",
+	"results-limited": "Wiki ɖeka ƒe ŋuɖoɖowo megawu $1 o.",
+	"results-lag-warning": "Ɖewohĩ tɔtrɔ yeyetɔwo medze le ŋuɖoɖoawo me o. Nyatakakanɔƒe la mele dɔ wɔm nyuie o. Kpɔ [https://tools.wmflabs.org/replag/ Replag]."
+}

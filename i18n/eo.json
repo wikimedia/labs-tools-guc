@@ -1,0 +1,13 @@
+{
+	"@metadata": {
+		"authors": [
+			"Mirin"
+		]
+	},
+	"form-user": "IP-adreso aŭ uzantnomo",
+	"form-from-all": "Ĉiuj kontribuoj",
+	"form-sort": "Ordigi rezultojn",
+	"form-sort-wiki": "Laŭ vikio",
+	"form-sort-date": "Laŭ dato",
+	"form-submit": "Serĉi"
+}

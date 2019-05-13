@@ -4,10 +4,17 @@
 			"Mirin"
 		]
 	},
+	"description": "Montri kontribuoj de uzantoj en ĉiuj Vikimediaj vikioj.",
 	"form-user": "IP-adreso aŭ uzantnomo",
+	"form-isPrefixPattern": "Ebligi prefiksan serĉadon",
+	"form-from": "Inkluzivi rezultojn el",
 	"form-from-all": "Ĉiuj kontribuoj",
+	"form-from-rc": "Nur ĵusaj ŝanĝoj (lastaj 30 tagoj)",
+	"form-from-hr": "Nur lasta horo",
 	"form-sort": "Ordigi rezultojn",
 	"form-sort-wiki": "Laŭ vikio",
 	"form-sort-date": "Laŭ dato",
-	"form-submit": "Serĉi"
+	"form-submit": "Serĉi",
+	"results-limited": "Limigita al po $1 rezultoj en vikio",
+	"results-lag-warning": "La lastaj redaktoj eble mankas en la rezultoj. Datenbankaj kopioj por Iloj estas iom prokrastata. Vidu la paĝon [https://tools.wmflabs.org/replag/ Replag]."
 }

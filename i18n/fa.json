@@ -1,0 +1,19 @@
+{
+	"@metadata": {
+		"authors": [
+			"Amirsara",
+			"Dejavu",
+			"FarsiNevis"
+		]
+	},
+	"description": "نمایش مشارکت‌های کاربر در همهٔ ویکی‌های ویکی‌مدیا",
+	"form-user": "نشانی آی‌پی یا نام کاربری",
+	"form-isPrefixPattern": "فعال‌سازی جستجوی پیشوند",
+	"form-from-all": "همهٔ مشارکت‌ها",
+	"form-from-rc": "فقط تغییرات اخیر (۳۰ روز آخر)",
+	"form-from-hr": "فقط یک ساعت اخیر",
+	"form-sort": "مرتب‌سازی نتایج",
+	"form-sort-wiki": "بر اساس ویکی",
+	"form-sort-date": "بر اساس روز",
+	"form-submit": "جستجو"
+}

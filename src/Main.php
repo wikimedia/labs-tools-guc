@@ -14,13 +14,14 @@ use stdClass;
 class Main {
     private $app;
     private $user;
+    private $actorId;
     private $options;
 
     private $isIP = false;
     private $ipInfos = array();
     private $globalEditCount = 0;
 
-    private $data;
+    private $datas;
     private $wikis;
 
     public static function getDefaultOptions() {
@@ -99,7 +100,7 @@ class Main {
                         if (count($this->ipInfos) > 10) {
                             break;
                         }
-                        $this->addIP($rc->rev_user_text);
+                        $this->addIP($rc->actor_name);
                     }
                 }
                 $data->contribs = $contribs;
@@ -158,10 +159,11 @@ class Main {
                     COUNT(*) AS counter,
                     \''.$wiki->dbname.'\' AS dbname
                     FROM '.$wiki->dbname.'_p.recentchanges_userindex
+                    JOIN '.$wiki->dbname.'_p.actor ON actor_id = rc_actor
                     WHERE '.(
                         ($this->options['isPrefixPattern'])
-                            ? 'rc_user_text LIKE :userlike'
-                            : 'rc_user_text = :user'
+                            ? 'actor_name LIKE :userlike'
+                            : 'actor_name = :user'
                     ).(
                         ($this->options['src'] === 'hr')
                             ? ' AND rc_timestamp >= :hrcutoff'
@@ -177,10 +179,11 @@ class Main {
                     COUNT(rev_id) AS counter,
                     \''.$wiki->dbname.'\' AS dbname
                     FROM '.$wiki->dbname.'_p.revision_userindex
+                    JOIN '.$wiki->dbname.'_p.actor ON actor_id = rev_actor
                     WHERE '.(
                         ($this->options['isPrefixPattern'])
-                            ? 'rev_user_text LIKE :userlike'
-                            : 'rev_user_text = :user'
+                            ? 'actor_name LIKE :userlike'
+                            : 'actor_name = :user'
                     );
             }
             $slices[$wiki->slice][] = $sql;
@@ -281,7 +284,7 @@ class Main {
      * - {null|Exception} error
      * - {null|Contribs} contribs
      *
-     * @return array[]
+     * @return stdClass
      */
     public function getData() {
         return $this->datas;

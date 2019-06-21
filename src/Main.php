@@ -19,7 +19,6 @@ class Main {
 
     private $isIP = false;
     private $ipInfos = array();
-    private $globalEditCount = 0;
 
     private $datas;
     private $wikis;
@@ -72,11 +71,10 @@ class Main {
 
         $wikis = $this->getWikis();
         // Filter down wikis to only relevant ones.
-        // Attaches 'wiki._editcount' property.
-        $wikisWithEditcount = $this->getWikisWithContribs($wikis);
+        $matchingWikis = $this->getWikisWithContribs($wikis);
 
         $datas = new stdClass();
-        foreach ($wikisWithEditcount as $dbname => $wikiRow) {
+        foreach ($matchingWikis as $dbname => $wikiRow) {
             $wiki = Wiki::newFromRow($wikiRow);
 
             $data = new stdClass();
@@ -90,7 +88,6 @@ class Main {
                     $this->user,
                     $this->isIP,
                     $wiki,
-                    $wikiRow->_editcount,
                     $this->getCentralauthData($wikiRow->dbname),
                     $options
                 );
@@ -113,7 +110,7 @@ class Main {
         // List of all wikis
         $this->wikis = $wikis;
         // Array of wikis with edit count, keyed by dbname
-        $this->wikisWithEditcount = $wikisWithEditcount;
+        $this->matchingWikis = $matchingWikis;
         // Contributions, keyed by dbname
         $this->datas = $datas;
     }
@@ -144,7 +141,7 @@ class Main {
      * @return array
      */
     private function getWikisWithContribs(array $wikis) {
-        $wikisWithEditcount = array();
+        $matchingWikis = array();
 
         // Copied from Contribs::prepareLastHourQuery
         // (TODO: Refactor somehow)
@@ -155,8 +152,8 @@ class Main {
         foreach ($wikis as $wiki) {
             $wikisByDbname[$wiki->dbname] = $wiki;
             if ($this->options['src'] === 'rc' || $this->options['src'] === 'hr') {
-                $sql = 'SELECT
-                    COUNT(*) AS counter,
+                $sql = '(SELECT
+                    "1",
                     \''.$wiki->dbname.'\' AS dbname
                     FROM '.$wiki->dbname.'_p.recentchanges_userindex
                     JOIN '.$wiki->dbname.'_p.actor ON actor_id = rc_actor
@@ -173,10 +170,11 @@ class Main {
                     ).' AND `rc_type` IN (' . join(',', array_map(
                         'intval',
                         array(Contribs::MW_RC_EDIT, Contribs::MW_RC_NEW)
-                    )) . ')';
+                    )) . ')
+                    LIMIT 1)';
             } else {
-                $sql = 'SELECT
-                    COUNT(rev_id) AS counter,
+                $sql = '(SELECT
+                    "1",
                     \''.$wiki->dbname.'\' AS dbname
                     FROM '.$wiki->dbname.'_p.revision_userindex
                     JOIN '.$wiki->dbname.'_p.actor ON actor_id = rev_actor
@@ -184,12 +182,12 @@ class Main {
                         ($this->options['isPrefixPattern'])
                             ? 'actor_name LIKE :userlike'
                             : 'actor_name = :user'
-                    );
+                    ).'
+                    LIMIT 1)';
             }
             $slices[$wiki->slice][] = $sql;
         }
 
-        $globalEditCount = 0;
         foreach ($slices as $sliceName => $queries) {
             if ($queries) {
                 $sql = implode(' UNION ALL ', $queries);
@@ -210,17 +208,11 @@ class Main {
                 $statement = null;
 
                 foreach ($rows as $row) {
-                    $wiki = $wikisByDbname[$row->dbname];
-                    $wiki->_editcount = intval($row->counter);
-                    if ($row->counter > 0) {
-                        $globalEditCount += $row->counter;
-                        $wikisWithEditcount[$row->dbname] = $wiki;
-                    }
+                    $matchingWikis[$row->dbname] = $wikisByDbname[$row->dbname];
                 }
             }
         }
-        $this->globalEditCount = $globalEditCount;
-        return $wikisWithEditcount;
+        return $matchingWikis;
     }
 
     /**
@@ -301,7 +293,7 @@ class Main {
      * @return int
      */
     public function getResultWikiCount() {
-        return count($this->wikisWithEditcount);
+        return count($this->matchingWikis);
     }
 
     /**
@@ -314,9 +306,5 @@ class Main {
      */
     public function getIPInfos() {
         return $this->ipInfos;
-    }
-
-    public function getGlobalEditcount() {
-        return $this->globalEditCount;
     }
 }

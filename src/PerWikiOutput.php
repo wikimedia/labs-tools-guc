@@ -60,8 +60,6 @@ class PerWikiOutput implements IOutput {
             $userinfo[] = 'More than 10 users';
         }
 
-        $userinfo[] = $contribs->getEditcount() . ' edits';
-
         if ($contribs->isUnattached()) {
             $userinfo[] = 'SUL: Account not attached.';
         } else {

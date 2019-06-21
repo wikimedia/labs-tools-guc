@@ -29,7 +29,6 @@ class Contribs {
     private $isIp;
     private $options;
 
-    private $editcount;
     private $centralAuth;
     private $hasManyMatches = false;
     private $contribs = null;
@@ -41,11 +40,10 @@ class Contribs {
      * @param string $user Search query for wiki users
      * @param boolean $isIP
      * @param Wiki $wiki
-     * @param int $editcount
      * @param null|false|object $centralAuth
      * @param array $options
      */
-    public function __construct(App $app, $user, $isIP, Wiki $wiki, $editcount, $centralAuth, $options = array()) {
+    public function __construct(App $app, $user, $isIP, Wiki $wiki, $centralAuth, $options = array()) {
         if (!$user) {
             throw new Exception('No username or IP');
         }
@@ -59,7 +57,6 @@ class Contribs {
             'src' => 'all',
         );
 
-        $this->editcount = $editcount;
         $this->centralAuth = $centralAuth;
 
         if ($this->isIp !== true) {
@@ -412,13 +409,6 @@ class Contribs {
         }
 
         return $item;
-    }
-
-    /**
-     * @return int
-     */
-    public function getEditcount() {
-        return $this->editcount;
     }
 
     /**

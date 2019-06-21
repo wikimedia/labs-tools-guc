@@ -191,7 +191,7 @@ class Main {
         foreach ($slices as $sliceName => $queries) {
             if ($queries) {
                 $sql = implode(' UNION ALL ', $queries);
-                $this->app->debug("Quering wikis on `$sliceName` for matching revisions");
+                $this->app->debug("Querying wikis on `$sliceName` for matching revisions");
                 $pdo = $this->app->getDB($sliceName);
                 $statement = $pdo->prepare($sql);
                 $this->app->debug("[SQL] " . preg_replace('#\s+#', ' ', $sql));
@@ -229,9 +229,10 @@ class Main {
             return false;
         }
         if ($centralauthData === null) {
+            $this->app->debug("Querying CentralAuth database for SUL information");
             $centralauthData = array();
             $pdo = $this->app->getDB('centralauth');
-            $sql = 'SELECT * FROM `centralauth_p`.`localuser` WHERE lu_name = :user;';
+            $sql = 'SELECT lu_wiki, lu_attached_timestamp FROM `centralauth_p`.`localuser` WHERE lu_name = :user;';
             $statement = $pdo->prepare($sql);
             $this->app->debug("[SQL] " . preg_replace('#\s+#', ' ', $sql));
             $statement->bindParam(':user', $this->user);

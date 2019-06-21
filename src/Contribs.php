@@ -243,23 +243,23 @@ class Contribs {
         $contribs = $statement->fetchAll(PDO::FETCH_OBJ);
         $statement = null;
 
-        foreach ($contribs as $rc) {
+        foreach ($contribs as $row) {
             // Normalise
-            $rc->actor_name = str_replace('_', ' ', $rc->actor_name);
+            $row->actor_name = str_replace('_', ' ', $row->actor_name);
 
             // Localised namespace prefix
-            $rc->guc_namespace_name = $this->app->getNamespaceName(
-                $rc->page_namespace,
+            $row->guc_namespace_name = $this->app->getNamespaceName(
+                $row->page_namespace,
                 $this->wiki->dbname,
                 $this->wiki->canonicalServer
             );
             // Full page name
-            $rc->guc_pagename = $rc->guc_namespace_name
-                ? ($rc->guc_namespace_name . ':' . $rc->page_title)
+            $row->guc_pagename = $row->guc_namespace_name
+                ? ($row->guc_namespace_name . ':' . $row->page_title)
                 // Main namespace
-                : $rc->page_title;
+                : $row->page_title;
             // Normalise
-            $rc->guc_pagename = str_replace('_', ' ', $rc->guc_pagename);
+            $row->guc_pagename = str_replace('_', ' ', $row->guc_pagename);
         }
 
         return $contribs;

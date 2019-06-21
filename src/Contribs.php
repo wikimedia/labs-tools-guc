@@ -321,51 +321,6 @@ class Contribs {
         return $this->registeredUsers;
     }
 
-    /**
-     * Get relevant info about account blocks in recent history.
-     * @return null|array
-     */
-    public function getBlocks() {
-        return $this->getIpBlocks() ?: $this->getUserBlocks();
-    }
-
-    private function getIpBlocks() {
-        if (!$this->isIP()) {
-            return null;
-        }
-        $qry = "SELECT
-                    ipblocks.*,
-                    `user`.user_name AS admin_username
-            FROM ipblocks
-            INNER JOIN `user` ON ipb_by = `user`.user_id
-            WHERE ipblocks.ipb_address = :ipaddress LIMIT 0,100;";
-        $statement = $this->app->getDB($this->slice, $this->dbname)->prepare($qry);
-        $statement->bindParam(':ipaddress', $this->user);
-        $statement->execute();
-        $res = $statement->fetchAll(PDO::FETCH_ASSOC);
-        $statement = null;
-        return $res;
-    }
-
-    private function getUserBlocks() {
-        if ($this->isIP() || $this->options['isPrefixPattern'] || !$this->registeredUsers) {
-            return null;
-        }
-        $userId = key($this->registeredUsers);
-        $qry = "SELECT
-                    ipblocks.*,
-                    `user`.user_name AS admin_username
-            FROM ipblocks
-            INNER JOIN `user` ON ipb_by = `user`.user_id
-            WHERE ipblocks.ipb_user = :id LIMIT 0,100;";
-        $statement = $this->app->getDB($this->slice, $this->dbname)->prepare($qry);
-        $statement->bindParam(':id', $userId);
-        $statement->execute();
-        $res = $statement->fetchAll(PDO::FETCH_ASSOC);
-        $statement = null;
-        return $res;
-    }
-
     public static function formatChange(App $app, Wiki $wiki, stdClass $rc) {
         $item = array();
 

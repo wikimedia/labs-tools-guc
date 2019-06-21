@@ -108,8 +108,8 @@ class Contribs {
         $userIdCond = '';
         if ($this->registeredUsers) {
             $userIdCond = (count($this->registeredUsers) === 1)
-                ? '`actor_name` = ' . $pdo->quote(key($this->registeredUsers))
-                : '`actor_name` IN (' . join(',', array_map(
+                ? '`actor_user` = ' . $pdo->quote(key($this->registeredUsers))
+                : '`actor_user` IN (' . join(',', array_map(
                     array($pdo, 'quote'),
                     array_keys($this->registeredUsers)
                 )) . ')';

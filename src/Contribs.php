@@ -86,7 +86,7 @@ class Contribs {
             $rows = $statement->fetchAll(PDO::FETCH_OBJ);
             $statement = null;
 
-            // Limit quering of user ids to 10. If it's more than that, make the database
+            // Limit querying of user ids to 10. If it's more than that, make the database
             // query for contributions like for IP-addresses by using wildcard user_text.
             if (count($rows) > 10) {
                 $this->hasManyMatches = true;
@@ -108,12 +108,11 @@ class Contribs {
      * @return PDOStatement
      */
     private function prepareRevisionQuery(PDO $pdo) {
-        // Optimisation: Use rev_user index where possible
         $userIdCond = '';
         if ($this->registeredUsers) {
             $userIdCond = (count($this->registeredUsers) === 1)
-                ? '`rev_user` = ' . $pdo->quote(key($this->registeredUsers))
-                : '`rev_user` IN (' . join(',', array_map(
+                ? '`actor_name` = ' . $pdo->quote(key($this->registeredUsers))
+                : '`actor_name` IN (' . join(',', array_map(
                     array($pdo, 'quote'),
                     array_keys($this->registeredUsers)
                 )) . ')';
@@ -125,16 +124,18 @@ class Contribs {
                 `rev_len`,
                 `rev_id`,
                 `rev_parent_id`,
-                `rev_user_text`,
+                `actor_name`,
                 `page_title`,
                 `page_namespace`,
                 `page_latest` = `rev_id` AS `guc_is_cur`
             FROM
                 `revision_userindex`
+            JOIN
+                `actor_revision` ON `actor_id` = `rev_actor`
             INNER JOIN
                 `page` ON `rev_page` = `page_id`
             LEFT OUTER JOIN
-                `comment` ON `rev_comment_id` = `comment_id`
+                `comment_revision` ON `rev_comment_id` = `comment_id`
             WHERE
                 `rev_deleted` = 0 AND
                 ".(
@@ -142,8 +143,8 @@ class Contribs {
                         ? $userIdCond
                         : (
                             ($this->options['isPrefixPattern'])
-                                ? 'rev_user_text LIKE :userlike'
-                                : 'rev_user_text = :user'
+                                ? 'actor_name LIKE :userlike'
+                                : 'actor_name = :user'
                         )
                 )."
             ORDER BY `rev_timestamp` DESC
@@ -167,13 +168,11 @@ class Contribs {
      * @return PDOStatement
      */
     private function prepareRecentchangesQuery(PDO $pdo, $extraConds = []) {
-        // Avoid use of rc_user. Contrary to revision table, it has no index.
-        // Simply use rc_user_text instead, which has a good index.
         $conds = [
             '`rc_deleted` = 0',
             ($this->options['isPrefixPattern'])
-                ? 'rc_user_text LIKE :userlike'
-                : 'rc_user_text = :user',
+                ? 'actor_name LIKE :userlike'
+                : 'actor_name = :user',
             // Ignore RC entries for log events and things like
             // Wikidata and categorization updates
             '`rc_type` IN (' . join(',', array_map(
@@ -190,14 +189,16 @@ class Contribs {
                 `rc_new_len` as `rev_len`,
                 `rc_this_oldid` as `rev_id`,
                 `rc_last_oldid` as `rev_parent_id`,
-                `rc_user_text` as `rev_user_text`,
+                `actor_name`,
                 `rc_title` as `page_title`,
                 `rc_namespace` as `page_namespace`,
                 "0" AS `guc_is_cur`
             FROM
                 `recentchanges_userindex`
+            JOIN
+                `actor_revision` ON `actor_id` = `rc_actor`
             LEFT OUTER JOIN
-                `comment` ON `rc_comment_id` = `comment_id`
+                `comment_revision` ON `rc_comment_id` = `comment_id`
             WHERE
                 ' . $sqlCond . '
             ORDER BY `rc_timestamp` DESC
@@ -247,7 +248,7 @@ class Contribs {
 
         foreach ($contribs as $rc) {
             // Normalise
-            $rc->rev_user_text = str_replace('_', ' ', $rc->rev_user_text);
+            $rc->actor_name = str_replace('_', ' ', $rc->actor_name);
 
             // Localised namespace prefix
             $rc->guc_namespace_name = $this->app->getNamespaceName(
@@ -285,7 +286,7 @@ class Contribs {
      * - rev_minor_edit
      * - rev_parent_id
      * - rev_timestamp
-     * - rev_user_text (Normalised)
+     * - actor_name (Normalised)
      * - comment_text
      * - guc_is_cur
      * - guc_namespace_name (Localised namespace prefix)
@@ -386,10 +387,10 @@ class Contribs {
 
         // When using isPrefixPattern, different edits may be from different users.
         // Show user name and basic tools for each entry.
-        $item['user'] = '<a href="'.htmlspecialchars($wiki->getUrl("User:{$rc->rev_user_text}")).'">'
-            . htmlspecialchars($rc->rev_user_text).'</a>'
-            . '&nbsp;(<a href="'.htmlspecialchars($wiki->getUrl("User_talk:{$rc->rev_user_text}")).'">talk</a>&nbsp;| '
-            . '<a href="'.htmlspecialchars($wiki->getUrl("Special:Contributions/{$rc->rev_user_text}")).'" title="Special:Contributions">contribs</a>)&nbsp;. .';
+        $item['user'] = '<a href="'.htmlspecialchars($wiki->getUrl("User:{$rc->actor_name}")).'">'
+            . htmlspecialchars($rc->actor_name).'</a>'
+            . '&nbsp;(<a href="'.htmlspecialchars($wiki->getUrl("User_talk:{$rc->actor_name}")).'">talk</a>&nbsp;| '
+            . '<a href="'.htmlspecialchars($wiki->getUrl("Special:Contributions/{$rc->actor_name}")).'" title="Special:Contributions">contribs</a>)&nbsp;. .';
 
         // Minor edit
         if ($rc->rev_minor_edit) {

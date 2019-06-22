@@ -1,3 +1,4 @@
+/.phpunit.result.cache
 /cache/*.json
 /composer.lock
 /coverage

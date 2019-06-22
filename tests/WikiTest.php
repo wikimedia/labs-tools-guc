@@ -2,7 +2,7 @@
 
 use Guc\Wiki;
 
-class WikiTest extends PHPUnit_Framework_TestCase {
+class WikiTest extends PHPUnit\Framework\TestCase {
 
     public static function provideEscapeId() {
         return [

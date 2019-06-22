@@ -9,14 +9,14 @@
 		"optimize-autoloader": true
 	},
 	"require": {
-		"php": ">=7.0",
-		"Krinkle/toollabs-base": "1.0.2",
+		"php": ">=7.2",
+		"krinkle/toollabs-base": "1.0.2",
 		"krinkle/intuition": "1.2.0"
 	},
 	"require-dev": {
 		"jakub-onderka/php-parallel-lint": "^1.0.0",
 		"squizlabs/php_codesniffer": "^2.9.1",
-		"phpunit/phpunit": "^5.7.27"
+		"phpunit/phpunit": "^8.2.3"
 	},
 	"scripts": {
 		"test": [

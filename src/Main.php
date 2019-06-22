@@ -145,8 +145,6 @@ class Main {
      * @return stdClass[] List of meta_p rows
      */
     private function reduceWikis(array $wikis) {
-        $matchingWikis = array();
-
         // Fast path:
         //
         // The input looks a user name, prefix search is off,
@@ -155,6 +153,7 @@ class Main {
         // Do: Reduce list of wikis to those with a local account.
         $caRows = $this->getCentralauthAll();
         if ($caRows) {
+            $matchingWikis = array();
             foreach ($wikis as $wiki) {
                 if (isset($caRows[$wiki->dbname])) {
                     $matchingWikis[$wiki->dbname] = $wiki;
@@ -171,76 +170,106 @@ class Main {
         // Do: Try to find at least 1 matching contribution by user name/IP
         // for the given search pattern.
 
+        if ($this->options['src'] === 'rc' || $this->options['src'] === 'hr') {
+            $subQuery = 'SELECT
+                1,
+                :dbname AS dbname
+                FROM {dbname}_p.recentchanges_userindex
+                JOIN {dbname}_p.actor_recentchanges ON actor_id = rc_actor
+                WHERE '.(
+                    ($this->options['isPrefixPattern'])
+                        ? 'actor_name LIKE :userlike'
+                        : 'actor_name = :user'
+                ).(
+                    ($this->options['src'] === 'hr')
+                        ? ' AND rc_timestamp >= :hrcutoff'
+                        : ''
+                // Ignore RC entries for log events and things like
+                // Wikidata and categorization updates
+                ).' AND rc_type IN (' . join(',', array_map(
+                    'intval',
+                    array(Contribs::MW_RC_EDIT, Contribs::MW_RC_NEW)
+                )) . ')
+                LIMIT 1';
+        } else {
+            $subQuery = 'SELECT
+                1,
+                :dbname AS dbname
+                FROM {dbname}_p.revision_userindex
+                JOIN {dbname}_p.actor_revision ON actor_id = rev_actor
+                WHERE '.(
+                    ($this->options['isPrefixPattern'])
+                        ? 'actor_name LIKE :userlike'
+                        : 'actor_name = :user'
+                ).'
+                LIMIT 1';
+        }
+
+        return $this->doBigUnionReduce(
+            $wikis,
+            $subQuery,
+            'matching revisions'
+        );
+    }
+
+    /**
+     * @param stdClass[] $wikis List of meta_p rows
+     * @param string $subQuery Query that does "SELECT 1 … LIMIT 1",
+     *  which may use "{dbname}" (raw) or ":dbname" (quoted) as placeholders per-wiki,
+     *  and also ":userlike", ":user" and ":hrcutoff" as placeholders globally.
+     * @param string $subjectLabel
+     * @return stdClass[] Reduced list of meta_p rows
+     */
+    private function doBigUnionReduce(array $wikis, $subQuery, $subjectLabel) {
+        $resultsByWiki = array();
+
         // Copied from Contribs::prepareLastHourQuery
         // (TODO: Refactor somehow)
         $cutoff = gmdate(Contribs::MW_DATE_FORMAT, time() - 3600);
 
         $queriesBySlice = array();
-        $wikisByDbname = array();
+        $wikiRowsByDbname = array();
         foreach ($wikis as $wiki) {
-            $wikisByDbname[$wiki->dbname] = $wiki;
-            if ($this->options['src'] === 'rc' || $this->options['src'] === 'hr') {
-                $sql = '(SELECT
-                    1,
-                    \''.$wiki->dbname.'\' AS dbname
-                    FROM '.$wiki->dbname.'_p.recentchanges_userindex
-                    JOIN '.$wiki->dbname.'_p.actor_recentchanges ON actor_id = rc_actor
-                    WHERE '.(
-                        ($this->options['isPrefixPattern'])
-                            ? 'actor_name LIKE :userlike'
-                            : 'actor_name = :user'
-                    ).(
-                        ($this->options['src'] === 'hr')
-                            ? ' AND rc_timestamp >= :hrcutoff'
-                            : ''
-                    // Ignore RC entries for log events and things like
-                    // Wikidata and categorization updates
-                    ).' AND rc_type IN (' . join(',', array_map(
-                        'intval',
-                        array(Contribs::MW_RC_EDIT, Contribs::MW_RC_NEW)
-                    )) . ')
-                    LIMIT 1)';
-            } else {
-                $sql = '(SELECT
-                    1,
-                    \''.$wiki->dbname.'\' AS dbname
-                    FROM '.$wiki->dbname.'_p.revision_userindex
-                    JOIN '.$wiki->dbname.'_p.actor_revision ON actor_id = rev_actor
-                    WHERE '.(
-                        ($this->options['isPrefixPattern'])
-                            ? 'actor_name LIKE :userlike'
-                            : 'actor_name = :user'
-                    ).'
-                    LIMIT 1)';
-            }
-            $queriesBySlice[$wiki->slice][] = $sql;
+            $wikiRowsByDbname[$wiki->dbname] = $wiki;
+            $queriesBySlice[$wiki->slice][$wiki->dbname] = $subQuery;
         }
-
         foreach ($queriesBySlice as $sliceName => $queries) {
-            if ($queries) {
-                $sql = implode(' UNION ALL ', $queries);
-                $this->app->debug("Querying wikis on `$sliceName` for matching revisions");
-                $pdo = $this->app->getDB($sliceName);
-                $statement = $pdo->prepare($sql);
-                $this->app->debug("[SQL] " . preg_replace('#\s+#', ' ', $sql));
-                if ($this->options['isPrefixPattern']) {
-                    $statement->bindParam(':userlike', $this->user);
-                } else {
-                    $statement->bindParam(':user', $this->user);
-                }
-                if ($this->options['src'] === 'hr') {
-                    $statement->bindValue(':hrcutoff', $cutoff);
-                }
-                $statement->execute();
-                $rows = $statement->fetchAll(PDO::FETCH_OBJ);
-                $statement = null;
+            // Expand placeholders.
+            // This would be nicer to do in the previous loop, but getting the PDO
+            // for each slice multiple times and potentially out of order can be costly.
+            // So do it here instead.
+            $pdo = $this->app->getDB($sliceName);
+            foreach ($queries as $dbname => &$query) {
+                $query = '('
+                    . str_replace($query, [
+                        '{dbname}' => $dbname,
+                        ':dbname' => $pdo->quote($dbname),
+                    ])
+                    . ')';
+            }
 
-                foreach ($rows as $row) {
-                    $matchingWikis[$row->dbname] = $wikisByDbname[$row->dbname];
-                }
+            $sql = implode(' UNION ALL ', $queries);
+            $this->app->debug("Querying wikis on `$sliceName` for $subjectLabel");
+            $statement = $pdo->prepare($sql);
+            $this->app->debug("[SQL] " . preg_replace('#\s+#', ' ', $sql));
+            if ($this->options['isPrefixPattern']) {
+                $statement->bindParam(':userlike', $this->user);
+            } else {
+                $statement->bindParam(':user', $this->user);
+            }
+            if ($this->options['src'] === 'hr') {
+                $statement->bindValue(':hrcutoff', $cutoff);
+            }
+            $statement->execute();
+            $rows = $statement->fetchAll(PDO::FETCH_OBJ);
+            $statement = null;
+
+            foreach ($rows as $row) {
+                $resultsByWiki[$row->dbname] = $wikiRowsByDbname[$row->dbname];
             }
         }
-        return $matchingWikis;
+
+        return $resultsByWiki;
     }
 
     /**

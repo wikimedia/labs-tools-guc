@@ -154,12 +154,29 @@ class Main {
         $caRows = $this->getCentralauthAll();
         if ($caRows) {
             $matchingWikis = array();
+            $placeholdersByWiki = array();
             foreach ($wikis as $wiki) {
                 if (isset($caRows[$wiki->dbname])) {
                     $matchingWikis[$wiki->dbname] = $wiki;
+                    $placeholdersByWiki[$wiki->dbname] = [
+                        'user_id' => $caRows[$wiki->dbname]->lu_local_id,
+                    ];
                 }
             }
-            return $matchingWikis;
+            $subQuery = 'SELECT
+                1,
+                :dbname AS dbname
+                FROM {dbname}_p.user
+                WHERE user_id = :user_id
+                AND user_editcount >= 1
+                LIMIT 1';
+
+            return $this->doBigUnionReduce(
+                $matchingWikis,
+                $subQuery,
+                'with non-zero editcount',
+                $placeholdersByWiki
+            );
         }
 
         // Slow path:
@@ -208,7 +225,7 @@ class Main {
         return $this->doBigUnionReduce(
             $wikis,
             $subQuery,
-            'matching revisions'
+            'with matching revisions'
         );
     }
 
@@ -218,9 +235,10 @@ class Main {
      *  which may use "{dbname}" (raw) or ":dbname" (quoted) as placeholders per-wiki,
      *  and also ":userlike", ":user" and ":hrcutoff" as placeholders globally.
      * @param string $subjectLabel
+     * @param array[] $placeholdersByWiki
      * @return stdClass[] Reduced list of meta_p rows
      */
-    private function doBigUnionReduce(array $wikis, $subQuery, $subjectLabel) {
+    private function doBigUnionReduce(array $wikis, $subQuery, $subjectLabel, $placeholdersByWiki = array()) {
         $resultsByWiki = array();
 
         // Copied from Contribs::prepareLastHourQuery
@@ -240,16 +258,22 @@ class Main {
             // So do it here instead.
             $pdo = $this->app->getDB($sliceName);
             foreach ($queries as $dbname => &$query) {
+                $placeholders = array(
+                    '{dbname}' => $dbname,
+                    ':dbname' => $pdo->quote($dbname),
+                );
+                if (isset($placeholdersByWiki[$dbname])) {
+                    foreach ($placeholdersByWiki[$dbname] as $key => $value) {
+                        $placeholders[':' . $key] = $pdo->quote($value);
+                    }
+                }
                 $query = '('
-                    . str_replace($query, [
-                        '{dbname}' => $dbname,
-                        ':dbname' => $pdo->quote($dbname),
-                    ])
+                    . strtr($query, $placeholders)
                     . ')';
             }
 
             $sql = implode(' UNION ALL ', $queries);
-            $this->app->debug("Querying wikis on `$sliceName` for $subjectLabel");
+            $this->app->debug("Finding wikis on `$sliceName` $subjectLabel");
             $statement = $pdo->prepare($sql);
             $this->app->debug("[SQL] " . preg_replace('#\s+#', ' ', $sql));
             if ($this->options['isPrefixPattern']) {

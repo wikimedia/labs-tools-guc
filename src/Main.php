@@ -158,7 +158,7 @@ class Main {
                     1,
                     \''.$wiki->dbname.'\' AS dbname
                     FROM '.$wiki->dbname.'_p.recentchanges_userindex
-                    JOIN '.$wiki->dbname.'_p.actor ON actor_id = rc_actor
+                    JOIN '.$wiki->dbname.'_p.actor_recentchanges ON actor_id = rc_actor
                     WHERE '.(
                         ($this->options['isPrefixPattern'])
                             ? 'actor_name LIKE :userlike'
@@ -179,7 +179,7 @@ class Main {
                     1,
                     \''.$wiki->dbname.'\' AS dbname
                     FROM '.$wiki->dbname.'_p.revision_userindex
-                    JOIN '.$wiki->dbname.'_p.actor ON actor_id = rev_actor
+                    JOIN '.$wiki->dbname.'_p.actor_revision ON actor_id = rev_actor
                     WHERE '.(
                         ($this->options['isPrefixPattern'])
                             ? 'actor_name LIKE :userlike'

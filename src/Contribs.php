@@ -156,7 +156,7 @@ class Contribs {
             FROM
                 recentchanges_userindex
             JOIN
-                actor_revision ON actor_id = rc_actor
+                actor_recentchanges ON actor_id = rc_actor
             LEFT OUTER JOIN
                 comment_revision ON rc_comment_id = comment_id
             WHERE

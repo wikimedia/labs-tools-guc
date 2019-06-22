@@ -25,8 +25,8 @@ $data->Username = @$_REQUEST['user'] ?: null;
 $data->debug = isset($_REQUEST['debug']);
 $data->options = array(
     'isPrefixPattern' => @$_REQUEST['isPrefixPattern'] === '1',
-    'src' => @$_REQUEST['src'] ?: 'date',
-    'by' => @$_REQUEST['by'] ?: 'wiki',
+    'src' => @$_REQUEST['src'] ?: 'all',
+    'by' => @$_REQUEST['by'] ?: 'date',
 );
 
 $int = new Intuition(array(

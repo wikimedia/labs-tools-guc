@@ -260,8 +260,8 @@ class Main {
             }
             $this->centralauthData = $centralauthData;
         }
-        if (isset($centralauthData[$dbname])) {
-            return $centralauthData[$dbname];
+        if (isset($this->centralauthData[$dbname])) {
+            return $this->centralauthData[$dbname];
         } else {
             return false;
         }

@@ -22,6 +22,7 @@ class Main {
 
     private $datas;
     private $wikis;
+    private $centralauthData;
 
     public static function getDefaultOptions() {
         return array(
@@ -83,15 +84,16 @@ class Main {
             $data->contribs = null;
 
             try {
+                $centralauthData = $this->getCentralauthData($wikiRow->dbname);
                 $contribs = new Contribs(
                     $this->app,
                     $this->user,
                     $this->isIP,
                     $wiki,
-                    $this->getCentralauthData($wikiRow->dbname),
+                    $centralauthData,
                     $options
                 );
-                if ($this->options['isPrefixPattern'] && !$contribs->getRegisteredUsers()) {
+                if ($this->options['isPrefixPattern'] && !$centralauthData) {
                     foreach ($contribs->getContribs() as $rc) {
                         // Check before adding because this loop runs for each wiki
                         if (count($this->ipInfos) > 10) {
@@ -219,20 +221,24 @@ class Main {
      * Get centralauth information
      * @staticvar null $centralauthData
      * @param string $dbname
-     * @return object|null|bool False means CentralAuth query failed
-     *  or the user is an IP or pattern. Null means we're dealing with a
-     *  proper user name but the account is not attached on this wiki.
+     * @return object|false False means there is no account by the given name
+     *  locally on this wiki (including for IP and prefix searches).
      */
     private function getCentralauthData($dbname) {
-        static $centralauthData = null;
         if ($this->isIP || $this->options['isPrefixPattern']) {
             return false;
         }
-        if ($centralauthData === null) {
+        if ($this->centralauthData === null) {
             $this->app->debug("Querying CentralAuth database for SUL information");
             $centralauthData = array();
             $pdo = $this->app->getDB('centralauth');
-            $sql = 'SELECT lu_wiki, lu_attached_timestamp FROM `centralauth_p`.`localuser` WHERE lu_name = :user;';
+            $sql = 'SELECT
+                lu_name,
+                lu_wiki,
+                lu_attached_timestamp,
+                lu_local_id
+                FROM `centralauth_p`.`localuser`
+                WHERE lu_name = :user;';
             $statement = $pdo->prepare($sql);
             $this->app->debug("[SQL] " . preg_replace('#\s+#', ' ', $sql));
             $statement->bindParam(':user', $this->user);
@@ -241,20 +247,24 @@ class Main {
 
             $statement = null;
             $pdo = null;
-            // Close early, no re-use expected.
+            // Close this connection early, we don't expect to re-use it.
             $this->app->closeDB('centralauth');
 
-            if (!$rows) {
-                return false;
+            if ($rows) {
+                foreach ($rows as $row) {
+                    // Normalise
+                    $row->lu_name = str_replace('_', ' ', $row->lu_name);
+
+                    $centralauthData[$row->lu_wiki] = $row;
+                }
             }
-            foreach ($rows as $row) {
-                $centralauthData[$row->lu_wiki] = $row;
-            }
+            $this->centralauthData = $centralauthData;
         }
-        if (!isset($centralauthData[$dbname])) {
-            return null;
+        if (isset($centralauthData[$dbname])) {
+            return $centralauthData[$dbname];
+        } else {
+            return false;
         }
-        return $centralauthData[$dbname];
     }
 
     /**

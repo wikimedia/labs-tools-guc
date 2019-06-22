@@ -48,25 +48,18 @@ class PerWikiOutput implements IOutput {
 
         $userinfo = array();
 
-        $users = $contribs->getUsers();
-        if ($users) {
-            if (count($users) === 1) {
-                $userinfo[] = $this->getUserTools($wiki, current($users));
+        if ($contribs->isOneUser()) {
+            $userinfo[] = $this->getUserTools($wiki, $contribs->getUserQuery());
+            if ($contribs->isUnattached()) {
+                $userinfo[] = 'SUL: Account not attached.';
             } else {
-                $userinfo[] = count($users) . ' users: '
-                    . implode(', ', array_values($users));
+                $ca = $contribs->getCentralAuth();
+                if ($ca) {
+                    $userinfo[] = 'SUL: Account attached at '.$this->app->formatMwDate($ca->lu_attached_timestamp);
+                }
             }
-        } elseif ($contribs->hasManyUsers()) {
-            $userinfo[] = 'More than 10 users';
-        }
-
-        if ($contribs->isUnattached()) {
-            $userinfo[] = 'SUL: Account not attached.';
         } else {
-            $ca = $contribs->getCentralAuth();
-            if ($ca) {
-                $userinfo[] = 'SUL: Account attached at '.$this->app->formatMwDate($ca->lu_attached_timestamp);
-            }
+            $userinfo[] = 'Multiple users';
         }
 
         if ($userinfo) {

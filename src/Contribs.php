@@ -32,7 +32,7 @@ class Contribs {
     private $centralAuth;
     private $hasManyMatches = false;
     private $contribs = null;
-    private $registeredUsers = array();
+    private $localUserId = null;
 
     /**
      *
@@ -40,7 +40,7 @@ class Contribs {
      * @param string $user Search query for wiki users
      * @param boolean $isIP
      * @param Wiki $wiki
-     * @param null|false|object $centralAuth
+     * @param object|false $centralAuth
      * @param array $options
      */
     public function __construct(App $app, $user, $isIP, Wiki $wiki, $centralAuth, $options = array()) {
@@ -58,42 +58,8 @@ class Contribs {
         );
 
         $this->centralAuth = $centralAuth;
-
-        if ($this->isIp !== true) {
-            $this->app->debug('Query user data for ' . $wiki->domain);
-            $sql = "SELECT
-                `user_id`,
-                `user_name`
-                FROM `user`
-                WHERE ".(
-                    ($this->options['isPrefixPattern'])
-                        ? "`user_name` LIKE :userlike"
-                        : "`user_name` = :user"
-                )."
-                LIMIT 10;";
-            // Get user data
-            $statement = $this->app->getDB($wiki->slice, $wiki->dbname)->prepare($sql);
-            $this->app->debug("[SQL] " . preg_replace('#\s+#', ' ', $sql));
-            if ($this->options['isPrefixPattern']) {
-                $statement->bindParam(':userlike', $this->user);
-            } else {
-                $statement->bindParam(':user', $this->user);
-            }
-            $statement->execute();
-            $rows = $statement->fetchAll(PDO::FETCH_OBJ);
-            $statement = null;
-
-            // Limit querying of user ids to 10. If it's more than that, make the database
-            // query for contributions like for IP-addresses by using wildcard user_text.
-            if (count($rows) > 10) {
-                $this->hasManyMatches = true;
-            } elseif ($rows) {
-                foreach ($rows as $row) {
-                    $this->registeredUsers[$row->user_id] = $row->user_name;
-                }
-            }
-            // Else: 'user' does not exist, or is an IP, or an IP pattern,
-            // or a user name pattern with many matches.
+        if ($centralAuth) {
+            $this->localUserId = (int)$centralAuth->lu_local_id;
         }
 
         $this->contribs = $this->fetchContribs();
@@ -105,15 +71,6 @@ class Contribs {
      * @return PDOStatement
      */
     private function prepareRevisionQuery(PDO $pdo) {
-        $userIdCond = '';
-        if ($this->registeredUsers) {
-            $userIdCond = (count($this->registeredUsers) === 1)
-                ? '`actor_user` = ' . $pdo->quote(key($this->registeredUsers))
-                : '`actor_user` IN (' . join(',', array_map(
-                    array($pdo, 'quote'),
-                    array_keys($this->registeredUsers)
-                )) . ')';
-        }
         $sql = "SELECT
                 `comment_text`,
                 `rev_timestamp`,
@@ -136,8 +93,8 @@ class Contribs {
             WHERE
                 `rev_deleted` = 0 AND
                 ".(
-                    ($userIdCond)
-                        ? $userIdCond
+                    ($this->localUserId)
+                        ? 'actor_user = ' . $pdo->quote($this->localUserId)
                         : (
                             ($this->options['isPrefixPattern'])
                                 ? 'actor_name LIKE :userlike'
@@ -149,7 +106,7 @@ class Contribs {
             ";";
         $this->app->debug("[SQL] " . preg_replace('#\s+#', ' ', $sql));
         $statement = $pdo->prepare($sql);
-        if (!$userIdCond) {
+        if (!$this->localUserId) {
             if ($this->options['isPrefixPattern']) {
                 $statement->bindParam(':userlike', $this->user);
             } else {
@@ -167,9 +124,15 @@ class Contribs {
     private function prepareRecentchangesQuery(PDO $pdo, $extraConds = []) {
         $conds = [
             '`rc_deleted` = 0',
-            ($this->options['isPrefixPattern'])
-                ? 'actor_name LIKE :userlike'
-                : 'actor_name = :user',
+            (
+                ($this->localUserId)
+                    ? 'actor_user = ' . $pdo->quote($this->localUserId)
+                    : (
+                        ($this->options['isPrefixPattern'])
+                            ? 'actor_name LIKE :userlike'
+                            : 'actor_name = :user'
+                    )
+            ),
             // Ignore RC entries for log events and things like
             // Wikidata and categorization updates
             '`rc_type` IN (' . join(',', array_map(
@@ -300,25 +263,18 @@ class Contribs {
         return !!$this->contribs;
     }
 
-    public function getUsers() {
-        if (!$this->options['isPrefixPattern']) {
-            // Single IP or user name
-            return array($this->user);
-        }
-        // Multiple user names
-        // If pattern matches multiple IPs, user info is not shown
-        return $this->getRegisteredUsers();
-    }
-
-    public function hasManyUsers() {
-        return !!$this->hasManyMatches;
+    /**
+     * @return bool
+     */
+    public function isOneUser() {
+        return ($this->centralAuth !== null) || (!$this->options['isPrefixPattern']);
     }
 
     /**
-     * @return array Map of user id to user name
+     * @return string
      */
-    public function getRegisteredUsers() {
-        return $this->registeredUsers;
+    public function getUserQuery() {
+        return $this->user;
     }
 
     public static function formatChange(App $app, Wiki $wiki, stdClass $rc) {

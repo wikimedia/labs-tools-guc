@@ -72,7 +72,7 @@ class Main {
 
         $wikis = $this->getWikis();
         // Filter down wikis to only relevant ones.
-        $matchingWikis = $this->getWikisWithContribs($wikis);
+        $matchingWikis = $this->reduceWikis($wikis);
 
         $datas = new stdClass();
         foreach ($matchingWikis as $dbname => $wikiRow) {
@@ -84,16 +84,16 @@ class Main {
             $data->contribs = null;
 
             try {
-                $centralauthData = $this->getCentralauthData($wikiRow->dbname);
+                $caRow = $this->getCentralauthRow($wikiRow->dbname);
                 $contribs = new Contribs(
                     $this->app,
                     $this->user,
                     $this->isIP,
                     $wiki,
-                    $centralauthData,
+                    $caRow,
                     $this->options
                 );
-                if ($this->options['isPrefixPattern'] && !$centralauthData) {
+                if ($this->options['isPrefixPattern'] && !$caRow) {
                     foreach ($contribs->getContribs() as $rc) {
                         // Check before adding because this loop runs for each wiki
                         if (count($this->ipInfos) > 10) {
@@ -118,8 +118,9 @@ class Main {
     }
 
     /**
-     * Get all wikis
-     * @return array of objects
+     * Get meta information about all wikis we want to check.
+     *
+     * @return stdClass[] List of meta_p rows
      */
     private function getWikis() {
         $this->app->debug('Get list of all wikis');
@@ -138,12 +139,37 @@ class Main {
     }
 
     /**
-     * return the wikis with contribs
-     * @param array $wikis List of meta_p rows
-     * @return array
+     * Reduce list of meta_p to those with one or more matching contributions
+     *
+     * @param stdClass[] $wikis
+     * @return stdClass[] List of meta_p rows
      */
-    private function getWikisWithContribs(array $wikis) {
+    private function reduceWikis(array $wikis) {
         $matchingWikis = array();
+
+        // Fast path:
+        //
+        // The input looks a user name, prefix search is off,
+        // and we found information in CentralAuth.
+        //
+        // Do: Reduce list of wikis to those with a local account.
+        $caRows = $this->getCentralauthAll();
+        if ($caRows) {
+            foreach ($wikis as $wiki) {
+                if (isset($caRows[$wiki->dbname])) {
+                    $matchingWikis[$wiki->dbname] = $wiki;
+                }
+            }
+            return $matchingWikis;
+        }
+
+        // Slow path:
+        //
+        // The input is an IP, or prefix search is used,
+        // or we didn't find anything in CentralAuth.
+        //
+        // Do: Try to find at least 1 matching contribution by user name/IP
+        // for the given search pattern.
 
         // Copied from Contribs::prepareLastHourQuery
         // (TODO: Refactor somehow)
@@ -218,13 +244,13 @@ class Main {
     }
 
     /**
-     * Get centralauth information
-     * @staticvar null $centralauthData
-     * @param string $dbname
+     * Get CentralAuth information about a specific wiki.
+     *
+     * @param string|null $dbname Wiki (Passing null is for internal use only.)
      * @return object|false False means there is no account by the given name
      *  locally on this wiki (including for IP and prefix searches).
      */
-    private function getCentralauthData($dbname) {
+    private function getCentralauthRow($dbname) {
         if ($this->isIP || $this->options['isPrefixPattern']) {
             return false;
         }
@@ -260,11 +286,23 @@ class Main {
             }
             $this->centralauthData = $centralauthData;
         }
-        if (isset($this->centralauthData[$dbname])) {
+        if ($dbname === null) {
+            return $this->centralauthData;
+        } elseif (isset($this->centralauthData[$dbname])) {
             return $this->centralauthData[$dbname];
         } else {
             return false;
         }
+    }
+
+    /**
+     * Get CentralAuth information for any wikis where an account with the given name exists.
+     *
+     * @return object|false False means there is no account by the given name
+     *  locally on this wiki (including for IP and prefix searches).
+     */
+    private function getCentralauthAll() {
+        return $this->getCentralauthRow(null);
     }
 
     /**

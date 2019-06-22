@@ -325,7 +325,6 @@ class Contribs {
     /**
      * Whether the user should be as unattached.
      *
-     * @see Main::getCentralauthData()
      * @return boolean
      */
     public function isUnattached() {
@@ -333,7 +332,7 @@ class Contribs {
     }
 
     /**
-     * @see Main::getCentralauthData()
+     * @see Main::getCentralauthRow()
      * @return stdClass|bool False if data is unavailable
      */
     public function getCentralAuth() {

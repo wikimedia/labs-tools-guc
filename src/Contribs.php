@@ -72,26 +72,26 @@ class Contribs {
      */
     private function prepareRevisionQuery(PDO $pdo) {
         $sql = "SELECT
-                `comment_text`,
-                `rev_timestamp`,
-                `rev_minor_edit`,
-                `rev_len`,
-                `rev_id`,
-                `rev_parent_id`,
-                `actor_name`,
-                `page_title`,
-                `page_namespace`,
-                `page_latest` = `rev_id` AS `guc_is_cur`
+                comment_text,
+                rev_timestamp,
+                rev_minor_edit,
+                rev_len,
+                rev_id,
+                rev_parent_id,
+                actor_name,
+                page_title,
+                page_namespace,
+                (page_latest = rev_id) AS guc_is_cur
             FROM
-                `revision_userindex`
+                revision_userindex
             JOIN
-                `actor_revision` ON `actor_id` = `rev_actor`
+                actor_revision ON actor_id = rev_actor
             INNER JOIN
-                `page` ON `rev_page` = `page_id`
+                page ON rev_page = page_id
             LEFT OUTER JOIN
-                `comment_revision` ON `rev_comment_id` = `comment_id`
+                comment_revision ON rev_comment_id = comment_id
             WHERE
-                `rev_deleted` = 0 AND
+                rev_deleted = 0 AND
                 ".(
                     ($this->localUserId)
                         ? 'actor_user = ' . $pdo->quote($this->localUserId)
@@ -101,7 +101,7 @@ class Contribs {
                                 : 'actor_name = :user'
                         )
                 )."
-            ORDER BY `rev_timestamp` DESC
+            ORDER BY rev_timestamp DESC
             LIMIT 0, " . intval(self::CONTRIB_LIMIT) .
             ";";
         $this->app->debug("[SQL] " . preg_replace('#\s+#', ' ', $sql));
@@ -123,7 +123,7 @@ class Contribs {
      */
     private function prepareRecentchangesQuery(PDO $pdo, $extraConds = []) {
         $conds = [
-            '`rc_deleted` = 0',
+            'rc_deleted = 0',
             (
                 ($this->localUserId)
                     ? 'actor_user = ' . $pdo->quote($this->localUserId)
@@ -135,7 +135,7 @@ class Contribs {
             ),
             // Ignore RC entries for log events and things like
             // Wikidata and categorization updates
-            '`rc_type` IN (' . join(',', array_map(
+            'rc_type IN (' . join(',', array_map(
                 'intval',
                 array(self::MW_RC_EDIT, self::MW_RC_NEW)
             )) . ')'
@@ -143,25 +143,25 @@ class Contribs {
         $conds = array_merge($conds, $extraConds);
         $sqlCond = implode(' AND ', $conds);
         $sql = 'SELECT
-                `comment_text`,
-                `rc_timestamp` as `rev_timestamp`,
-                `rc_minor` as `rev_minor_edit`,
-                `rc_new_len` as `rev_len`,
-                `rc_this_oldid` as `rev_id`,
-                `rc_last_oldid` as `rev_parent_id`,
-                `actor_name`,
-                `rc_title` as `page_title`,
-                `rc_namespace` as `page_namespace`,
-                "0" AS `guc_is_cur`
+                comment_text,
+                rc_timestamp as rev_timestamp,
+                rc_minor as rev_minor_edit,
+                rc_new_len as rev_len,
+                rc_this_oldid as rev_id,
+                rc_last_oldid as rev_parent_id,
+                actor_name,
+                rc_title as page_title,
+                rc_namespace as page_namespace,
+                "0" AS guc_is_cur
             FROM
-                `recentchanges_userindex`
+                recentchanges_userindex
             JOIN
-                `actor_revision` ON `actor_id` = `rc_actor`
+                actor_revision ON actor_id = rc_actor
             LEFT OUTER JOIN
-                `comment_revision` ON `rc_comment_id` = `comment_id`
+                comment_revision ON rc_comment_id = comment_id
             WHERE
                 ' . $sqlCond . '
-            ORDER BY `rc_timestamp` DESC
+            ORDER BY rc_timestamp DESC
             LIMIT 0, ' . intval(self::CONTRIB_LIMIT) .
             ';';
         $statement = $pdo->prepare($sql);

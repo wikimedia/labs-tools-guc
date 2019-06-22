@@ -128,7 +128,7 @@ class Main {
             $f_where[] = 'is_closed = 0';
         }
         $f_where = implode(' AND ', $f_where);
-        $sql = 'SELECT * FROM `meta_p`.`wiki` WHERE '.$f_where.' LIMIT 1500;';
+        $sql = 'SELECT * FROM meta_p.wiki WHERE '.$f_where.' LIMIT 1500;';
         $statement = $this->app->getDB()->prepare($sql);
         $this->app->debug("[SQL] " . preg_replace('#\s+#', ' ', $sql));
         $statement->execute();
@@ -149,13 +149,13 @@ class Main {
         // (TODO: Refactor somehow)
         $cutoff = gmdate(Contribs::MW_DATE_FORMAT, time() - 3600);
 
-        $slices = array();
+        $queriesBySlice = array();
         $wikisByDbname = array();
         foreach ($wikis as $wiki) {
             $wikisByDbname[$wiki->dbname] = $wiki;
             if ($this->options['src'] === 'rc' || $this->options['src'] === 'hr') {
                 $sql = '(SELECT
-                    "1",
+                    1,
                     \''.$wiki->dbname.'\' AS dbname
                     FROM '.$wiki->dbname.'_p.recentchanges_userindex
                     JOIN '.$wiki->dbname.'_p.actor ON actor_id = rc_actor
@@ -169,14 +169,14 @@ class Main {
                             : ''
                     // Ignore RC entries for log events and things like
                     // Wikidata and categorization updates
-                    ).' AND `rc_type` IN (' . join(',', array_map(
+                    ).' AND rc_type IN (' . join(',', array_map(
                         'intval',
                         array(Contribs::MW_RC_EDIT, Contribs::MW_RC_NEW)
                     )) . ')
                     LIMIT 1)';
             } else {
                 $sql = '(SELECT
-                    "1",
+                    1,
                     \''.$wiki->dbname.'\' AS dbname
                     FROM '.$wiki->dbname.'_p.revision_userindex
                     JOIN '.$wiki->dbname.'_p.actor ON actor_id = rev_actor
@@ -187,10 +187,10 @@ class Main {
                     ).'
                     LIMIT 1)';
             }
-            $slices[$wiki->slice][] = $sql;
+            $queriesBySlice[$wiki->slice][] = $sql;
         }
 
-        foreach ($slices as $sliceName => $queries) {
+        foreach ($queriesBySlice as $sliceName => $queries) {
             if ($queries) {
                 $sql = implode(' UNION ALL ', $queries);
                 $this->app->debug("Querying wikis on `$sliceName` for matching revisions");
@@ -237,7 +237,7 @@ class Main {
                 lu_wiki,
                 lu_attached_timestamp,
                 lu_local_id
-                FROM `centralauth_p`.`localuser`
+                FROM centralauth_p.localuser
                 WHERE lu_name = :user;';
             $statement = $pdo->prepare($sql);
             $this->app->debug("[SQL] " . preg_replace('#\s+#', ' ', $sql));

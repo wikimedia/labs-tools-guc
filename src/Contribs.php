@@ -77,7 +77,6 @@ class Contribs {
                 rev_minor_edit,
                 rev_len,
                 rev_id,
-                rev_parent_id,
                 actor_name,
                 page_title,
                 page_namespace,
@@ -148,7 +147,6 @@ class Contribs {
                 rc_minor as rev_minor_edit,
                 rc_new_len as rev_len,
                 rc_this_oldid as rev_id,
-                rc_last_oldid as rev_parent_id,
                 actor_name,
                 rc_title as page_title,
                 rc_namespace as page_namespace,
@@ -244,7 +242,6 @@ class Contribs {
      * - rev_id
      * - rev_len
      * - rev_minor_edit
-     * - rev_parent_id
      * - rev_timestamp
      * - actor_name (Normalised)
      * - comment_text

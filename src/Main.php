@@ -251,6 +251,7 @@ class Main {
             $wikiRowsByDbname[$wiki->dbname] = $wiki;
             $queriesBySlice[$wiki->slice][$wiki->dbname] = $subQuery;
         }
+
         foreach ($queriesBySlice as $sliceName => $queries) {
             // Expand placeholders.
             // This would be nicer to do in the previous loop, but getting the PDO

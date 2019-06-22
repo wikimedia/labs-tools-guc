@@ -10,7 +10,7 @@ use Guc\ChronologyOutput;
 use Guc\PerWikiOutput;
 use Guc\Contribs;
 use Guc\Main;
-use Krinkle\Intuition;
+use Krinkle\Intuition\Intuition;
 
 require_once __DIR__ . '/vendor/autoload.php';
 

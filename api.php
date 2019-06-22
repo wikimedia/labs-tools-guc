@@ -1,6 +1,6 @@
 <?php
 
-use Krinkle\Intuition;
+use Krinkle\Intuition\Intuition;
 
 require_once __DIR__ . '/vendor/autoload.php';
 

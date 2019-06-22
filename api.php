@@ -1,5 +1,7 @@
 <?php
 
+use Krinkle\Intuition;
+
 require_once __DIR__ . '/vendor/autoload.php';
 
 global $kgReq;
@@ -78,7 +80,6 @@ try {
         if ($max > 0) {
             $int = new Intuition(array(
                 'domain' => 'guc',
-                'globalfunctions' => false,
             ));
             $int->registerDomain('guc', __DIR__ . '/i18n');
 

@@ -10,6 +10,7 @@ use Guc\ChronologyOutput;
 use Guc\PerWikiOutput;
 use Guc\Contribs;
 use Guc\Main;
+use Krinkle\Intuition;
 
 require_once __DIR__ . '/vendor/autoload.php';
 
@@ -30,7 +31,6 @@ $data->options = array(
 
 $int = new Intuition(array(
     'domain' => 'guc',
-    'globalfunctions' => false,
 ));
 $int->registerDomain('guc', __DIR__ . '/i18n');
 

@@ -52,7 +52,7 @@ class Contribs {
 
         $this->user = $user;
         $this->isIp = $isIP;
-        $this->options = $options += array(
+        $this->options = $options + array(
             'isPrefixPattern' => false,
             'src' => 'all',
         );

@@ -40,7 +40,7 @@ class Main {
         $this->user = str_replace('_', ' ', ucfirst(trim($user)));
 
         // Defaults
-        $this->options = $options += self::getDefaultOptions();
+        $this->options = $options + self::getDefaultOptions();
 
         if (!$this->user) {
             throw new Exception('No username or IP');
@@ -91,7 +91,7 @@ class Main {
                     $this->isIP,
                     $wiki,
                     $centralauthData,
-                    $options
+                    $this->options
                 );
                 if ($this->options['isPrefixPattern'] && !$centralauthData) {
                     foreach ($contribs->getContribs() as $rc) {

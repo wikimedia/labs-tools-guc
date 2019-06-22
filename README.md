@@ -7,7 +7,7 @@ Requires [Composer](https://getcomposer.org/) and PHP 7.2 or later.
 ```
 ~/git/guc $ chmod 775 cache/
 ~/git/guc $ composer install --no-dev
-~/git/guc $ php -S localhost:9223 -t public_html/
+~/git/guc $ php -S localhost:9223
 ```
 
 ## Toolforge management

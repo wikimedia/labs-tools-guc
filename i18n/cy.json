@@ -1,0 +1,13 @@
+{
+	"@metadata": {
+		"authors": [
+			"Robin Owain"
+		]
+	},
+	"description": "Dangoswch gyfraniadau'r defnyddiwr ym mhob wici Wicimedia.",
+	"form-user": "Cyfeiriad IP neu enw defnyddiwr",
+	"form-from-all": "Yr holl gyfraniadau",
+	"form-from-rc": "Newidiadau diweddaraf (30 diwrnod olaf)",
+	"form-from-hr": "Yr awr ddiwethaf yn unig",
+	"form-sort": "Sortio'r canlyniadau"
+}

@@ -14,7 +14,7 @@ class Settings {
     public static function getSetting($setting) {
         static $settings = null;
         if ($settings === null) {
-               $cnf = self::getDatabaseLogin();
+               $cnf = self::getMySQLloginFromFile();
                 $settings = array(
                     // Database
                     'user' => $cnf['user'],
@@ -28,18 +28,13 @@ class Settings {
     }
 
 
-    private static function getDatabaseLogin() {
+    private static function getMySQLloginFromFile() {
         static $cnf = null;
         if ($cnf === null) {
-            $homeDir = getenv('HOME');
-            if (!$homeDir) {
-                throw new Exception('Unable to find HOME directory');
-            } else {
-                $cnfPath = $homeDir . '/replica.my.cnf';
-                $cnf = parse_ini_file($cnfPath);
-                if (!isset($cnf['user']) || !isset($cnf['password'])) {
-                    throw new Exception("Failed to read credentials from " . $cnfPath);
-                }
+            $uinfo = posix_getpwuid(posix_geteuid());
+            $cnf = parse_ini_file($uinfo['dir'] . '/replica.my.cnf');
+            if (!$cnf || !$cnf['user'] || !$cnf['password']) {
+                throw new Exception("MySQL login data not found at " . $uinfo['dir']);
             }
         }
         return $cnf;

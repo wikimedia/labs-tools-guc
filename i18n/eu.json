@@ -1,0 +1,14 @@
+{
+	"@metadata": {
+		"authors": [
+			"An13sa",
+			"Mikel Ibaiba"
+		]
+	},
+	"form-from-hr": "Azken ordua bakarrik",
+	"form-sort": "Emaitzak ordenatu",
+	"form-sort-wiki": "Wikiaren arabera",
+	"form-sort-date": "Dataren arabera",
+	"form-submit": "Bilatu",
+	"results-lag-warning": "Emaitzek azken aldaketak faltan izan ditzakete. Tresnetarako memoria basearen kopiak murriztuta daude orain. Ikusi [https://tools.wmflabs.org/replag/ Replag]."
+}

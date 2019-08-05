@@ -1,0 +1,20 @@
+{
+	"@metadata": {
+		"authors": [
+			"Brazal.dang"
+		]
+	},
+	"description": "Ipahiling an kontribusyon kan paragamit hali sa gabos na wiki kan Wikimedia.",
+	"form-user": "Estada kan IP o ngaran-parágamit:",
+	"form-isPrefixPattern": "Paganahon an paghanap gamit an prefix",
+	"form-from": "Isali an resulta hali sa",
+	"form-from-all": "Mga kontribusyon",
+	"form-from-rc": "Pinakabagong mga pagliwat sana (huring 30 aldaw)",
+	"form-from-hr": "Huring oras sana",
+	"form-sort": "Uriin ang resulta",
+	"form-sort-wiki": "Uyon sa wiki",
+	"form-sort-date": "Sa petsa",
+	"form-submit": "Hanápon",
+	"results-limited": "Limitahan an $1 resulta uyon sa wiki.",
+	"results-lag-warning": "An mga resulta pwedeng may nawarang mga pagliwat. Nagluluway an mga replica kan Database para sa Tools. Hilingon an [https://tools.wmflabs.org/replag/ Replag]."
+}

@@ -1,0 +1,12 @@
+{
+	"@metadata": {
+		"authors": [
+			"Fitoschido"
+		]
+	},
+	"form-user": "Adreça IP o nom d’usuari",
+	"form-from-all": "Totes les contribucions",
+	"form-sort-wiki": "Per wiki",
+	"form-sort-date": "Per data",
+	"form-submit": "Cerca"
+}

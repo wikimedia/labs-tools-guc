@@ -1,0 +1,20 @@
+{
+	"@metadata": {
+		"authors": [
+			"Vlad5250"
+		]
+	},
+	"description": "Prikaži korisničke doprinose sa svih Wikimedijinih wikija",
+	"form-user": "IP adresa ili korisničko ime",
+	"form-isPrefixPattern": "Omogući pretragu prema prefiksu",
+	"form-from": "Obuhvati ishodne stavke iz",
+	"form-from-all": "Svi doprinosi",
+	"form-from-rc": "Samo nedavne promjene (poslednjih 30 dana)",
+	"form-from-hr": "Samo zadnji čas",
+	"form-sort": "Sortiraj stavke",
+	"form-sort-wiki": "Po wikiju",
+	"form-sort-date": "Po datumu",
+	"form-submit": "Traži",
+	"results-limited": "Ograničenje: $1 stavki po wikiju.",
+	"results-lag-warning": "Najnovija uređivanja mogu biti izostavljena iz ishoda. Replike baze podtaka za Alatke momentalno kasne. Pogl. [https://tools.wmflabs.org/replag/ Replag]."
+}

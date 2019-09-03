@@ -1,0 +1,20 @@
+{
+	"@metadata": {
+		"authors": [
+			"Awangba Mangang"
+		]
+	},
+	"description": "ꯎꯠꯂꯨ ꯁꯤꯖꯤꯟꯅꯔꯤꯕ ꯃꯤꯑꯣꯏꯁꯤꯒꯤ ꯈꯣꯝꯒꯠꯂꯛꯄꯁꯤꯡ ꯋꯤꯀꯤꯃꯦꯗꯤꯌꯥ ꯋꯤꯀꯤ ꯑꯄꯨꯟꯕꯗꯒꯤ ꯫",
+	"form-user": "ꯑꯥꯏ ꯄꯤ ꯂꯩꯐꯝ ꯅꯠꯇ꯭ꯔꯒ ꯁꯤꯖꯤꯟꯅꯔꯤꯕ ꯃꯃꯤꯡ",
+	"form-isPrefixPattern": "ꯃꯃꯥꯡꯗ ꯇꯞꯄ ꯋꯥꯇꯞ ꯊꯤꯕꯥ ꯌꯥꯍꯟꯂꯨ",
+	"form-from": "ꯗꯒꯤ ꯊꯤꯕꯥꯗ ꯐꯪꯕꯗꯨ ꯃꯅꯨꯡ ꯆꯟꯍꯟꯂꯨ",
+	"form-from-all": "ꯑꯄꯨꯟꯕ ꯈꯣꯝꯖꯤꯟꯂꯛꯄꯁꯤꯡ",
+	"form-from-rc": "ꯀꯨꯏꯗ꯭ꯔꯤꯕ ꯑꯍꯣꯡꯕꯁꯤꯡ ꯈꯛꯇꯒꯤ(ꯃꯃꯥꯡ ꯅꯨꯃꯤꯠ ꯳꯰ ꯅꯤ ꯒꯤ)",
+	"form-from-hr": "ꯑꯔꯣꯏꯕ ꯄꯨꯡ ꯈꯛꯊꯒꯤ",
+	"form-sort": "ꯑꯇꯦꯟꯕ ꯐꯣꯜ ꯁꯤꯡ",
+	"form-sort-wiki": "ꯋꯤꯀꯤꯅꯥ",
+	"form-sort-date": "ꯆꯩꯆꯠꯅꯥ",
+	"form-submit": "ꯊꯤꯕꯥ",
+	"results-limited": "$1 ꯗ ꯑꯔꯣꯏꯕ ꯑꯣꯏꯕ ꯐꯣꯜꯁꯤꯡ ꯋꯤꯀꯤ ꯱ ꯗꯥ ꯫",
+	"results-lag-warning": "ꯃꯁꯤꯒꯤ ꯐꯣꯜꯁꯤ ꯀꯨꯏꯗꯔꯤꯕ ꯁꯦꯝꯒꯠꯄꯁꯤꯡꯗ ꯌꯥꯎꯔꯣꯏ ꯫ ꯗꯇꯥꯕꯦꯁ ꯃꯍꯨꯠꯁꯤꯟꯅꯕ ꯈꯨꯠꯂꯥꯏꯁꯤ ꯃꯈꯣꯡ ꯇꯞꯂꯦ ꯫ ꯌꯣꯡꯉꯨ [https://tools.wmflabs.org/replag/ Replag] ꯫"
+}

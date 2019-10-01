@@ -1,15 +1,21 @@
 {
 	"@metadata": {
 		"authors": [
-			"Sayem AtVkm"
+			"Sayem AtVkm",
+			"Belkacem77"
 		]
 	},
+	"description": "Sken-d ittekkiyen n useqdac def yikiyen meṛṛa n Wikimedia.",
 	"form-user": "Tansa IP neɣ isem n wemseqdac",
 	"form-isPrefixPattern": "Rmed anadi s wezwir",
 	"form-from": "Seddu-d igmaḍ n",
 	"form-from-all": "Akk tiwsiwin",
+	"form-from-rc": "Ala ibeddilen ineggura (30 n wussan ineggura)",
+	"form-from-hr": "Ala ibeddilen n usrag aru",
 	"form-sort": "Fren n igmaḍ",
 	"form-sort-wiki": "S wiki",
 	"form-sort-date": "s uzemz",
-	"form-submit": "Nadi"
+	"form-submit": "Nadi",
+	"results-limited": "Talast n $1 n yigmaḍ deg uwiki.",
+	"results-lag-warning": "Igmaḍ zemren ur gebbren ara ibeddilen ineggura. Asisleg n taffa n yisefka i Tools, ttraǧun akka tura. Wali [https://tools.wmflabs.org/replag/ Replag]."
 }

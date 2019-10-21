@@ -1,0 +1,15 @@
+{
+	"@metadata": {
+		"authors": [
+			"Pyscowicz"
+		]
+	},
+	"description": "Näytä käyttäjien mookkaukset kaikista Wikimeetian wikeistä.",
+	"form-user": "IP-atressi eli käyttäjänimi",
+	"form-from-all": "Kaikki mookkaukset",
+	"form-from-rc": "Vain verekset muutokset (viimiset 30 päivää)",
+	"form-from-hr": "Vain viime tiima",
+	"form-sort-wiki": "wikin mukhaan",
+	"form-sort-date": "taatumin mukhaan",
+	"form-submit": "Hakea"
+}

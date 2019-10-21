@@ -1,7 +1,8 @@
 {
 	"@metadata": {
 		"authors": [
-			"Léon973"
+			"Léon973",
+			"LeGuyanaisPure"
 		]
 	},
 	"description": "Afiché kontribisyon-yan di itilizatò-a asou tout wiki-ya di Wikimédja.",
@@ -15,6 +16,6 @@
 	"form-sort-wiki": "Pa wiki",
 	"form-sort-date": "Pa dat",
 	"form-submit": "Sasé",
-	"results-limited": "Limité à $1 rézilta pa wiki.",
+	"results-limited": "Limité di $1 rézilta pa wiki.",
 	"results-lag-warning": "Rézilta-ya pouvé pa kontni modifikasyon-yanki pi résan. Réplikasyon-yan di baz di data pou Tools sa atchwèlman an atant. Wè [https://tools.wmflabs.org/replag/ Replag]."
 }

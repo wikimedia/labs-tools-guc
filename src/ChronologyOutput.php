@@ -1,9 +1,4 @@
 <?php
-/**
- * @author Timo Tijhof
- * @copyright 2016
- * @file
- */
 
 namespace Guc;
 

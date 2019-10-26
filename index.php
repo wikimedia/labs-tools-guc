@@ -1,9 +1,7 @@
 <?php
-/**
- * @author Luxo
- * @copyright 2014
- * @file
- */
+// Global user contributions
+// Copyright 2014 Luxo
+// Copyright 2014-2019 Timo Tijhof
 
 use Guc\App;
 use Guc\ChronologyOutput;

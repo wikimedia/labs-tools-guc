@@ -1,9 +1,4 @@
 <?php
-/**
- * @author Luxo
- * @copyright 2014
- * @file
- */
 
 namespace Guc;
 

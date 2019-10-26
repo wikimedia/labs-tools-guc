@@ -1,10 +1,5 @@
 /**
- * JavaScript for Global user contributions
- *
- * @author Luxo
- * @author Krinkle
- * @copyright 2013-2015
- * @file
+ * JavaScript code for Global user contributions
  */
 (function () {
     if (!(

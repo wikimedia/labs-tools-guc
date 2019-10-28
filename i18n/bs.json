@@ -1,0 +1,20 @@
+{
+	"@metadata": {
+		"authors": [
+			"Semina x"
+		]
+	},
+	"description": "Pokaži korisničke doprinose sa svih Wikimedia wikija",
+	"form-user": "IP-adresa ili korisničko ime",
+	"form-isPrefixPattern": "Omogući pretragu prefiksa",
+	"form-from": "PRikaži rezultate od",
+	"form-from-all": "Svi doprinosi",
+	"form-from-rc": "Samo nedavni doprinosi (zadnjih 30 dana)",
+	"form-from-hr": "Samo zadnji sat",
+	"form-sort": "Sortiraj rezultate",
+	"form-sort-wiki": "Po wiki",
+	"form-sort-date": "po datumu",
+	"form-submit": "Pretraga",
+	"results-limited": "Ograničeno na $1 rezultata po wikiju",
+	"results-lag-warning": "Postoji mogućnost da rezultati ne sadržavaju nedavne promjene. Replike baza podataka su trenutno zaostale. Pogledajte na [https://tools.wmflabs.org/replag/ Replag]."
+}

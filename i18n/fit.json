@@ -4,7 +4,7 @@
 			"Pyscowicz"
 		]
 	},
-	"description": "Näytä käyttäjien mookkaukset kaikista Wikimeetian wikeistä.",
+	"description": "Näytä käyttäjitten mookkaukset kaikista Wikimeetian wikeistä.",
 	"form-user": "IP-atressi eli käyttäjänimi",
 	"form-from-all": "Kaikki mookkaukset",
 	"form-from-rc": "Vain verekset muutokset (viimiset 30 päivää)",

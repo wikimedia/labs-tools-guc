@@ -2,10 +2,11 @@
 	"@metadata": {
 		"authors": [
 			"Athena in Wonderland",
-			"Hamilton Abreu"
+			"Hamilton Abreu",
+			"Mansil alfalb"
 		]
 	},
-	"description": "Mostrar as contribuições dos utilizadores em todas as wikis da Wikimedia.",
+	"description": "Mostrar as contribuições do utilizador de todas as wikis da Wikimedia.",
 	"form-user": "Endereço IP ou nome do utilizador",
 	"form-isPrefixPattern": "Ativar a procura por prefixo",
 	"form-from": "Incluir os resultados de",
@@ -15,7 +16,7 @@
 	"form-sort": "Ordenar resultados",
 	"form-sort-wiki": "Por wiki",
 	"form-sort-date": "Por data",
-	"form-submit": "Procurar",
+	"form-submit": "Pesquisar",
 	"results-limited": "Limitado a $1 resultados por wiki.",
 	"results-lag-warning": "Os resultados podem não conter as edições mais recentes. As réplicas das bases de dados para o Tools estão atrasadas neste momento. Visite [https://tools.wmflabs.org/replag/ Replag]."
 }

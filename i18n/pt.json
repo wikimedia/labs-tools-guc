@@ -6,7 +6,7 @@
 			"Mansil alfalb"
 		]
 	},
-	"description": "Mostrar as contribuições do utilizador de todas as wikis da Wikimedia.",
+	"description": "Mostrar as contribuições dos utilizadores em todas as wikis da Wikimedia.",
 	"form-user": "Endereço IP ou nome do utilizador",
 	"form-isPrefixPattern": "Ativar a procura por prefixo",
 	"form-from": "Incluir os resultados de",

@@ -1,7 +1,8 @@
 {
 	"@metadata": {
 		"authors": [
-			"Robby"
+			"Robby",
+			"Les Meloures"
 		]
 	},
 	"description": "Benotzerkontributioune vun alle Wikimedia Wikie weisen",
@@ -16,5 +17,5 @@
 	"form-sort-date": "Nom Datum",
 	"form-submit": "Sichen",
 	"results-limited": "Limitéiert op $1 Resultater pro Wiki.",
-	"results-lag-warning": "An de Resultater kënnen déi rezentst Ännerunge feelen. D'Dublizéiere vun den Datebanken fir d'Geschir ass elo net aktuell. Kuckt dee [https://tools.wmflabs.org/replag/ Retard]."
+	"results-lag-warning": "An de Resultater kënnen déi rezentst Ännerunge feelen. D'Dublizéiere vun den Datebanke fir d'Geschier ass elo net aktuell. Kuckt dee [https://tools.wmflabs.org/replag/ Retard]."
 }

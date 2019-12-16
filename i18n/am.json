@@ -1,0 +1,20 @@
+{
+	"@metadata": {
+		"authors": [
+			"Andemta"
+		]
+	},
+	"description": "ለሁሉም ዊኪፒድያ ዊኪዎች የቀረቡ ግብአቶችን ለማየት",
+	"form-user": "የኮምፒተር አድራሻ ወይም የብዕር ስም",
+	"form-isPrefixPattern": "ምዕላድ ለማስፈለግ",
+	"form-from": "መልሶችን ለማካተት",
+	"form-from-all": "ሁሉም አስተዋፅኦ",
+	"form-from-rc": "የቅርብ (ያለፈው ወር) ለውጦች",
+	"form-from-hr": "ያለፈው ሰአት",
+	"form-sort": "ውጤቶች ለማበጠር",
+	"form-sort-wiki": "በዊኪ",
+	"form-sort-date": "በቀን",
+	"form-submit": "ፈልግ",
+	"results-limited": "$1 ውጤቶች በዊኪ የተወሰነ",
+	"results-lag-warning": "ውጤቶቹ የቅርቡን እርማቶች ላያካትቱ ይችላሉ:: የTools ዳታቤዝ ቅጂዎች ዘግይተዋል:: [https://tools.wmflabs.org/replag/ Replag] ተመልከቱ::"
+}

@@ -1,0 +1,20 @@
+{
+	"@metadata": {
+		"authors": [
+			"Conky77"
+		]
+	},
+	"description": "Mostra i contributi de'l utente da tuti i progeti Wikimedia.",
+	"form-user": "Utente o indiriso IP:",
+	"form-isPrefixPattern": "Ativa la riserca par prefiso",
+	"form-from": "Includi rixultati da",
+	"form-from-all": "Tuti i contributi",
+	"form-from-rc": "Solo modifeghe resenti (ùltimi 30 dì)",
+	"form-from-hr": "Soƚo l'ùltima ora",
+	"form-sort": "Ordina risultadi",
+	"form-sort-wiki": "Par wiki",
+	"form-sort-date": "Par data",
+	"form-submit": "Serca",
+	"results-limited": "Ƚimita a $1 risultadi par wiki.",
+	"results-lag-warning": "Ne i risultadi poderìa mancare ƚe modifeghe pì resenti. Le repliche de i database par Tools i xe atualmente en ritardo. Varda [https://tools.wmflabs.org/replag/ Replag]."
+}

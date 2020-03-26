@@ -2,7 +2,8 @@
 	"@metadata": {
 		"authors": [
 			"WikiPhoenix",
-			"Bengtsson96"
+			"Bengtsson96",
+			"Paracel63"
 		]
 	},
 	"title": "Globala användarbidrag",
@@ -11,7 +12,7 @@
 	"form-isPrefixPattern": "Aktivera prefixsökning",
 	"form-from": "Inkludera resultat från",
 	"form-from-all": "Alla bidrag",
-	"form-from-rc": "Endast nyliga ändringar (senaste 30 dagarna)",
+	"form-from-rc": "Endast de senaste ändringarna (senaste 30 dagarna)",
 	"form-from-hr": "Endast senaste timmen",
 	"form-sort": "Sortera resultat",
 	"form-sort-wiki": "Efter wiki",

@@ -1,9 +1,9 @@
 {
 	"@metadata": {
 		"authors": [
+			"Facenapalm",
 			"Nitch",
-			"Redredsonia",
-			"Facenapalm"
+			"Redredsonia"
 		]
 	},
 	"description": "Показывать вклад участника со всех проектов Викимедиа.",

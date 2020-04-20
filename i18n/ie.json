@@ -1,0 +1,20 @@
+{
+	"@metadata": {
+		"authors": [
+			"OIS"
+		]
+	},
+	"description": "Monstra li contributiones del usator ex omni wikis de Wikimedia.",
+	"form-user": "Adresse IP o nómine de usator",
+	"form-isPrefixPattern": "Activar prefixal sercha",
+	"form-from": "Includer resultatos ex",
+	"form-from-all": "Omni contributiones",
+	"form-from-rc": "Solmen li recent modificationes (ultim 30 dies)",
+	"form-from-hr": "Solmen li ultim hor",
+	"form-sort": "Ordinar resultates",
+	"form-sort-wiki": "Secun wiki",
+	"form-sort-date": "Secun date",
+	"form-submit": "Serchar",
+	"results-limited": "Limitat al $1 resultates per un wiki",
+	"results-lag-warning": "Li resultates por li ultim modificationes posse esser mancant. Li replicas del base de data de Tools es actualmen lenteant. Vi [https://tools.wmflabs.org/replag/ Replag]."
+}

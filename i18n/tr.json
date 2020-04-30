@@ -1,6 +1,7 @@
 {
 	"@metadata": {
 		"authors": [
+			"BaRaN6161 TURK",
 			"Hedda"
 		]
 	},
@@ -16,5 +17,5 @@
 	"form-sort-date": "Tarihe göre",
 	"form-submit": "Ara",
 	"results-limited": "Viki başına $1 sonuçla sınırlıdır.",
-	"results-lag-warning": "Sonuçlar en son düzenlemeleri içermiyor olabilir. Araçlar için veritabanı kopyaları şu anda gecikmeli. Bkz.  [https://tools.wmflabs.org/replag/ Replag]"
+	"results-lag-warning": "Sonuçlar en son düzenlemeleri içermiyor olabilir. Araçlar için veritabanı kopyaları şu anda gecikmeli. [https://tools.wmflabs.org/replag/ Replag] sayfasına bakın."
 }

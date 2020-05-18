@@ -1,0 +1,20 @@
+{
+	"@metadata": {
+		"authors": [
+			"ANDROBETA"
+		]
+	},
+	"description": "Arată contribuțiile utilizatorilor de la toate proiectele Wikimedia.",
+	"form-user": "Adresă IP sau nume de utilizator",
+	"form-isPrefixPattern": "Activați căutarea cu prefix",
+	"form-from": "Include rezultate din",
+	"form-from-all": "Toate contribuțiile",
+	"form-from-rc": "Doar modificările recente (ultimele 30 de zile)",
+	"form-from-hr": "Doar ultima oră",
+	"form-sort": "Sortează rezultate",
+	"form-sort-wiki": "După proiectul wiki",
+	"form-sort-date": "După dată",
+	"form-submit": "Caută",
+	"results-limited": "Limitat la $1 rezultate per proiect wiki.",
+	"results-lag-warning": "Rezultatele ar putea să nu includă cele mai recente modificări. Replicile bazei de date Tools sunt momentan desincronizate. Vedeți [https://tools.wmflabs.org/replag/ Replag]."
+}

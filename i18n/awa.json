@@ -1,10 +1,11 @@
 {
 	"@metadata": {
 		"authors": [
+			"1PandeyAnurag",
 			"Ajeetsinghawadh"
 		]
 	},
-	"description": "सभी विकिमीडिया विकीयऽन् से उपयोगकर्ता योगदान देखावा।",
+	"description": "कुल विकिमीडिया विकीयऽन् से उपयोगकर्ता योगदान देखावा।",
 	"form-user": "आईपी पता या सदस्यनाम",
 	"form-isPrefixPattern": "उपसर्ग खोज सक्षम करैं",
 	"form-from": "से परिणाम शामिल करैं",

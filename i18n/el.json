@@ -2,7 +2,8 @@
 	"@metadata": {
 		"authors": [
 			"GR",
-			"Nikosgranturismogt"
+			"Nikosgranturismogt",
+			"Norhorn"
 		]
 	},
 	"description": "Εμφάνιση συνεισφορών χρήστη από όλα τα βίκι του Wikimedia.",
@@ -16,5 +17,6 @@
 	"form-sort-wiki": "Ανά βίκι",
 	"form-sort-date": "Κατά ημερομηνία",
 	"form-submit": "Αναζήτηση",
-	"results-limited": "Περιορίστηκε σε $1 αποτελέσματα ανά βίκι."
+	"results-limited": "Περιορίστηκε σε $1 αποτελέσματα ανά βίκι.",
+	"results-lag-warning": "Στα αποτελέσματα ενδέχεται να απουσιάζουν οι πιο πρόσφατες αλλαγές. Τα αντίγραφα βάσης δεδομένων για τα Εργαλεία έχουν καθυστερήσει αυτήν τη στιγμή. Δείτε [https://tools.wmflabs.org/replag/ Replag]."
 }

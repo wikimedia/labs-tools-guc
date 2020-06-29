@@ -1,6 +1,7 @@
 {
 	"@metadata": {
 		"authors": [
+			"Nirajan pant",
 			"पर्वत सुबेदी"
 		]
 	},
@@ -15,5 +16,6 @@
 	"form-sort-wiki": "विकि अनुसार",
 	"form-sort-date": "मिति अनुसार",
 	"form-submit": "खोज्नुहोस्",
-	"results-limited": "प्रति विकी $1 परिणामहरूमा सीमित।"
+	"results-limited": "प्रति विकी $1 परिणामहरूमा सीमित।",
+	"results-lag-warning": "नतिजामा हालै गरिएका केही सम्पादनहरू छुटेका हुन सक्छन्। उपकरणको लागि डाटाबेसको प्रतिलिपि केही अघिका छन्। [https://tools.wmflabs.org/replag/ Replag] हेर्नुहोस्।"
 }

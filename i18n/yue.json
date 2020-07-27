@@ -1,6 +1,7 @@
 {
 	"@metadata": {
 		"authors": [
+			"Moon0319",
 			"Shinjiman"
 		]
 	},
@@ -8,7 +9,7 @@
 	"form-user": "IP地址或者用戶名",
 	"form-isPrefixPattern": "開前掇搵",
 	"form-from": "包埋結果自",
-	"form-from-all": "全部貢獻",
+	"form-from-all": "冚唪唥嘅貢獻",
 	"form-from-rc": "只有最近嘅改嘢（最近30日）",
 	"form-from-hr": "只有最近一個鐘頭",
 	"form-sort": "排序結果",

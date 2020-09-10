@@ -1,0 +1,14 @@
+{
+	"@metadata": {
+		"authors": [
+			"Şeyx Şamil"
+		]
+	},
+	"form-user": "IP-ünvanı və ya istifadəçi adı",
+	"form-from-all": "Bütün töhfələr",
+	"form-from-rc": "Ancaq son dəyişikliklər (son 30 gün)",
+	"form-from-hr": "Ancaq son saat",
+	"form-sort-wiki": "Vikiyə görə",
+	"form-sort-date": "Tarixə görə",
+	"form-submit": "Axtar"
+}

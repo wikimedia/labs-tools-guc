@@ -1,6 +1,7 @@
 {
 	"@metadata": {
 		"authors": [
+			"Moj",
 			"Pyscowicz"
 		]
 	},
@@ -15,5 +16,6 @@
 	"form-sort-wiki": "wikin mukaan",
 	"form-sort-date": "päiväyksen mukaan",
 	"form-submit": "Hae",
-	"results-limited": "Rajoitettu $1 tulokseen per wiki."
+	"results-limited": "Rajoitettu $1 tulokseen per wiki.",
+	"results-lag-warning": "Kaikkein uusimmat muutokset saattavat puuttua tuloksista. Database replicas for Tools are currently lagged. See [https://tools.wmflabs.org/replag/ Replag]."
 }

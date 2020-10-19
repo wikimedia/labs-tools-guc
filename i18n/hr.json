@@ -4,6 +4,7 @@
 			"MaGa"
 		]
 	},
+	"title": "Globalni suradnički doprinosi",
 	"description": "Prikaz suradničkih doprinosa sa svih wikija.",
 	"form-user": "IP adresa ili suradničko ime",
 	"form-isPrefixPattern": "Omogući pretragu prema prefiksu",

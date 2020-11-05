@@ -1,12 +1,21 @@
 {
 	"@metadata": {
 		"authors": [
+			"Bikarhêner",
 			"George Animal"
 		]
 	},
+	"description": "Ji hemû wîkiyên Wîkîmedyayê beşdariyên bikarhênerê nîşan bide.",
+	"form-user": "Navnîşana IPyê an navê bikarhênerê",
+	"form-isPrefixPattern": "Lêgerîna pêşgiran aktîv bike",
+	"form-from": "Van encaman daxil bike",
 	"form-from-all": "Hemû beşdarî",
 	"form-from-rc": "Tenê guherandinên dawî (30 rojên dawî)",
+	"form-from-hr": "Tenê saeta dawîn",
+	"form-sort": "Encaman rêz bike",
 	"form-sort-wiki": "Li gorî wîkiyê",
 	"form-sort-date": "Li gorî dîrokê",
-	"form-submit": "Lêgerîn"
+	"form-submit": "Lêgerîn",
+	"results-limited": "Ji bo her wîkiyê bi $1 encaman sînordarkirî ye.",
+	"results-lag-warning": "Dibe ku encam guhertinên dawîn nehewîne. Kopiyên danegehê yên ji bo Amûran vê gavê derengmayî ye. Binêrin rûpela [https://tools.wmflabs.org/replag/ Replag]."
 }

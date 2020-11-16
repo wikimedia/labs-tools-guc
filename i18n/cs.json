@@ -1,0 +1,19 @@
+{
+	"@metadata": {
+		"authors": [
+			"Jan Myšák",
+			"Patriccck"
+		]
+	},
+	"description": "Zobrazit příspěvky uživatele na všech Wikimedia wiki.",
+	"form-user": "IP adresa nebo uživatelské jméno",
+	"form-from": "Zahrnout výsledky z",
+	"form-from-all": "Všechny příspěvky",
+	"form-from-rc": "Jen poslední změny (posledních 30 dní)",
+	"form-from-hr": "Jen poslední hodina",
+	"form-sort": "Seřadit výsledky",
+	"form-sort-wiki": "Podle wiki",
+	"form-sort-date": "Podle data",
+	"form-submit": "Hledat",
+	"results-limited": "Omezeno na $1 výsledků na wiki"
+}

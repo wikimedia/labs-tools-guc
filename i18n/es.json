@@ -3,10 +3,11 @@
 		"authors": [
 			"Fitoschido",
 			"KATRINE1992",
-			"Macofe"
+			"Macofe",
+			"MarcoAurelio"
 		]
 	},
-	"description": "Mostrar las contribuciones de los usuarios de todos los wikis de Wikimedia.",
+	"description": "Muestra las contribuciones de los usuarios en todos los wikis de Wikimedia.",
 	"form-user": "Dirección IP o nombre de usuario",
 	"form-isPrefixPattern": "Activar la búsqueda por prefijos",
 	"form-from": "Incluir los resultados de",

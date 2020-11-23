@@ -1,0 +1,20 @@
+{
+	"@metadata": {
+		"authors": [
+			"Chinamoonroll"
+		]
+	},
+	"description": "Édengang pituut sang anganggé saking sinamian wiki Wikimédia.",
+	"form-user": "Alamat IP utawi peséngan sang anganggé",
+	"form-isPrefixPattern": "Uripang parerehan pamahbah",
+	"form-from": "Rumasuk asil saking",
+	"form-from-all": "Pituut sinamian",
+	"form-from-rc": "Wantah uahan pinih anyar (30 rahina ungkur)",
+	"form-from-hr": "Wantah jam ungkur",
+	"form-sort": "Urutang asil",
+	"form-sort-wiki": "Mawit wiki",
+	"form-sort-date": "Mawit pinanggal",
+	"form-submit": "Rereh",
+	"results-limited": "Kawatesin ngantos $1 asil per wiki",
+	"results-lag-warning": "Asil parerehan uahan pinih anyar prasida nénten kasedia. Salin basis data antuk Prabot sané mangkin nyangkét. Cingak [https://tools.wmflabs.org/replag/ Replag]."
+}

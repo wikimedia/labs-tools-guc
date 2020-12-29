@@ -1,6 +1,7 @@
 {
 	"@metadata": {
 		"authors": [
+			"Amire80",
 			"Liuxinyu970226",
 			"Norhorn"
 		]
@@ -18,5 +19,5 @@
 	"form-sort-date": "Label for radio button to sort results chronologically, by date.\n\nSee {{msg-intuition|guc-form-sort}}",
 	"form-submit": "Label for button to submit the form to start the search and show the results.\n{{Identical|Search}}",
 	"results-limited": "Note below the seach results\n\n* $1 - the maximum number of results loaded from one wiki (e.g. 20, 50 or 100).",
-	"results-lag-warning": "Σημείωση που εμφανίζεται πάνω από τα αποτελέσματα αναζήτησης, εάν τα αντίγραφα βάσης δεδομένων εργαλείων έχουν καθυστερήσει τη δεδομένη στιγμή."
+	"results-lag-warning": "Note shown above the search results if the tools database replicas are currently lagged."
 }

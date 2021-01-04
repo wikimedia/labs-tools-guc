@@ -1,7 +1,8 @@
 {
 	"@metadata": {
 		"authors": [
-			"Gomoko"
+			"Gomoko",
+			"Verdy p"
 		]
 	},
 	"description": "Afficher les contributions de l’utilisateur sur tous les wikis de Wikimédia.",
@@ -16,5 +17,5 @@
 	"form-sort-date": "Par date",
 	"form-submit": "Rechercher",
 	"results-limited": "Limité à $1 résultats par wiki.",
-	"results-lag-warning": "Les résultats peuvent ne pas contenir les modifications les plus récentes. Les réplications de base de données pour Tools sont actuellement en attente. Voir [https://tools.wmflabs.org/replag/ Replag]."
+	"results-lag-warning": "Les résultats peuvent ne pas contenir les modifications les plus récentes. Les réplications de base de données pour Tools ont actuellement du retard. Voir [https://tools.wmflabs.org/replag/ Replag]."
 }

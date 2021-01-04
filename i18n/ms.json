@@ -1,0 +1,20 @@
+{
+	"@metadata": {
+		"authors": [
+			"Tofeiku"
+		]
+	},
+	"description": "Tunjukkan sumbangan pengguna dari semua wiki Wikimedia.",
+	"form-user": "Alamat IP atau nama pengguna",
+	"form-isPrefixPattern": "Bolehkan carian awalan",
+	"form-from": "Termasuk hasil dari",
+	"form-from-all": "Semua sumbangan",
+	"form-from-rc": "Hanya perubahan terkini (30 hari terakhir)",
+	"form-from-hr": "Hanya jam terakhir",
+	"form-sort": "Isihkan hasil",
+	"form-sort-wiki": "Mengikut wiki",
+	"form-sort-date": "Mengikut tarikh",
+	"form-submit": "Cari",
+	"results-limited": "Terhad kepada $1 hasil per wiki.",
+	"results-lag-warning": "Hasil boleh hilang suntingan terkini. Replika pangkalan data untuk Alat kini disusul. Lihat [https://tools.wmflabs.org/replag/ Replag]."
+}

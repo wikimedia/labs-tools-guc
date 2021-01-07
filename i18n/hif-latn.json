@@ -1,0 +1,15 @@
+{
+	"@metadata": {
+		"authors": [
+			"Smobile"
+		]
+	},
+	"description": "Sab Wikimedia wikis me sadasya ke yogdaan ke dekhao",
+	"form-user": "IP Address, nai to username",
+	"form-isPrefixPattern": "Prefix khoj ke laabu karo",
+	"form-from-all": "Sab yogdaan",
+	"form-from-rc": "Khaali haali ke badlao (pichhla 30 din)",
+	"form-sort-wiki": "Wiki se",
+	"form-sort-date": "Tarik se",
+	"form-submit": "Khojo"
+}

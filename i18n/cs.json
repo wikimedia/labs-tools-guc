@@ -2,11 +2,13 @@
 	"@metadata": {
 		"authors": [
 			"Jan Myšák",
+			"Mormegil",
 			"Patriccck"
 		]
 	},
 	"description": "Zobrazit příspěvky uživatele na všech Wikimedia wiki.",
 	"form-user": "IP adresa nebo uživatelské jméno",
+	"form-isPrefixPattern": "Zapnout hledání prefixu",
 	"form-from": "Zahrnout výsledky z",
 	"form-from-all": "Všechny příspěvky",
 	"form-from-rc": "Jen poslední změny (posledních 30 dní)",
@@ -15,5 +17,6 @@
 	"form-sort-wiki": "Podle wiki",
 	"form-sort-date": "Podle data",
 	"form-submit": "Hledat",
-	"results-limited": "Omezeno na $1 výsledků na wiki"
+	"results-limited": "Omezeno na $1 výsledků na wiki",
+	"results-lag-warning": "Ve výsledcích mohou chybět nejnovější editace. Databázové repliky pro Toolforge jsou momentálně zpožděné. Vizte [https://tools.wmflabs.org/replag/ Replag]."
 }

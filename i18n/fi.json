@@ -5,6 +5,7 @@
 			"Pyscowicz"
 		]
 	},
+	"title": "Käyttäjän järjestelmänlaajuiset muokkaukset",
 	"description": "Näytä käyttäjien muokkaukset kaikista Wikimedian wikeistä.",
 	"form-user": "IP-osoite tai käyttäjänimi",
 	"form-isPrefixPattern": "Ota etuliitteen haku käyttöön",

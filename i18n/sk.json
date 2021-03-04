@@ -1,0 +1,20 @@
+{
+	"@metadata": {
+		"authors": [
+			"Jaroslav.micek"
+		]
+	},
+	"description": "Zobraziť príspevky užívateľa vo všetkých wiki Wikimédie.",
+	"form-user": "IP adresa alebo meno používateľa",
+	"form-isPrefixPattern": "Povoliť predponu vyhľadávania",
+	"form-from": "Zahrnúť výsledky",
+	"form-from-all": "Všetky príspevky",
+	"form-from-rc": "Len nedávne zmeny (posledných 30 dní)",
+	"form-from-hr": "Len za poslednú hodinu",
+	"form-sort": "Usporiadať výsledky",
+	"form-sort-wiki": "Podľa viki",
+	"form-sort-date": "Podľa dátumu",
+	"form-submit": "Hľadať",
+	"results-limited": "Počet výsledkov z každej wiki: $1",
+	"results-lag-warning": "Vo výsledkoch môžu chýbať nedávne úpravy. Databázové repliky pre Tools sú momentálne spomalené. Viď [https://tools.wmflabs.org/replag/ Replag]."
+}

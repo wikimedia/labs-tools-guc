@@ -1,7 +1,8 @@
 {
 	"@metadata": {
 		"authors": [
-			"Jaroslav.micek"
+			"Jaroslav.micek",
+			"Yardom78"
 		]
 	},
 	"description": "Zobraziť príspevky užívateľa vo všetkých wiki Wikimédie.",

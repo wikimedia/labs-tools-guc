@@ -1,6 +1,7 @@
 {
 	"@metadata": {
 		"authors": [
+			"Dušan Kreheľ",
 			"Jaroslav.micek",
 			"Yardom78"
 		]
@@ -10,7 +11,7 @@
 	"form-isPrefixPattern": "Povoliť predponu vyhľadávania",
 	"form-from": "Zahrnúť výsledky",
 	"form-from-all": "Všetky príspevky",
-	"form-from-rc": "Len nedávne zmeny (posledných 30 dní)",
+	"form-from-rc": "Len posledné zmeny (za 30 dní)",
 	"form-from-hr": "Len za poslednú hodinu",
 	"form-sort": "Usporiadať výsledky",
 	"form-sort-wiki": "Podľa viki",

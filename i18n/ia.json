@@ -1,0 +1,20 @@
+{
+	"@metadata": {
+		"authors": [
+			"McDutchie"
+		]
+	},
+	"description": "Monstrar le contributiones del usatores de tote le wikis de Wikimedia.",
+	"form-user": "Adresse de IP o nomine de usator",
+	"form-isPrefixPattern": "Activar le recerca per prefixo",
+	"form-from": "Includer resultatos de",
+	"form-from-all": "Tote le contributiones",
+	"form-from-rc": "Solmente le modificationes recente (ultime 30 dies)",
+	"form-from-hr": "Solmente le ultime hora",
+	"form-sort": "Ordinar resultatos",
+	"form-sort-wiki": "Per wiki",
+	"form-sort-date": "Per data",
+	"form-submit": "Cercar",
+	"results-limited": "Limitate a $1 resultatos per wiki.",
+	"results-lag-warning": "Le resultatos pote non continer le modificationes le plus recente. Le replicas del bases de datos pro Tools es actualmente in retardo. Vide [https://tools.wmflabs.org/replag/ Replag]."
+}

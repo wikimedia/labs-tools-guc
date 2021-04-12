@@ -1,0 +1,12 @@
+{
+	"@metadata": {
+		"authors": [
+			"Veeven"
+		]
+	},
+	"form-user": "ఐపీ చిరునామా లేదా వాడుకరి పేరు",
+	"form-from-hr": "చివరి గంట మాత్రమే",
+	"form-sort-wiki": "వికీ వారీగా",
+	"form-sort-date": "తేదీ వారీగా",
+	"form-submit": "వెతుకు"
+}

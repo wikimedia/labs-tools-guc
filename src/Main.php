@@ -125,7 +125,7 @@ class Main {
         }
         $f_where = implode(' AND ', $f_where);
         $sql = 'SELECT * FROM meta_p.wiki WHERE '.$f_where.' LIMIT 1500;';
-        $statement = $this->app->getDB()->prepare($sql);
+        $statement = $this->app->getDB('meta')->prepare($sql);
         $this->app->debug("[SQL] " . preg_replace('#\s+#', ' ', $sql));
         $statement->execute();
         $rows = $statement->fetchAll(PDO::FETCH_OBJ);

@@ -1,19 +1,21 @@
 {
 	"@metadata": {
 		"authors": [
+			"Besnik b",
 			"Denisa"
 		]
 	},
-	"description": "Trego kontributet e përdoruesve nga të gjitha Wikimedia wikit",
+	"description": "Shfaq kontributet e përdoruesve nga krejt wiki-t Wikimedia",
 	"form-user": "Adresë IP ose emër përdoruesi",
 	"form-isPrefixPattern": "Aktivizo kërkimin me parashtesë",
 	"form-from": "Përfshi rezultatet nga",
-	"form-from-all": "Të gjitha kontributet",
-	"form-from-rc": "Ndryshimet më të fundit vetëm (30 ditët e fundit)",
-	"form-from-hr": "Ora e fundit vetëm",
+	"form-from-all": "Krejt kontributet",
+	"form-from-rc": "Vetëm ndryshime së fundi (30 ditët e fundit)",
+	"form-from-hr": "Vetëm orën e fundit",
 	"form-sort": "Rendit rezultatet",
 	"form-sort-wiki": "Prej wiki",
 	"form-sort-date": "Prej datës",
 	"form-submit": "Kërko",
-	"results-limited": "Kufizuar në $1 rezultate për wiki"
+	"results-limited": "Kufizuar në $1 rezultate për wiki",
+	"results-lag-warning": "Te përfundimet mund të mungojnë përpunimet më të freskëta. Replikat e bazës së të dhënave për Mjete janë prapa. Shihni [https://tools.wmflabs.org/replag/ Replag]."
 }

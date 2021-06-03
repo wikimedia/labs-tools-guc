@@ -5,6 +5,8 @@
 			"Mikel Ibaiba"
 		]
 	},
+	"form-user": "IP helbidea edo erabiltzaile-izena",
+	"form-from-all": "Ekarpen guztiak",
 	"form-from-hr": "Azken ordua bakarrik",
 	"form-sort": "Emaitzak ordenatu",
 	"form-sort-wiki": "Wikiaren arabera",

@@ -1,0 +1,20 @@
+{
+	"@metadata": {
+		"authors": [
+			"L2212"
+		]
+	},
+	"description": "Ammustrat sas contributziones de sos impitadores dae totu sas wiki de Wikimedia.",
+	"form-user": "Indiritzu IP o nùmene impitadore",
+	"form-isPrefixPattern": "Abìlita sa chirca pro prefissos",
+	"form-from": "Include sos resurtados dae",
+	"form-from-all": "Totu sos contributos",
+	"form-from-rc": "Modìficas reghentes ebbia (ùrtimas 30 dies)",
+	"form-from-hr": "Ùrtima ora ebbia",
+	"form-sort": "Òrdina sos resurtados",
+	"form-sort-wiki": "Pro wiki",
+	"form-sort-date": "Pro data",
+	"form-submit": "Chirca",
+	"results-limited": "Limitadu a $1 resurtados pro wiki.",
+	"results-lag-warning": "In sos resurtados diant pòdere mancare sas modìficas prus reghentes. Sas còpias de sas bases de datos pro sas ainas tenent ritardos in custu momentu. Bisita [https://tools.wmflabs.org/replag/ Replag] pro nde ischire de prus."
+}

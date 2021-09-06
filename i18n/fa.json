@@ -2,6 +2,7 @@
 	"@metadata": {
 		"authors": [
 			"Amirsara",
+			"Darafsh",
 			"Dejavu",
 			"FarsiNevis"
 		]
@@ -9,11 +10,14 @@
 	"description": "نمایش مشارکت‌های کاربر در همهٔ ویکی‌های ویکی‌مدیا",
 	"form-user": "نشانی آی‌پی یا نام کاربری",
 	"form-isPrefixPattern": "فعال‌سازی جستجوی پیشوند",
+	"form-from": "شامل نتایج از",
 	"form-from-all": "همهٔ مشارکت‌ها",
 	"form-from-rc": "فقط تغییرات اخیر (۳۰ روز آخر)",
 	"form-from-hr": "فقط یک ساعت اخیر",
 	"form-sort": "مرتب‌سازی نتایج",
 	"form-sort-wiki": "بر اساس ویکی",
-	"form-sort-date": "بر اساس روز",
-	"form-submit": "جستجو"
+	"form-sort-date": "بر اساس تاریخ",
+	"form-submit": "جستجو",
+	"results-limited": "محدود به $1 نتیجه در هر ویکی.",
+	"results-lag-warning": "این نتایج ممکن است ویرایش‌های خیلی جدید را نشان ندهد. نسخه‌های کپی پایگاه داده برای ابزارها در حال حاضر تأخیر دارد. نگاه کنید به [https://tools.wmflabs.org/replag/ اینجا]."
 }

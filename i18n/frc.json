@@ -1,0 +1,20 @@
+{
+	"@metadata": {
+		"authors": [
+			"Beunice"
+		]
+	},
+	"description": "Afficher les contributions de l’useur sus tous les wikis de Wikimédia.",
+	"form-user": "Adresse IP ou nom d’useur",
+	"form-isPrefixPattern": "Activer la charche par préfixe",
+	"form-from": "Inclure les résultats de",
+	"form-from-all": "Toutes les contributions",
+	"form-from-rc": "Uniquement les modifications récentes (30 derniers jours)",
+	"form-from-hr": "Uniquement la dernière heure",
+	"form-sort": "Trier les résultats",
+	"form-sort-wiki": "Par wiki",
+	"form-sort-date": "Par date",
+	"form-submit": "Charcher",
+	"results-limited": "Limité à $1 résultats par wiki.",
+	"results-lag-warning": "Les résultats peuvent ne pas contenir les modifications les plus récentes. Les réplications de base de données pour les outils hébergés ont actuellement du retard. Voir l’état actuel des retards de réplication dans l’outil [https://replag.toolforge.org/ ''Replag''] sus ''Wikimedia Toolforge'' (partie des ''Wikimedia Cloud Services'')."
+}

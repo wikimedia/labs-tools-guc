@@ -1,0 +1,20 @@
+{
+	"@metadata": {
+		"authors": [
+			"Umar-askirason"
+		]
+	},
+	"description": "nuna gudumuwan ma'aikaci na wikimedia daga dukkan wiki",
+	"form-user": "adreshin IP ko sunan ma'aikaci",
+	"form-isPrefixPattern": "bude maneman prefis",
+	"form-from": "hada da sakamako daga",
+	"form-from-all": "Dukkan gudummuwa",
+	"form-from-rc": "Canje-canjen bay (na kwana 30)",
+	"form-from-hr": "Awan baya kawai",
+	"form-sort": "Jera Sakamako",
+	"form-sort-wiki": "Daga Wiki",
+	"form-sort-date": "Daga data",
+	"form-submit": "biknciko",
+	"results-limited": "kebantacce zuwa sakamako $1 ga duk wiki",
+	"results-lag-warning": "Ana iya rasa sakamako na mafi kusan gyaran da akayi. Kundin Bayanai   ya kan mayar da bayanai domin makaman aiki sun ginu. Duba\n[https://tools.wmflabs.org/replag/ Replag]"
+}

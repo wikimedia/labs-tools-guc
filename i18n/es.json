@@ -2,12 +2,13 @@
 	"@metadata": {
 		"authors": [
 			"Fitoschido",
+			"Jakeukalane",
 			"KATRINE1992",
 			"Macofe",
 			"MarcoAurelio"
 		]
 	},
-	"description": "Muestra las contribuciones de los usuarios en todos los wikis de Wikimedia.",
+	"description": "Muestra las contribuciones de los usuarios en todas las wikis de Wikimedia.",
 	"form-user": "Dirección IP o nombre de usuario",
 	"form-isPrefixPattern": "Activar la búsqueda por prefijos",
 	"form-from": "Incluir los resultados de",

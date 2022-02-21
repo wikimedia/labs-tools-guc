@@ -1,0 +1,21 @@
+{
+	"@metadata": {
+		"authors": [
+			"Seipinne",
+			"Yupik"
+		]
+	},
+	"title": "Kevttee systeemvijđosiih nubástusah",
+	"description": "Čääiti kevttei nubástusâid puoh Wikimedia wikijn.",
+	"form-user": "IP-čujottâs teikâ kevtteenommâ",
+	"form-isPrefixPattern": "Vääldi ovdâlabdos uuccâm kiävtun",
+	"form-from": "Siskálmit puátusijd",
+	"form-from-all": "Puoh hammiimeh",
+	"form-from-rc": "Tuše vorâs nubástusah (majemuuh 30 peivid)",
+	"form-from-hr": "Tuše moonnâm tijme",
+	"form-sort": "Orniistâl puátusijd",
+	"form-sort-wiki": "Wiki mield",
+	"form-sort-date": "peivimere mield",
+	"form-submit": "Uusâ",
+	"results-limited": "Räijejum $1 puátusân per wiki."
+}

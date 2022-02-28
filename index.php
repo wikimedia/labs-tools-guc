@@ -170,6 +170,10 @@ $sep = $int->msg('colon-separator', array('domain' => 'general'));
                         ? (' <tt>' . htmlspecialchars($info['host']) .'</tt>')
                         : ''
                     ) . '</td>'
+                    . '<td>('
+                        . '<a href="https://meta.wikimedia.org/wiki/Special:GlobalBlockList/' . htmlspecialchars($ip) . '" target="_blank">' . htmlspecialchars($int->msg('ipinfo-globalblocklist')) . '</a>'
+                        . ' &bull; <a href="https://meta.wikimedia.org/wiki/Special:GlobalBlock/' . htmlspecialchars($ip) . '" target="_blank">' . htmlspecialchars($int->msg('ipinfo-globalblock')) . '</a>'
+                    . ')</td>'
                     . '<td>' . (isset($info['asn'])
                         ? (' <a href="http://bgp.he.net/AS' . htmlspecialchars($info['asn']) . '#_whois" target="_blank" rel="noopener noreferrer">AS' . htmlspecialchars($info['asn']) . '</a>')
                         : ''

@@ -19,6 +19,8 @@
 	"form-sort-wiki": "Label for radio button to group results by wiki.\n\nSee {{msg-intuition|guc-form-sort}}",
 	"form-sort-date": "Label for radio button to sort results chronologically, by date.\n\nSee {{msg-intuition|guc-form-sort}}",
 	"form-submit": "Label for button to submit the form to start the search and show the results.\n{{Identical|Search}}",
+	"ipinfo-globalblock": "Label for link that will search for public information in the global blocklist on meta.wikimedia.org.",
+	"ipinfo-globalblocklist": "Link for stewards to create a global block via Special:GlobalBlock on meta.wikimedia.org.",
 	"results-limited": "Note below the seach results\n\n* $1 - the maximum number of results loaded from one wiki (e.g. 20, 50 or 100).",
 	"results-lag-warning": "Note shown above the search results if the tools database replicas are currently lagged.\n\n* The word \"Tools\" actually refers to the many tools hosted in ''Wikimedia Toolforge'', including \"Intuition\" itself (for this messages translation subgroup) and \"Replag\" (used by Intuition in this message). The \"Replag\" tool was initially hosted in the ''Tools'' service of the former experimental ''WMF Labs'', transferred to the newer ''Wikimedia Toolforge'', at:\n: https://tools.wmflabs.org/replag/\n* ''Wikimedia Toolforge'' is now integrated in ''Wikimedia Cloud Services'', and the hosted \"Replag\" tool now redirects to:\n: https://replag.toolforge.org/"
 }

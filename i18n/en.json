@@ -12,6 +12,8 @@
 	"form-sort-wiki": "By wiki",
 	"form-sort-date": "By date",
 	"form-submit": "Search",
+	"ipinfo-globalblock": "globally block",
+	"ipinfo-globalblocklist": "global block list",
 	"results-limited": "Limited to $1 results per wiki.",
 	"results-lag-warning": "The results may be missing the most recent edits. Database replicas for Tools are currently lagged. See [https://tools.wmflabs.org/replag/ Replag]."
 }

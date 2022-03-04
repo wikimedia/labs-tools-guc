@@ -357,7 +357,10 @@ class App {
         }
 
         // Save cache
-        file_put_contents(settings::getSetting('cacheFile'), json_encode($cache));
+        file_put_contents(
+            settings::getSetting('cacheFile'),
+            json_encode($cache, JSON_PRETTY_PRINT | JSON_UNESCAPED_SLASHES | JSON_UNESCAPED_UNICODE)
+        );
 
         if (!isset($cache[$dbName][$id])) {
             throw new Exception('Unknown namespace number '.$id.' for '.$server);

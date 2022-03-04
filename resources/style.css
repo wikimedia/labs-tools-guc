@@ -77,11 +77,10 @@ a:hover { text-decoration: underline; }
 }
 
 .results a:visited { color: #5105ad; }
-.results .hostname {
+.results .hostname:before {
     display: inline-block;
-    background: url(img/icoInfo16.png) no-repeat;
-    min-height: 16px;
-    padding-left: 21px;
+    content: 'ℹ️\00a0';
+    user-select: none;
 }
 .results h1,
 .results h2 {

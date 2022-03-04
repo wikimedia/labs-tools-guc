@@ -10,6 +10,27 @@ Requires [Composer](https://getcomposer.org/) and PHP 7.2 or later.
 ~/git/guc $ php -S localhost:9223
 ```
 
+### Local development
+
+You can use the following patch to stub the database and render some of the response UI locally.
+
+```
+# src/App.php
+    protected function openDB($host, $dbname = null) {
+        return new class() {
+            function prepare() {
+                return new class() {
+                    function bindParam() {}
+                    function execute() {}
+                    function fetchAll() {
+                        return [];
+                    }
+                };
+            }
+        };
+    }
+```
+
 ## Toolforge management
 
 See also:

@@ -1,6 +1,7 @@
 {
 	"@metadata": {
 		"authors": [
+			"MathXplore",
 			"ネイ"
 		]
 	},
@@ -15,6 +16,8 @@
 	"form-sort-wiki": "ウィキ順",
 	"form-sort-date": "日付順",
 	"form-submit": "検索",
+	"ipinfo-globalblock": "グローバルブロック",
+	"ipinfo-globalblocklist": "グローバルブロック記録",
 	"results-limited": "1ウィキ毎に$1件表示しています。",
 	"results-lag-warning": "現在、Tools用のデータベース複製に遅れが生じているので、直近の編集が検索結果に表示されない可能性があります。詳しくは[https://tools.wmflabs.org/replag/ Replag]をご参照ください。"
 }

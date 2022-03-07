@@ -16,6 +16,8 @@
 	"form-sort-wiki": "Par wiki",
 	"form-sort-date": "Par date",
 	"form-submit": "Rechercher",
+	"ipinfo-globalblock": "Bloquer globalement",
+	"ipinfo-globalblocklist": "liste des blocages globaux",
 	"results-limited": "Limité à $1 résultats par wiki.",
 	"results-lag-warning": "Les résultats peuvent ne pas contenir les modifications les plus récentes. Les réplications de base de données pour les outils hébergés ont actuellement du retard. Voir l’état actuel des retards de réplication dans l’outil [https://replag.toolforge.org/ ''Replag''] sur ''Wikimedia Toolforge'' (partie des ''Wikimedia Cloud Services'')."
 }

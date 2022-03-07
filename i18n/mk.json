@@ -16,6 +16,8 @@
 	"form-sort-wiki": "По вики",
 	"form-sort-date": "По датум",
 	"form-submit": "Пребарај",
+	"ipinfo-globalblock": "глобално блокирани",
+	"ipinfo-globalblocklist": "список на глобално блокирани",
 	"results-limited": "Ограничено на $1 ставки по вики.",
 	"results-lag-warning": "Најновите уредувања може да недостасуваат од исходот. Репликите на базата за Алатки моментално доцни. Погл. [https://tools.wmflabs.org/replag/ Replag]."
 }

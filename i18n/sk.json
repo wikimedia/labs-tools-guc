@@ -17,6 +17,8 @@
 	"form-sort-wiki": "Podľa viki",
 	"form-sort-date": "Podľa dátumu",
 	"form-submit": "Hľadať",
+	"ipinfo-globalblock": "globálne blokovanie",
+	"ipinfo-globalblocklist": "zoznam globálnych blokovaní",
 	"results-limited": "Počet výsledkov z každej wiki: $1",
 	"results-lag-warning": "Vo výsledkoch môžu chýbať nedávne úpravy. Databázové repliky pre Tools sú momentálne spomalené. Viď [https://tools.wmflabs.org/replag/ Replag]."
 }

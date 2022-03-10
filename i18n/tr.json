@@ -16,6 +16,8 @@
 	"form-sort-wiki": "Vikiye göre",
 	"form-sort-date": "Tarihe göre",
 	"form-submit": "Ara",
+	"ipinfo-globalblock": "küresel engelleme",
+	"ipinfo-globalblocklist": "küresel engelleme listesi",
 	"results-limited": "Viki başına $1 sonuçla sınırlıdır.",
 	"results-lag-warning": "Sonuçlar en son düzenlemeleri içermiyor olabilir. Araçlar için veritabanı kopyaları şu anda gecikmeli. [https://tools.wmflabs.org/replag/ Replag] sayfasına bakın."
 }

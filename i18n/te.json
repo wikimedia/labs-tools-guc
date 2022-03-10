@@ -1,6 +1,7 @@
 {
 	"@metadata": {
 		"authors": [
+			"Chaduvari",
 			"Veeven"
 		]
 	},
@@ -8,5 +9,7 @@
 	"form-from-hr": "చివరి గంట మాత్రమే",
 	"form-sort-wiki": "వికీ వారీగా",
 	"form-sort-date": "తేదీ వారీగా",
-	"form-submit": "వెతుకు"
+	"form-submit": "వెతుకు",
+	"ipinfo-globalblock": "సార్వత్రిక నిరోధం",
+	"ipinfo-globalblocklist": "సార్వత్రిక నిరోధాల జాబితా"
 }

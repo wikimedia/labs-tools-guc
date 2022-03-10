@@ -15,6 +15,8 @@
 	"form-sort-wiki": "Per wiki",
 	"form-sort-date": "Per data",
 	"form-submit": "Cercar",
+	"ipinfo-globalblock": "blocar globalmente",
+	"ipinfo-globalblocklist": "lista de blocadas global",
 	"results-limited": "Limitate a $1 resultatos per wiki.",
 	"results-lag-warning": "Le resultatos pote non continer le modificationes le plus recente. Le replicas del bases de datos pro Tools es actualmente in retardo. Vide [https://tools.wmflabs.org/replag/ Replag]."
 }

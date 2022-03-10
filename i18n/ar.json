@@ -2,6 +2,7 @@
 	"@metadata": {
 		"authors": [
 			"Meno25",
+			"NancyMilad",
 			"ديفيد"
 		]
 	},
@@ -17,6 +18,8 @@
 	"form-sort-wiki": "حسب الويكي",
 	"form-sort-date": "حسب التاريخ",
 	"form-submit": "بحث",
+	"ipinfo-globalblock": "منع عالميا",
+	"ipinfo-globalblocklist": "قائمة المنع العالمي",
 	"results-limited": "تقتصر على $1 نتائج لكل الويكي.",
 	"results-lag-warning": "قد تفتقد النتائج لأحدث التعديلات، النسخ المتماثلة لقاعدة البيانات لأدوات حاليا متخلفة، انظر [https://tools.wmflabs.org/replag/ Replag]."
 }

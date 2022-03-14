@@ -2,6 +2,7 @@
 	"@metadata": {
 		"authors": [
 			"Hidayatsrf",
+			"NFarras",
 			"Rachmat04"
 		]
 	},
@@ -11,7 +12,7 @@
 	"form-from": "Masukkan hasil pencarian dari",
 	"form-from-all": "Semua kontribusi",
 	"form-from-rc": "Hanya perubahan terbaru (30 hari terakhir)",
-	"form-from-hr": "Hanya jam terakhir",
+	"form-from-hr": "Hanya satu jam terakhir",
 	"form-sort": "Urutkan hasil",
 	"form-sort-wiki": "Berdasarkan wiki",
 	"form-sort-date": "Berdasarkan tanggal",

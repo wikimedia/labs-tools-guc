@@ -17,6 +17,8 @@
 	"form-sort-wiki": "Wiki mield",
 	"form-sort-date": "peivimere mield",
 	"form-submit": "Uusâ",
+	"ipinfo-globalblock": "eesti systeemvijđosávt",
+	"ipinfo-globalblocklist": "globaal iästulisto",
 	"results-limited": "Räijejum $1 puátusân per wiki.",
 	"results-lag-warning": "Puoh vorrâsumos nubástusah sättih váiluđ puátusijn. Tiätuvuáđu replikah tyejiniävuid láá eidu tääl maŋanum. Keejâ [https://tools.wmflabs.org/replag/ Replag]."
 }

@@ -15,6 +15,8 @@
 	"form-sort-wiki": "依 wiki",
 	"form-sort-date": "依日期",
 	"form-submit": "搜尋",
+	"ipinfo-globalblock": "全域封鎖",
+	"ipinfo-globalblocklist": "全域封鎖清單",
 	"results-limited": "已限制為各 wiki $1個結果。",
 	"results-lag-warning": "結果可能缺少最近的編輯。用於工具的資料庫複本目前有延遲情況。請查看\n[https://tools.wmflabs.org/replag/ Replag]。"
 }

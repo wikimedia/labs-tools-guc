@@ -3,6 +3,7 @@
 		"authors": [
 			"Facenapalm",
 			"Nitch",
+			"Okras",
 			"Redredsonia"
 		]
 	},
@@ -17,6 +18,8 @@
 	"form-sort-wiki": "По вики",
 	"form-sort-date": "По дате",
 	"form-submit": "Поиск",
+	"ipinfo-globalblock": "глобальная блокировка",
+	"ipinfo-globalblocklist": "список глобальных блокировок",
 	"results-limited": "Ограничить $1 результатами с одной вики.",
 	"results-lag-warning": "Результаты могут не содержать самые последние правки. Репликации баз данных в данный момент отстают. См. [https://tools.wmflabs.org/replag/ Replag]."
 }

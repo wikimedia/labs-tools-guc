@@ -19,6 +19,8 @@
 	"form-sort-wiki": "Efter wiki",
 	"form-sort-date": "Efter datum",
 	"form-submit": "Sök",
+	"ipinfo-globalblock": "global blockering",
+	"ipinfo-globalblocklist": "global blockeringslista",
 	"results-limited": "Begränsas till $1 resultat per wiki.",
 	"results-lag-warning": "Resultaten kan sakna de senaste ändringarna. Verktygsserverns databaskopior har hög fördröjning just nu. Se [https://tools.wmflabs.org/replag/ fördröjningsstatistik]."
 }

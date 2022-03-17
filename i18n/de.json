@@ -1,6 +1,7 @@
 {
 	"@metadata": {
 		"authors": [
+			"DraconicDark",
 			"Metalhead64"
 		]
 	},
@@ -15,6 +16,8 @@
 	"form-sort-wiki": "Nach Wiki",
 	"form-sort-date": "Nach Datum",
 	"form-submit": "Suchen",
+	"ipinfo-globalblock": "Global sperren",
+	"ipinfo-globalblocklist": "Globale Sperrliste",
 	"results-limited": "Auf $1 Ergebnisse pro Wiki begrenzt",
 	"results-lag-warning": "Die Ergebnisse könnten die aktuellsten Bearbeitungen nicht anzeigen. Die Datenbankkopien für Tools sind derzeit verzögert. Siehe [https://tools.wmflabs.org/replag/ Replag]."
 }

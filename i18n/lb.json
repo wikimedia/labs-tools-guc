@@ -16,6 +16,8 @@
 	"form-sort-wiki": "No Wiki",
 	"form-sort-date": "Nom Datum",
 	"form-submit": "Sichen",
+	"ipinfo-globalblock": "global spären",
+	"ipinfo-globalblocklist": "Lëscht vun de globale Spären",
 	"results-limited": "Limitéiert op $1 Resultater pro Wiki.",
 	"results-lag-warning": "An de Resultater kënnen déi rezentst Ännerunge feelen. D'Dublizéiere vun den Datebanke fir d'Geschier ass elo net aktuell. Kuckt dee [https://tools.wmflabs.org/replag/ Retard]."
 }

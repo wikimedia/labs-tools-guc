@@ -15,6 +15,8 @@
 	"form-sort-wiki": "Pro wiki",
 	"form-sort-date": "Pro data",
 	"form-submit": "Chirca",
+	"ipinfo-globalblock": "bloca in manera globale",
+	"ipinfo-globalblocklist": "lista de blocos globales",
 	"results-limited": "Limitadu a $1 resurtados pro wiki.",
 	"results-lag-warning": "In sos resurtados diant pòdere mancare sas modìficas prus reghentes. Sas còpias de sas bases de datos pro sas ainas tenent ritardos in custu momentu. Bisita [https://tools.wmflabs.org/replag/ Replag] pro nde ischire de prus."
 }

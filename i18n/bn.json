@@ -17,6 +17,8 @@
 	"form-sort-wiki": "উইকি অনুযায়ী",
 	"form-sort-date": "তারিখ অনুযায়ী",
 	"form-submit": "অনুসন্ধান",
+	"ipinfo-globalblock": "বৈশ্বিকভাবে বাধাপ্রাপ্ত",
+	"ipinfo-globalblocklist": "বৈশ্বিক বাধার তালিকা",
 	"results-limited": "উইকি প্রতি $1টি ফলাফলে সীমাবদ্ধ।",
 	"results-lag-warning": "ফলাফলে সাম্প্রতিক সম্পাদনাগুলি অনুপস্থিত হতে পারে। সরঞ্জাম জন্য ডাটাবেস প্রতিলিপি বর্তমানে ধীর। [https://tools.wmflabs.org/replag/ Replag] দেখুন।"
 }

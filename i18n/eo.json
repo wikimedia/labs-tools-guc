@@ -1,7 +1,8 @@
 {
 	"@metadata": {
 		"authors": [
-			"Mirin"
+			"Mirin",
+			"Robin van der Vliet"
 		]
 	},
 	"description": "Montri kontribuoj de uzantoj en ĉiuj Vikimediaj vikioj.",
@@ -15,6 +16,8 @@
 	"form-sort-wiki": "Laŭ vikio",
 	"form-sort-date": "Laŭ dato",
 	"form-submit": "Serĉi",
+	"ipinfo-globalblock": "ĝenerala bloko",
+	"ipinfo-globalblocklist": "listo de ĝeneralaj blokoj",
 	"results-limited": "Limigita al po $1 rezultoj en vikio",
 	"results-lag-warning": "La lastaj redaktoj eble mankas en la rezultoj. Datenbankaj kopioj por Iloj estas iom prokrastata. Vidu la paĝon [https://tools.wmflabs.org/replag/ Replag]."
 }

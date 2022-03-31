@@ -2,7 +2,8 @@
 	"@metadata": {
 		"authors": [
 			"Eduardo Addad de Oliveira",
-			"Eduardoaddad"
+			"Eduardoaddad",
+			"YuriNikolai"
 		]
 	},
 	"description": "Mostrar as contribuições dos utilizadores em todas as wikis da Wikimedia.",
@@ -16,6 +17,8 @@
 	"form-sort-wiki": "Por wiki",
 	"form-sort-date": "Por data",
 	"form-submit": "Pesquisar",
+	"ipinfo-globalblock": "bloquear globalmente",
+	"ipinfo-globalblocklist": "lista de bloqueios globais",
 	"results-limited": "Limitado a $1 resultados por wiki.",
 	"results-lag-warning": "Os resultados podem não conter as edições mais recentes. As réplicas da base de dados do Tools tem registado atrasos neste momento. Visite [https://tools.wmflabs.org/replag/ Replag]."
 }

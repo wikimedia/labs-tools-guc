@@ -16,6 +16,8 @@
 	"form-sort-wiki": "Паводле вікі",
 	"form-sort-date": "Паводле даты",
 	"form-submit": "Пошук",
+	"ipinfo-globalblock": "глябальнае блякаваньне",
+	"ipinfo-globalblocklist": "сьпіс глябальных блякаваньняў",
 	"results-limited": "Абмежавана да $1 зь вікі.",
 	"results-lag-warning": "У выніках могуць адсутнічаць найноўшыя рэдагаваньні. Рэплікацыі баз зьвестак Сэрвэру прыладаў затрымліваюцца. Глядзіце [https://tools.wmflabs.org/replag/ Replag]."
 }

@@ -16,6 +16,8 @@
 	"form-sort-wiki": "Goreyê wiki",
 	"form-sort-date": "Goreyê tarixi",
 	"form-submit": "Cı geyre",
+	"ipinfo-globalblock": "kılikerdışo global",
+	"ipinfo-globalblocklist": "lista kılitkerdışê globali",
 	"results-limited": "Her wiki rê $1 netican ra sinor erziyayo.",
 	"results-lag-warning": "Neticeyi belkiya vurnayışanê peyênan muhtewa nêkenê. Seba hacetê kopya database peyra mendeyê. [https://tools.wmflabs.org/replag/ Replag] bıvêne."
 }

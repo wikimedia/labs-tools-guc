@@ -2,6 +2,7 @@
 	"@metadata": {
 		"authors": [
 			"Piramidion",
+			"StarrySky",
 			"Ата"
 		]
 	},
@@ -17,6 +18,8 @@
 	"form-sort-wiki": "За вікі",
 	"form-sort-date": "За датою",
 	"form-submit": "Пошук",
+	"ipinfo-globalblock": "Глобальне блокування",
+	"ipinfo-globalblocklist": "Журнал глобальних блокувань",
 	"results-limited": "Обмежено до $1 результатів на вікі.",
 	"results-lag-warning": "В результатах може не бути найостанніших редагувань. Реплікації бази даних сервера інструментів зараз мають затримки. Див. [https://tools.wmflabs.org/replag/ Replag]."
 }

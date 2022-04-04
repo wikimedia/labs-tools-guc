@@ -1,0 +1,23 @@
+{
+	"@metadata": {
+		"authors": [
+			"C933103",
+			"StarrySky"
+		]
+	},
+	"description": "顯示來自所有維基媒體wiki的用戶貢獻。",
+	"form-user": "IP地址或用戶名稱",
+	"form-isPrefixPattern": "啟用前綴搜尋",
+	"form-from": "包含結果自",
+	"form-from-all": "所有貢獻",
+	"form-from-rc": "僅限近期更改（最近30天）",
+	"form-from-hr": "僅最近 1 小時",
+	"form-sort": "更多結果",
+	"form-sort-wiki": "依 wiki",
+	"form-sort-date": "依日期",
+	"form-submit": "搜尋",
+	"ipinfo-globalblock": "全域封鎖",
+	"ipinfo-globalblocklist": "全域封鎖清單",
+	"results-limited": "已限制為各 wiki $1個結果。",
+	"results-lag-warning": "結果可能缺少最近的編輯。用於工具的資料庫複本目前有延遲情況。請查看\n[https://tools.wmflabs.org/replag/ Replag]。"
+}

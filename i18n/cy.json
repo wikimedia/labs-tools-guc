@@ -1,13 +1,23 @@
 {
 	"@metadata": {
 		"authors": [
-			"Robin Owain"
+			"Robin Owain",
+			"StarrySky"
 		]
 	},
 	"description": "Dangoswch gyfraniadau'r defnyddiwr ym mhob wici Wicimedia.",
 	"form-user": "Cyfeiriad IP neu enw defnyddiwr",
+	"form-isPrefixPattern": "Galluogi chwiliad rhagddodiad",
+	"form-from": "Cynnwys canlyniadau o",
 	"form-from-all": "Yr holl gyfraniadau",
 	"form-from-rc": "Newidiadau diweddaraf (30 diwrnod olaf)",
 	"form-from-hr": "Yr awr ddiwethaf yn unig",
-	"form-sort": "Sortio'r canlyniadau"
+	"form-sort": "Sortio'r canlyniadau",
+	"form-sort-wiki": "gan wiki",
+	"form-sort-date": "erbyn dyddiad",
+	"form-submit": "chwilio",
+	"ipinfo-globalblock": "bloc yn fyd-eang",
+	"ipinfo-globalblocklist": "rhestr blociau byd-eang",
+	"results-limited": "Cyfyngedig i $1 y wiki.",
+	"results-lag-warning": "Mae'n bosibl bod y golygiadau diweddaraf ar goll o'r canlyniadau. Mae atgynyrchiadau cronfa ddata ar gyfer Tools ar ei hôl hi ar hyn o bryd. Gwel [https://tools.wmflabs.org/replag/ Replag]."
 }

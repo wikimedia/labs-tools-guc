@@ -2,7 +2,8 @@
 	"@metadata": {
 		"authors": [
 			"Amire80",
-			"Uziel302"
+			"Uziel302",
+			"YaronSh"
 		]
 	},
 	"description": "הצגת תרומות משתמש מכל אתרי הוויקי של ויקימדיה.",
@@ -16,6 +17,8 @@
 	"form-sort-wiki": "לפי ויקי",
 	"form-sort-date": "לפי תאריך",
 	"form-submit": "חיפוש",
+	"ipinfo-globalblock": "חסימה גלובלית",
+	"ipinfo-globalblocklist": "רשימת חסימה גלובלית",
 	"results-limited": "מוגבל ל־$1 תוצאות לוויקי.",
 	"results-lag-warning": "ייתכן שתוצאות עבור העריכות החדשות ביותר. שכפולי מסד נתונים עבור כלים (Tools) כרגע מעוכבים. ר' [https://tools.wmflabs.org/replag/ Replag]."
 }

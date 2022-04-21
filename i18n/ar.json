@@ -1,6 +1,7 @@
 {
 	"@metadata": {
 		"authors": [
+			"FiberAhmed",
 			"Meno25",
 			"NancyMilad",
 			"ديفيد"
@@ -12,14 +13,14 @@
 	"form-isPrefixPattern": "تمكين البحث عن البادئة",
 	"form-from": "تضمين نتائج من",
 	"form-from-all": "كل المساهمات",
-	"form-from-rc": "التغييرات الأخيرة فقط (آخر 30 يوما)",
+	"form-from-rc": "التغييرات الأخيرة فقط (آخر 30 يومًا)",
 	"form-from-hr": "الساعة الماضية فقط",
 	"form-sort": "فرز النتائج",
 	"form-sort-wiki": "حسب الويكي",
 	"form-sort-date": "حسب التاريخ",
 	"form-submit": "بحث",
-	"ipinfo-globalblock": "منع عالميا",
+	"ipinfo-globalblock": "منع عالميًا",
 	"ipinfo-globalblocklist": "قائمة المنع العالمي",
 	"results-limited": "تقتصر على $1 نتائج لكل الويكي.",
-	"results-lag-warning": "قد تفتقد النتائج لأحدث التعديلات، النسخ المتماثلة لقاعدة البيانات لأدوات حاليا متخلفة، انظر [https://tools.wmflabs.org/replag/ Replag]."
+	"results-lag-warning": "قد تفتقد النتائج لأحدث التعديلات، النسخ المتماثلة لقاعدة البيانات لأدوات حاليًا متخلفة، انظر [https://tools.wmflabs.org/replag/ Replag]."
 }

@@ -2,11 +2,12 @@
 	"@metadata": {
 		"authors": [
 			"Indus Asia",
+			"Mehtab ahmed",
 			"Tweety"
 		]
 	},
 	"description": "سڀني وڪيميڊيا وڪيز مان واهپيندڙن (يوزرز) جون ڀاڱيداريون ڏيکاريو.",
-	"form-user": "آئي پي پتو يا واپرائيندڙ نانءُ",
+	"form-user": "آئي پي پتو يا واپرائيندڙنانءُ",
 	"form-from-all": "سڀئي ڀاڱيداريون",
 	"form-from-hr": "رڳو آخري ڪلاڪ",
 	"form-sort": "نتيجا ڦلاريو",

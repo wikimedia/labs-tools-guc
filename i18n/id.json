@@ -1,6 +1,7 @@
 {
 	"@metadata": {
 		"authors": [
+			"Daud I.F. Argana",
 			"Hidayatsrf",
 			"NFarras",
 			"Rachmat04"
@@ -17,6 +18,8 @@
 	"form-sort-wiki": "Berdasarkan wiki",
 	"form-sort-date": "Berdasarkan tanggal",
 	"form-submit": "Cari",
+	"ipinfo-globalblock": "blokir secara global",
+	"ipinfo-globalblocklist": "daftar blokir global",
 	"results-limited": "Dibatasi hingga $1 hasil per wiki.",
 	"results-lag-warning": "Hasil pencarian suntingan terbaru mungkin tidak tersedia. Replika basis data Tools saat ini sedang macet. Lihat [https://tools.wmflabs.org/replag/ Replag]."
 }

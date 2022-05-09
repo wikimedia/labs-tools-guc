@@ -2,15 +2,22 @@
 	"@metadata": {
 		"authors": [
 			"Lost Whispers",
+			"Muhammed taha",
 			"Épine"
 		]
 	},
 	"description": "بەشدارییەکانی بەکارھێنەر پیشان بدە لە سەرجەم ویکییەکانی ویکیمیدیا.",
 	"form-user": "ناونیشانی ئای-پی یان ناوی‌ بەکارھێنەر",
+	"form-isPrefixPattern": "گەڕان بە پێشگر چالاک بکە",
+	"form-from": "لەخۆگرتنی ئەنجامەکانی",
 	"form-from-all": "ھەموو بەشدارییەکان",
 	"form-from-rc": "تەنھا گۆڕانکارییە نوێکان (کۆتا ٣٠ ڕۆژ)",
 	"form-from-hr": "تەنھا کاتژمێری پێشوو",
+	"form-sort": "ڕیزکردنی ئەنجامەکان",
 	"form-sort-wiki": "بە ویکی",
 	"form-sort-date": "بە ڕێکەوت",
-	"form-submit": "گەڕان"
+	"form-submit": "گەڕان",
+	"ipinfo-globalblock": "بەربەستکراوی سەرانسەریی",
+	"ipinfo-globalblocklist": "لیستی بەربەستکردنی سەرانسەری",
+	"results-limited": "بۆ ھەر ویکییەک ئەنجامەکان سنووردار کراون بە $1 ئەنجام"
 }

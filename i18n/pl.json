@@ -2,6 +2,7 @@
 	"@metadata": {
 		"authors": [
 			"InternerowyGołąb",
+			"Strebski",
 			"Woytecr"
 		]
 	},
@@ -17,6 +18,7 @@
 	"form-sort-wiki": "Według wiki",
 	"form-sort-date": "Według daty",
 	"form-submit": "Szukaj",
+	"ipinfo-globalblock": "zablokuj globalnie",
 	"results-limited": "Ograniczono do $1 wyników na wiki.",
 	"results-lag-warning": "W wynikach mogły nie pojawić się najnowsze edycje. Replikacja bazy danych serwera narzędziowego jest teraz spowolniona. Zobacz [https://tools.wmflabs.org/replag/ Replag]."
 }

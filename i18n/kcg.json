@@ -5,17 +5,19 @@
 			"Kambai Akau"
 		]
 	},
-	"description": "Tyiaat nwuat a̱tyuta̱m neet a̱mgba̱m a̱yaawiki Wikimidya",
-	"form-user": "A̱vwuonswat IP ku a̱lyoota̱tyuta̱m",
-	"form-isPrefixPattern": "Byii̱k zop a̱fwop a̱zanson",
-	"form-from": "Mbeang záng neet",
-	"form-from-all": "A̱mgba̱m nwuat",
-	"form-from-rc": "A̱ka̱shai mman nani (mmam 30 na̱ swak)",
-	"form-from-hr": "Awa a̱ swak ma̱nyin",
+	"description": "Tyai jhyet a̱tyunta̱m neet ma̱ a̱mgba̱m a̱yaawuki Wukimedia.",
+	"form-user": "A̱vwuonswat IP ku a̱lyoot-a̱tyunta̱m",
+	"form-isPrefixPattern": "Byii̱k zop a̱fwuop-a̱son",
+	"form-from": "Mbeang záng neet mi̱",
+	"form-from-all": "A̱mgba̱m jhyet",
+	"form-from-rc": "A̱ka̱shai mmam nani (mmam 30 na̱ ku swak a̱ni)",
+	"form-from-hr": "Awa a̱nyiung a̱ sii swak ma̱nyin",
 	"form-sort": "Tswang záng",
-	"form-sort-wiki": "Di̱n vak wiki",
-	"form-sort-date": "Di̱n vak mam zwat",
+	"form-sort-wiki": "Di̱n vak wuki",
+	"form-sort-date": "Di̱n vak a̱tuk",
 	"form-submit": "Zop",
+	"ipinfo-globalblock": "fam ma̱ a̱mgba̱m swanta",
+	"ipinfo-globalblocklist": "lyulyoot nfam mi̱ swanta",
 	"results-limited": "Byia̱ gak záng $1 ja kuzang wiki.",
 	"results-lag-warning": "Záng jini bye nwai jhyúk hu ku sii swak a̱ni. A̱ka̱hyaai a̱tyindata mat Nkyangta̱m ndat mi̱ di̱ yong huni. Di [https://tools.wmflabs.org/replag/ Replag]."
 }

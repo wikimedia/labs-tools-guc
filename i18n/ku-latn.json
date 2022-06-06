@@ -16,6 +16,8 @@
 	"form-sort-wiki": "Li gorî wîkiyê",
 	"form-sort-date": "Li gorî dîrokê",
 	"form-submit": "Lêgerîn",
+	"ipinfo-globalblock": "astengkirina global",
+	"ipinfo-globalblocklist": "lîsteya astengkirinê yê global",
 	"results-limited": "Ji bo her wîkiyê bi $1 encaman sînordarkirî ye.",
 	"results-lag-warning": "Dibe ku encam guhertinên dawîn nehewîne. Kopiyên danegehê yên ji bo Amûran vê gavê derengmayî ye. Binêrin rûpela [https://tools.wmflabs.org/replag/ Replag]."
 }

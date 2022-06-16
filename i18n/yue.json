@@ -3,7 +3,8 @@
 		"authors": [
 			"Moon0319",
 			"Roy17",
-			"Shinjiman"
+			"Shinjiman",
+			"Z423x5c6"
 		]
 	},
 	"description": "顯示由全部維基媒體wiki嘅用戶貢獻。",
@@ -17,6 +18,8 @@
 	"form-sort-wiki": "按wiki",
 	"form-sort-date": "按日子",
 	"form-submit": "搵",
+	"ipinfo-globalblock": "全域封鎖",
+	"ipinfo-globalblocklist": "全域封鎖列表",
 	"results-limited": "每個wiki限制到$1項結果。",
 	"results-lag-warning": "個結果可能會冇咗多數最近嘅編輯。俾工具用嘅數據庫副本現時有延遲。睇吓[https://tools.wmflabs.org/replag/ Replag]。"
 }

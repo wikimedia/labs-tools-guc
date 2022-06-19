@@ -294,7 +294,7 @@ class Contribs {
 
         // Minor edit
         if ($rc->rev_minor_edit) {
-            $item[] = '<span class="minor">M</span>';
+            $item[] = '<span class="minor">m</span>';
         }
 
         // Link to the page

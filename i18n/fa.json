@@ -4,7 +4,8 @@
 			"Amirsara",
 			"Darafsh",
 			"Dejavu",
-			"FarsiNevis"
+			"FarsiNevis",
+			"Nightdevil"
 		]
 	},
 	"description": "نمایش مشارکت‌های کاربر در همهٔ ویکی‌های ویکی‌مدیا",
@@ -18,6 +19,8 @@
 	"form-sort-wiki": "بر اساس ویکی",
 	"form-sort-date": "بر اساس تاریخ",
 	"form-submit": "جستجو",
+	"ipinfo-globalblock": "بستن سراسری",
+	"ipinfo-globalblocklist": "سیاههٔ بستن دسترسی سراسری",
 	"results-limited": "محدود به $1 نتیجه در هر ویکی.",
 	"results-lag-warning": "این نتایج ممکن است ویرایش‌های خیلی جدید را نشان ندهد. نسخه‌های کپی پایگاه داده برای ابزارها در حال حاضر تأخیر دارد. نگاه کنید به [https://tools.wmflabs.org/replag/ اینجا]."
 }

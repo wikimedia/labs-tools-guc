@@ -32,7 +32,7 @@ class Wiki {
     /**
      * See Main::getWikis().
      *
-     * @param stdClass $metaRow Row from meta_p table
+     * @param stdClass $row Row from meta_p table
      * @return Wiki
      */
     public static function newFromRow(stdClass $row) {

@@ -52,6 +52,7 @@ class ChronologyOutput implements IOutput {
             }
             print $this->makeChangeLine($rc);
         }
+        // @phan-suppress-next-line PhanRedundantCondition https://github.com/phan/phan/issues/4685
         if ($inList) {
             // Make sure we close the last list
             $inList = false;

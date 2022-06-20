@@ -30,6 +30,7 @@ class PerWikiOutput implements IOutput {
                 $contribs = $data->contribs;
                 if ($contribs->hasContribs()) {
                     print '<div class="wiki'.($contribs->isUnattached()?' wiki--noSul':'').'">';
+                    // @phan-suppress-next-line SecurityCheck-XSS
                     print $this->makeWikiSection($data->wiki, $contribs);
                     print '</div>';
                 }
@@ -57,6 +58,7 @@ class PerWikiOutput implements IOutput {
             $userinfo[] = 'Multiple users';
         }
 
+        // @phan-suppress-next-line PhanRedundantCondition I like it this way
         if ($userinfo) {
             $html .= '<p class="wiki-info">' . join(' | ', $userinfo) . '</p>';
         }

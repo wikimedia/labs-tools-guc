@@ -2,7 +2,9 @@
 
 namespace Guc;
 
+use Exception;
 use PDO;
+use PDOStatement;
 use stdClass;
 
 /**
@@ -62,7 +64,6 @@ class Contribs {
 
     /**
      * @param PDO $pdo
-     * @param array $userIds
      * @return PDOStatement
      */
     private function prepareRevisionQuery(PDO $pdo) {
@@ -88,7 +89,7 @@ class Contribs {
                 rev_deleted = 0 AND
                 ".(
                     ($this->localUserId)
-                        ? 'actor_user = ' . $pdo->quote($this->localUserId)
+                        ? 'actor_user = ' . $pdo->quote((string)$this->localUserId)
                         : (
                             ($this->options['isPrefixPattern'])
                                 ? 'actor_name LIKE :userlike'
@@ -96,7 +97,7 @@ class Contribs {
                         )
                 )."
             ORDER BY rev_timestamp DESC
-            LIMIT 0, " . intval(self::CONTRIB_LIMIT) .
+            LIMIT 0, " . (string)self::CONTRIB_LIMIT .
             ";";
         $this->app->debug("[SQL] " . preg_replace('#\s+#', ' ', $sql));
         $statement = $pdo->prepare($sql);
@@ -120,7 +121,7 @@ class Contribs {
             'rc_deleted = 0',
             (
                 ($this->localUserId)
-                    ? 'actor_user = ' . $pdo->quote($this->localUserId)
+                    ? 'actor_user = ' . $pdo->quote((string)$this->localUserId)
                     : (
                         ($this->options['isPrefixPattern'])
                             ? 'actor_name LIKE :userlike'
@@ -155,7 +156,7 @@ class Contribs {
             WHERE
                 ' . $sqlCond . '
             ORDER BY rc_timestamp DESC
-            LIMIT 0, ' . intval(self::CONTRIB_LIMIT) .
+            LIMIT 0, ' . (string)self::CONTRIB_LIMIT .
             ';';
         $statement = $pdo->prepare($sql);
         $this->app->debug("[SQL] " . preg_replace('#\s+#', ' ', $sql));

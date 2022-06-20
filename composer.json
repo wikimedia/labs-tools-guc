@@ -23,6 +23,7 @@
 		"test": [
 			"parallel-lint . --exclude vendor",
 			"phpunit",
+			"@phan",
 			"phpcs -p -s"
 		],
 		"cover": "phpunit --coverage-html coverage/",

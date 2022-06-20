@@ -18,6 +18,7 @@ class Main {
     private $datas;
     private $wikis;
     private $centralauthData;
+    private $matchingWikis;
 
     public static function getDefaultOptions() {
         return array(
@@ -296,7 +297,7 @@ class Main {
      * Get CentralAuth information about a specific wiki.
      *
      * @param string|null $dbname Wiki (Passing null is for internal use only.)
-     * @return object|false False means there is no account by the given name
+     * @return stdClass|false|stdClass[] False means there is no account by the given name
      *  locally on this wiki (including for IP and prefix searches).
      */
     private function getCentralauthRow($dbname) {
@@ -347,7 +348,7 @@ class Main {
     /**
      * Get CentralAuth information for any wikis where an account with the given name exists.
      *
-     * @return object|false False means there is no account by the given name
+     * @return object[]|false False means there is no account by the given name
      *  locally on this wiki (including for IP and prefix searches).
      */
     private function getCentralauthAll() {

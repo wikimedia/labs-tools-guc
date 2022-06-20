@@ -139,7 +139,7 @@ class App {
      */
     public function closeDB($cluster = 's1') {
         $host = $this->normaliseHost($cluster);
-        $ip = isset($this->hostIPs[$host]) ? $this->hostIPs[$host] : $host;
+        $ip = $this->hostIPs[$host] ?? $host;
 
         unset($this->ipHostsInUse[$ip][$host]);
 
@@ -304,7 +304,7 @@ class App {
                 $target = $match[1];
 
                 $link = '<a href="' . htmlspecialchars("$server/w/index.php?title="
-                    . htmlspecialchars(Wiki::urlencode($target)))
+                    . Wiki::urlencode($target))
                     . '">' . htmlspecialchars($text) . '</a>';
                 $comment = preg_replace(
                     '/\[\[(.*?)\]\]/',
@@ -375,17 +375,15 @@ class App {
      * Performs a api request (post)
      * @param string $server
      * @param array $params
-     * @return array or string
+     * @return array
      */
     public function apiRequest($server, $params) {
         if (!is_array($params)) {
             throw new Exception('Invalid api parameters.');
         }
         $url = $server.'/w/api.php';
+        $params['format'] = 'json';
         // Set defaults
-        if (!key_exists('format', $params)) {
-            $params['format'] = 'json';
-        }
         if (!key_exists('action', $params)) {
             $params['action'] = 'query';
         }
@@ -397,10 +395,6 @@ class App {
         curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
         $data = curl_exec($ch);
         curl_close($ch);
-        if ($params['format'] == 'json') {
-            return json_decode($data, true);
-        } else {
-            return $data;
-        }
+        return json_decode($data, true);
     }
 }

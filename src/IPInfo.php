@@ -22,7 +22,7 @@ class IPInfo {
         // gethostbyaddr() usually doesn't give much for IPv6 addresses
         // Use ASN information to still provide some information that
         // may be useful to identify a group of related IP-adresses.
-        $info = self::getAsnInfo($ip) ?: array();
+        $info = self::getAsnInfo($ip) ?: [];
         $host = self::getHost($ip);
         if ($host) {
             $info['host'] = $host;
@@ -53,10 +53,8 @@ class IPInfo {
      * See also:
      * - <https://en.wikipedia.org/wiki/Reverse_DNS_lookup#IPv4_reverse_resolution>
      * - RFC 3172 <https://tools.ietf.org/html/rfc3172>
-     * @param string $ip6
-     * @return string in-arpa
      */
-    private static function arpaForIp4($ip4, $suffix = '.in-addr.arpa') {
+    private static function arpaForIp4(string $ip4, string $suffix = '.in-addr.arpa'): string {
         return implode('.', array_reverse(explode('.', $ip4))) . $suffix;
     }
 
@@ -67,10 +65,8 @@ class IPInfo {
      * - <https://en.wikipedia.org/wiki/IPv6>
      * - RFC 3596 <https://tools.ietf.org/html/rfc3596>
      * - RFC 3172 <https://tools.ietf.org/html/rfc3172>
-     * @param string $ip6
-     * @return string in-arpa
      */
-    private static function arpaForIp6($ip6, $suffix = '') {
+    private static function arpaForIp6(string $ip6, string $suffix = ''): string {
         // Inspired by <http://stackoverflow.com/a/6621473/319266>
         $addr = inet_pton($ip6);
         $unpack = unpack('H*hex', $addr);
@@ -131,8 +127,8 @@ class IPInfo {
             return false;
         }
         return array(
-            'asn' => intval($parts[0]),
-            'range' => isset($parts[1]) ? $parts[1] : null,
+            'asn' => (int)$parts[0],
+            'range' => $parts[1] ?? null,
             'description' => self::getAsnDescription($parts[0]) ?: '',
         );
     }

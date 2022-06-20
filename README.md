@@ -18,11 +18,13 @@ You can use the following patch to stub the database and render some of the resp
 # src/App.php
     protected function openDB($host, $dbname = null) {
         return new class() {
-            function prepare() {
+            public function prepare(string $query) {
                 return new class() {
-                    function bindParam() {}
-                    function execute() {}
-                    function fetchAll() {
+                    public function bindParam() {
+                    }
+                    public function execute() {
+                    }
+                    public function fetchAll() {
                         return [];
                     }
                 };

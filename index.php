@@ -9,6 +9,8 @@ use Guc\PerWikiOutput;
 use Guc\Contribs;
 use Guc\Main;
 use Krinkle\Intuition\Intuition;
+use Krinkle\Toolbase\Html;
+use Krinkle\Toolbase\HtmlSelect;
 
 require_once __DIR__ . '/vendor/autoload.php';
 
@@ -104,7 +106,7 @@ $sep = $int->msg('colon-separator', array('domain' => 'general'));
         }
         ?>></label></p>
         <p><label><?php echo htmlspecialchars($int->msg('form-from') . $sep); ?> <?php
-            $resultSelect = new \HtmlSelect([
+            $resultSelect = new HtmlSelect([
                 'all' => $int->msg('form-from-all'),
                 'rc' => $int->msg('form-from-rc'),
                 'hr' => $int->msg('form-from-hr'),
@@ -112,7 +114,7 @@ $sep = $int->msg('colon-separator', array('domain' => 'general'));
             $resultSelect->setDefault($data->options['src']);
             $resultSelect->setName('src');
             print $resultSelect->getHTML();
-        ?></label></p>
+            ?></label></p>
         <p><?php echo htmlspecialchars($int->msg('form-sort') . $sep); ?>
         <label><input name="by" type="radio" value="wiki"<?php
         if ($data->options['by'] !== 'date') {
@@ -133,7 +135,7 @@ $sep = $int->msg('colon-separator', array('domain' => 'general'));
         if ($int->getUseRequestParam()) {
             $paramName = $int->getParamName('userlang');
             if (isset($_GET[$paramName]) || isset($_POST[$paramName])) {
-                echo \Html::element('input', [
+                echo Html::element('input', [
                     'type' => 'hidden',
                     'name' => $paramName,
                     'value' => $int->getLang(),
@@ -157,7 +159,7 @@ $sep = $int->msg('colon-separator', array('domain' => 'general'));
         }
         print '.</p>';
         print '<p>' . htmlspecialchars($int->msg('results-limited', [
-            'variables' => [ (int)Contribs::CONTRIB_LIMIT ]
+            'variables' => [ (string)Contribs::CONTRIB_LIMIT ]
         ])) . '</p>';
         print '<div class="results">';
         $infos = array_filter($guc->getIPInfos());

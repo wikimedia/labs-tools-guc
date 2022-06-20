@@ -1,13 +1,13 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <phpunit colors="true">
 	<testsuites>
-		<testsuite name="GUC Tests">
+		<testsuite name="Test Suite">
 			<directory>./tests</directory>
 		</testsuite>
 	</testsuites>
-	<filter>
-		<whitelist addUncoveredFilesFromWhitelist="true">
+	<coverage includeUncoveredFiles="true">
+		<include>
 			<directory suffix=".php">./src</directory>
-		</whitelist>
-	</filter>
+		</include>
+	</coverage>
 </phpunit>

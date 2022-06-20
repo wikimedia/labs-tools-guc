@@ -1,6 +1,7 @@
 <?php
 
 use Krinkle\Intuition\Intuition;
+use Krinkle\Toolbase\LabsDB;
 
 require_once __DIR__ . '/vendor/autoload.php';
 
@@ -50,8 +51,8 @@ try {
             'lagged' => false,
             'lag' => [],
         ];
-        $metaRows = \LabsDB::query(
-            \LabsDB::getMetaDB(),
+        $metaRows = LabsDB::query(
+            LabsDB::getMetaDB(),
             'SELECT DISTINCT(slice) as slice FROM wiki ORDER BY slice ASC'
         );
         if ($metaRows) {
@@ -63,8 +64,8 @@ try {
                     $row['slice']
                 );
                 list($shard) = explode('.', $host);
-                $res = \LabsDB::query(
-                    \LabsDB::getConnection($host, 'heartbeat'),
+                $res = LabsDB::query(
+                    LabsDB::getConnection($host, 'heartbeat'),
                     'SELECT lag FROM heartbeat WHERE shard = ?',
                     [ $shard ]
                 );

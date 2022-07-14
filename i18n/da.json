@@ -17,6 +17,8 @@
 	"form-sort-wiki": "Efter wiki",
 	"form-sort-date": "Efter dato",
 	"form-submit": "Søg",
+	"ipinfo-globalblock": "global blokering",
+	"ipinfo-globalblocklist": "global blokeringsliste",
 	"results-limited": "Begrænset til $1 resultater per wiki.",
 	"results-lag-warning": "Resultaterne kan mangle de seneste redigeringer. Det er efterslæb på databasekopierne, som Tools anvender. Se [https://tools.wmflabs.org/replag/ Replag]."
 }

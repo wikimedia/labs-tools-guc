@@ -1,0 +1,22 @@
+{
+	"@metadata": {
+		"authors": [
+			"GinawaSaHapon"
+		]
+	},
+	"description": "Ipakita ang mga ambag ng tagagamit mula sa lahat ng mga wiki ng Wikimedia.",
+	"form-user": "IP address o username",
+	"form-isPrefixPattern": "Buksan ang paghahanap gamit unlapi",
+	"form-from": "Isama ang mga resulta mula",
+	"form-from-all": "Lahat ng ambag",
+	"form-from-rc": "Mga kamakailang pagbabago lang (huling 30 araw)",
+	"form-from-hr": "Huling oras lang",
+	"form-sort": "Ayusin ang mga resulta",
+	"form-sort-wiki": "Base sa wiki",
+	"form-sort-date": "Base sa petsa",
+	"form-submit": "Hanapin",
+	"ipinfo-globalblock": "pandaigdigang pagharang",
+	"ipinfo-globalblocklist": "listahan ng pandaigdigang pagharang",
+	"results-limited": "Limitado lang sa $1 (na) resulta kada wiki.",
+	"results-lag-warning": "Posibleng hindi makikita sa mga resulta ang mga kamakailang edit. Nagla-lag sa ngayon ang mga replica ng database para sa Tools. Tingnan ang [https://tools.wmflabs.org/replag/ Replag]."
+}

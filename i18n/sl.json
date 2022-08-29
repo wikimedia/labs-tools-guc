@@ -1,6 +1,7 @@
 {
 	"@metadata": {
 		"authors": [
+			"Eleassar",
 			"Janezdrilc"
 		]
 	},
@@ -16,6 +17,8 @@
 	"form-sort-wiki": "Po wikiju",
 	"form-sort-date": "Po datumu",
 	"form-submit": "Išči",
+	"ipinfo-globalblock": "blokiraj globalno",
+	"ipinfo-globalblocklist": "seznam globalnih blokad",
 	"results-limited": "Omejeno na $1 rezultatov na wiki.",
 	"results-lag-warning": "Rezultati morda ne vključujejo najnovejših urejanj. Podvajanje podatkov za Orodja je trenutno v zaostanku. Glej [https://tools.wmflabs.org/replag/ Zaostajanje podvajanj]."
 }

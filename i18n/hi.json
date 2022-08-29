@@ -1,6 +1,7 @@
 {
 	"@metadata": {
 		"authors": [
+			"Sharmaji",
 			"Shypoetess"
 		]
 	},
@@ -12,9 +13,11 @@
 	"form-from-rc": "केवल हाल के परिवर्तन (पिछले 30 दिन)",
 	"form-from-hr": "पिछले घंटे ही",
 	"form-sort": "परिणामों को क्रमबद्ध करें",
-	"form-sort-wiki": "विकि अनुसार",
+	"form-sort-wiki": "विकि द्वारा",
 	"form-sort-date": "तिथि अनुसार",
 	"form-submit": "खोजें",
+	"ipinfo-globalblock": "विश्व स्तर पर ब्लॉक",
+	"ipinfo-globalblocklist": "वैश्विक ब्लॉक सूची",
 	"results-limited": "प्रति विकि $1 परिणामों तक सीमित।",
 	"results-lag-warning": "परिणामों में सबसे हाल के संपादन गायब हो सकते हैं। उपकरण के लिए डेटाबेस प्रतिकृतियां वर्तमान में पिछड़ी हुई हैं। [Https://tools.wmflabs.org/replag/ Replag] देखें।"
 }

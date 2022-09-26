@@ -5,7 +5,7 @@
 			"Janezdrilc"
 		]
 	},
-	"title": "Globalni uporabnikovi prispevki",
+	"title": "Uporabnikovi globalni prispevki",
 	"description": "Prikaz uporabnikovih prispevkov vseh Wikimedijinih wikijev.",
 	"form-user": "IP naslov ali uporabniško ime",
 	"form-isPrefixPattern": "Omogoči iskanje po predponi",

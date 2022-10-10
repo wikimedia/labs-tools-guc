@@ -1,0 +1,20 @@
+{
+	"@metadata": {
+		"authors": [
+			"Tajamul9"
+		]
+	},
+	"description": "تمام وِکیٖپیٖڈیا وِکیٖزو پؠٹھہٕ وُچھو صٲرفہٕ سٕنٛز شرکٲژ.",
+	"form-user": "IP  پتاہ یا رُکُن ناو:",
+	"form-isPrefixPattern": "گۄٚڈٕ ینہٕ وول ژھارُن ترٲوِو یَلہٕ",
+	"form-from": "پؠٹھہٕ نٕتیٖجہٕ شٲمل",
+	"form-from-all": "تمام شَرکٔژٕ",
+	"form-from-hr": "صرف أخری گٲنٛٹہٕ",
+	"form-sort": "ساٹ نٕتیٖجہٕ",
+	"form-sort-wiki": "وِکی سٕنٛدی طرفہٕ",
+	"form-sort-date": "تٲریخ طرفہٕ",
+	"form-submit": "ژھانٛڈُن",
+	"ipinfo-globalblock": "عالمی طور بنٛد",
+	"ipinfo-globalblocklist": "عالمی طور بنٛد کرنٕچ فہرست",
+	"results-limited": "ہر وِکیٖیَس چھ $1 تام نٕتیٖجن ہِیوٚنٛد حد"
+}

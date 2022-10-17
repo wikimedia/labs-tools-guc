@@ -1,0 +1,22 @@
+{
+	"@metadata": {
+		"authors": [
+			"Tejoebāsa"
+		]
+	},
+	"description": "Wikimedia wiki တိအားလုံးက သုံးစွဲသူများဧ့ ပံ့ပိုးမှုတိကို ပြသပါ။",
+	"form-user": "IP လိပ်စာ ယင်စသို့မဟုတ် အသုံးပြုသူနာမည်",
+	"form-isPrefixPattern": "ရှိဆက် ရှာဖွီမှုကို ဖွင့်ပါ",
+	"form-from": "ရလဒ်တိကို ထည့်သွင်းပါ။",
+	"form-from-all": "အလှူ‌ငွီအားလုံး",
+	"form-from-rc": "လောလောဆယ် အပြောင်းအလဲများရေ (ပြီးခရေ ရက် 30)",
+	"form-from-hr": "နောက်ဆုံးနာရီယာ",
+	"form-sort": "ရလဒ်တိကို စီပါ။",
+	"form-sort-wiki": "ဝီကီက",
+	"form-sort-date": "ရက်စွဲအလိုက်",
+	"form-submit": "ရှာပါ",
+	"ipinfo-globalblock": "တစ်ကမ္ဘာလုံး ပိတ်ထား",
+	"ipinfo-globalblocklist": "ကမ္ဘာလုံးဆိုင်ရာပိတ်ထားစရင်း",
+	"results-limited": "wiki တစ်ခုစီ ရလဒ်တိကို $1 ကန့်သတ်ထားသည်။",
+	"results-lag-warning": "ရလဒ်တိက လောလောဆယ် တီးဖြတ်မှုတိ ပျောက်ဆုံးနေနိုင်သည်။  Tools အတွက် ဒေတာဘေ့စ်ပုံတူတိက လက်ဟိမှာ နောက်ကျနေပါသည်။  [https://tools.wmflabs.org/replag/ Replag] ကိုကြည့်ပါ။"
+}

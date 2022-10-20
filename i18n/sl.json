@@ -14,11 +14,11 @@
 	"form-from-rc": "Samo zadnje spremembe (zadnjih 30 dni)",
 	"form-from-hr": "Samo zadnja ura",
 	"form-sort": "Razvrsti zadetke",
-	"form-sort-wiki": "Po wikiju",
+	"form-sort-wiki": "Po vikiju",
 	"form-sort-date": "Po datumu",
 	"form-submit": "Išči",
 	"ipinfo-globalblock": "blokiraj globalno",
 	"ipinfo-globalblocklist": "seznam globalnih blokiranj",
-	"results-limited": "Omejeno na $1 zadetkov na wiki.",
+	"results-limited": "Omejeno na $1 zadetkov na viki.",
 	"results-lag-warning": "Zadetki morda ne vključujejo najnovejših urejanj. Podvajanje podatkov za Orodja je trenutno v zaostanku. Glej [https://tools.wmflabs.org/replag/ Zaostajanje podvajanj]."
 }

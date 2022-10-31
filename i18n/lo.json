@@ -1,0 +1,22 @@
+{
+	"@metadata": {
+		"authors": [
+			"Lookruk"
+		]
+	},
+	"description": "ສະແດງການປະກອບສ່ວນຂອງຜູ້ໃຊ້ຈາກທຸກວິກິວິກິມີເດຍ",
+	"form-user": "ທີ່ຢູ່ໄອພີຫຼືຊື່ຜູ້ໃຊ້",
+	"form-isPrefixPattern": "ເປີດໃຊ້ງານການຄົ້ນຫາຄໍານໍາຫນ້າ",
+	"form-from": "ລວມຜົນລັບຈາກ",
+	"form-from-all": "ການປະກອບສ່ວນທັງໝົດ",
+	"form-from-rc": "ການປ່ຽນແປງຫຼ້າສຸດເທົ່ານັ້ນ (30 ວັນທີ່ຜ່ານມາ)",
+	"form-from-hr": "ຊົ່ວໂມງທີ່ຜ່ານມາເທົ່ານັ້ນ",
+	"form-sort": "ຮຽງຜົນລັບ",
+	"form-sort-wiki": "ຕາມວິກິ",
+	"form-sort-date": "ຕາມວັນທີ",
+	"form-submit": "ຊອກຫາ",
+	"ipinfo-globalblock": "ບລັອກທົ່ວໂລກ",
+	"ipinfo-globalblocklist": "ບັນທຶກການບລັອກທົ່ວໂລກ",
+	"results-limited": "ຈຳກັດຜົລລັບຢູ່ທີ່ $1 ລາຍການຕໍ່ວິກິ",
+	"results-lag-warning": "ຜົນລັບອາດຈະຂາດການດັດແກ້ຫຼ້າສຸດ ການສະແດງຂໍ້ມູນສຳລັບເຄື່ອງມືແມ່ນຊັກຊ້າ ໂປດເບິ່ງ [https://tools.wmflabs.org/replag/ Replag]"
+}

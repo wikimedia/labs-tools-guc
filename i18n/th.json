@@ -1,7 +1,8 @@
 {
 	"@metadata": {
 		"authors": [
-			"Aefgh39622"
+			"Aefgh39622",
+			"Lookruk"
 		]
 	},
 	"description": "แสดงการมีส่วนร่วมของผู้ใช้จากวิกิวิกิมีเดียทั้งหมด",
@@ -15,5 +16,8 @@
 	"form-sort-wiki": "ตามวิกิ",
 	"form-sort-date": "ตามวันที่",
 	"form-submit": "ค้นหา",
-	"results-limited": "จำกัดผลลัพธ์ไว้ที่ $1 รายการต่อวิกิ"
+	"ipinfo-globalblock": "บล็อกทั่วโลก",
+	"ipinfo-globalblocklist": "ปูมการบล็อกทั่วโลก",
+	"results-limited": "จำกัดผลลัพธ์ไว้ที่ $1 รายการต่อวิกิ",
+	"results-lag-warning": "ผลลัพธ์อาจไม่มีการแก้ไขล่าสุด ขณะนี้การแสดงข้อมูลสำหรับเครื่องมือมีความล่าช้า โปรดดู [https://tools.wmflabs.org/replag/ Replag]"
 }

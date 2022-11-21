@@ -2,15 +2,23 @@
 	"@metadata": {
 		"authors": [
 			"Eitvys200",
-			"Nersip"
+			"Nersip",
+			"Pavel1513"
 		]
 	},
+	"description": "Rodyti naudotojų indėlį iš visų „Vikimedijos“ „vikių“.",
 	"form-user": "IP adresas arba vartotojo vardas",
+	"form-isPrefixPattern": "Įgalinti paiešką pagal priešvardį",
 	"form-from": "Įtraukti rezultatus iš",
 	"form-from-all": "Visi įnašai",
 	"form-from-rc": "Tik naujausi pakeitimai (30 pastarųjų dienų)",
 	"form-from-hr": "Tik paskutinė valanda",
 	"form-sort": "Rūšiuoti rezultatus",
+	"form-sort-wiki": "Pagal „vikį“",
 	"form-sort-date": "Pagal datą",
-	"form-submit": "Paieška"
+	"form-submit": "Paieška",
+	"ipinfo-globalblock": "globaliai blokuoti",
+	"ipinfo-globalblocklist": "Globalaus blokavimo sąrašas",
+	"results-limited": "Apribota iki $1 rezultatų per „vikį“.",
+	"results-lag-warning": "Rezultatuose gali trūkti naujausių pakeitimų. Šiuo metu duomenų bazės kopijas \"Įrankiams\" vėluoja. Žr. [https://tools.wmflabs.org/replag/ „Replag“]."
 }

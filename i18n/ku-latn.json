@@ -1,6 +1,7 @@
 {
 	"@metadata": {
 		"authors": [
+			"Balyozxane",
 			"Bikarhêner",
 			"George Animal"
 		]
@@ -19,5 +20,5 @@
 	"ipinfo-globalblock": "astengkirina global",
 	"ipinfo-globalblocklist": "lîsteya astengkirinê yê global",
 	"results-limited": "Ji bo her wîkiyê bi $1 encaman sînordarkirî ye.",
-	"results-lag-warning": "Dibe ku encam guhertinên dawîn nehewîne. Kopiyên danegehê yên ji bo Amûran vê gavê derengmayî ye. Binêrin rûpela [https://tools.wmflabs.org/replag/ Replag]."
+	"results-lag-warning": "Dibe ku encam guhartinên dawîn nehewîne. Kopiyên danegehê yên ji bo Amûran vê gavê derengmayî ye. Binêrin rûpela [https://tools.wmflabs.org/replag/ Replag]."
 }

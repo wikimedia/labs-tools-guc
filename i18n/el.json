@@ -2,6 +2,7 @@
 	"@metadata": {
 		"authors": [
 			"GR",
+			"Jimkats",
 			"NikosLikomitros",
 			"Nikosgranturismogt",
 			"Norhorn"
@@ -18,6 +19,8 @@
 	"form-sort-wiki": "Ανά βίκι",
 	"form-sort-date": "Κατά ημερομηνία",
 	"form-submit": "Αναζήτηση",
+	"ipinfo-globalblock": "καθολική φραγή",
+	"ipinfo-globalblocklist": "Λίστα καθολικών φραγών",
 	"results-limited": "Περιορίστηκε σε $1 αποτελέσματα ανά βίκι.",
 	"results-lag-warning": "Στα αποτελέσματα ενδέχεται να απουσιάζουν οι πιο πρόσφατες αλλαγές. Τα αντίγραφα βάσης δεδομένων για τα Εργαλεία έχουν καθυστερήσει αυτήν τη στιγμή. Δείτε [https://tools.wmflabs.org/replag/ Replag]."
 }

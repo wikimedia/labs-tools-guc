@@ -5,19 +5,19 @@
 			"Sveinn í Felli"
 		]
 	},
-	"description": "Sýna framlög notanda frá öllum Wikimedia wiki vefsvæðum.",
-	"form-user": "Vistfang eða notandanafn",
+	"description": "Sýna framlög notanda frá öllum Wikimedia wiki-svæðum.",
+	"form-user": "IP-vistfang eða notandanafn",
 	"form-isPrefixPattern": "Virkja leit að forskeytum",
 	"form-from": "Innifela niðurstöður frá",
 	"form-from-all": "Öll framlög",
 	"form-from-rc": "Aðeins nýjustu framlög (síðustu 30 dagar)",
-	"form-from-hr": "Síðasti klukkutíminn eingöngu",
+	"form-from-hr": "Eingöngu síðasta klukkutímann",
 	"form-sort": "Raða niðurstöðum",
 	"form-sort-wiki": "Eftir wiki",
 	"form-sort-date": "Eftir dagsetningu",
 	"form-submit": "Leita",
 	"ipinfo-globalblock": "banna víðvært",
 	"ipinfo-globalblocklist": "víðvær bannlisti",
-	"results-limited": "Takmarkað við $1 niðurstöður á hvern wiki",
+	"results-limited": "Takmarkað við $1 niðurstöður á hvert wiki-svæði.",
 	"results-lag-warning": "Í niðurstöðurnar gæti vantað allra nýjustu breytingar. Gagnagrunnaafritun fyrir verkfærin er núna aðeins á eftir í tíma. Sjá [https://tools.wmflabs.org/replag/ Replag]."
 }

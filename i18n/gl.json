@@ -1,7 +1,8 @@
 {
 	"@metadata": {
 		"authors": [
-			"Banjo"
+			"Banjo",
+			"Toliño"
 		]
 	},
 	"description": "Amosar as contribucións de usuario en tódolos wikis de Wikimedia",
@@ -15,6 +16,8 @@
 	"form-sort-wiki": "Por wiki",
 	"form-sort-date": "Por data",
 	"form-submit": "Procura",
+	"ipinfo-globalblock": "bloqueo global",
+	"ipinfo-globalblocklist": "lista de bloqueos globais",
 	"results-limited": "Limitado a $1 resultados por wiki.",
 	"results-lag-warning": "Os resultados poden non contemplar as edicións máis recentes. As réplicas de base de datos para Tools están atrasadas nestes intres. Vexa [https://tools.wmflabs.org/replag/ Replag]."
 }

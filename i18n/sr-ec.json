@@ -3,6 +3,7 @@
 		"authors": [
 			"Acamicamacaraca",
 			"BadDog",
+			"Kizule",
 			"Obsuser",
 			"Zoranzoki21"
 		]
@@ -19,6 +20,8 @@
 	"form-sort-wiki": "Од вики",
 	"form-sort-date": "По датуму",
 	"form-submit": "Претрага",
+	"ipinfo-globalblock": "глобално блокирање",
+	"ipinfo-globalblocklist": "дневник глобалних блокада",
 	"results-limited": "Лимитиран(о) $1 резултат(а) по вики.",
 	"results-lag-warning": "У резултатима можда недостају најновије измене. Реплике базе података за алатке тренутно заостају. Погледајте [https://tools.wmflabs.org/replag/ Replag]."
 }

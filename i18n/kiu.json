@@ -1,6 +1,7 @@
 {
 	"@metadata": {
 		"authors": [
+			"Mirzali",
 			"Orbot707"
 		]
 	},
@@ -15,6 +16,6 @@
 	"form-sort-wiki": "Gorê wiki",
 	"form-sort-date": "Gorê tarixi",
 	"form-submit": "Cı feteliye",
-	"results-limited": "Her wiki rê $1 netican ra sindor erziyao",
+	"results-limited": "Her wiki rê $1 netican ra sindor erziyayo.",
 	"results-lag-warning": "Neticeyi belkiya vurnayışanê peyênan muhtewa nêkenê. Seba hacetê kopya database peyra mendeyê. [https://tools.wmflabs.org/replag/ Replag] bıvêne."
 }

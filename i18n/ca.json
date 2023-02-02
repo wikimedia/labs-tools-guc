@@ -2,7 +2,8 @@
 	"@metadata": {
 		"authors": [
 			"Fitoschido",
-			"Mguix"
+			"Mguix",
+			"Robertgarrigos"
 		]
 	},
 	"description": "Mostra les contribucions dels usuaris de tots els wikis de Wikimedia.",
@@ -16,6 +17,8 @@
 	"form-sort-wiki": "Per wiki",
 	"form-sort-date": "Per data",
 	"form-submit": "Cerca",
+	"ipinfo-globalblock": "bloquejar globalment",
+	"ipinfo-globalblocklist": "llista global de bloqueig",
 	"results-limited": "Limitat a $1 resultats per wiki.",
 	"results-lag-warning": "En els resultats podrien faltar les edicions més recents. Les bases de dades de rèplica de Tools presenten retards en aquests moments. Visita [https://tools.wmflabs.org/replag/ Replag] per a conèixer més."
 }

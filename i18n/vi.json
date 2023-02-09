@@ -1,7 +1,8 @@
 {
 	"@metadata": {
 		"authors": [
-			"Minh Nguyen"
+			"Minh Nguyen",
+			"Tryvix1509"
 		]
 	},
 	"title": "Đóng góp người dùng toàn cục",
@@ -16,6 +17,8 @@
 	"form-sort-wiki": "Theo wiki",
 	"form-sort-date": "Theo ngày",
 	"form-submit": "Tìm kiếm",
+	"ipinfo-globalblock": "cấm toàn cục",
+	"ipinfo-globalblocklist": "danh sách cấm toàn cục",
 	"results-limited": "Mỗi wiki giới hạn $1 kết quả.",
 	"results-lag-warning": "Các kết quả này có thể thiếu các sửa đổi gần đây nhất. Các bản sao cơ sở dữ liệu Tools đang trễ. Xem [https://tools.wmflabs.org/replag/ Replag]."
 }

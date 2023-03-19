@@ -218,7 +218,7 @@ $sep = $int->msg('colon-separator', array('domain' => 'general'));
     <div class="footer">
         by <a href="https://wikitech.wikimedia.org/wiki/User:Luxo">Luxo</a> · <a href="https://meta.wikimedia.org/wiki/User:Krinkle">Krinkle</a>
         <br>
-        <a href="https://github.com/wikimedia/labs-tools-guc">Source repository</a> · <a href="https://phabricator.wikimedia.org/tag/guc/">Issue tracker</a>
+        <a href="https://gerrit.wikimedia.org/g/labs/tools/guc">Source repository</a> · <a href="https://phabricator.wikimedia.org/tag/guc/">Issue tracker</a>
     </div>
 </body>
 </html>

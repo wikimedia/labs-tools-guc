@@ -26,7 +26,7 @@
             return;
         }
         fetch(
-            'https://tools.wmflabs.org/guc/api.php?q=replag',
+            'https://guc.toolforge.org/api.php?q=replag',
             // Enable credentials so that any Intuition cookie will be
             // available to the API for the lagged warning message.
             { method: 'GET', credentials: 'same-origin' }

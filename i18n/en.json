@@ -15,5 +15,5 @@
 	"ipinfo-globalblock": "globally block",
 	"ipinfo-globalblocklist": "global block list",
 	"results-limited": "Limited to $1 results per wiki.",
-	"results-lag-warning": "The results may be missing the most recent edits. Database replicas for Tools are currently lagged. See [https://tools.wmflabs.org/replag/ Replag]."
+	"results-lag-warning": "The results may be missing the most recent edits. Cloud Services wiki replica databases are currently lagged. See [https://replag.toolforge.org/ Replag]."
 }

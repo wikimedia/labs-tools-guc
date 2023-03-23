@@ -16,5 +16,5 @@
 	"form-sort-date": "Per data",
 	"form-submit": "Cerca",
 	"results-limited": "Limita a $1 risultati per wiki.",
-	"results-lag-warning": "Nei risultati potrebbero mancare le modifiche più recenti. Le repliche dei database per Tools sono attualmente in ritardo. Vedi [https://tools.wmflabs.org/replag/ Replag]."
+	"results-lag-warning": "Nei risultati potrebbero mancare le modifiche più recenti. I database di replica wiki dei servizi cloud sono attualmente in ritardo. Vedi [https://replag.toolforge.org/ Replag]."
 }

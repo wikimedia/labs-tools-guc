@@ -20,5 +20,5 @@
 	"ipinfo-globalblock": "blokiraj globalno",
 	"ipinfo-globalblocklist": "seznam globalnih blokiranj",
 	"results-limited": "Omejeno na $1 zadetkov na viki.",
-	"results-lag-warning": "Zadetki morda ne vključujejo najnovejših urejanj. Podvajanje podatkov za Orodja je trenutno v zaostanku. Glej [https://tools.wmflabs.org/replag/ Zaostajanje podvajanj]."
+	"results-lag-warning": "Zadetki morda ne vključujejo najnovejših urejanj. Podatkovne zbirke replik wikistoritev v oblaku so trenutno v zaostanku. Glej [https://tools.wmflabs.org/replag/ Zaostajanje podvajanj]."
 }

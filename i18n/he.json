@@ -20,5 +20,5 @@
 	"ipinfo-globalblock": "חסימה גלובלית",
 	"ipinfo-globalblocklist": "רשימת חסימה גלובלית",
 	"results-limited": "מוגבל ל־$1 תוצאות לוויקי.",
-	"results-lag-warning": "ייתכן שתוצאות עבור העריכות החדשות ביותר. שכפולי מסד נתונים עבור כלים (Tools) כרגע מעוכבים. ר' [https://tools.wmflabs.org/replag/ Replag]."
+	"results-lag-warning": "ייתכן שתוצאות עבור העריכות החדשות ביותר. שכפולי מסד נתונים עבור שירותי ענן כרגע מעוכבים. ר' [https://replag.toolforge.org/ Replag]."
 }

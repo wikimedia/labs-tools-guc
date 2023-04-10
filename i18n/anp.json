@@ -1,0 +1,22 @@
+{
+	"@metadata": {
+		"authors": [
+			"Proabscorp!"
+		]
+	},
+	"description": "सब्भे विकिमीडिया विकि सिनी सँ उपयोगकर्ता योगदान दिखाबौ।",
+	"form-user": "आईपी एड्रेस या सदस्यनाम:",
+	"form-isPrefixPattern": "उपसर्ग खोज सक्षम करौ",
+	"form-from": "सँ परिणाम शामिल करौ",
+	"form-from-all": "सब्भे योगदान",
+	"form-from-rc": "केवल हाल केरौ परिवर्तन (पिछलका 30 दिनौ के)",
+	"form-from-hr": "केवल पिछलके घंटा",
+	"form-sort": "परिणाम क क्रमबद्ध करौ",
+	"form-sort-wiki": "विकि द्वारा",
+	"form-sort-date": "तिथि अनुसार",
+	"form-submit": "खोजौ",
+	"ipinfo-globalblock": "वैश्विक ब्लॉक",
+	"ipinfo-globalblocklist": "वैश्विक ब्लॉक लॉग",
+	"results-limited": "प्रति विकि $1 परिणाम तक सीमित।",
+	"results-lag-warning": "होय सकै छै कि परिणाम मँ नवीनतम संपादन नाय हुअ। क्लाउड सर्विसेज विकी प्रतिकृति डेटाबेस वर्तमान मँ पीछु छुन। [https://replag.toolforge.org/ Replag] क देखौ।"
+}

@@ -1,6 +1,7 @@
 {
 	"@metadata": {
 		"authors": [
+			"Adriendelucca",
 			"Fulup",
 			"Gwenn-Ael"
 		]
@@ -16,6 +17,8 @@
 	"form-sort-wiki": "Dre wiki",
 	"form-sort-date": "Dre zeiziad",
 	"form-submit": "Klask",
+	"ipinfo-globalblock": "stankañ ent-hollek",
+	"ipinfo-globalblocklist": "roll ar stankadennoù hollek",
 	"results-limited": "Bevennet da $1 disoc'h dre wiki",
 	"results-lag-warning": "Marteze a-walc'h ne vo ket diskouezet amañ ar c'hemmoù diwezhañ-holl. Evit c'hoazh emañ war c'hortoz eiladurioù an diazoù roadennoù evit Tools. Gwelet [https://tools.wmflabs.org/replag/ Replag]."
 }

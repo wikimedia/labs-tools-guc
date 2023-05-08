@@ -8,10 +8,17 @@
 	},
 	"description": "سڀني وڪيميڊيا وڪيز مان واهپيندڙن (يوزرز) جون ڀاڱيداريون ڏيکاريو.",
 	"form-user": "آئي پي پتو يا واپرائيندڙنانءُ",
+	"form-isPrefixPattern": "اڳياڙي ڳولا کي فعال ڪريو",
+	"form-from": "مان نتيجا شامل ڪريو",
 	"form-from-all": "سڀئي ڀاڱيداريون",
+	"form-from-rc": "رڳو تازيون تبديليون (گذريل 30 ڏينھن)",
 	"form-from-hr": "رڳو آخري ڪلاڪ",
 	"form-sort": "نتيجا ڦلاريو",
 	"form-sort-wiki": "وڪي کان",
 	"form-sort-date": "تاريخوار",
-	"form-submit": "ڳوليو"
+	"form-submit": "ڳوليو",
+	"ipinfo-globalblock": "عالمي طور تي بندش وڌل",
+	"ipinfo-globalblocklist": "عالمي بندش فھرست",
+	"results-limited": "$1 نتيجا في وڪي تائين محدود.",
+	"results-lag-warning": "نتيجن ۾ شايد تازيون سنوارون غائب آهن. Cloud Services wiki replica database في الحال پوئتي پيل آهن. ڏسو [https://replag.toolforge.org/ Replag]."
 }

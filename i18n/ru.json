@@ -4,6 +4,7 @@
 			"Facenapalm",
 			"Nitch",
 			"Okras",
+			"Pacha Tchernof",
 			"Redredsonia"
 		]
 	},
@@ -21,5 +22,5 @@
 	"ipinfo-globalblock": "глобальная блокировка",
 	"ipinfo-globalblocklist": "список глобальных блокировок",
 	"results-limited": "Ограничить $1 результатами с одной вики.",
-	"results-lag-warning": "Результаты могут не содержать самые последние правки. Репликации баз данных в данный момент отстают. См. [https://tools.wmflabs.org/replag/ Replag]."
+	"results-lag-warning": "Недавно сделанные правки могут отсутствовать в результатах выдачи. Базы данных реплик облачных сервисов вики отстают в данный момент. См. [https://replag.toolforge.org/ Replag]."
 }

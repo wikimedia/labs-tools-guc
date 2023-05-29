@@ -79,7 +79,7 @@ class App {
         // FIXME: Workaround https://phabricator.wikimedia.org/T176686
         $host = preg_replace(
             '/\.labsdb$/',
-            '.web.db.svc.eqiad.wmflabs',
+            '.web.db.svc.wikimedia.cloud',
             $host
         );
 

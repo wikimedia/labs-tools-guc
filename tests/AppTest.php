@@ -15,11 +15,11 @@ class AppTest extends PHPUnit\Framework\TestCase {
             ->willReturn($this->createMock(PDOStatement::class));
 
         $app->expects($this->once())->method('getHostIp')
-            ->with('eg1.web.db.svc.eqiad.wmflabs')
+            ->with('eg1.web.db.svc.wikimedia.cloud')
             ->willReturn('10.0.0.0');
         $app->expects($this->once())->method('openDB')
             // 'eg1' is expanded
-            ->with('eg1.web.db.svc.eqiad.wmflabs', 'testwiki_p')
+            ->with('eg1.web.db.svc.wikimedia.cloud', 'testwiki_p')
             ->willReturn($pdo);
 
         $this->assertInstanceOf(
@@ -92,8 +92,8 @@ class AppTest extends PHPUnit\Framework\TestCase {
         $app->method('getHostIp')->willReturn(false);
         $app->expects($this->exactly(2))->method('openDB')
             ->withConsecutive(
-                ['eg1.web.db.svc.eqiad.wmflabs', 'testwiki_p'],
-                ['eg2.web.db.svc.eqiad.wmflabs', 'otherwiki_p']
+                ['eg1.web.db.svc.wikimedia.cloud', 'testwiki_p'],
+                ['eg2.web.db.svc.wikimedia.cloud', 'otherwiki_p']
             )
             ->willReturn($pdo);
 
@@ -126,8 +126,8 @@ class AppTest extends PHPUnit\Framework\TestCase {
         $app->method('getHostIp')->willReturn(false);
         $app->expects($this->exactly(2))->method('openDB')
             ->withConsecutive(
-                ['eg1.web.db.svc.eqiad.wmflabs', 'awiki_p'],
-                ['eg1.web.db.svc.eqiad.wmflabs', 'cwiki_p']
+                ['eg1.web.db.svc.wikimedia.cloud', 'awiki_p'],
+                ['eg1.web.db.svc.wikimedia.cloud', 'cwiki_p']
             )
             ->willReturn($pdo);
 
@@ -216,23 +216,23 @@ class AppTest extends PHPUnit\Framework\TestCase {
         $pdo->method('prepare')->willReturn($this->createMock(PDOStatement::class));
 
         $app->method('getHostIp')->will($this->returnValueMap([
-          ['eg1.web.db.svc.eqiad.wmflabs', '10.0.0.1'],
+          ['eg1.web.db.svc.wikimedia.cloud', '10.0.0.1'],
           // eg2 same as eg1
-          ['eg2.web.db.svc.eqiad.wmflabs', '10.0.0.1'],
+          ['eg2.web.db.svc.wikimedia.cloud', '10.0.0.1'],
           // eg3 fails
-          ['eg3.web.db.svc.eqiad.wmflabs', false],
+          ['eg3.web.db.svc.wikimedia.cloud', false],
           // eg4 separate
-          ['eg4.web.db.svc.eqiad.wmflabs', '10.0.0.4'],
+          ['eg4.web.db.svc.wikimedia.cloud', '10.0.0.4'],
         ]));
         $app->expects($this->exactly(3))->method('openDB')
             ->withConsecutive(
                 // eg1: connect
-                ['eg1.web.db.svc.eqiad.wmflabs', null],
+                ['eg1.web.db.svc.wikimedia.cloud', null],
                 // eg2: reuse eg1 (same ip)
                 // eg3: connect (no ip)
-                ['eg3.web.db.svc.eqiad.wmflabs', null],
+                ['eg3.web.db.svc.wikimedia.cloud', null],
                 // eg4: connect (differnt ip)
-                ['eg4.web.db.svc.eqiad.wmflabs', null]
+                ['eg4.web.db.svc.wikimedia.cloud', null]
             )
             ->willReturn($pdo);
 
@@ -253,22 +253,22 @@ class AppTest extends PHPUnit\Framework\TestCase {
         $pdo->method('prepare')->willReturn($this->createMock(PDOStatement::class));
 
         $app->method('getHostIp')->will($this->returnValueMap([
-          ['eg1.web.db.svc.eqiad.wmflabs', '10.0.0.1'],
+          ['eg1.web.db.svc.wikimedia.cloud', '10.0.0.1'],
           // eg2 same as eg1
-          ['eg2.web.db.svc.eqiad.wmflabs', '10.0.0.1'],
+          ['eg2.web.db.svc.wikimedia.cloud', '10.0.0.1'],
           // eg3 separate
-          ['eg3.web.db.svc.eqiad.wmflabs', '10.0.0.3'],
+          ['eg3.web.db.svc.wikimedia.cloud', '10.0.0.3'],
         ]));
         $app->expects($this->exactly(3))->method('openDB')
             ->withConsecutive(
                 // a: connect eg1
-                ['eg1.web.db.svc.eqiad.wmflabs', 'a_p'],
+                ['eg1.web.db.svc.wikimedia.cloud', 'a_p'],
                 // b: reuse eg1 for eg2 (same ip)
                 // c: connect eg3: (diff ip)
-                ['eg3.web.db.svc.eqiad.wmflabs', 'c_p'],
+                ['eg3.web.db.svc.wikimedia.cloud', 'c_p'],
                 // d: reuse eg1 for eg2 (still open)
                 // e: reopen eg1 for eg2 (was finally closed)
-                ['eg2.web.db.svc.eqiad.wmflabs', 'e_p']
+                ['eg2.web.db.svc.wikimedia.cloud', 'e_p']
             )
             ->willReturn($pdo);
 

@@ -18,5 +18,5 @@
 	"ipinfo-globalblock": "blocar globalmente",
 	"ipinfo-globalblocklist": "lista de blocadas global",
 	"results-limited": "Limitate a $1 resultatos per wiki.",
-	"results-lag-warning": "Le resultatos pote non continer le modificationes le plus recente. Le replicas del bases de datos pro Tools es actualmente in retardo. Vide [https://tools.wmflabs.org/replag/ Replag]."
+	"results-lag-warning": "Le resultatos pote non continer le modificationes le plus recente. Le replicas del bases de datos wiki pro Cloud Services es actualmente in retardo. Vide [https://replag.toolforge.org/ Replag]."
 }

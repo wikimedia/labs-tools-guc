@@ -21,5 +21,5 @@
 	"ipinfo-globalblock": "globaal blokkeren",
 	"ipinfo-globalblocklist": "globale blokkeerlijst",
 	"results-limited": "Beperkt tot $1 resultaten per wiki.",
-	"results-lag-warning": "De resultaten bevatten wellicht niet de meest recente wijzigingen. De database-replica's voor gereedschappen lopen momenteel achter. Zie [https://tools.wmflabs.org/replag/ Replag]."
+	"results-lag-warning": "De resultaten bevatten wellicht niet de meest recente wijzigingen. De Cloud Services-wiki-replicadatabases lopen momenteel achter. Zie [https://replag.toolforge.org/ Replag]."
 }

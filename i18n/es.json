@@ -5,7 +5,8 @@
 			"Jakeukalane",
 			"KATRINE1992",
 			"Macofe",
-			"MarcoAurelio"
+			"MarcoAurelio",
+			"No se"
 		]
 	},
 	"description": "Muestra las contribuciones de los usuarios en todas las wikis de Wikimedia.",
@@ -19,6 +20,8 @@
 	"form-sort-wiki": "Por wiki",
 	"form-sort-date": "Por fecha",
 	"form-submit": "Buscar",
+	"ipinfo-globalblock": "bloquear globalmente",
+	"ipinfo-globalblocklist": "lista de bloqueo global",
 	"results-limited": "Limitado a $1 resultados por cada wiki.",
-	"results-lag-warning": "En los resultados podrían faltar las ediciones más recientes. Las bases de datos de réplica de Tools presentan rezagos en estos momentos. Visita [https://tools.wmflabs.org/replag/ Replag] para conocer más."
+	"results-lag-warning": "En los resultados podrían faltar las ediciones más recientes. Las bases de datos de réplica de Cloud Services presentan rezagos en estos momentos. Visita [https://replag.toolforge.org/ Replag] para conocer más."
 }

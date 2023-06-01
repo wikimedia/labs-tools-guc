@@ -1,6 +1,7 @@
 {
 	"@metadata": {
 		"authors": [
+			"Afalau",
 			"Robin Owain",
 			"StarrySky"
 		]
@@ -19,5 +20,5 @@
 	"ipinfo-globalblock": "bloc yn fyd-eang",
 	"ipinfo-globalblocklist": "rhestr blociau byd-eang",
 	"results-limited": "Cyfyngedig i $1 y wiki.",
-	"results-lag-warning": "Mae'n bosibl bod y golygiadau diweddaraf ar goll o'r canlyniadau. Mae atgynyrchiadau cronfa ddata ar gyfer Tools ar ei hôl hi ar hyn o bryd. Gwel [https://tools.wmflabs.org/replag/ Replag]."
+	"results-lag-warning": "Mae'n bosibl bod y golygiadau diweddaraf ar goll o'r canlyniadau. Mae cronfeydd data atgynyrchol Gwasanaethau Cwmwl y wici ar eu hôl ar hyn o bryd. Gweler [https://tools.wmflabs.org/replag/ Replag]."
 }

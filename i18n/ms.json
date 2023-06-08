@@ -1,6 +1,7 @@
 {
 	"@metadata": {
 		"authors": [
+			"Hakimi97",
 			"Tofeiku"
 		]
 	},
@@ -18,5 +19,5 @@
 	"ipinfo-globalblock": "sekat sejagat",
 	"ipinfo-globalblocklist": "senarai sekat sejagat",
 	"results-limited": "Terhad kepada $1 hasil per wiki.",
-	"results-lag-warning": "Hasil boleh hilang suntingan terkini. Replika pangkalan data untuk Alat kini disusul. Lihat [https://tools.wmflabs.org/replag/ Replag]."
+	"results-lag-warning": "Hasil boleh hilang suntingan terkini. Pangkalan data replika wiki Perkhidmatan Awan kini ketinggalan. Sila lihat [https://tools.wmflabs.org/replag/ Replag]."
 }

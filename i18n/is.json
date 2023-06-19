@@ -19,5 +19,5 @@
 	"ipinfo-globalblock": "banna víðvært",
 	"ipinfo-globalblocklist": "víðvær bannlisti",
 	"results-limited": "Takmarkað við $1 niðurstöður á hvert wiki-svæði.",
-	"results-lag-warning": "Í niðurstöðurnar gæti vantað allra nýjustu breytingar. Gagnagrunnaafritun fyrir verkfærin er núna aðeins á eftir í tíma. Sjá [https://tools.wmflabs.org/replag/ Replag]."
+	"results-lag-warning": "Í niðurstöðurnar gæti vantað allra nýjustu breytingar. Gagnagrunnaafritun fyrir skýjaþjónustur er núna aðeins á eftir í tíma. Sjá [https://replag.toolforge.org Replag]."
 }

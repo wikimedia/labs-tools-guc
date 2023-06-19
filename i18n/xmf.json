@@ -16,6 +16,8 @@
 	"form-sort-wiki": "ვიკიშ მეჯინათ",
 	"form-sort-date": "თარიღიშ მეჯინათ",
 	"form-submit": "გორუა",
+	"ipinfo-globalblock": "გლობალური ბლოკუა",
+	"ipinfo-globalblocklist": "გლობალური ბლოკუაშ ერკებული",
 	"results-limited": "გოხურგუა $1 მოღალობეფით ართი ვიკიშე.",
 	"results-lag-warning": "მოღალობეფი შილებე ბოლო რედაქტირაფეფს ვეკათუანდასინ. ასიან ბორჯიშო მუნაჩემეფიშ ბაზა აკმოსქიდუ. ქძ. [https://tools.wmflabs.org/replag/ Replag]."
 }

@@ -2,7 +2,8 @@
 	"@metadata": {
 		"authors": [
 			"BaRaN6161 TURK",
-			"Hedda"
+			"Hedda",
+			"Joseph"
 		]
 	},
 	"description": "Tüm Wikimedia vikilerinden kullanıcı katkılarını göster.",
@@ -19,5 +20,5 @@
 	"ipinfo-globalblock": "küresel engelleme",
 	"ipinfo-globalblocklist": "küresel engelleme listesi",
 	"results-limited": "Viki başına $1 sonuçla sınırlıdır.",
-	"results-lag-warning": "Sonuçlar en son düzenlemeleri içermiyor olabilir. Araçlar için veritabanı kopyaları şu anda gecikmeli. [https://tools.wmflabs.org/replag/ Replag] sayfasına bakın."
+	"results-lag-warning": "Sonuçlar en son düzenlemeleri içermiyor olabilir. Bulut Servisleri viki veritabanı kopyaları şu anda gecikmeli. [https://replag.toolforge.org/ Replag] sayfasına bakın."
 }

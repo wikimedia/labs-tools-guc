@@ -19,5 +19,5 @@
 	"ipinfo-globalblock": "Pamblokiran global",
 	"ipinfo-globalblocklist": "Log blokir global",
 	"results-limited": "Kawatesin ngantos $1 asil per wiki",
-	"results-lag-warning": "Asil parerehan uahan pinih anyar prasida nénten kasedia. Turun basis data antuk Prabot sané mangkin nyangkét. Cingak [https://tools.wmflabs.org/replag/ Replag]."
+	"results-lag-warning": "Asil parerehan uahan pinih anyar prasida nénten kasedia. Layanan Ambubu réplika wiki antuk Prabot sané mangkin nyangkét. Cingak [https://tools.wmflabs.org/replag/ Replag]."
 }

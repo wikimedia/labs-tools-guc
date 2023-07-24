@@ -2,6 +2,7 @@
 	"@metadata": {
 		"authors": [
 			"DraconicDark",
+			"Justman10000",
 			"Metalhead64"
 		]
 	},
@@ -19,5 +20,5 @@
 	"ipinfo-globalblock": "Global sperren",
 	"ipinfo-globalblocklist": "Globale Sperrliste",
 	"results-limited": "Auf $1 Ergebnisse pro Wiki begrenzt",
-	"results-lag-warning": "Die Ergebnisse könnten die aktuellsten Bearbeitungen nicht anzeigen. Die Datenbankkopien für Tools sind derzeit verzögert. Siehe [https://tools.wmflabs.org/replag/ Replag]."
+	"results-lag-warning": "In den Ergebnissen fehlen möglicherweise die neuesten Bearbeitungen. Cloud Services wiki Replika-Datenbanken sind derzeit verzögert. Siehe [https://replag.toolforge.org/ Replag]."
 }

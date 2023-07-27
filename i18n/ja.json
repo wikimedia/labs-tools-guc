@@ -2,7 +2,8 @@
 	"@metadata": {
 		"authors": [
 			"MathXplore",
-			"ネイ"
+			"ネイ",
+			"春春眠眠"
 		]
 	},
 	"description": "ウィキメディアの全てのウィキにおける投稿記録を表示します。",
@@ -19,5 +20,5 @@
 	"ipinfo-globalblock": "グローバルブロック",
 	"ipinfo-globalblocklist": "グローバルブロック記録",
 	"results-limited": "1ウィキ毎に$1件表示しています。",
-	"results-lag-warning": "現在、Tools用のデータベース複製に遅れが生じているので、直近の編集が検索結果に表示されない可能性があります。詳しくは[https://tools.wmflabs.org/replag/ Replag]をご参照ください。"
+	"results-lag-warning": "現在、クラウドサービスのウィキ複製データベースに遅れが生じているので、直近の編集が検索結果に表示されない可能性があります。詳しくは[https://replag.toolforge.org/ Replag]をご参照ください。"
 }

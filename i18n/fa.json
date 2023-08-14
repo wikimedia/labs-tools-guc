@@ -3,6 +3,7 @@
 		"authors": [
 			"Amirsara",
 			"Darafsh",
+			"Darknessswamp8",
 			"Dejavu",
 			"FarsiNevis",
 			"Nightdevil"
@@ -22,5 +23,5 @@
 	"ipinfo-globalblock": "بستن سراسری",
 	"ipinfo-globalblocklist": "سیاههٔ بستن دسترسی سراسری",
 	"results-limited": "محدود به $1 نتیجه در هر ویکی.",
-	"results-lag-warning": "این نتایج ممکن است ویرایش‌های خیلی جدید را نشان ندهد. نسخه‌های کپی پایگاه داده برای ابزارها در حال حاضر تأخیر دارد. نگاه کنید به [https://tools.wmflabs.org/replag/ اینجا]."
+	"results-lag-warning": "این نتایج ممکن است جدیدترین ویرایش‌ها را نشان ندهد. نسخه‌های کپی پایگاه داده برای ابزارها در حال حاضر تأخیر دارد. بنگرید به [https://replag.toolforge\n.org/ Replag]."
 }

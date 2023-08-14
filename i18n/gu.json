@@ -4,9 +4,16 @@
 			"CptViraj"
 		]
 	},
+	"form-user": "IP સરનામું અથવા સભ્યનામ",
+	"form-from": "માંથી પરિણામો શામેલ કરો",
 	"form-from-all": "બધા યોગદાન",
+	"form-from-rc": "માત્ર તાજેતરના ફેરફારો (છેલ્લા ૩૦ દિવસ)",
+	"form-from-hr": "માત્ર છેલ્લી કલાક",
+	"form-sort": "પરિણામો ગોઠવો",
 	"form-sort-wiki": "વિકિ પ્રમાણે",
 	"form-sort-date": "તારીખ પ્રમાણે",
 	"form-submit": "શોધો",
-	"ipinfo-globalblock": "વૈશ્વિક અવરોધ"
+	"ipinfo-globalblock": "વૈશ્વિક અવરોધ",
+	"ipinfo-globalblocklist": "વૈશ્વિક અવરોધિત યાદી",
+	"results-limited": "વિકિ દીઠ $1 પરિણામો સુધી મર્યાદિત."
 }

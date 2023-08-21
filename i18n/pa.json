@@ -1,0 +1,20 @@
+{
+	"@metadata": {
+		"authors": [
+			"Kuldeepburjbhalaike"
+		]
+	},
+	"description": "ਸਾਰੇ ਵਿਕੀਮੀਡੀਆ ਵਿਕੀ ਤੋਂ ਵਰਤੋਂਕਾਰ ਯੋਗਦਾਨ ਦਿਖਾਓ।",
+	"form-user": "ਆਈਪੀ ਪਤਾ ਜਾਂ ਵਰਤੋਂਕਾਰ ਨਾਮ",
+	"form-from": "ਤੋਂ ਨਤੀਜੇ ਸ਼ਾਮਲ ਕਰੋ",
+	"form-from-all": "ਸਾਰੇ ਯੋਗਦਾਨ",
+	"form-from-rc": "ਸਿਰਫ਼ ਹਾਲੀਆ ਤਬਦੀਲੀਆਂ (ਪਿਛਲੇ 30 ਦਿਨ)",
+	"form-from-hr": "ਸਿਰਫ਼ ਆਖਰੀ ਘੰਟਾ",
+	"form-sort": "ਕ੍ਰਮਬੱਧ ਨਤੀਜੇ",
+	"form-sort-wiki": "ਵਿਕੀ ਅਨੁਸਾਰ",
+	"form-sort-date": "ਮਿਤੀ ਅਨੁਸਾਰ",
+	"form-submit": "ਖੋਜ",
+	"ipinfo-globalblock": "ਗਲੋਬਲ ਬਲਾਕ",
+	"ipinfo-globalblocklist": "ਗਲੋਬਲ ਬਲਾਕ ਸੂਚੀ",
+	"results-limited": "ਪ੍ਰਤੀ ਵਿਕੀ $1 ਨਤੀਜਿਆਂ ਤੱਕ ਸੀਮਿਤ।"
+}

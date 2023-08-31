@@ -1,0 +1,22 @@
+{
+	"@metadata": {
+		"authors": [
+			"Moshtank"
+		]
+	},
+	"description": "کارزیرءِ پھکݔن امکاری‌ئا مہ دراھیگݔن ویکی مدیاءِ سایتان سۏج دیگ",
+	"form-user": "آیپی یا کارزیرۏکی نام",
+	"form-isPrefixPattern": "پݔشوندی شۏھازءِ کنشدار کنگ",
+	"form-from": "شۏھاز سمرہ چہ",
+	"form-from-all": "دراھیگݔن امکاری‌ئان",
+	"form-from-rc": "تݔوکا گُڈی ٹگلان(۳۰ رۏچگ)",
+	"form-from-hr": "تݔوکا یک ساھَت/ھَدار پݔش",
+	"form-sort": "سمرہ‌ئا نادݔنگ",
+	"form-sort-wiki": "گۏن ویکی‌ئا",
+	"form-sort-date": "گۏن رمسا",
+	"form-submit": "شۏھاز",
+	"ipinfo-globalblock": "سراسری بلاک",
+	"ipinfo-globalblocklist": "سراسری بلاکانءِ لیست",
+	"results-limited": "کم کوتہ پہ $1 سمرہ ھر ویکیءِ سرا",
+	"results-lag-warning": "اے شۏھازء سمرہ بلکݔن نۏکترݔن ٹگلان سۏج مہ دات، کپی ئݔن داتگءِ پایگاہ ھنی بلکݔن کمے دݔر بہ کَنت۔ بہ چار اِت\n[https://replag.toolforge.org/ Replag]"
+}

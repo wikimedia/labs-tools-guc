@@ -3,6 +3,7 @@
 		"authors": [
 			"Eduardo Addad de Oliveira",
 			"Eduardoaddad",
+			"Re demz",
 			"YuriNikolai"
 		]
 	},
@@ -20,5 +21,5 @@
 	"ipinfo-globalblock": "bloquear globalmente",
 	"ipinfo-globalblocklist": "lista de bloqueios globais",
 	"results-limited": "Limitado a $1 resultados por wiki.",
-	"results-lag-warning": "Os resultados podem não conter as edições mais recentes. As réplicas da base de dados do Tools tem registado atrasos neste momento. Visite [https://tools.wmflabs.org/replag/ Replag]."
+	"results-lag-warning": "Os resultados podem estar ausentes nas edições mais recentes. As replicas das bases de dados de Cloud Services estão atrasadas. Veja [https://replag.toolforge.org/ Replag]"
 }

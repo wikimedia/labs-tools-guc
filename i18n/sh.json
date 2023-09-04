@@ -12,11 +12,11 @@
 	"form-from-rc": "Samo nedavne promjene (poslednjih 30 dana)",
 	"form-from-hr": "Samo zadnji čas",
 	"form-sort": "Sortiraj stavke",
-	"form-sort-wiki": "Po wikiju",
+	"form-sort-wiki": "Po vikiju",
 	"form-sort-date": "Po datumu",
 	"form-submit": "Traži",
 	"ipinfo-globalblock": "blokiraj globalno",
 	"ipinfo-globalblocklist": "spisak globalnih blokiranja",
-	"results-limited": "Ograničenje: $1 stavki po wikiju.",
-	"results-lag-warning": "Najnovija uređivanja mogu biti izostavljena iz ishoda. Replike baze podtaka za Alatke momentalno kasne. Pogl. [https://tools.wmflabs.org/replag/ Replag]."
+	"results-limited": "Ograničenje: $1 stavki po vikiju.",
+	"results-lag-warning": "Najnovije izmjene mogu biti izostavljene iz rezultata. Replike baze podataka za Cloud Services momentalno kasne. Pogl. [https://replag.toolforge.org/ Replag]."
 }

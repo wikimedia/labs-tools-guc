@@ -1,6 +1,7 @@
 {
 	"@metadata": {
 		"authors": [
+			"Movses",
 			"Piramidion",
 			"StarrySky",
 			"Ата"
@@ -21,5 +22,5 @@
 	"ipinfo-globalblock": "Глобальне блокування",
 	"ipinfo-globalblocklist": "Журнал глобальних блокувань",
 	"results-limited": "Обмежено до $1 результатів на вікі.",
-	"results-lag-warning": "В результатах може не бути найостанніших редагувань. Реплікації бази даних сервера інструментів зараз мають затримки. Див. [https://tools.wmflabs.org/replag/ Replag]."
+	"results-lag-warning": "В результатах може не бути найостанніших редагувань. Репліки баз даних Wikimedia Cloud Services зараз мають затримки. Див. [https://replag.toolforge.org/ Replag]."
 }

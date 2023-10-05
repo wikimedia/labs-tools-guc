@@ -1,0 +1,14 @@
+{
+	"@metadata": {
+		"authors": [
+			"Умар"
+		]
+	},
+	"description": "Гайта декъашхочун къинхьегам йерриге Викимедиа проекташкара.",
+	"form-user": "Декъашхочун цӀе йа IP-адрес",
+	"form-isPrefixPattern": "Лахар жигардаккха префиксца",
+	"form-from-all": "Берриге къинхьегам",
+	"form-submit": "Лахар",
+	"ipinfo-globalblock": "глобалан блоктохар",
+	"ipinfo-globalblocklist": "глобалан блоктохарийн тептар"
+}

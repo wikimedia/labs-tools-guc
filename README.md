@@ -2,7 +2,7 @@
 
 ## Getting started
 
-Requires [Composer](https://getcomposer.org/) and PHP 7.2 or later.
+Requires [Composer](https://getcomposer.org/) and PHP 7.4 or later.
 
 ```
 ~/git/guc $ chmod 775 cache/

@@ -39,17 +39,17 @@ class Main {
         $this->options = $options + self::getDefaultOptions();
 
         if (!$this->user) {
-            throw new Exception('No username or IP');
+            throw new ExpectedError('No username or IP');
         }
 
         // Check if input is a pattern
         if ($this->options['isPrefixPattern']) {
             if (strpos($this->user, '_') !== false) {
-                throw new Exception('Illegal "_" character found');
+                throw new ExpectedError('Illegal "_" character found');
             }
             // Pattern search must be prefix-based for performance
             if (substr($this->user, 0, 1) === '%') {
-                throw new Exception('Wildcard search can not start with "%".');
+                throw new ExpectedError('Wildcard search can not start with "%".');
             }
             // Hidden feature: User can specify "%" somewhere in the query.
             // Though by default we'll assume a prefix search.

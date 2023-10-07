@@ -42,7 +42,7 @@ class Contribs {
      */
     public function __construct(App $app, $user, $isIP, Wiki $wiki, $centralAuth, $options = array()) {
         if (!$user) {
-            throw new Exception('No username or IP');
+            throw new ExpectedError('No username or IP');
         }
         $this->app = $app;
         $this->wiki = $wiki;

@@ -5,8 +5,9 @@
 
 use Guc\App;
 use Guc\ChronologyOutput;
-use Guc\PerWikiOutput;
 use Guc\Contribs;
+use Guc\ExpectedError;
+use Guc\PerWikiOutput;
 use Guc\Main;
 use Krinkle\Intuition\Intuition;
 use Krinkle\Toolbase\Html;
@@ -19,9 +20,9 @@ ini_set('display_errors', '1');
 date_default_timezone_set('UTC');
 
 $data = new stdClass();
-$data->Method = @$_SERVER['REQUEST_METHOD'] ?: 'GET';
-$data->Referer = @$_SERVER['HTTP_REFERER'] ?: null;
-$data->Username = @$_REQUEST['user'] ?: null;
+$data->Method = @$_SERVER['REQUEST_METHOD'] ?? 'GET';
+$data->Referer = @$_SERVER['HTTP_REFERER'];
+$data->Username = @$_REQUEST['user'] ?? '';
 $data->debug = isset($_REQUEST['debug']);
 $data->options = array(
     'isPrefixPattern' => @$_REQUEST['isPrefixPattern'] === '1',
@@ -149,6 +150,9 @@ $sep = $int->msg('colon-separator', array('domain' => 'general'));
     if ($appError) {
         print '<div class="container error"><p>';
         print 'Error: ' . htmlspecialchars($appError->getMessage());
+        if (!$appError instanceof ExpectedError) {
+            print '<pre>' . htmlspecialchars(App::formatSafeTrace($appError)) . '</pre>';
+        }
         print '</p></div>';
     }
     if ($guc) {

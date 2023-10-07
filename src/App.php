@@ -4,9 +4,10 @@ namespace Guc;
 
 use DateTime;
 use DateTimeZone;
-use Exception;
+use InvalidArgumentException;
 use PDO;
 use PDOException;
+use Throwable;
 
 class App {
     const FLD_PDO = 0;
@@ -54,7 +55,7 @@ class App {
             $dbFrag = $dbname === null ? '' : ('dname=' . $dbname . ';');
             $pdo = new PDO('mysql:host='.$host.';' . $dbFrag, Settings::getSetting('user'), Settings::getSetting('password'));
         } catch (PDOException $e) {
-            throw new Exception('Database error: Unable to connect to '.  $host);
+            throw new ExpectedError('Database error: Unable to connect to '.  $host);
         }
 
         return $pdo;
@@ -63,11 +64,10 @@ class App {
     /**
      * @param string $cluster
      * @return string
-     * @throws Exception Invalid DB cluster
      */
     private function normaliseHost($cluster = 's1') {
         if (!is_string($cluster)) {
-            throw new Exception('Invalid DB cluster specification');
+            throw new ExpectedError('Invalid DB cluster specification');
         }
         if (strpos($cluster, '.') === false) {
             // Default suffix
@@ -92,7 +92,6 @@ class App {
      * @param string $cluster
      * @param string|null $database
      * @return PDO
-     * @throws Exception Invalid DB cluster
      */
     public function getDB($cluster = 's1', $database = null) {
         $host = $this->normaliseHost($cluster);
@@ -135,7 +134,6 @@ class App {
 
     /**
      * @param string $cluster Cluster name, host name or IP
-     * @throws Exception Invalid DB cluster
      */
     public function closeDB($cluster = 's1') {
         $host = $this->normaliseHost($cluster);
@@ -348,7 +346,7 @@ class App {
         // Get information from API
         $apiData = $this->apiRequest($server, array('meta' => 'siteinfo', 'siprop' => 'namespaces'));
         if (!is_array($apiData['query']['namespaces'])) {
-            throw new Exception('Unable to retrieve namespaces from '.$server);
+            throw new ExpectedError('Unable to retrieve namespaces from '.$server);
         }
 
         $cache[$dbName] = array();
@@ -363,7 +361,7 @@ class App {
         );
 
         if (!isset($cache[$dbName][$id])) {
-            throw new Exception('Unknown namespace number '.$id.' for '.$server);
+            throw new ExpectedError('Unknown namespace number '.$id.' for '.$server);
         }
 
         // Return namespace name
@@ -379,7 +377,7 @@ class App {
      */
     public function apiRequest($server, $params) {
         if (!is_array($params)) {
-            throw new Exception('Invalid api parameters.');
+            throw new InvalidArgumentException('Invalid api parameters.');
         }
         $url = $server.'/w/api.php';
         $params['format'] = 'json';
@@ -396,5 +394,29 @@ class App {
         $data = curl_exec($ch);
         curl_close($ch);
         return json_decode($data, true);
+    }
+
+    /**
+     * Generate a safe string representation of a stacktrace (no argument details)
+     *
+     * @param Throwable $e
+     * @return string
+     */
+    public static function formatSafeTrace(Throwable $e) {
+        $text = '';
+        foreach ($e->getTrace() as $level => $frame) {
+            if (isset($frame['file']) && isset($frame['line'])) {
+                $text .= "#{$level} {$frame['file']}({$frame['line']}): ";
+            } else {
+                $text .= "#{$level} [internal function]: ";
+            }
+            if (isset($frame['class']) && isset($frame['type']) && isset($frame['function'])) {
+                $text .= $frame['class'] . $frame['type'] . $frame['function'];
+            } else {
+                $text .= $frame['function'] ?? 'NO_FUNCTION_GIVEN';
+            }
+            $text .= "()\n";
+        }
+        return $text;
     }
 }

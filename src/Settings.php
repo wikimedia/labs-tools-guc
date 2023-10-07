@@ -2,7 +2,7 @@
 
 namespace Guc;
 
-use Exception;
+use RuntimeException;
 
 class Settings {
 
@@ -34,7 +34,7 @@ class Settings {
             $uinfo = posix_getpwuid(posix_geteuid());
             $cnf = parse_ini_file($uinfo['dir'] . '/replica.my.cnf');
             if (!$cnf || !$cnf['user'] || !$cnf['password']) {
-                throw new Exception("MySQL login data not found at " . $uinfo['dir']);
+                throw new RuntimeException("MySQL login data not found at " . $uinfo['dir']);
             }
         }
         return $cnf;

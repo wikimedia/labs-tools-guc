@@ -160,10 +160,12 @@ class Contribs {
             ';';
         $statement = $pdo->prepare($sql);
         $this->app->debug("[SQL] " . preg_replace('#\s+#', ' ', $sql));
-        if ($this->options['isPrefixPattern']) {
-            $statement->bindParam(':userlike', $this->user);
-        } else {
-            $statement->bindParam(':user', $this->user);
+        if (!$this->localUserId) {
+            if ($this->options['isPrefixPattern']) {
+                $statement->bindParam(':userlike', $this->user);
+            } else {
+                $statement->bindParam(':user', $this->user);
+            }
         }
         return $statement;
     }

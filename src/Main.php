@@ -182,7 +182,6 @@ class Main {
         //
         // Do: Try to find at least 1 matching contribution by user name/IP
         // for the given search pattern.
-
         if ($this->options['src'] === 'rc' || $this->options['src'] === 'hr') {
             $subQuery = 'SELECT
                 1,
@@ -258,6 +257,9 @@ class Main {
                 $placeholders = array(
                     '{dbname}' => $dbname,
                     ':dbname' => $pdo->quote($dbname),
+                    ':userlike' => $pdo->quote($this->user),
+                    ':user' => $pdo->quote($this->user),
+                    ':hrcutoff' => $pdo->quote($cutoff),
                 );
                 if (isset($placeholdersByWiki[$dbname])) {
                     foreach ($placeholdersByWiki[$dbname] as $key => $value) {
@@ -273,14 +275,6 @@ class Main {
             $this->app->debug("Finding wikis on `$sliceName` $subjectLabel");
             $statement = $pdo->prepare($sql);
             $this->app->debug("[SQL] " . preg_replace('#\s+#', ' ', $sql));
-            if ($this->options['isPrefixPattern']) {
-                $statement->bindParam(':userlike', $this->user);
-            } else {
-                $statement->bindParam(':user', $this->user);
-            }
-            if ($this->options['src'] === 'hr') {
-                $statement->bindValue(':hrcutoff', $cutoff);
-            }
             $statement->execute();
             $rows = $statement->fetchAll(PDO::FETCH_OBJ);
             $statement = null;

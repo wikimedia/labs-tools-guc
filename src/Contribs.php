@@ -32,7 +32,6 @@ class Contribs {
     private $localUserId = null;
 
     /**
-     *
      * @param App $app
      * @param string $user Search query for wiki users
      * @param boolean $isIP
@@ -41,7 +40,7 @@ class Contribs {
      * @param array $options
      */
     public function __construct(App $app, $user, $isIP, Wiki $wiki, $centralAuth, $options = array()) {
-        if (!$user) {
+        if ($user === '') {
             throw new ExpectedError('No username or IP');
         }
         $this->app = $app;

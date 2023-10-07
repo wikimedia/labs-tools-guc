@@ -45,7 +45,7 @@ try {
         $robotsPolicy = 'noindex,follow';
     } else {
         $guc = null;
-        if ($data->Username) {
+        if ($data->Username !== '') {
             $robotsPolicy = 'noindex,follow';
         }
         $canonicalUrl = './';
@@ -55,7 +55,7 @@ try {
 }
 
 $query = $data->options;
-if ($data->Username) {
+if ($data->Username !== '') {
     $query['user'] = $data->Username;
 }
 // Strip defaults
@@ -97,9 +97,7 @@ $sep = $int->msg('colon-separator', array('domain' => 'general'));
     </div>
     <form action="./" method="POST" class="container" id="searchForm">
         <p><label><?php echo htmlspecialchars($int->msg('form-user') . $sep); ?> <input name="user" value="<?php
-        if ($data->Username) {
             print htmlspecialchars($data->Username);
-        }
         ?>"></label></p>
         <p><label><?php echo htmlspecialchars($int->msg('form-isPrefixPattern') . $sep); ?> <input name="isPrefixPattern" type="checkbox" value="1"<?php
         if ($data->options['isPrefixPattern']) {

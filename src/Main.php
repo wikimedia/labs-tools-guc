@@ -38,7 +38,7 @@ class Main {
         // Defaults
         $this->options = $options + self::getDefaultOptions();
 
-        if (!$this->user) {
+        if ($this->user === '') {
             throw new ExpectedError('No username or IP');
         }
 

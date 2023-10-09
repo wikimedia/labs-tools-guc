@@ -13,9 +13,11 @@
 	"form-from-rc": "Vetëm ndryshime së fundi (30 ditët e fundit)",
 	"form-from-hr": "Vetëm orën e fundit",
 	"form-sort": "Rendit rezultatet",
-	"form-sort-wiki": "Prej wiki",
-	"form-sort-date": "Prej datës",
+	"form-sort-wiki": "Sipas wiki-sh",
+	"form-sort-date": "Sipas datash",
 	"form-submit": "Kërko",
+	"ipinfo-globalblock": "bllokuar globalisht",
+	"ipinfo-globalblocklist": "listë bllokimesh globale",
 	"results-limited": "Kufizuar në $1 rezultate për wiki",
-	"results-lag-warning": "Te përfundimet mund të mungojnë përpunimet më të freskëta. Replikat e bazës së të dhënave për Mjete janë prapa. Shihni [https://tools.wmflabs.org/replag/ Replag]."
+	"results-lag-warning": "Te përfundimet mund të mungojnë përpunimet më të freskëta. Kopjet në Shërbime Në Re të bazave të të dhënave wiki janë aktualisht mbrapa. Shihni [https://replag.toolforge.org/ Replag]."
 }

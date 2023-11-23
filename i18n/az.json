@@ -4,11 +4,19 @@
 			"Şeyx Şamil"
 		]
 	},
+	"description": "Bütün Vikimedia vikilərindən istifadəçi töhfələrini göstərin.",
 	"form-user": "IP-ünvanı və ya istifadəçi adı",
+	"form-isPrefixPattern": "Prefiks axtarışını aktivləşdirin",
+	"form-from": "Nəticələri daxil edin",
 	"form-from-all": "Bütün töhfələr",
 	"form-from-rc": "Ancaq son dəyişikliklər (son 30 gün)",
 	"form-from-hr": "Ancaq son saat",
+	"form-sort": "Nəticələri çeşidlə",
 	"form-sort-wiki": "Vikiyə görə",
 	"form-sort-date": "Tarixə görə",
-	"form-submit": "Axtar"
+	"form-submit": "Axtar",
+	"ipinfo-globalblock": "qlobal blok",
+	"ipinfo-globalblocklist": "qlobal blok gündəliyi",
+	"results-limited": "Hər viki üçün $1 nəticə ilə məhdudlaşdırılıb.",
+	"results-lag-warning": "Nəticələrdə ən son redaktələr olmaya bilər. Bulud Xidmətləri viki nüsxələri verilənlər bazaları hazırda gecikib. Baxın [https://replag.toolforge.org/ Replag]."
 }

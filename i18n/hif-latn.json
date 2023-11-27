@@ -1,7 +1,8 @@
 {
 	"@metadata": {
 		"authors": [
-			"Smobile"
+			"Smobile",
+			"Thakurji"
 		]
 	},
 	"description": "Sab Wikimedia wikis me sadasya ke yogdaan ke dekhao",
@@ -9,6 +10,8 @@
 	"form-isPrefixPattern": "Prefix khoj ke laabu karo",
 	"form-from-all": "Sab yogdaan",
 	"form-from-rc": "Khaali haali ke badlao (pichhla 30 din)",
+	"form-from-hr": "Khaali aakhri ghantaa",
+	"form-sort": "Results ke sort karo",
 	"form-sort-wiki": "Wiki se",
 	"form-sort-date": "Tarik se",
 	"form-submit": "Khojo"

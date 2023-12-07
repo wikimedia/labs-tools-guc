@@ -1,6 +1,7 @@
 {
 	"@metadata": {
 		"authors": [
+			"Girmitya",
 			"Smobile",
 			"Thakurji"
 		]
@@ -8,6 +9,7 @@
 	"description": "Sab Wikimedia wikis me sadasya ke yogdaan ke dekhao",
 	"form-user": "IP Address, nai to username",
 	"form-isPrefixPattern": "Prefix khoj ke laabu karo",
+	"form-from": "Include results from",
 	"form-from-all": "Sab yogdaan",
 	"form-from-rc": "Khaali haali ke badlao (pichhla 30 din)",
 	"form-from-hr": "Khaali aakhri ghantaa",

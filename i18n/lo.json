@@ -5,7 +5,7 @@
 		]
 	},
 	"description": "ສະແດງການປະກອບສ່ວນຂອງຜູ້ໃຊ້ຈາກທຸກວິກິວິກິມີເດຍ",
-	"form-user": "ທີ່ຢູ່ໄອພີຫຼືຊື່ຜູ້ໃຊ້",
+	"form-user": "ທີ່ຢູ່ໄອພີ ຫຼື ຊື່ຜູ້ໃຊ້",
 	"form-isPrefixPattern": "ເປີດໃຊ້ງານການຄົ້ນຫາຄໍານໍາຫນ້າ",
 	"form-from": "ລວມຜົນລັບຈາກ",
 	"form-from-all": "ການປະກອບສ່ວນທັງໝົດ",
@@ -18,5 +18,5 @@
 	"ipinfo-globalblock": "ບລັອກທົ່ວໂລກ",
 	"ipinfo-globalblocklist": "ບັນທຶກການບລັອກທົ່ວໂລກ",
 	"results-limited": "ຈຳກັດຜົລລັບຢູ່ທີ່ $1 ລາຍການຕໍ່ວິກິ",
-	"results-lag-warning": "ຜົນລັບອາດຈະຂາດການດັດແກ້ຫຼ້າສຸດ ການສະແດງຂໍ້ມູນສຳລັບເຄື່ອງມືແມ່ນຊັກຊ້າ ໂປດເບິ່ງ [https://tools.wmflabs.org/replag/ Replag]"
+	"results-lag-warning": "ຜົນໄດ້ຮັບອາດຈະຂາດການແກ້ໄຂຫຼ້າສຸດ ຖານຂໍ້ມູນ replica ຂອງ wiki Services Cloud ປະຈຸບັນຊັກຊ້າ ເບິ່ງ [https://replag.toolforge.org/ Replag]"
 }

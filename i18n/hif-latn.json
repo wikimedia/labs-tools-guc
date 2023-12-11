@@ -16,5 +16,9 @@
 	"form-sort": "Results ke sort karo",
 	"form-sort-wiki": "Wiki se",
 	"form-sort-date": "Tarik se",
-	"form-submit": "Khojo"
+	"form-submit": "Khojo",
+	"ipinfo-globalblock": "sab jagha ke block",
+	"ipinfo-globalblocklist": "sab jagha ke block ke suchi",
+	"results-limited": "Ek wiki se $1 result ke limit hai.",
+	"results-lag-warning": "Abhi haali ke badlao se results missing hoi. Cloud Services wiki replica databases are currently lagged. See [https://replag.toolforge.org/ Replag]."
 }

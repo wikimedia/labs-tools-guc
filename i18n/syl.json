@@ -1,0 +1,22 @@
+{
+	"@metadata": {
+		"authors": [
+			"ꠢꠣꠍꠘ ꠞꠣꠎꠣ"
+		]
+	},
+	"description": "ꠢꠇ꠆ꠇꠟ ꠃꠁꠇꠤꠝꠤꠒꠤꠀ ꠃꠁꠇꠤꠘꠕꠘꠦ ꠅꠛꠖꠣꠘ ꠛꠣꠞ ꠇꠞꠂꠘ ⁕",
+	"form-user": "ꠀꠁꠙꠤ ꠒꠤꠇꠣꠘꠣ ꠀꠘ꠆ꠘꠣꠄ ꠛꠦꠛꠀꠞꠈꠞ꠆ꠞꠣꠞꠘꠣꠝ",
+	"form-isPrefixPattern": "ꠀꠉꠉꠣꠟꠣ ꠡꠢꠤꠔ ꠕꠥꠇꠣꠘꠤꠞ ꠛꠦꠛꠍ꠆ꠕꠣ",
+	"form-from": "ꠡꠢꠤꠔ ꠚꠟ ꠟꠣꠉꠣꠁꠀ",
+	"form-from-all": "ꠢꠇꠟ ꠅꠛꠖꠣꠘ",
+	"form-from-rc": "ꠁꠀꠞꠣꠇꠥꠞ ꠛꠖꠟꠣꠁꠔꠣ (ꠈꠣꠟꠤ ꠢꠦꠡꠇꠥꠞ 30 ꠖꠤꠘꠞ)",
+	"form-from-hr": "ꠈꠣꠟꠤ ꠉꠦꠍꠦ ꠊꠘ꠆ꠐꠣꠞꠔꠣ",
+	"form-sort": "ꠚꠟ ꠛꠣꠍꠂꠘ",
+	"form-sort-wiki": "ꠃꠁꠇꠤꠖꠤ",
+	"form-sort-date": "ꠔꠣꠞꠤꠈꠖꠤ",
+	"form-submit": "ꠕꠥꠇꠣꠁꠘ",
+	"ipinfo-globalblock": "ꠖꠥꠘꠤꠀꠛꠤ ꠛꠟꠇ ꠝꠣꠞꠣ",
+	"ipinfo-globalblocklist": "ꠖꠥꠘꠤꠀꠁꠞ ꠛꠟꠇ ꠟꠤꠡ꠆ꠐꠤ",
+	"results-limited": "ꠄꠇꠦꠇ ꠃꠁꠇꠤꠘ꠆ꠔ ꠛꠠꠎꠥꠞ $1 ꠚꠟ ꠇꠞꠤ ꠖꠦꠅꠀ ⁕",
+	"results-lag-warning": "ꠚꠟꠞꠝꠣꠏꠦ ꠄꠇꠦꠞꠦ ꠢꠦꠡꠞꠔꠣ ꠘꠣꠅ ꠕꠣꠇꠔ ꠙꠣꠞꠦ ⁕ ꠇꠦꠟꠣꠃꠒ ꠍꠣꠞꠜꠤꠍꠣꠁꠘ꠆ꠔꠞ ꠃꠁꠇꠤꠞꠟꠣꠉꠤ ꠞꠦꠙꠟꠤꠇꠣ ꠒꠣꠐꠛꠦꠁꠍ ꠀꠉꠥꠀꠘ ꠘꠣꠄ ⁕ ꠖꠦꠈꠂꠘ [https://replag.toolforge.org/ ꠞꠦꠙꠟꠦꠉ] ⁕"
+}

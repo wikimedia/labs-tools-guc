@@ -3,13 +3,23 @@
 		"authors": [
 			"BHARATHESHA ALASANDEMAJALU",
 			"ChiK",
-			"Chidananda Kampa"
+			"Chidananda Kampa",
+			"Vishwanatha Badikana"
 		]
 	},
 	"description": "ಪೂರಾ ವಿಕಿಮೀಡಿಯ ವಿಕಿ ಬಳಕೆದಾರೆರೆ ಕಾನಿಕೆಲೆನ್ ತೋಜಾಲೆ.",
+	"form-user": "ಐ.ಪಿ ವಿಳಾಸ ಅತ್ತಂಡ ಸದಸ್ಯೆರ್ನ ಪುದರ್:",
+	"form-isPrefixPattern": "ಪೂರ್ವಪ್ರತ್ಯಯ ಹುಡುಕಾಟೊನು ಸಕ್ರಿಯೊ ಮಲ್ಪುಲೆ",
+	"form-from": "ಫಲಿತಾಂಸೊಲೆನ್ ಸೇರಲೆ",
 	"form-from-all": "ಮಾಂತ ಕಾನಿಕೆಲು",
+	"form-from-rc": "ಇಂಚಿಪದ ಬದಲಾವಣೆಲು ಮಾತ್ರೊ (ಅಕೇರಿದ ೩೦ ದಿನೊಲು)",
 	"form-from-hr": "ಅಕೇರಿದ ಗಂಟೆ ಮಾತ್ರೊ",
+	"form-sort": "ಫಲಿತಾಂಸೊಲೆನ್ ವಿಂಗಡಿಸಲೆ",
 	"form-sort-wiki": "ವಿಕಿಡ್ದ್",
 	"form-sort-date": "ದಿನೊತ್ತ ಲೆಕೊ",
-	"form-submit": "ನಾಡ್‍ಲೆ"
+	"form-submit": "ನಾಡ್‍ಲೆ",
+	"ipinfo-globalblock": "ಜಾಗತಿಕವಾದ್ ನಿರ್ಬಂದೊ ಆತ್ಂಡ್",
+	"ipinfo-globalblocklist": "ಜಾಗತಿಕವಾದ್ ನಿರ್ಬಂದೊ ಮಲ್ತ್‌ನ ಪಟ್ಟಿ",
+	"results-limited": "ಪ್ರತಿ ವಿಕಿ $1 ಪಲಿತಾಂಸೊಲೆಗ್ ಸೀಮಿತವಾತ್ಂಡ್.",
+	"results-lag-warning": "ಫಲಿತಾಂಸೊಲು ತೀರಾ ಇಂಚಿಪದ ಸಂಪಾದನೆಲೆನ್ ಕಳೆವೊಂದಿಪ್ಪು. ಕ್ಲೌಡ್ ಸರ್ವಿಸಸ್ ವಿಕಿ ರೆಪ್ಲಿಕಾ ಡೇಟಾಬೇಸ್‌ಲು ಇತ್ತೆ ಪಿರವು ಬೂರ್ದೊ. [https://replag.toolforge.org/ Replag] ನೋಡಿ."
 }

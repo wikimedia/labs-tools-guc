@@ -3,9 +3,11 @@
 		"authors": [
 			"Fitoschido",
 			"Mguix",
-			"Robertgarrigos"
+			"Robertgarrigos",
+			"SMP"
 		]
 	},
+	"title": "Contribucions globals d'usuari",
 	"description": "Mostra les contribucions dels usuaris de tots els wikis de Wikimedia.",
 	"form-user": "Adreça IP o nom d’usuari",
 	"form-isPrefixPattern": "Activa la cerca per prefixos",
@@ -20,5 +22,5 @@
 	"ipinfo-globalblock": "bloquejar globalment",
 	"ipinfo-globalblocklist": "llista global de bloqueig",
 	"results-limited": "Limitat a $1 resultats per wiki.",
-	"results-lag-warning": "En els resultats podrien faltar les edicions més recents. Les bases de dades de rèplica de Tools presenten retards en aquests moments. Visita [https://tools.wmflabs.org/replag/ Replag] per a conèixer més."
+	"results-lag-warning": "En els resultats podrien faltar les edicions més recents. Els serveis wiki de rèplica al núvol presenten retards en aquests moments. Visiteu [https://replag.toolforge.org/ Replag] per a conèixer més detalls."
 }

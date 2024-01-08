@@ -1,6 +1,7 @@
 {
 	"@metadata": {
 		"authors": [
+			"Palapa",
 			"Semina x"
 		]
 	},
@@ -15,6 +16,8 @@
 	"form-sort-wiki": "Po wiki",
 	"form-sort-date": "po datumu",
 	"form-submit": "Pretraga",
+	"ipinfo-globalblock": "globalno blokiranje",
+	"ipinfo-globalblocklist": "globalni popis blokova",
 	"results-limited": "Ograničeno na $1 rezultata po wikiju",
 	"results-lag-warning": "Postoji mogućnost da rezultati ne sadržavaju nedavne promjene. Replike baza podataka su trenutno zaostale. Pogledajte na [https://tools.wmflabs.org/replag/ Replag]."
 }

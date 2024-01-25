@@ -15,6 +15,8 @@
 	"form-sort-wiki": "Pe uicchi",
 	"form-sort-date": "Pe date",
 	"form-submit": "Cirche",
+	"ipinfo-globalblock": "bloccate globbalmende",
+	"ipinfo-globalblocklist": "Elenghe de le blocche globbale",
 	"results-limited": "Limitate a $1 resultate pe uicchi.",
-	"results-lag-warning": "Jndr'à le resultate ponne mangà le urteme cangiaminde. Le repleche de le database pe Struminde pe mò vonne lende. 'Ndruche [https://tools.wmflabs.org/replag/ Replag]."
+	"results-lag-warning": "Jndr'à le resultate ponne mangà le urteme cangiamiende. Le database de repliche uicchi sus a le servizie cloud stonne rrete. 'Ndruche [https://replag.toolforge.org/ Replag]."
 }

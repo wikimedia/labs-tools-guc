@@ -1,6 +1,7 @@
 {
 	"@metadata": {
 		"authors": [
+			"Chqaz",
 			"MathXplore",
 			"ネイ",
 			"春春眠眠"
@@ -19,7 +20,7 @@
 	"form-sort-date": "日付順",
 	"form-submit": "検索",
 	"ipinfo-globalblock": "グローバルブロック",
-	"ipinfo-globalblocklist": "グローバルブロック記録",
+	"ipinfo-globalblocklist": "グローバルブロックの一覧",
 	"results-limited": "1ウィキ毎に$1件表示しています。",
 	"results-lag-warning": "現在、クラウドサービスのウィキ複製データベースに遅れが生じているので、直近の編集が検索結果に表示されない可能性があります。詳しくは[https://replag.toolforge.org/ Replag]をご参照ください。"
 }

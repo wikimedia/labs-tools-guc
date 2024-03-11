@@ -21,5 +21,5 @@
 	"ipinfo-globalblock": "전역 차단",
 	"ipinfo-globalblocklist": "전역 차단 목록",
 	"results-limited": "위키당 $1 결과로 제한됨.",
-	"results-lag-warning": "결과에는 가장 최근의 수정 사항이 누락될 수 있어. Cloud Services 위키 복제 데이터베이스가 현재 지연되어 있어. [https://replag.toolforge.org/ Replag]를 참조해."
+	"results-lag-warning": "결과에 최근 편집이 없을 수 있습니다. Tools를 위한 데이터베이스 사본이 현재 지연되고 있습니다. [https://tools.wmflabs.org/replag/ Replag]를 참고하십시오."
 }

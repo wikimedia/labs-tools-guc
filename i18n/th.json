@@ -2,9 +2,11 @@
 	"@metadata": {
 		"authors": [
 			"Aefgh39622",
+			"Ekminarin",
 			"Lookruk"
 		]
 	},
+	"title": "การมีส่วนร่วมของผู้ใช้ข้ามโครงการ",
 	"description": "แสดงการมีส่วนร่วมของผู้ใช้จากวิกิวิกิมีเดียทั้งหมด",
 	"form-user": "ที่อยู่ไอพีหรือชื่อผู้ใช้",
 	"form-isPrefixPattern": "เปิดใช้งานการค้นหาคำนำหน้า",
@@ -16,8 +18,8 @@
 	"form-sort-wiki": "ตามวิกิ",
 	"form-sort-date": "ตามวันที่",
 	"form-submit": "ค้นหา",
-	"ipinfo-globalblock": "บล็อกทั่วโลก",
-	"ipinfo-globalblocklist": "ปูมการบล็อกทั่วโลก",
+	"ipinfo-globalblock": "บล็อกข้ามโครงการ",
+	"ipinfo-globalblocklist": "รายชื่อบล็อกข้ามโครงการ",
 	"results-limited": "จำกัดผลลัพธ์ไว้ที่ $1 รายการต่อวิกิ",
 	"results-lag-warning": "ผลลัพธ์อาจไม่มีการแก้ไขล่าสุด ขณะนี้การแสดงข้อมูลสำหรับเครื่องมือมีความล่าช้า โปรดดู [https://tools.wmflabs.org/replag/ Replag]"
 }

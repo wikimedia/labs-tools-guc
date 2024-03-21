@@ -1,7 +1,8 @@
 {
 	"@metadata": {
 		"authors": [
-			"Beta16"
+			"Beta16",
+			"LametinoWiki"
 		]
 	},
 	"description": "Mostra i contributi dell'utente da tutti i progetti Wikimedia.",
@@ -15,6 +16,8 @@
 	"form-sort-wiki": "Per wiki",
 	"form-sort-date": "Per data",
 	"form-submit": "Cerca",
+	"ipinfo-globalblock": "blocco globale",
+	"ipinfo-globalblocklist": "elenco dei blocchi globali",
 	"results-limited": "Limita a $1 risultati per wiki.",
 	"results-lag-warning": "Nei risultati potrebbero mancare le modifiche più recenti. I database di replica wiki dei servizi cloud sono attualmente in ritardo. Vedi [https://replag.toolforge.org/ Replag]."
 }

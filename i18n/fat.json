@@ -1,0 +1,22 @@
+{
+	"@metadata": {
+		"authors": [
+			"Gregorynelsonmensah1"
+		]
+	},
+	"description": "Da mboa ahorow a ofi Wikimedia wikis do nyinara edzi",
+	"form-user": "IP address anaa dwumadzinyi dzin",
+	"form-isPrefixPattern": "Sɔ dzin ndzienyim a wɔdze hwehwɛ adze si do",
+	"form-from": "Fa nsunsuando a ofi ... ka ho",
+	"form-from-all": "Mboa ahorow nyinara",
+	"form-from-rc": "Nsesa a wɔyɛe nkyɛree nkotsee",
+	"form-from-hr": "Dɔn a otwa tun nkotsee",
+	"form-sort": "Hyehyɛ nsunsuando ahorow no",
+	"form-sort-wiki": "Fa wiki yɛ",
+	"form-sort-date": "Fa da yɛ",
+	"form-submit": "Hwehwɛ",
+	"ipinfo-globalblock": "Siw kwan wɔ wiase nyinaa",
+	"ipinfo-globalblocklist": "ndzidzido a w'asiw kwan wɔ wiase nyinaa",
+	"results-limited": "Nkotum atra nsusuando $1 wɔ wiki kor biara do.",
+	"results-lag-warning": "Obotum aba dɛ nsakyer afofor a w'ayɛ nnyi nsunsuando ahorow yi mu. Cloud Services wiki bea a wɔkora hɔn ndzɛmba do no aka akyir kakra. Hwɛ [https://replag.toolforge.org/ Replag]."
+}

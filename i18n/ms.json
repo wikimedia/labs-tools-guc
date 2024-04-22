@@ -7,7 +7,7 @@
 	},
 	"description": "Tunjukkan sumbangan pengguna dari semua wiki Wikimedia.",
 	"form-user": "Alamat IP atau nama pengguna",
-	"form-isPrefixPattern": "Bolehkan carian awalan",
+	"form-isPrefixPattern": "Dayakan carian awalan",
 	"form-from": "Termasuk hasil dari",
 	"form-from-all": "Semua sumbangan",
 	"form-from-rc": "Hanya perubahan terkini (30 hari terakhir)",

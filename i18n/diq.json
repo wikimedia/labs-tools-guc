@@ -1,6 +1,7 @@
 {
 	"@metadata": {
 		"authors": [
+			"GolyatGeri",
 			"Mirzali",
 			"Orbot707"
 		]
@@ -11,7 +12,7 @@
 	"form-from": "Enê netican zi tede kerê",
 	"form-from-all": "İştıraki pêro",
 	"form-from-rc": "Teyna vurnayışanê peyênan (peyên 30 roca)",
-	"form-from-hr": "Tetna seata peyên",
+	"form-from-hr": "Teyna seata peyên",
 	"form-sort": "Neticeyan rêz ke",
 	"form-sort-wiki": "Goreyê wiki",
 	"form-sort-date": "Goreyê tarixi",
@@ -19,5 +20,5 @@
 	"ipinfo-globalblock": "kılikerdışo global",
 	"ipinfo-globalblocklist": "lista kılitkerdışê globali",
 	"results-limited": "Her wiki rê $1 netican ra sinor erziyayo.",
-	"results-lag-warning": "Neticeyi belkiya vurnayışanê peyênan muhtewa nêkenê. Seba hacetê kopya database peyra mendeyê. [https://tools.wmflabs.org/replag/ Replag] bıvêne."
+	"results-lag-warning": "Neticey tor peyên vurnayışa ihtiwa nêken.Kopyay  Servisê Horanê databasey wiki tay pêra yeni. Bıvênên perla  [https://replag.toolforge.org/ Replag]"
 }

@@ -1,0 +1,22 @@
+{
+	"@metadata": {
+		"authors": [
+			"IJzeren Jan"
+		]
+	},
+	"description": "Pokazyvaje vklad koristnika vo vsih viki Wikimedije.",
+	"form-user": "IP-adres ili koristničsko ime",
+	"form-isPrefixPattern": "Umožniti iskanje po prědstavkě",
+	"form-from": "Vključiti rezultaty iz",
+	"form-from-all": "Vse vklady",
+	"form-from-rc": "Samo nedavne pravky (poslědnje 30 dnjev)",
+	"form-from-hr": "Samo s poslědnjej časiny",
+	"form-sort": "Sortovati rezultaty",
+	"form-sort-wiki": "Po viki",
+	"form-sort-date": "Po datě",
+	"form-submit": "Iskati",
+	"ipinfo-globalblock": "globalna blokada",
+	"ipinfo-globalblocklist": "spisok globalnyh blokad",
+	"results-limited": "Ograničeno do $1 rezultatov na viki.",
+	"results-lag-warning": "Najnovějše pravky mogut byti odsutne v rezultatah. Repliky baz danyh Wikimedia Cloud Services tutčas imajut opozdnjenje. Gledite [https://replag.toolforge.org/ Replag]."
+}

@@ -1,0 +1,22 @@
+{
+	"@metadata": {
+		"authors": [
+			"Inabat Allanova"
+		]
+	},
+	"description": "Barlıq Wikimedia wikilerinen paydalanıwshı úleslerin kórsetiw.",
+	"form-user": "IP mánzili yamasa paydalanıwshı atı",
+	"form-isPrefixPattern": "Prefiks izlewdi iske túsiriw",
+	"form-from": "Nátiyjelerdi kiritiń",
+	"form-from-all": "Barlıq úlesleri",
+	"form-from-rc": "Tek keyingi ózgerisler (aqırǵı 30 kún)",
+	"form-from-hr": "Tek aqırǵı saatı",
+	"form-sort": "Nátiyjelerdi tańlaw",
+	"form-sort-wiki": "Wiki boyınsha",
+	"form-sort-date": "Sáne boyınsha",
+	"form-submit": "Izlew",
+	"ipinfo-globalblock": "Global bloklaw",
+	"ipinfo-globalblocklist": "Global bloklaw dizimi",
+	"results-limited": "Hár wiki $1 nátiyjege shekem sheklengen.",
+	"results-lag-warning": "Nátiyjelerde eń sońǵı ózgerisler joq bolıwı múmkin. Cloud Xızmetleri wiki nusqası maǵlıwmatlar bazası házirgi waqıtta artta qalǵan. Qarań: [https://replag.toolforge.org/ Replag]."
+}

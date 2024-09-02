@@ -6,7 +6,7 @@
 		]
 	},
 	"description": "ထ္ၜး အရာညးလွပ် မချူပတိုန်လဝ် နူကဵု ဝဳကဳမဳဒဳဒဳယာ ဝဳကဳ သီုဖအိုတ်။",
-	"form-user": "IP address ဟွံသေင်မ္ဂး ယၟုမညးလွပ်",
+	"form-user": "IP address ဟွံသေင်မ္ဂး ယၟုညးလွပ်",
 	"form-isPrefixPattern": "အထံက်အရီု မဂၠာဲသ္ၚေဝ် မုက်လိက်အစ",
 	"form-from": "သီုကဵု သွဟ်ဂမၠိုင် နူ",
 	"form-from-all": "အရာမကၠောန်လဝ် သီုဖအိုတ်",
@@ -16,6 +16,8 @@
 	"form-sort-wiki": "အတိုင်လၟေင် ဝဳကဳ",
 	"form-sort-date": "အတိုင်လၟေင် စၟတ်တ္ၚဲ",
 	"form-submit": "ဂၠာဲ",
+	"ipinfo-globalblock": "ကၟာတ်ဗလံက် သီုဖအိုတ်",
+	"ipinfo-globalblocklist": "စရင် ကၟာတ်ဗလံက် သီုဖအိုတ်",
 	"results-limited": "ပိုင်ခြာထောအ် သွဟ် $1  ပ္ဍဲမွဲမွဲ ဝဳကဳ",
-	"results-lag-warning": "သွဟ် မဂၠာဲ အရာမပလေဝ်ဒါန် ပြဟ်ဟ်ဏအ်ဂှ် ကၠေအ်အာ ဒှ်မာန်ရ။ ကိရိယာ မထ္ၜးတင်ဂၞင်ဒေတာတအ် ပြဟ်ပြဟ်ဏအ် ဟွံကၠောန်ကမၠောန်\nရံင် [https://tools.wmflabs.org/replag/ Replag]."
+	"results-lag-warning": "သွဟ် မဂၠာဲ အရာမပလေဝ်ဒါန် ပြဟ်ဟ်ဏအ်ဂှ် ကၠေအ်အာ ဒှ်မာန်ရ။ Cloud Services ကိရိယာ မထ္ၜးတင်ဂၞင်ဒေတာတအ် ပြဟ်ပြဟ်ဏအ် ဟွံကၠောန်ကမၠောန်\nရံင် [https://tools.wmflabs.org/replag/ Replag]."
 }

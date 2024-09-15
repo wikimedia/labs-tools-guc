@@ -85,6 +85,6 @@ class ChronologyOutput implements IOutput {
 
     private function makeChangeLine(stdClass $rc) {
         $chunks = Contribs::formatChange($this->app, $rc->guc_wiki, $rc);
-        return '<li>' . join('&nbsp;', $chunks) . '</li>';
+        return '<li>' . join(' ', $chunks) . '</li>';
     }
 }

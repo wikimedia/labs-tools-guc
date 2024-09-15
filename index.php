@@ -74,6 +74,7 @@ $langDir = $int->getDir();
 <html dir="<?php echo htmlspecialchars($langDir); ?>" lang="<?php echo htmlspecialchars($langCode); ?>">
 <head>
 <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
 <link rel="stylesheet" href="resources/style.css">
 <title><?php echo htmlspecialchars($int->msg('title')); ?></title>
 <script>

@@ -93,6 +93,12 @@ a:hover { text-decoration: underline; }
     font-size: 15px;
 }
 
+.results li {
+    /* Prefer moving words to next line instead of breaking,
+     * but if no option option, then break word instead of overflow */
+    word-break: break-word;
+}
+
 .wiki--noSul {
     outline: 10px solid #e3fafd;
     background-color: #e3fafd;

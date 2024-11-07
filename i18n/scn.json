@@ -1,13 +1,23 @@
 {
 	"@metadata": {
 		"authors": [
-			"Ajeje Brazorf"
+			"Ajeje Brazorf",
+			"Gmelfi"
 		]
 	},
 	"description": "Ammustra li cuntribbuti di l'utenti da tutti li wiki Wikimedia.",
 	"form-user": "Nnirizzu IP o nomu utenti",
+	"form-isPrefixPattern": "Abbìlita la ricerca dû prifissu",
+	"form-from": "Includiri li risultati di",
 	"form-from-all": "Tutti li cuntribbuti",
+	"form-from-rc": "Sulu canciamenti ricenti (ùrtimi 30 jorna)",
 	"form-from-hr": "Solo l'ùrtima ura",
+	"form-sort": "Urdina li risurtati",
 	"form-sort-wiki": "Pi wiki",
-	"form-sort-date": "Pi data"
+	"form-sort-date": "Pi data",
+	"form-submit": "Arricerca",
+	"ipinfo-globalblock": "bloccu glubbali",
+	"ipinfo-globalblocklist": "lista di blocchi glubbali",
+	"results-limited": "Limitatu a $1 risurtati pi wiki.",
+	"results-lag-warning": "Li risultati putissiru mancari dî mudìfichi cchiù ricenti. Li basi di dati dî rèplichi wiki dî sirvizzi cloud sunnu attuarmenti arritardati. Talìa [https://replag.toolforge.org/ Replag]."
 }

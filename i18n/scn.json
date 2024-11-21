@@ -2,22 +2,23 @@
 	"@metadata": {
 		"authors": [
 			"Ajeje Brazorf",
+			"GianAntonucci",
 			"Gmelfi"
 		]
 	},
-	"description": "Ammustra li cuntribbuti di l'utenti da tutti li wiki Wikimedia.",
+	"description": "Fai vìdiri i cuntribbuti di l'utenti chi vennu di tutti i wiki di Wikimedia.",
 	"form-user": "Nnirizzu IP o nomu utenti",
-	"form-isPrefixPattern": "Abbìlita la ricerca dû prifissu",
-	"form-from": "Includiri li risultati di",
-	"form-from-all": "Tutti li cuntribbuti",
-	"form-from-rc": "Sulu canciamenti ricenti (ùrtimi 30 jorna)",
-	"form-from-hr": "Solo l'ùrtima ura",
-	"form-sort": "Urdina li risurtati",
+	"form-isPrefixPattern": "Abbìlita a ricerca dû prifissu",
+	"form-from": "Mèttiri i risultati di",
+	"form-from-all": "Tutti i cuntribbuti",
+	"form-from-rc": "Sulu i canci frischi (di l’ùrtimi 30 jorna)",
+	"form-from-hr": "Sulu l'ùrtima ura",
+	"form-sort": "Abbersa i risurtati",
 	"form-sort-wiki": "Pi wiki",
 	"form-sort-date": "Pi data",
-	"form-submit": "Arricerca",
-	"ipinfo-globalblock": "bloccu glubbali",
+	"form-submit": "Ricerca",
+	"ipinfo-globalblock": "blocca a tutti i banni",
 	"ipinfo-globalblocklist": "lista di blocchi glubbali",
-	"results-limited": "Limitatu a $1 risurtati pi wiki.",
-	"results-lag-warning": "Li risultati putissiru mancari dî mudìfichi cchiù ricenti. Li basi di dati dî rèplichi wiki dî sirvizzi cloud sunnu attuarmenti arritardati. Talìa [https://replag.toolforge.org/ Replag]."
+	"results-limited": "Limita a $1 risurtati pi wiki.",
+	"results-lag-warning": "Nnê risurtati putìssiru mancari i canci cchiù ricenti. Camora, i basi dî dati dî rèplichi wiki dî sirbizzi cloud sunnu attrassati. Talìa [https://replag.toolforge.org/ Replag]."
 }

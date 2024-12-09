@@ -1,6 +1,7 @@
 {
 	"@metadata": {
 		"authors": [
+			"Cabal",
 			"Kuldeepburjbhalaike"
 		]
 	},
@@ -13,11 +14,11 @@
 	"form-from-rc": "ਸਿਰਫ਼ ਹਾਲੀਆ ਤਬਦੀਲੀਆਂ (ਪਿਛਲੇ 30 ਦਿਨ)",
 	"form-from-hr": "ਸਿਰਫ਼ ਆਖਰੀ ਘੰਟਾ",
 	"form-sort": "ਕ੍ਰਮਬੱਧ ਨਤੀਜੇ",
-	"form-sort-wiki": "ਵਿਕੀ ਅਨੁਸਾਰ",
-	"form-sort-date": "ਮਿਤੀ ਅਨੁਸਾਰ",
+	"form-sort-wiki": "ਵਿਕੀ ਮੁਤਾਬਕ",
+	"form-sort-date": "ਮਿਤੀ ਮੁਤਾਬਕ",
 	"form-submit": "ਖੋਜ",
 	"ipinfo-globalblock": "ਗਲੋਬਲ ਬਲਾਕ",
-	"ipinfo-globalblocklist": "ਗਲੋਬਲ ਬਲਾਕ ਸੂਚੀ",
+	"ipinfo-globalblocklist": "ਵਿਸ਼ਵ ਪੱਧਰੀ ਪਾਬੰਦੀ ਸੂਚੀ",
 	"results-limited": "ਪ੍ਰਤੀ ਵਿਕੀ $1 ਨਤੀਜਿਆਂ ਤੱਕ ਸੀਮਿਤ।",
 	"results-lag-warning": "ਨਤੀਜਿਆਂ ਵਿੱਚ ਸਭ ਤੋਂ ਤਾਜ਼ਾ ਸੰਪਾਦਨਾਂ ਦੀ ਕਮੀ ਹੋ ਸਕਦੀ ਹੈ। ਕਲਾਉਡ ਸੇਵਾਵਾਂ ਵਿਕੀ ਪ੍ਰਤੀਕ੍ਰਿਤੀ ਡੇਟਾਬੇਸ ਵਰਤਮਾਨ ਵਿੱਚ ਪਛੜ ਗਏ ਹਨ। ਵੇਖੋ [https://replag.toolforge.org/ ਰੇਪਲੈਗ]।"
 }

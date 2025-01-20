@@ -1,7 +1,8 @@
 {
 	"@metadata": {
 		"authors": [
-			"GinawaSaHapon"
+			"GinawaSaHapon",
+			"Qwrop"
 		]
 	},
 	"description": "Ipakita ang mga ambag ng tagagamit mula sa lahat ng mga wiki ng Wikimedia.",
@@ -18,5 +19,5 @@
 	"ipinfo-globalblock": "pandaigdigang pagharang",
 	"ipinfo-globalblocklist": "listahan ng pandaigdigang pagharang",
 	"results-limited": "Limitado lang sa $1 (na) resulta kada wiki.",
-	"results-lag-warning": "Posibleng hindi makikita sa mga resulta ang mga kamakailang edit. Nagla-lag sa ngayon ang mga replica ng database para sa Tools. Tingnan ang [https://tools.wmflabs.org/replag/ Replag]."
+	"results-lag-warning": "Posibleng hindi makikita sa mga resulta ang mga kamakailang edit. Nagla-lag sa ngayon ang mga replica ng database para sa Cloud Services. Tingnan ang [https://replag.toolforge.org/ Replag]."
 }

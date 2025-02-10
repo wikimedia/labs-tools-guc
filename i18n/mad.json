@@ -1,0 +1,19 @@
+{
+	"@metadata": {
+		"authors": [
+			"Boesenbergia"
+		]
+	},
+	"description": "Angghâlaghi dhurruna padhurrun ḍâri kabbhi wiki Wikimedia",
+	"form-user": "Lamat IP otabâ nyama pangangghuy",
+	"form-from-all": "Kabbhi dhurrun",
+	"form-from-rc": "Pèra' obâ'ân anyaran (30 arè ka buḍi)",
+	"form-from-hr": "Pèra sa ejjhâm ka buḍi",
+	"form-sort": "Ongrodaghi hasèl",
+	"form-sort-wiki": "Aḍhâsar ka wiki",
+	"form-sort-date": "Aḍhâsar ka tangghâl",
+	"form-submit": "Sarè",
+	"ipinfo-globalblock": "anḍhâng kalabân global",
+	"ipinfo-globalblocklist": "ḍaftar anḍhângan global",
+	"results-limited": "Èbâtessè ghân $1 hasèl per wiki."
+}

@@ -2,9 +2,11 @@
 	"@metadata": {
 		"authors": [
 			"Les Meloures",
-			"Robby"
+			"Robby",
+			"Volvox"
 		]
 	},
+	"title": "Global Benotzerkontributiounen",
 	"description": "Benotzerkontributioune vun alle Wikimedia Wikie weisen",
 	"form-user": "IP-Adress oder Benotzernumm",
 	"form-isPrefixPattern": "Prefix-Sichen aktivéieren",

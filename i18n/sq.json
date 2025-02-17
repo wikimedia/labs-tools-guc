@@ -2,15 +2,17 @@
 	"@metadata": {
 		"authors": [
 			"Besnik b",
-			"Denisa"
+			"Denisa",
+			"INNERLMNT"
 		]
 	},
+	"title": "Kontributet globale të përdoruesve",
 	"description": "Shfaq kontributet e përdoruesve nga krejt wiki-t Wikimedia",
 	"form-user": "Adresë IP ose emër përdoruesi",
 	"form-isPrefixPattern": "Aktivizo kërkimin me parashtesë",
-	"form-from": "Përfshi rezultatet nga",
+	"form-from": "Përfshij rezultatet nga",
 	"form-from-all": "Krejt kontributet",
-	"form-from-rc": "Vetëm ndryshime së fundi (30 ditët e fundit)",
+	"form-from-rc": "Vetëm ndryshimet e fundit (30 ditët e fundit)",
 	"form-from-hr": "Vetëm orën e fundit",
 	"form-sort": "Rendit rezultatet",
 	"form-sort-wiki": "Sipas wiki-sh",

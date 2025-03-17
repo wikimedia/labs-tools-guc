@@ -1,0 +1,16 @@
+{
+	"@metadata": {
+		"authors": [
+			"Musindi250"
+		]
+	},
+	"description": "Erekana umusanzu w'umukoresha wa wiki zose za Wikimediya.",
+	"form-from": "Shyiramo ibisubizo bivuye",
+	"form-from-all": "Imisanzu yose",
+	"form-from-rc": "Impinduka ziheruka gusa (iminsi 30 ishize)",
+	"form-from-hr": "Isaha iheruka gusa",
+	"form-sort": "Tondeka ibisubizo",
+	"form-sort-wiki": "Ushingiye kuri Wiki",
+	"form-sort-date": "Ushingiye ku itariki",
+	"form-submit": "Shakisha"
+}

@@ -1,9 +1,11 @@
 {
 	"@metadata": {
 		"authors": [
+			"EdoAug",
 			"Jon Harald Søby"
 		]
 	},
+	"title": "Globale brukerbidrag",
 	"description": "Vis brukerbidrag fra alle Wikimedia-wikier.",
 	"form-user": "IP-adresse eller brukernavn",
 	"form-isPrefixPattern": "Slå på prefikssøk",

@@ -12,13 +12,19 @@ class IPInfo {
     }
 
     /**
-     * @return array|bool
+     * @param string $ip IP address, prefix, range, user name, or other actor name
+     * @return array|bool IP info, or false for anything that is either not a
+     *  single IP address, or otherwise could not find information about.
+     *
      *  - string 'host' Reverse DNS lookup
      *  - int 'asn'
      *  - string 'description' ASN description text
      *  - string 'range' IP CIDR range
      */
     public static function get($ip) {
+        if (!self::valid($ip)) {
+            return false;
+        }
         // gethostbyaddr() usually doesn't give much for IPv6 addresses
         // Use ASN information to still provide some information that
         // may be useful to identify a group of related IP-adresses.

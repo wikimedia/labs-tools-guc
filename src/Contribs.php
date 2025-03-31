@@ -23,7 +23,7 @@ class Contribs {
     private $wiki;
 
     private $user;
-    private $isIp;
+    private $isSingleIp;
     private $options;
 
     private $centralAuth;
@@ -34,12 +34,12 @@ class Contribs {
     /**
      * @param App $app
      * @param string $user Search query for wiki users
-     * @param boolean $isIP
+     * @param boolean $isSingleIp
      * @param Wiki $wiki
      * @param object|false $centralAuth
      * @param array $options
      */
-    public function __construct(App $app, $user, $isIP, Wiki $wiki, $centralAuth, $options = array()) {
+    public function __construct(App $app, $user, $isSingleIp, Wiki $wiki, $centralAuth, $options = array()) {
         if ($user === '') {
             throw new ExpectedError('No username or IP');
         }
@@ -47,7 +47,7 @@ class Contribs {
         $this->wiki = $wiki;
 
         $this->user = $user;
-        $this->isIp = $isIP;
+        $this->isSingleIp = $isSingleIp;
         $this->options = $options + array(
             'isPrefixPattern' => false,
             'src' => 'all',
@@ -221,14 +221,6 @@ class Contribs {
         }
 
         return $contribs;
-    }
-
-    /**
-     * Whether the user represents a single IP address.
-     * @return boolean
-     */
-    public function isIP() {
-        return $this->isIp;
     }
 
     /**

@@ -12,7 +12,7 @@ class Main {
     private $actorId;
     private $options;
 
-    private $isIP = false;
+    private $isSingleIp;
     private $ipInfos = array();
 
     private $datas;
@@ -44,6 +44,7 @@ class Main {
 
         // Check if input is a pattern
         if ($this->options['isPrefixPattern']) {
+            $this->isSingleIp = false;
             if (strpos($this->user, '_') !== false) {
                 throw new ExpectedError('Illegal "_" character found');
             }
@@ -60,10 +61,8 @@ class Main {
             $this->app->debug('Perfoming a pattern search: ' . $this->user);
         } else {
             // Check if input is an IP
-            if (IPInfo::valid($this->user)) {
-                $this->isIP = true;
-                $this->addIP($this->user);
-            }
+            $this->isSingleIp = IPInfo::valid($this->user);
+            $this->addIP($this->user);
         }
 
         $wikis = $this->getWikis();
@@ -84,7 +83,7 @@ class Main {
                 $contribs = new Contribs(
                     $this->app,
                     $this->user,
-                    $this->isIP,
+                    $this->isSingleIp,
                     $wiki,
                     $caRow,
                     $this->options
@@ -295,7 +294,7 @@ class Main {
      *  locally on this wiki (including for IP and prefix searches).
      */
     private function getCentralauthRow($dbname) {
-        if ($this->isIP || $this->options['isPrefixPattern']) {
+        if ($this->isSingleIp || $this->options['isPrefixPattern']) {
             return false;
         }
         if ($this->centralauthData === null) {

@@ -18,6 +18,7 @@ You can use the following patch to stub the database and render some of the resp
 ```
 # src/App.php
     protected function openDB($host, $dbname = null) {
+        // @phan-suppress-next-line PhanTypeMismatchReturn
         return new class() {
             public function prepare(string $query) {
                 return new class() {

@@ -46,15 +46,28 @@ a:hover { text-decoration: underline; }
     display: inline-block;
 }
 
-.error {
-    /* For errors inside containers */
+/* Error that are themselves a top-level container should retain container margin. */
+.error:not(.container) {
+    margin: 1em 0;
     padding: 0 10px;
 }
-.error,
-.container.error {
+
+.error {
     background: #fae3e3;
     border: 1px solid #fac5c5;
     color: #cc0000;
+}
+
+.error--warning {
+    background: #fdf2d5;
+    border-color: #ab7f2a;
+    color: #202122;
+}
+
+.error--notice {
+    background: #eaecf0;
+    border-color: #72777d;
+    color: #202122;
 }
 
 .box {

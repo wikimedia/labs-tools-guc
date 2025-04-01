@@ -47,7 +47,7 @@
                 var p = document.createElement('p');
                 p.innerHTML = lagged.html;
                 var node = document.createElement('div');
-                node.className = 'container error';
+                node.className = 'container error error--warning';
                 node.appendChild(p);
                 var target = document.querySelector('#searchForm');
                 target.parentNode.insertBefore(node, target.nextSibling);

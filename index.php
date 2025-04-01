@@ -156,6 +156,13 @@ $sep = $int->msg( 'colon-separator', [ 'domain' => 'general' ] );
 			print '</p></div>';
 		}
 		if ( $guc ) {
+			$infos = array_filter( $guc->getIPInfos() );
+			if ( count( $infos ) === 1 ) {
+				$ip = array_key_first( $infos );
+				print '<div class="container error error--notice"><p>There may be contributions by <a href="https://www.mediawiki.org/wiki/Special:MyLanguage/Help:Temporary_accounts">temporary accounts</a> from this IP address, which you may view via <a href="https://meta.wikimedia.org/wiki/Special:GlobalContributions/' . htmlspecialchars( $ip ) . '" target="_blank">Special:GlobalContributions</a> on Meta-Wiki.</p></div>';
+			} elseif ( $infos ) {
+				print '<div class="container error error--notice"><p>There may be contributions by <a href="https://www.mediawiki.org/wiki/Special:MyLanguage/Help:Temporary_accounts">temporary accounts</a> from these IP addresses. View these via <a href="https://meta.wikimedia.org/wiki/Special:GlobalContributions" target="_blank">Special:GlobalContributions</a> on Meta-Wiki, or follow the "' . htmlspecialchars( $int->msg( 'ipinfo-globalcontribs' ) ) . '" links below.</p></div>';
+			}
 			print '<div class="container">';
 			print '<p>' . $guc->getWikiCount() . ' wikis searched. Found edits';
 			if ( $guc->getResultWikiCount() ) {
@@ -166,7 +173,6 @@ $sep = $int->msg( 'colon-separator', [ 'domain' => 'general' ] );
 				'variables' => [ (string)Contribs::CONTRIB_LIMIT ]
 			] ) ) . '</p>';
 			print '<div class="results">';
-			$infos = array_filter( $guc->getIPInfos() );
 			if ( $infos ) {
 				print '<table class="box">';
 				foreach ( $infos as $ip => $info ) {
@@ -179,6 +185,7 @@ $sep = $int->msg( 'colon-separator', [ 'domain' => 'general' ] );
 						. '<td>('
 							. '<a href="https://meta.wikimedia.org/wiki/Special:GlobalBlockList/' . htmlspecialchars( $ip ) . '" target="_blank">' . htmlspecialchars( $int->msg( 'ipinfo-globalblocklist' ) ) . '</a>'
 							. ' &bull; <a href="https://meta.wikimedia.org/wiki/Special:GlobalBlock/' . htmlspecialchars( $ip ) . '" target="_blank">' . htmlspecialchars( $int->msg( 'ipinfo-globalblock' ) ) . '</a>'
+							. ' &bull; <a href="https://meta.wikimedia.org/wiki/Special:GlobalContributions/' . htmlspecialchars( $ip ) . '" target="_blank">' . htmlspecialchars( $int->msg( 'ipinfo-globalcontribs' ) ) . '</a>'
 						. ')</td>'
 						. '<td>' . ( $info['as'] !== null
 							? ( ' <a href="http://bgp.he.net/AS' . htmlspecialchars( $info['as']['asn'] ) . '#_whois" target="_blank" rel="noopener noreferrer">AS' . htmlspecialchars( $info['as']['asn'] ) . '</a>' )

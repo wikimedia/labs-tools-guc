@@ -14,6 +14,7 @@
 	"form-submit": "Search",
 	"ipinfo-globalblock": "globally block",
 	"ipinfo-globalblocklist": "global block list",
+	"ipinfo-globalcontribs": "temp account contribs",
 	"results-limited": "Limited to $1 results per wiki.",
 	"results-lag-warning": "The results may be missing the most recent edits. Cloud Services wiki replica databases are currently lagged. See [https://replag.toolforge.org/ Replag]."
 }

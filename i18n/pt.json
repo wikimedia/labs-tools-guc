@@ -3,22 +3,23 @@
 		"authors": [
 			"Athena in Wonderland",
 			"Hamilton Abreu",
-			"Mansil alfalb"
+			"Mansil alfalb",
+			"O andras"
 		]
 	},
-	"description": "Mostrar as contribuições dos utilizadores em todas as wikis da Wikimedia.",
+	"description": "Mostrar as contribuições do utilizador em todas as wikis da Wikimedia.",
 	"form-user": "Endereço IP ou nome do utilizador",
 	"form-isPrefixPattern": "Ativar a procura por prefixo",
 	"form-from": "Incluir os resultados de",
 	"form-from-all": "Todas as contribuições",
-	"form-from-rc": "Apenas as mudanças recentes (últimos 30 dias)",
-	"form-from-hr": "Apenas a última hora",
+	"form-from-rc": "Apenas mudanças recentes (últimos 30 dias)",
+	"form-from-hr": "Apenas da última hora",
 	"form-sort": "Ordenar resultados",
 	"form-sort-wiki": "Por wiki",
 	"form-sort-date": "Por data",
-	"form-submit": "Pesquisar",
+	"form-submit": "Procurar",
 	"ipinfo-globalblock": "bloquear globalmente",
 	"ipinfo-globalblocklist": "lista de bloqueios globais",
 	"results-limited": "Limitado a $1 resultados por wiki.",
-	"results-lag-warning": "Os resultados podem não conter as edições mais recentes. As bases de dados réplica de wikis em Cloud Services estão atrasadas neste momento. Consulte [https://replag.toolforge.org/ Replag]."
+	"results-lag-warning": "Os resultados podem não conter as edições mais recentes. As bases de dados réplicas de wikis no Cloud Services estão atrasadas neste momento. Consulte [https://replag.toolforge.org/ Replag]."
 }

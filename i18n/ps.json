@@ -1,11 +1,23 @@
 {
 	"@metadata": {
 		"authors": [
-			"Ahmed-Najib-Biabani-Ibrahimkhel"
+			"Ahmed-Najib-Biabani-Ibrahimkhel",
+			"شاه زمان پټان"
 		]
 	},
-	"form-user": "IP پته یا کارن نوم",
+	"description": "د ويکي‌رسنۍ له ټولو ويکي‌گانو څخه د کارن ونډې ښودل",
+	"form-user": "وېب‌پته یا کارن‌نوم",
+	"form-isPrefixPattern": "مختاړي پلټل چارنول",
+	"form-from": "پایلې شامل کړئ له",
 	"form-from-all": "ټولې ونډې",
+	"form-from-rc": "یوازې وروستي بدلونونه (وروستۍ ۳۰ ورځې)",
+	"form-from-hr": "یوازې وروستۍ گړۍ",
+	"form-sort": "پايلو ترتيبول",
+	"form-sort-wiki": "د ویکي لهٔ خوا",
 	"form-sort-date": "د نېټې له مخې",
-	"form-submit": "پلټل"
+	"form-submit": "پلټل",
+	"ipinfo-globalblock": "ټوليز بلاک",
+	"ipinfo-globalblocklist": "ټوليز بلاک نوملړ",
+	"results-limited": "په هر ويکي کې $1 پايلو پورې.",
+	"results-lag-warning": "پايلې شايد ډېر وروستي سمونونه ونهٔ لري.\nد وسيلو لپاره اومتوک‌اډانې لمېسل اوسمهال ځنډېدلي. [https://replag.toolforge.org/ Replag] وگورئ."
 }

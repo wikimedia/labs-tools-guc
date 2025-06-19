@@ -1,0 +1,22 @@
+{
+	"@metadata": {
+		"authors": [
+			"Rang Djambak"
+		]
+	},
+	"description": "Caliakan kontribusi pangguno dari kasadoan wiki Wikimedia",
+	"form-user": "Alamat IP atau namo pangguno",
+	"form-isPrefixPattern": "Aktifan pancarian awalan",
+	"form-from": "Masuakan hasia pancarian dari",
+	"form-from-all": "Kasadoan kontribusi",
+	"form-from-rc": "Hanyo parubahan tabaru (30 hari tarakhia)",
+	"form-from-hr": "Hanyo sajam tarakhia",
+	"form-sort": "Urutan hasia",
+	"form-sort-wiki": "Manuruik wiki",
+	"form-sort-date": "Manuruik tanggal",
+	"form-submit": "Cari",
+	"ipinfo-globalblock": "Pamblokiran global",
+	"ipinfo-globalblocklist": "daftar pamblokiran global",
+	"results-limited": "Dibatehi hinggo $1 hasia per wiki",
+	"results-lag-warning": "Hasia pancarian tabaru mungkin indak tasadio. Replika basis data Cloud Services wiki kini ko sadang macet. Caliak [https://replag.toolforge.org/ Replag]."
+}

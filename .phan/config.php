@@ -9,6 +9,7 @@ $cfg['file_list'] = [
 ];
 $cfg['directory_list'] = [
     'vendor/krinkle/',
+    'vendor/wikimedia/',
     'src/',
 ];
 $cfg['exclude_analysis_directory_list'][] = 'vendor/';

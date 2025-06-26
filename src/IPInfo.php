@@ -2,13 +2,38 @@
 
 namespace Guc;
 
+use Wikimedia\IPUtils;
+
 class IPInfo {
     /**
      * @param string $ip
      * @return bool
      */
     public static function valid($ip) {
-        return filter_var($ip, FILTER_VALIDATE_IP);
+        return IPUtils::isIPAddress($ip);
+    }
+
+    /**
+     * @param string $ip
+     * @return string|null Normalized form of IPv4 and IPv6 address,
+     * or null for invalid input.
+     */
+    public static function normalize($ip) {
+        if (!self::valid($ip)) {
+            return null;
+        }
+        // While IPv4 addresses are nearly always both displayed and stored
+        // in the same normal form, IPv6 addresses are generally displayed
+        // in short/lowercase-form, but stored in normalized long/uppercase-form.
+        // This means it's quite common for a user to e.g. copy and paste
+        // such short forms and then expect to paste them in a tool like GUC.
+        //
+        // This also normalizes the rare valid-yet-non-normal forms of IPv4.
+        //
+        // Example:
+        // * "2001:db8:85a3::8a2e:370:7334" > "2001:DB8:85A3:0:0:8A2E:370:7334"
+        // * "080.072.250.04"               > "80.72.250.4"
+        return IPUtils::sanitizeIP($ip);
     }
 
     /**

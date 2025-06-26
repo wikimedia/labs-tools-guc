@@ -32,7 +32,7 @@ class Main {
     public function __construct(App $app, $user, $options = array()) {
         $this->app = $app;
 
-        // Normalise
+        // Normalize user names
         $this->user = str_replace('_', ' ', ucfirst(trim($user)));
 
         // Defaults
@@ -58,11 +58,23 @@ class Main {
             if (substr($this->user, -1) !== '%') {
                 $this->user .= '%';
             }
-            $this->app->debug('Perfoming a pattern search: ' . $this->user);
+            $this->app->debug('Performing a pattern search: ' . $this->user);
         } else {
-            // Check if input is an IP
-            $this->isSingleIp = IPInfo::valid($this->user);
-            $this->addIP($this->user);
+            // Normalize IP addresses so that we can find IPv6 edits in the database
+            // (stored by normalized long/uppercase form), even when the user passes
+            // a short/lowercase form to GUC, such as displayed in MediaWiki diffs
+            // and signatures.
+            $normalSingleIp = IPInfo::normalize($this->user);
+            if ($normalSingleIp === null) {
+                // Single username
+                $this->isSingleIp = false;
+            } else {
+                // Single IP
+                $this->isSingleIp = true;
+                // Use normal form for the database query to find IPv6 edits (T397892).
+                $this->user = $normalSingleIp;
+                $this->addIP($this->user);
+            }
         }
 
         $wikis = $this->getWikis();

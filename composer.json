@@ -33,6 +33,6 @@
 		],
 		"fix": "phpcbf",
 		"cover": "phpunit --coverage-html coverage/",
-		"phan": "phan --allow-polyfill-parser --no-progress-bar"
+		"phan": "phan --allow-polyfill-parser"
 	}
 }

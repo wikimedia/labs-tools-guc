@@ -10,7 +10,7 @@ class IPInfo {
      * @return bool
      */
     public static function valid($ip) {
-        return IPUtils::isIPAddress($ip);
+        return IPUtils::isValid($ip);
     }
 
     /**
@@ -38,44 +38,46 @@ class IPInfo {
 
     /**
      * @param string $ip IP address, prefix, range, user name, or other actor name
-     * @return array|bool IP info, or false for anything that is either not a
-     *  single IP address, or otherwise could not find information about.
+     * @return array|null IP info, or null for anything that is either not a
+     *  valid single IP address. Optional array keys:
      *
-     *  - string 'host' Reverse DNS lookup
+     *  - string|null 'host' Reverse DNS lookup
      *  - int 'asn'
      *  - string 'description' ASN description text
      *  - string 'range' IP CIDR range
      */
     public static function get($ip) {
         if (!self::valid($ip)) {
-            return false;
+            return null;
         }
         // gethostbyaddr() usually doesn't give much for IPv6 addresses
         // Use ASN information to still provide some information that
         // may be useful to identify a group of related IP-adresses.
-        $info = self::getAsnInfo($ip) ?: [];
-        $host = self::getHost($ip);
-        if ($host) {
-            $info['host'] = $host;
-        }
-        return $info ?: false;
+        $info = self::getAsnInfo($ip) ?? [];
+        $info['host'] = self::getHost($ip);
+        return $info;
     }
 
-    protected static function getHost($ip4) {
+    protected static function getHost($ip4): ?string {
         $result = @gethostbyaddr($ip4);
         if (!$result || $result == $ip4) {
-            return false;
+            return null;
         }
         return $result;
     }
 
-    protected static function getAsnInfo($ip) {
-        if (filter_var($ip, FILTER_VALIDATE_IP, FILTER_FLAG_IPV6)) {
-            $result = self::getASNForIp6($ip);
+    protected static function getAsnInfo($ip): ?array {
+        if (IPUtils::isIPv6($ip)) {
+            // Service: https://www.team-cymru.org/IP-ASN-mapping.html#dns
+            return self::getAsnFromCymru(
+                self::arpaForIp6($ip, '.origin6.asn.cymru.com')
+            );
         } else {
-            $result = self::getASNForIp4($ip);
+            // Service: https://www.team-cymru.org/IP-ASN-mapping.html#dns
+            return self::getAsnFromCymru(
+                self::arpaForIp4($ip, '.origin.asn.cymru.com')
+            );
         }
-        return $result;
     }
 
     /**
@@ -115,52 +117,38 @@ class IPInfo {
         return $tmp[0]['txt'];
     }
 
-    private static function getAsnDescription($asn) {
+    private static function getAsnDescription($asn): ?string {
         // Service: https://www.team-cymru.org/IP-ASN-mapping.html#dns
         $txt = self::getDnsText('AS' . intval($asn) . '.asn.cymru.com');
         if (!$txt) {
-            return false;
+            return null;
         }
         // Result format:
         // "14907 | US | arin | 2006-09-27 | WIKIMEDIA - Wikimedia Foundation Inc., US"
         $matches = null;
         preg_match('/[^|]+$/', $txt, $matches);
         if (!isset($matches[0])) {
-            return false;
+            return null;
         }
         return trim($matches[0]);
     }
 
-    private static function getAsnForIp4($ip4) {
-        // Service: https://www.team-cymru.org/IP-ASN-mapping.html#dns
-        return self::getAsnFromCymru(
-            self::arpaForIp4($ip4, '.origin.asn.cymru.com')
-        );
-    }
-
-    private static function getAsnForIp6($ip6) {
-        // Service: https://www.team-cymru.org/IP-ASN-mapping.html#dns
-        return self::getAsnFromCymru(
-            self::arpaForIp6($ip6, '.origin6.asn.cymru.com')
-        );
-    }
-
-    private static function getAsnFromCymru($reverseOrigin) {
+    private static function getAsnFromCymru($reverseOrigin) :?array {
         // Service: https://www.team-cymru.org/IP-ASN-mapping.html#dns
         $txt = self::getDnsText($reverseOrigin);
         if (!$txt) {
-            return false;
+            return null;
         }
         // Result format:
         // "14907 | 2620:0:860::/46 | US | arin | 2007-10-02"
         $parts = preg_split('/[\s|]+/', $txt);
-        if (!isset($parts[0]) || !ctype_digit($parts[0])) {
-            return false;
+        if (!isset($parts[0]) || !ctype_digit($parts[0]) || !isset($parts[1])) {
+            return null;
         }
         return array(
             'asn' => (int)$parts[0],
-            'range' => $parts[1] ?? null,
-            'description' => self::getAsnDescription($parts[0]) ?: '',
+            'description' => self::getAsnDescription($parts[0]) ?? '',
+            'range' => $parts[1],
         );
     }
 }

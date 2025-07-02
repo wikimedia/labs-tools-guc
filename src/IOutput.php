@@ -6,7 +6,7 @@ use stdClass;
 
 interface IOutput {
 
-    public function __construct(App $app, stdClass $datas, array $options = array());
+	public function __construct( App $app, stdClass $datas, array $options = [] );
 
-    public function output();
+	public function output();
 }

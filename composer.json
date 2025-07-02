@@ -6,19 +6,22 @@
 	},
 	"config": {
 		"classmap-authoritative": true,
-		"optimize-autoloader": true
+		"optimize-autoloader": true,
+		"allow-plugins": {
+			"dealerdirect/phpcodesniffer-composer-installer": true
+		}
 	},
 	"require": {
-		"php": ">=7.4",
+		"php": ">=8.1",
 		"krinkle/toollabs-base": "^2.1.1",
 		"krinkle/intuition": "^2.3.4",
 		"wikimedia/ip-utils": "^5.0.0"
 	},
 	"require-dev": {
-		"php-parallel-lint/php-parallel-lint": "1.4.0",
+		"mediawiki/mediawiki-codesniffer": "47.0.0",
 		"mediawiki/mediawiki-phan-config": "0.15.1",
-		"phpunit/phpunit": "^9",
-		"squizlabs/php_codesniffer": "^3.7.2"
+		"php-parallel-lint/php-parallel-lint": "1.4.0",
+		"phpunit/phpunit": "^9"
 	},
 	"scripts": {
 		"serve": [
@@ -29,10 +32,11 @@
 			"parallel-lint . --exclude vendor",
 			"phpunit",
 			"@phan",
-			"phpcs -p -s"
+			"@phpcs"
 		],
 		"fix": "phpcbf",
 		"cover": "phpunit --coverage-html coverage/",
-		"phan": "phan --allow-polyfill-parser"
+		"phan": "phan --allow-polyfill-parser",
+		"phpcs": "phpcs -p -s"
 	}
 }

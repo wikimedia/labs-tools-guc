@@ -5,15 +5,15 @@ $cfg = require __DIR__ . '/../vendor/mediawiki/mediawiki-phan-config/src/config-
 $cfg['plugins'] = [];
 
 $cfg['file_list'] = [
-    'index.php',
+	'index.php',
 ];
 $cfg['directory_list'] = [
-    'vendor/krinkle/',
-    'vendor/wikimedia/',
-    'src/',
+	'vendor/krinkle/',
+	'vendor/wikimedia/',
+	'src/',
 ];
 $cfg['exclude_analysis_directory_list'][] = 'vendor/';
 
-$cfg['minimum_target_php_version'] = '7.4';
+$cfg['minimum_target_php_version'] = '8.1';
 
 return $cfg;

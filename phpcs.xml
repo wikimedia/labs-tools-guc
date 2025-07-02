@@ -1,19 +1,19 @@
 <?xml version="1.0"?>
 <ruleset>
-	<rule ref="PSR2">
-		<exclude name="PSR1.Classes.ClassDeclaration.MissingNamespace" />
-		<exclude name="Squiz.Functions.MultiLineFunctionDeclaration.BraceOnSameLine" />
-		<exclude name="PSR2.Classes.ClassDeclaration.OpenBraceNewLine" />
-		<!-- Buggy for inline php tags in html -->
-		<exclude name="Generic.WhiteSpace.ScopeIndent.Incorrect" />
-		<!-- TODO: -->
+	<rule ref="./vendor/mediawiki/mediawiki-codesniffer/MediaWiki">
+		<!-- Not applicable -->
+		<exclude name="Generic.PHP.NoSilencedErrors.Discouraged" />
+		<exclude name="MediaWiki.Commenting.MissingCovers.MissingCovers" />
+		<exclude name="MediaWiki.NamingConventions.ValidGlobalName" />
+		<exclude name="MediaWiki.Usage.SuperGlobalsUsage.SuperGlobals" />
+		<!-- TODO -->
 		<exclude name="Generic.Files.LineLength.TooLong" />
-		<exclude name="PSR1.Methods.CamelCapsMethodName.NotCamelCaps" />
-		<exclude name="Squiz.Classes.ValidClassName.NotCamelCaps" />
-		<exclude name="PSR2.Methods.MethodDeclaration.Underscore" />
+		<exclude name="MediaWiki.Commenting.FunctionComment" />
+		<exclude name="MediaWiki.Commenting.FunctionComment.MissingReturn" />
+		<exclude name="MediaWiki.Commenting.PropertyDocumentation" />
+		<exclude name="PSR12.Properties.ConstantVisibility.NotFound" />
 	</rule>
 	<file>.</file>
 	<arg name="encoding" value="UTF-8"/>
 	<arg name="extensions" value="php"/>
-	<exclude-pattern>vendor</exclude-pattern>
 </ruleset>

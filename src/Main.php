@@ -365,7 +365,7 @@ class Main {
 	 */
 	private function addIP( string $ip ): bool {
 		if ( !isset( $this->ipInfos[$ip] ) ) {
-			$this->ipInfos[$ip] = IPInfo::get( $ip );
+			$this->ipInfos[$ip] = IPInfo::getIpInfo( $ip );
 		}
 
 		return $this->ipInfos[$ip] !== false;

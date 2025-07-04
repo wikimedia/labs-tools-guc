@@ -38,46 +38,64 @@ class IPInfo {
 
 	/**
 	 * @param string $ip IP address, prefix, range, user name, or other actor name
-	 * @return array|null IP info, or null for anything that is either not a
-	 *  valid single IP address. Optional array keys:
+	 * @return array{host:?string,as:?array}|null IP info, or null for anything that is
+	 *  not a valid single IP address.
 	 *
 	 *  - string|null 'host' Reverse DNS lookup
-	 *  - int 'asn'
-	 *  - string 'description' ASN description text
-	 *  - string 'range' IP CIDR range
+	 *  - array|null 'as' AS information
+	 *    - int 'asn'
+	 *    - string 'description' ASN description text
+	 *    - string 'range' IP CIDR range
 	 */
-	public static function get( $ip ) {
+	public static function getIpInfo( string $ip ): ?array {
 		if ( !self::valid( $ip ) ) {
 			return null;
 		}
-		// gethostbyaddr() usually doesn't give much for IPv6 addresses
-		// Use ASN information to still provide some information that
-		// may be useful to identify a group of related IP-adresses.
-		$info = self::getAsnInfo( $ip ) ?? [];
-		$info['host'] = self::getHost( $ip );
-		return $info;
+		// gethostbyaddr() is useful for IPv4, because internet service providers generally
+		// provide reverse DNS for IPv4 addresses, in a way that prominently features the
+		// provider's name in the domain, and often mentions an approximate geography too.
+		//
+		// For IPv6, this rare and almost always fails or returns generic information.
+		//
+		// NOTE: gethostbyaddr() returns the input string as-is on failure, as such,
+		// discard that and treat it the same as false.
+		$host = @gethostbyaddr( $ip );
+		return [
+			'host' => ( !$host || $host === $ip ) ? null : $host,
+			// We add AS information to describe the larger group that this
+			// IP address belongs to (ISP, telco, webhost, geography), even for IPv6.
+			'as' => self::getAsInfo( $ip ),
+		];
 	}
 
-	protected static function getHost( $ip4 ): ?string {
-		$result = @gethostbyaddr( $ip4 );
-		if ( !$result || $result == $ip4 ) {
+	protected static function getAsInfo( $ip ): ?array {
+		// Service: https://www.team-cymru.org/IP-ASN-mapping.html#dns
+		// Result format: "14907 | 2620:0:860::/46 | US | arin | 2007-10-02"
+		$reverseOrigin = IPUtils::isIPv6( $ip )
+			? self::arpaForIp6( $ip, '.origin6.asn.cymru.com' )
+			: self::arpaForIp4( $ip, '.origin.asn.cymru.com' );
+		$txt = self::getDnsText( $reverseOrigin );
+		if ( !$txt ) {
 			return null;
 		}
-		return $result;
-	}
-
-	protected static function getAsnInfo( $ip ): ?array {
-		if ( IPUtils::isIPv6( $ip ) ) {
-			// Service: https://www.team-cymru.org/IP-ASN-mapping.html#dns
-			return self::getAsnFromCymru(
-				self::arpaForIp6( $ip, '.origin6.asn.cymru.com' )
-			);
-		} else {
-			// Service: https://www.team-cymru.org/IP-ASN-mapping.html#dns
-			return self::getAsnFromCymru(
-				self::arpaForIp4( $ip, '.origin.asn.cymru.com' )
-			);
+		$parts = preg_split( '/\s*\|\s*/', $txt, 5 );
+		if ( !isset( $parts[0] ) || !ctype_digit( $parts[0] ) || !isset( $parts[1] ) ) {
+			return null;
 		}
+		$asn = (int)$parts[0];
+		$range = $parts[1];
+
+		// Service: https://www.team-cymru.org/IP-ASN-mapping.html#dns
+		// Result format: "14907 | US | arin | 2006-09-27 | WIKIMEDIA - Wikimedia Foundation, US"
+		$txt = self::getDnsText( 'AS' . $asn . '.asn.cymru.com' );
+		// Consider the desc optional. If this fails, we still return the AS number and range.
+		$parts = preg_split( '/\s*\|\s*/', $txt ?? '', 5 );
+		$desc = $parts[4] ?? '';
+		return [
+			'asn' => $asn,
+			'description' => $desc,
+			'range' => $range,
+		];
 	}
 
 	/**
@@ -107,48 +125,10 @@ class IPInfo {
 		return implode( '.', array_reverse( str_split( $hex ) ) ) . $suffix;
 	}
 
-	private static function getDnsText( $hostname ) {
+	private static function getDnsText( $hostname ): ?string {
 		// Disable warnings with @
 		// Avoid log flood from https://bugs.php.net/bug.php?id=73149
 		$tmp = @dns_get_record( $hostname, DNS_TXT );
-		if ( !isset( $tmp[0]['type'] ) || $tmp[0]['type'] !== 'TXT' || !isset( $tmp[0]['txt'] ) ) {
-			return false;
-		}
-		return $tmp[0]['txt'];
-	}
-
-	private static function getAsnDescription( $asn ): ?string {
-		// Service: https://www.team-cymru.org/IP-ASN-mapping.html#dns
-		$txt = self::getDnsText( 'AS' . intval( $asn ) . '.asn.cymru.com' );
-		if ( !$txt ) {
-			return null;
-		}
-		// Result format:
-		// "14907 | US | arin | 2006-09-27 | WIKIMEDIA - Wikimedia Foundation Inc., US"
-		$matches = null;
-		preg_match( '/[^|]+$/', $txt, $matches );
-		if ( !isset( $matches[0] ) ) {
-			return null;
-		}
-		return trim( $matches[0] );
-	}
-
-	private static function getAsnFromCymru( $reverseOrigin ): ?array {
-		// Service: https://www.team-cymru.org/IP-ASN-mapping.html#dns
-		$txt = self::getDnsText( $reverseOrigin );
-		if ( !$txt ) {
-			return null;
-		}
-		// Result format:
-		// "14907 | 2620:0:860::/46 | US | arin | 2007-10-02"
-		$parts = preg_split( '/[\s|]+/', $txt );
-		if ( !isset( $parts[0] ) || !ctype_digit( $parts[0] ) || !isset( $parts[1] ) ) {
-			return null;
-		}
-		return [
-			'asn' => (int)$parts[0],
-			'description' => self::getAsnDescription( $parts[0] ) ?? '',
-			'range' => $parts[1],
-		];
+		return $tmp[0]['txt'] ?? null;
 	}
 }

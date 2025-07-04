@@ -171,7 +171,7 @@ $sep = $int->msg( 'colon-separator', [ 'domain' => 'general' ] );
 			foreach ( $infos as $ip => $info ) {
 				print '<tr>'
 					. '<td><span class="hostname"></span>' . htmlspecialchars( $ip ) . '</td>'
-					. '<td>' . ( isset( $info['host'] )
+					. '<td>' . ( $info['host'] !== null
 						? ( ' <tt>' . htmlspecialchars( $info['host'] ) . '</tt>' )
 						: ''
 					) . '</td>'
@@ -179,15 +179,15 @@ $sep = $int->msg( 'colon-separator', [ 'domain' => 'general' ] );
 						. '<a href="https://meta.wikimedia.org/wiki/Special:GlobalBlockList/' . htmlspecialchars( $ip ) . '" target="_blank">' . htmlspecialchars( $int->msg( 'ipinfo-globalblocklist' ) ) . '</a>'
 						. ' &bull; <a href="https://meta.wikimedia.org/wiki/Special:GlobalBlock/' . htmlspecialchars( $ip ) . '" target="_blank">' . htmlspecialchars( $int->msg( 'ipinfo-globalblock' ) ) . '</a>'
 					. ')</td>'
-					. '<td>' . ( isset( $info['asn'] )
-						? ( ' <a href="http://bgp.he.net/AS' . htmlspecialchars( $info['asn'] ) . '#_whois" target="_blank" rel="noopener noreferrer">AS' . htmlspecialchars( $info['asn'] ) . '</a>' )
+					. '<td>' . ( $info['as'] !== null
+						? ( ' <a href="http://bgp.he.net/AS' . htmlspecialchars( $info['as']['asn'] ) . '#_whois" target="_blank" rel="noopener noreferrer">AS' . htmlspecialchars( $info['as']['asn'] ) . '</a>' )
 						: ''
-					) . ( isset( $info['description'] )
-						? ( ' <a href="https://ipinfo.io/AS' . htmlspecialchars( $info['asn'] ) . '" target="_blank" rel="noopener noreferrer">' . htmlspecialchars( $info['description'] ) . '</a>' )
+					) . ( $info['as'] !== null && $info['as']['description'] !== ''
+						? ( ' <a href="https://ipinfo.io/AS' . htmlspecialchars( $info['as']['asn'] ) . '" target="_blank" rel="noopener noreferrer">' . htmlspecialchars( $info['as']['description'] ) . '</a>' )
 						: ''
 					) . '</td>'
-					. '<td>' . ( isset( $info['range'] )
-						? ( ' <tt>' . htmlspecialchars( $info['range'] ) . '</tt>' )
+					. '<td>' . ( $info['as'] !== null
+						? ( ' <tt>' . htmlspecialchars( $info['as']['range'] ) . '</tt>' )
 						: ''
 					) . '</td>'
 					. '</tr>';

@@ -1,6 +1,7 @@
 {
 	"@metadata": {
 		"authors": [
+			"JeffreyKim",
 			"Winston Sung"
 		]
 	},
@@ -18,5 +19,5 @@
 	"ipinfo-globalblock": "全域封鎖",
 	"ipinfo-globalblocklist": "全域封鎖列表",
 	"results-limited": "每個wiki限制到$1項結果。",
-	"results-lag-warning": "個結果可能會冇咗多數最近嘅編輯。俾工具用嘅數據庫副本現時有延遲。睇吓[https://tools.wmflabs.org/replag/ Replag]。"
+	"results-lag-warning": "結果可能缺少最近嘅編輯內容。雲端服務喺維基副本嘅資料庫而家落後咗。睇吓[https://tools.wmflabs.org/replag/ Replag]。"
 }

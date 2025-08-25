@@ -1,13 +1,14 @@
 {
 	"@metadata": {
 		"authors": [
+			"Albertoleoncio",
 			"Athena in Wonderland",
 			"Hamilton Abreu",
 			"Mansil alfalb",
 			"O andras"
 		]
 	},
-	"description": "Mostrar as contribuições do utilizador em todas as wikis da Wikimédia.",
+	"description": "Mostrar as contribuições do utilizador em todas as wikis da Wikimedia.",
 	"form-user": "Endereço de IP ou nome do utilizador",
 	"form-isPrefixPattern": "Ativar a procura por prefixo",
 	"form-from": "Incluir os resultados de",
@@ -21,5 +22,5 @@
 	"ipinfo-globalblock": "bloquear globalmente",
 	"ipinfo-globalblocklist": "lista de bloqueios globais",
 	"results-limited": "Limitado a $1 resultados por wiki.",
-	"results-lag-warning": "Os resultados podem não conter as edições mais recentes. As bases de dados réplicas da wiki nos 'Serviços da Nuvem' estão atrasadas atualmente. Consulte [https://replag.toolforge.org/ Replag]."
+	"results-lag-warning": "Os resultados podem não conter as edições mais recentes. As bases de dados réplicas de wikis no Cloud Services estão atrasadas neste momento. Consulte [https://replag.toolforge.org/ Replag]."
 }

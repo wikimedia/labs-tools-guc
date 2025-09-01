@@ -4,7 +4,8 @@
 			"Jan Myšák",
 			"Mormegil",
 			"Patriccck",
-			"Patrik L."
+			"Patrik L.",
+			"WikipedistaOndra"
 		]
 	},
 	"description": "Zobrazit příspěvky uživatele na všech Wikimedia wiki.",
@@ -18,6 +19,8 @@
 	"form-sort-wiki": "Podle wiki",
 	"form-sort-date": "Podle data",
 	"form-submit": "Hledat",
+	"ipinfo-globalblock": "globální bloky",
+	"ipinfo-globalblocklist": "seznam globálních zablokování",
 	"results-limited": "Omezeno na $1 výsledků na wiki",
-	"results-lag-warning": "Ve výsledcích mohou chybět nejnovější editace. Databázové repliky pro Toolforge jsou momentálně zpožděné. Vizte [https://tools.wmflabs.org/replag/ Replag]."
+	"results-lag-warning": "Ve výsledcích mohou chybět nejnovější editace. Databázové repliky wiki cloudových služeb jsou momentálně zpožděné. Vizte [https://replag.toolforge.org/ Replag]."
 }

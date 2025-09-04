@@ -209,11 +209,7 @@ class Main {
 						: ''
 				// Ignore RC entries for log events and things like
 				// Wikidata and categorization updates
-				) . ' AND rc_type IN (' . implode( ',', array_map(
-					'intval',
-					[ Contribs::MW_RC_EDIT, Contribs::MW_RC_NEW ]
-				) ) . ')
-                LIMIT 1';
+				) . " AND rc_source IN ('mw.edit','mw.new') LIMIT 1";
 		} else {
 			$subQuery = 'SELECT
                 1,

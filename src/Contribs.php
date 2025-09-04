@@ -12,9 +12,6 @@ use stdClass;
 class Contribs {
 	const CONTRIB_LIMIT = 20;
 	const MW_DATE_FORMAT = 'YmdHis';
-	// Other RC types: Log events, Categorization, External (e.g. Wikidata)
-	const MW_RC_EDIT = 0;
-	const MW_RC_NEW = 1;
 
 	private $app;
 	private $wiki;
@@ -126,10 +123,7 @@ class Contribs {
 			),
 			// Ignore RC entries for log events and things like
 			// Wikidata and categorization updates
-			'rc_type IN (' . implode( ',', array_map(
-				'intval',
-				[ self::MW_RC_EDIT, self::MW_RC_NEW ]
-			) ) . ')'
+			"rc_source IN ('mw.edit','mw.new')"
 		];
 		$conds = array_merge( $conds, $extraConds );
 		$sqlCond = implode( ' AND ', $conds );

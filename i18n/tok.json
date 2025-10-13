@@ -1,0 +1,19 @@
+{
+	"@metadata": {
+		"authors": [
+			"Juwan"
+		]
+	},
+	"description": "o lukin e pali jan ale tan ma ale.",
+	"form-user": "nimi anu nanpa IP",
+	"form-from": "o lukin e seme",
+	"form-from-all": "pali ale",
+	"form-from-rc": "pali pi tenpo mun poka",
+	"form-from-hr": "pali pi tenpo ilo poka",
+	"form-sort": "o nasin",
+	"form-sort-wiki": "o nasin ma",
+	"form-sort-date": "o nasin tenpo",
+	"form-submit": "o alasa",
+	"ipinfo-globalblock": "weka wawa",
+	"ipinfo-globalblocklist": "kulupu weka"
+}

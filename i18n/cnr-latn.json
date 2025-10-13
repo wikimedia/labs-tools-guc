@@ -1,0 +1,22 @@
+{
+	"@metadata": {
+		"authors": [
+			"ITZQing"
+		]
+	},
+	"description": "Prikaži korisničke doprinose sa svih Wikimedijinih wikija",
+	"form-user": "IP adresa ili korisničko ime",
+	"form-isPrefixPattern": "Omogući pretragu prema prefiksu",
+	"form-from": "Prikaži rezultate iz",
+	"form-from-all": "Svi doprinosi",
+	"form-from-rc": "samo nedavne promjene (posljednjih 30 dana)",
+	"form-from-hr": "Samo zadnji čas",
+	"form-sort": "Sortiraj rezultate",
+	"form-sort-wiki": "Po vikiju",
+	"form-sort-date": "po datumu",
+	"form-submit": "Pretraga",
+	"ipinfo-globalblock": "globalna blokada",
+	"ipinfo-globalblocklist": "spisak globalnih blokada",
+	"results-limited": "Ograničenje: $1 rezultata po vikiju.",
+	"results-lag-warning": "Rezultati možda ne sadrže najskorije izmjene. Replike baze podataka viki-projekata u Klačnim servisima trenutno kasne. Pogledajte [https://replag.toolforge.org/ Replag]."
+}

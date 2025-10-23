@@ -1,13 +1,24 @@
 {
 	"@metadata": {
 		"authors": [
-			"Bosogo"
+			"Bosogo",
+			"Incall"
 		]
 	},
 	"title": "Колдонуучунун глобалдуу салымы",
+	"description": "Бардык Викимедиа викилериндеги колдонуучунун салымдарын көрсөтүңүз.",
+	"form-user": "IP дареги же колдонуучу аты",
+	"form-isPrefixPattern": "Enable prefix search",
 	"form-from": "Төмөнкү натыйжалар кошулсун",
+	"form-from-all": "Бардык салымдар",
+	"form-from-rc": "Жаңы өзгөртүүлөр гана (соңку 30 күн)",
+	"form-from-hr": "Соңку саат гана",
 	"form-sort": "Натыйжаларды иреттөө",
 	"form-sort-wiki": "Вики боюнча",
 	"form-sort-date": "Дата боюнча",
-	"form-submit": "Издөө"
+	"form-submit": "Издөө",
+	"ipinfo-globalblock": "глобалдык бөгөттө",
+	"ipinfo-globalblocklist": "глобалдык бөгөттө тизмеси",
+	"results-limited": "Ар бир викиде $1 жыйынтык менен чектелген.",
+	"results-lag-warning": "Натыйжаларда эң акыркы түзөтүүлөр жок болушу мүмкүн. Булут кызматтарынын вики репликасынын маалымат базалары учурда артта калган. Караңыз [https://replag.toolforge.org/ Replag]."
 }

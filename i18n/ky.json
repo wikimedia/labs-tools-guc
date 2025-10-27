@@ -1,6 +1,7 @@
 {
 	"@metadata": {
 		"authors": [
+			"Baydastann",
 			"Bosogo",
 			"Incall"
 		]
@@ -17,7 +18,7 @@
 	"form-sort-wiki": "Вики боюнча",
 	"form-sort-date": "Дата боюнча",
 	"form-submit": "Издөө",
-	"ipinfo-globalblock": "глобалдык бөгөттө",
+	"ipinfo-globalblock": "глобалдык бөгөттөө",
 	"ipinfo-globalblocklist": "глобалдык бөгөттө тизмеси",
 	"results-limited": "Ар бир викиде $1 жыйынтык менен чектелген.",
 	"results-lag-warning": "Натыйжаларда эң акыркы түзөтүүлөр жок болушу мүмкүн. Булут кызматтарынын вики репликасынын маалымат базалары учурда артта калган. Караңыз [https://replag.toolforge.org/ Replag]."

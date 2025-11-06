@@ -1,9 +1,11 @@
 {
 	"@metadata": {
 		"authors": [
-			"ANDROBETA"
+			"ANDROBETA",
+			"SZ475"
 		]
 	},
+	"title": "Contribuții globale",
 	"description": "Arată contribuțiile utilizatorilor de la toate proiectele Wikimedia.",
 	"form-user": "Adresă IP sau nume de utilizator",
 	"form-isPrefixPattern": "Activați căutarea cu prefix",
@@ -15,6 +17,8 @@
 	"form-sort-wiki": "După proiectul wiki",
 	"form-sort-date": "După dată",
 	"form-submit": "Caută",
+	"ipinfo-globalblock": "Blocare globală",
+	"ipinfo-globalblocklist": "listă globală de blocări",
 	"results-limited": "Limitat la $1 rezultate per proiect wiki.",
-	"results-lag-warning": "Rezultatele ar putea să nu includă cele mai recente modificări. Replicile bazei de date Tools sunt momentan desincronizate. Vedeți [https://tools.wmflabs.org/replag/ Replag]."
+	"results-lag-warning": "Este posibil ca rezultatele să lipsească cele mai recente editări. Bazele de date replici wiki Cloud Services sunt în prezent întârziate. Consultați [https://replag.toolforge.org/Replag]."
 }

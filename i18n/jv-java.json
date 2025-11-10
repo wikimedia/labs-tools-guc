@@ -1,0 +1,22 @@
+{
+	"@metadata": {
+		"authors": [
+			"Bennylin"
+		]
+	},
+	"description": "ꦠꦸꦢꦸꦃꦲꦏꦺꦥꦱꦸꦩ꧀ꦧꦁ​ꦤꦫꦒꦸꦤ​ꦱꦏ​ꦏꦧꦺꦃ​ꦮꦶꦏꦶ꧉",
+	"form-user": "ꦲꦭꦩꦠ꧀​IP​ꦲꦸꦠꦮ​ꦗꦼꦤꦼꦁ​ꦤꦫꦒꦸꦤ",
+	"form-isPrefixPattern": "ꦲꦸꦫꦸꦥ꧀ꦤꦺ​ꦥꦁꦒꦺꦴꦭꦺꦏ꧀ꦏꦤ꧀ꦥꦿꦺꦥ꦳ꦶꦏ꧀ꦱ꧀",
+	"form-from": "ꦊꦧꦺꦴꦏ꧀ꦏꦺ​ꦏꦱꦶꦭ꧀ꦱꦏ",
+	"form-from-all": "ꦏꦧꦺꦃ​ꦥꦱꦸꦩ꧀ꦧꦁ",
+	"form-from-rc": "ꦩꦸꦁꦲꦺꦴꦮꦲꦤ꧀ꦲꦚꦂ(꧇꧓꧐꧇ꦢꦶꦤ​ꦥꦸꦁꦏꦱ꧀ꦱꦤ꧀)",
+	"form-from-hr": "ꦱꦏ꧀ꦗꦩ꧀ꦥꦸꦁꦏꦱ꧀ꦱꦤ꧀",
+	"form-sort": "ꦲꦸꦫꦸꦠ꧀ꦏꦺ​ꦏꦱꦶꦭ꧀",
+	"form-sort-wiki": "ꦩꦶꦠꦸꦫꦸꦠ꧀ꦮꦶꦏꦶ",
+	"form-sort-date": "ꦩꦶꦠꦸꦫꦸꦠ꧀ꦠꦁꦒꦭ꧀",
+	"form-submit": "ꦒꦺꦴꦭꦺꦏ꧀",
+	"ipinfo-globalblock": "ꦧ꧀ꦭꦺꦴꦏꦶꦂ​ꦱꦕꦫ​ꦒ꧀ꦭꦺꦴꦧꦭ꧀",
+	"ipinfo-globalblocklist": "ꦥꦿꦠꦺꦭꦤ꧀​ꦧ꧀ꦭꦺꦴꦏꦶꦂ​ꦒ꧀ꦭꦺꦴꦧꦭ꧀",
+	"results-limited": "ꦢꦶꦮꦠꦺꦱꦶ$1ꦏꦱꦶꦭ꧀ꦥꦼꦂ​ꦮꦶꦏꦶ꧉",
+	"results-lag-warning": "Hasil pencarian suntingan terbaru mungkin tidak tersedia. Replika basis data  Cloud Services wiki saat ini sedang macet. Lihat [https://tools.wmflabs.org/replag/ Replag]."
+}

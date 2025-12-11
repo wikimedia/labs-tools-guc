@@ -4,13 +4,14 @@
 			"Daud I.F. Argana",
 			"Hidayatsrf",
 			"NFarras",
+			"Penyuwangi",
 			"Rachmat04",
 			"Veracious"
 		]
 	},
 	"description": "Tampilkan kontribusi pengguna dari semua wiki Wikimedia.",
 	"form-user": "Alamat IP atau nama pengguna",
-	"form-isPrefixPattern": "Aktifkan pencarian awalan",
+	"form-isPrefixPattern": "Nyalakan pencarian awalan",
 	"form-from": "Masukkan hasil pencarian dari",
 	"form-from-all": "Semua kontribusi",
 	"form-from-rc": "Hanya perubahan terbaru (30 hari terakhir)",

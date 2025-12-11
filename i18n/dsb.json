@@ -1,0 +1,22 @@
+{
+	"@metadata": {
+		"authors": [
+			"Michawiki"
+		]
+	},
+	"description": "Wužywaŕske pśinoski ze wšych wikijow Wikimedia pokazaś.",
+	"form-user": "IP-adresa abo wužywaŕske mě",
+	"form-isPrefixPattern": "Pytanje z prefiksami zmóžniś",
+	"form-from": "Wuslědki zapśimjeś z",
+	"form-from-all": "Wšykne pśinoski",
+	"form-from-rc": "Jano nejnowše změny (slědne 30 dnjow)",
+	"form-from-hr": "Jano slědna góźina",
+	"form-sort": "Wuslědki sortěrowaś",
+	"form-sort-wiki": "Pó wikiju",
+	"form-sort-date": "Pó datumje",
+	"form-submit": "Pytaś",
+	"ipinfo-globalblock": "globalnje blokěrowaś",
+	"ipinfo-globalblocklist": "Lisćina globalnych blokěrowanjow",
+	"results-limited": "Na $1 wuslědkow na wiki wobgranicowane:",
+	"results-lag-warning": "We wuslědkach snaź nejnowše změny feluju. Datowe banki Cloud Services wiki replica su tuchylu wokomuźone. Glej [https://replag.toolforge.org/ Replag]."
+}

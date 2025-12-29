@@ -19,6 +19,7 @@
 	"form-sort-date": "Według daty",
 	"form-submit": "Szukaj",
 	"ipinfo-globalblock": "zablokuj globalnie",
+	"ipinfo-globalblocklist": "lista blokad globalnych",
 	"results-limited": "Ograniczono do $1 wyników na wiki.",
-	"results-lag-warning": "W wynikach mogły nie pojawić się najnowsze edycje. Replikacja bazy danych serwera narzędziowego jest teraz spowolniona. Zobacz [https://tools.wmflabs.org/replag/ Replag]."
+	"results-lag-warning": "W wynikach mogły nie pojawić się najnowsze edycje. Replikacja baz danych wiki w Cloud Services jest teraz spowolniona. Sprawdź [https://replag.toolforge.org Replag]."
 }

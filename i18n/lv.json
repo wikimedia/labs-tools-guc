@@ -1,6 +1,7 @@
 {
 	"@metadata": {
 		"authors": [
+			"Rusjanis",
 			"Silraks"
 		]
 	},
@@ -15,6 +16,8 @@
 	"form-sort-wiki": "Pēc viki",
 	"form-sort-date": "Pēc datuma",
 	"form-submit": "Meklēt",
+	"ipinfo-globalblock": "globāli bloķēt",
+	"ipinfo-globalblocklist": "globālais bloķēto saraksts",
 	"results-limited": "Ierobežots līdz $1 katram viki.",
-	"results-lag-warning": "Rezultātos var trūkt visjaunākie labojumi. Datubāžu kopijas Tools vietnei pašlaik kavējas. Skatīt [https://tools.wmflabs.org/replag/ Replag]."
+	"results-lag-warning": "Iespējams, rezultātos trūkst jaunāko labojumu. Mākoņpakalpojumu wiki repliku datubāzēs pašlaik ir aiztures dati. Skatiet [https://replag.toolforge.org/Replag]."
 }

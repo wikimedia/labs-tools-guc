@@ -1,0 +1,22 @@
+{
+	"@metadata": {
+		"authors": [
+			"Aindriu80"
+		]
+	},
+	"description": "Taispeáin ranníocaíochtaí úsáideoirí ó gach vicí Wikimedia.",
+	"form-user": "Seoladh IP nó ainm úsáideora",
+	"form-isPrefixPattern": "Cumasaigh cuardach réimír",
+	"form-from": "Cuir torthaí san áireamh ó",
+	"form-from-all": "Gach ranníocaíocht",
+	"form-from-rc": "Athruithe le déanaí amháin (na 30 lá seo caite)",
+	"form-from-hr": "Uair dheireanach amháin",
+	"form-sort": "Sórtáil torthaí",
+	"form-sort-wiki": "De réir vicí",
+	"form-sort-date": "De réir dáta",
+	"form-submit": "Cuardaigh",
+	"ipinfo-globalblock": "blocáil ar fud an domhain",
+	"ipinfo-globalblocklist": "liosta bloc domhanda",
+	"results-limited": "Teoranta do $1 torthaí in aghaidh an vicí.",
+	"results-lag-warning": "B’fhéidir go bhfuil na heagarthóireachtaí is déanaí ar iarraidh sna torthaí. Tá moill faoi láthair ar bhunachair shonraí macasamhla vicí Cloud Services. Féach [https://replag.toolforge.org/ Replag]."
+}

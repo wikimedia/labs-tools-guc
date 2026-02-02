@@ -1,6 +1,7 @@
 {
 	"@metadata": {
 		"authors": [
+			"Ayaat123",
 			"Tajamul9"
 		]
 	},
@@ -18,5 +19,5 @@
 	"ipinfo-globalblock": "عالمی طور بنٛد",
 	"ipinfo-globalblocklist": "عالمی طور بنٛد کرنٕچ فہرست",
 	"results-limited": "ہر وِکیٖیَس چھ $1 تام نٕتیٖجن ہِیوٚنٛد حد",
-	"results-lag-warning": "نتٲیِج ما ہؠکَن غأب ٲسِتھ ہالہالٕکیٚن ایڑِٹن ہِنٛدی. ڈاٹابیس رؠپلِکاس اَوزارن کھٲترٕ چِھ پِھلہال رُکاوَٹھ. وُچھو [https://toola.wmflabs.org/replag/replag]."
+	"results-lag-warning": "نتٲیِج ما ہؠکَن غأب ٲسِتھ ہالہالٕکیٚن ایڑِٹن ہِنٛدی. ڈاٹابیس رؠپلِکاس اَوزارن کھٲترٕ چھِ پھِلحال رُکاوَٹھ. وُچھو [https://toola.wmflabs.org/replag/replag]."
 }

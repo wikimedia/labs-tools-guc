@@ -6,17 +6,17 @@
 	},
 	"description": "ສະແດງການປະກອບສ່ວນຂອງຜູ້ໃຊ້ຈາກທຸກວິກິວິກິມີເດຍ",
 	"form-user": "ທີ່ຢູ່ໄອພີ ຫຼື ຊື່ຜູ້ໃຊ້",
-	"form-isPrefixPattern": "ເປີດໃຊ້ງານການຄົ້ນຫາຄໍານໍາຫນ້າ",
-	"form-from": "ລວມຜົນລັບຈາກ",
+	"form-isPrefixPattern": "ເປີດໃຊ້ງານການຊອກຫາຄໍານໍາຫນ້າ",
+	"form-from": "ລວມທັງຜົນຈາກ",
 	"form-from-all": "ການປະກອບສ່ວນທັງໝົດ",
 	"form-from-rc": "ການປ່ຽນແປງຫຼ້າສຸດເທົ່ານັ້ນ (30 ວັນທີ່ຜ່ານມາ)",
 	"form-from-hr": "ຊົ່ວໂມງທີ່ຜ່ານມາເທົ່ານັ້ນ",
-	"form-sort": "ຮຽງຜົນລັບ",
+	"form-sort": "ຮຽງຜົນ",
 	"form-sort-wiki": "ຕາມວິກິ",
 	"form-sort-date": "ຕາມວັນທີ",
 	"form-submit": "ຊອກຫາ",
 	"ipinfo-globalblock": "ບລັອກທົ່ວໂລກ",
 	"ipinfo-globalblocklist": "ບັນທຶກການບລັອກທົ່ວໂລກ",
-	"results-limited": "ຈຳກັດຜົລລັບຢູ່ທີ່ $1 ລາຍການຕໍ່ວິກິ",
-	"results-lag-warning": "ຜົນໄດ້ຮັບອາດຈະຂາດການແກ້ໄຂຫຼ້າສຸດ ຖານຂໍ້ມູນ replica ຂອງ wiki Services Cloud ປະຈຸບັນຊັກຊ້າ ເບິ່ງ [https://replag.toolforge.org/ Replag]"
+	"results-limited": "ຈຳກັດຜົນ ຢູ່ ທີ່ $1 ລາຍການຕໍ່ວິກິ",
+	"results-lag-warning": "ຜົນໄດ້ຮັບອາດຈະຂາດການແກ້ໄຂລ່າສຸດ ຖານຂໍ້ມູນແບບຈຳລອງວິກິບໍລິການຄລາວດ໌ໃນປະຈຸບັນຊັກຊ້າ ເບິ່ງ [https://replag.toolforge.org/ Replag]"
 }

@@ -6,6 +6,7 @@
 			"Shypoetess"
 		]
 	},
+	"title": "वैश्विक सदस्य योगदान",
 	"description": "सभी विकिमीडिया विकियों से सदस्य योगदान दिखाएँ।",
 	"form-user": "IP पता या सदस्यनाम",
 	"form-isPrefixPattern": "उपसर्ग खोज सक्षम करें",
@@ -17,8 +18,8 @@
 	"form-sort-wiki": "विकि अनुसार",
 	"form-sort-date": "तिथि अनुसार",
 	"form-submit": "खोजें",
-	"ipinfo-globalblock": "ग्लोबल रूप से अवरोधित",
-	"ipinfo-globalblocklist": "ग्लोबल अवरोध सूची",
+	"ipinfo-globalblock": "वैश्विक रूप से अवरोधित",
+	"ipinfo-globalblocklist": "वैश्विक अवरोध सूची",
 	"results-limited": "प्रति विकि $1 परिणामों तक सीमित।",
 	"results-lag-warning": "परिणामों में सबसे हाल के सम्पादन अनुपस्थित सकते हैं। क्लाउट सेवाओं की विकि प्रतिकृतियाँ वर्तमान में पिछड़ी हुई हैं। [https://replag.toolforge.org/ Replag] देखें।"
 }

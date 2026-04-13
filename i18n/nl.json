@@ -4,10 +4,11 @@
 			"Festina90",
 			"Marcelhospers",
 			"McDutchie",
-			"Optilete"
+			"Optilete",
+			"Siebrand"
 		]
 	},
-	"description": "Toon gebruikersbijdragen van alle Wikimedia-wiki's.",
+	"description": "Gebruikersbijdragen weergeven van alle Wikimedia-wiki's.",
 	"form-user": "IP-adres of gebruikersnaam",
 	"form-isPrefixPattern": "Schakel zoeken met prefix in",
 	"form-from": "Resultaten opnemen van",

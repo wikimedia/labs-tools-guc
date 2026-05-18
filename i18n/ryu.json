@@ -1,0 +1,12 @@
+{
+	"@metadata": {
+		"authors": [
+			"Smaugryu"
+		]
+	},
+	"form-user": "IPアドレスがな利用者なー:",
+	"form-sort-wiki": "ウィキぬ番ぬ数",
+	"form-sort-date": "日付ぬ番ぬ数",
+	"form-submit": "かめーいん",
+	"ipinfo-globalblocklist": "グローバルブロックぬリスト"
+}

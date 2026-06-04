@@ -3,6 +3,7 @@
 		"authors": [
 			"Dušan Kreheľ",
 			"Jaroslav.micek",
+			"Wizzard",
 			"Yardom78"
 		]
 	},
@@ -20,5 +21,5 @@
 	"ipinfo-globalblock": "globálne blokovanie",
 	"ipinfo-globalblocklist": "zoznam globálnych blokovaní",
 	"results-limited": "Počet výsledkov z každej wiki: $1",
-	"results-lag-warning": "Vo výsledkoch môžu chýbať nedávne úpravy. Databázové repliky pre Tools sú momentálne spomalené. Viď [https://tools.wmflabs.org/replag/ Replag]."
+	"results-lag-warning": "Vo výsledkoch môžu chýbať nedávne úpravy. Cloudové repliky pre Services sú momentálne spomalené. Viď [https://tools.wmflabs.org/replag/ Replag]."
 }

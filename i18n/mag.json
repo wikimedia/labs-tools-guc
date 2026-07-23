@@ -1,0 +1,22 @@
+{
+	"@metadata": {
+		"authors": [
+			"ऐक्टिवेटेड्"
+		]
+	},
+	"description": "सब विकिमीडिया विकिसे प्रयोगकर्ता योगदान देखावथिन ।",
+	"form-user": "आइपि पता वा प्रयोगकर्तानाम",
+	"form-isPrefixPattern": "उपसर्ग खोज सक्षम करथिन",
+	"form-from": "एकरासे परिणाम सम्मिलित करथिन",
+	"form-from-all": "सब योगदान",
+	"form-from-rc": "खाली हाले भेल परिवर्तन (पिछलका ३० दिन)",
+	"form-from-hr": "पिछले घण्टे",
+	"form-sort": "परिणाम सरियौथिन",
+	"form-sort-wiki": "विकि अनुसार",
+	"form-sort-date": "तिथि अनुसार",
+	"form-submit": "खोजथिन",
+	"ipinfo-globalblock": "वैश्विक अवरोधित",
+	"ipinfo-globalblocklist": "वैश्विक अवरोध सूची",
+	"results-limited": "प्रति विकि $1 परिणाम तक सीमित ।",
+	"results-lag-warning": "परिणाममे सबसे हालके सम्पादन अनुपस्थित सक हे । क्लाउट सेवाके विकि प्रतिकृति वर्तमानमे पिछड़ल हे । [https://replag.toolforge.org/ Replag] देखथिन ।"
+}

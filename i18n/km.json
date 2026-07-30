@@ -1,11 +1,12 @@
 {
 	"@metadata": {
 		"authors": [
+			"MeahNunh",
 			"Pokno Royal"
 		]
 	},
 	"description": "បង្ហាញការរួមចំនែករបស់អ្នកប្រើពីបណ្ដាញវិគី វិគីមេឌាទាំងអស់។",
-	"form-user": "អាសយដ្ឋាន IP ឬ ឈ្មោះអ្នកប្រើ",
+	"form-user": "អាសយដ្ឋានអាយភី ឬអត្ថនាម",
 	"form-isPrefixPattern": "បើកបុព្វបទស្វែងរក",
 	"form-from": "រួមបញ្ចូលលទ្ធផលមកពី",
 	"form-from-all": "ការរួមចំណែកទាំងអស់",
@@ -15,6 +16,8 @@
 	"form-sort-wiki": "ដោយ វិគី",
 	"form-sort-date": "តាមកាលបរិច្ចេទ",
 	"form-submit": "ស្វែងរក",
+	"ipinfo-globalblock": "ប្លុកជាសកល",
+	"ipinfo-globalblocklist": "បញ្ជីប្លុកជាសកល",
 	"results-limited": "បានកំហិតទៅកាន់លទ្ធផល $1 ក្នុងមួយវិគី។",
 	"results-lag-warning": "លទ្ធផលអាចនឹងបាត់ការកែប្រែថ្មីៗបំផុត។ មូលដ្ខានទិន្នន័យថតសម្លង សម្រាប់ឧបករណ៍បច្ចុប្បន្នកំពុងតែយឺត។ សូមមើល [https://tools.wmflabs.org/replag/ Replag]។"
 }

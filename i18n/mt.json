@@ -1,0 +1,22 @@
+{
+	"@metadata": {
+		"authors": [
+			"JiodoJ"
+		]
+	},
+	"description": "Uri il-kontribuzzjonijiet tal-utenti mill-wikiet kollha tal-Wikimedja.",
+	"form-user": "Indirizz IP jew isem l-utent:",
+	"form-isPrefixPattern": "Ixgħel tfittxija ta' prefissi",
+	"form-from": "Inkludi r-riżultati mill-",
+	"form-from-all": "Kontribuzzjonijiet kollha",
+	"form-from-rc": "Bidliet riċenti biss (l-aħħar 30 jum)",
+	"form-from-hr": "Aħħar siegħa biss",
+	"form-sort": "Ordina riżultati",
+	"form-sort-wiki": "Bil-wiki",
+	"form-sort-date": "Bid-data",
+	"form-submit": "Fittex",
+	"ipinfo-globalblock": "blokk globali",
+	"ipinfo-globalblocklist": "lista tal-blokki globali",
+	"results-limited": "Limitat għal $1 riżultat għal kull wiki.",
+	"results-lag-warning": "Ir-riżultati jistgħu jkunu nieqsa mill- aktar modifika riċenti. Id-databażi ta' replika tal-wiki tal-Servizzi Cloud bħalissa huma mweħħla. Ara [https://replag.toolforge.org/ Replag]."
+}

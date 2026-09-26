@@ -291,7 +291,7 @@ class App {
                 \]\]
                 ([^[]*) # 3. link trail
             /x',
-			static function ( $match ) use ( $page, $server ) {
+			static function ( $match ) use ( $server ) {
 				$comment = $match[0];
 				$text = $match[2] != '' ? $match[2] : $match[1];
 
@@ -390,7 +390,6 @@ class App {
 		curl_setopt( $ch, CURLOPT_POSTFIELDS, $params );
 		curl_setopt( $ch, CURLOPT_RETURNTRANSFER, true );
 		$data = curl_exec( $ch );
-		curl_close( $ch );
 		return json_decode( $data, true );
 	}
 

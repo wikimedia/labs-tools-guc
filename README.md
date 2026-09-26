@@ -2,7 +2,7 @@
 
 ## Getting started
 
-Requires [Composer](https://getcomposer.org/) and PHP 7.4 or later.
+Requires [Composer](https://getcomposer.org/) and PHP 8.2 or later.
 
 ```
 composer install

@@ -2,9 +2,9 @@
 
 ## Getting started
 
-Requires [Composer](https://getcomposer.org/) and PHP 8.2 or later.
+Requires [Composer](https://getcomposer.org/).
 
-```
+```sh
 composer install
 composer serve
 ```
@@ -15,7 +15,7 @@ Then open <http://localhost:4000>.
 
 You can use the following patch to stub the database and render some of the response UI locally.
 
-```
+```php
 # src/App.php
     protected function openDB($host, $dbname = null) {
         // @phan-suppress-next-line PhanTypeMismatchReturn
@@ -37,8 +37,7 @@ You can use the following patch to stub the database and render some of the resp
 
 ## Toolforge management
 
-See also:
-* [Help:Toolforge/Kubernetes#PHP](https://wikitech.wikimedia.org/wiki/Help:Toolforge/Kubernetes#PHP), Wikitech.
+See [Help:Toolforge/Kubernetes#PHP](https://wikitech.wikimedia.org/wiki/Help:Toolforge/Kubernetes#PHP) on Wikitech.
 
 ### Installation
 

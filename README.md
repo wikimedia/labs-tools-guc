@@ -49,7 +49,7 @@ you@tools-bastion$ become my-tool-here
 
 mytool@tools-bastion:~$ git clone … git-guc
 mytool@tools-bastion:~$ ln -s git-guc public_html
-mytool@tools-bastion:~$ webservice --backend=kubernetes php8.2 restart
+mytool@tools-bastion:~$ webservice --backend=kubernetes php8.4 restart
 mytool@tools-bastion:~$ webservice shell
 
 tools.guc@interactive:~$ cd git-guc

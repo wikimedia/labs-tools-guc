@@ -19,6 +19,7 @@
 	"form-submit": "搜尋",
 	"ipinfo-globalblock": "全域封鎖",
 	"ipinfo-globalblocklist": "全域封鎖清單",
+	"ipinfo-globalcontribs": "臨時帳號貢獻",
 	"results-limited": "已限制為各wiki $1個結果。",
 	"results-lag-warning": "結果可能缺少最近的編輯。雲端服務wiki副本資料庫目前有延遲情況。請查看\n[https://replag.toolforge.org/ Replag]。"
 }

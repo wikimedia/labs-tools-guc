@@ -19,6 +19,7 @@
 	"form-submit": "Ara",
 	"ipinfo-globalblock": "küresel engelleme",
 	"ipinfo-globalblocklist": "küresel engelleme listesi",
+	"ipinfo-globalcontribs": "geçici hesap katkıları",
 	"results-limited": "Viki başına $1 sonuçla sınırlıdır.",
 	"results-lag-warning": "Sonuçlar en son düzenlemeleri içermiyor olabilir. Bulut Servisleri viki veritabanı kopyaları şu anda gecikmeli. [https://replag.toolforge.org/ Replag] sayfasına bakın."
 }

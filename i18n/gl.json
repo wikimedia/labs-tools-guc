@@ -18,6 +18,7 @@
 	"form-submit": "Procurar",
 	"ipinfo-globalblock": "bloqueo global",
 	"ipinfo-globalblocklist": "lista de bloqueos globais",
+	"ipinfo-globalcontribs": "contribucións da conta temporal",
 	"results-limited": "Limitado a $1 resultados por wiki.",
 	"results-lag-warning": "Os resultados poden non contemplar as edicións máis recentes. As réplicas da base de datos para os servizos na nube están atrasadas nestes intres. Consulta \na ferramenta [https://replag.toolforge.org/ Replag]."
 }

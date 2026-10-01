@@ -21,6 +21,7 @@
 	"form-submit": "Zoeken",
 	"ipinfo-globalblock": "globaal blokkeren",
 	"ipinfo-globalblocklist": "globale blokkeerlijst",
+	"ipinfo-globalcontribs": "tijdelijke accountbijdragen",
 	"results-limited": "Beperkt tot $1 resultaten per wiki.",
 	"results-lag-warning": "De resultaten bevatten wellicht niet de meest recente wijzigingen. De Cloud Services-wiki-replicadatabases lopen momenteel achter. Zie [https://replag.toolforge.org/ Replag]."
 }

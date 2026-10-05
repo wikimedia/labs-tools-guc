@@ -14,11 +14,12 @@
 	"form-from-rc": "یوازې وروستي بدلونونه (وروستۍ ۳۰ ورځې)",
 	"form-from-hr": "یوازې وروستۍ گړۍ",
 	"form-sort": "پايلو ترتيبول",
-	"form-sort-wiki": "د ویکي لهٔ خوا",
+	"form-sort-wiki": "د ویکي له‌خوا",
 	"form-sort-date": "د نېټې له مخې",
 	"form-submit": "پلټل",
-	"ipinfo-globalblock": "ټوليز بلاک",
-	"ipinfo-globalblocklist": "ټوليز بلاک نوملړ",
+	"ipinfo-globalblock": "په ټوليز ډول بنديز لگول",
+	"ipinfo-globalblocklist": "ټوليز بنديز لگولو نوملړ",
+	"ipinfo-globalcontribs": "د لنډمهاله گڼون ونډې",
 	"results-limited": "په هر ويکي کې $1 پايلو پورې.",
-	"results-lag-warning": "پايلې شايد ډېر وروستي سمونونه ونهٔ لري.\nد وسيلو لپاره اومتوک‌اډانې لمېسل اوسمهال ځنډېدلي. [https://replag.toolforge.org/ Replag] وگورئ."
+	"results-lag-warning": "پايلې ښايي ډېر وروستي سمونونه ونه لري.\nد وسيلو لپاره اومتوک‌اډانې لمېسل وسمهال ځنډېدلي. [https://replag.toolforge.org/ Replag] وگورئ."
 }

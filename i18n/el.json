@@ -2,6 +2,7 @@
 	"@metadata": {
 		"authors": [
 			"GR",
+			"Geraki",
 			"Jimkats",
 			"NikosLikomitros",
 			"Nikosgranturismogt",
@@ -21,6 +22,7 @@
 	"form-submit": "Αναζήτηση",
 	"ipinfo-globalblock": "καθολική φραγή",
 	"ipinfo-globalblocklist": "Λίστα καθολικών φραγών",
+	"ipinfo-globalcontribs": "συνεισφ. προσωρινού λογαριασμού",
 	"results-limited": "Περιορίστηκε σε $1 αποτελέσματα ανά βίκι.",
 	"results-lag-warning": "Στα αποτελέσματα ενδέχεται να απουσιάζουν οι πιο πρόσφατες αλλαγές. Τα αντίγραφα βάσης δεδομένων για τα Εργαλεία έχουν καθυστερήσει αυτήν τη στιγμή. Δείτε [https://tools.wmflabs.org/replag/ Replag]."
 }

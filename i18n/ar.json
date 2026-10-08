@@ -24,6 +24,7 @@
 	"form-submit": "بحث",
 	"ipinfo-globalblock": "منع عالمي",
 	"ipinfo-globalblocklist": "قائمة المنع العالمي",
+	"ipinfo-globalcontribs": "مساهمات الحساب المؤقت",
 	"results-limited": "تقتصر على نتائج $1 لكل الويكي.",
 	"results-lag-warning": "نتائج أحدث التعديلات قد تكون مفقودة، الخدمات السحابية للنسخ المتماثل لقواعد البيانات بطيئة حاليًا، انظر [https://tools.wmflabs.org/replag/ إعادة]."
 }

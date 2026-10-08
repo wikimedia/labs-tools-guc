@@ -17,6 +17,7 @@
 	"form-submit": "खोजथिन",
 	"ipinfo-globalblock": "वैश्विक अवरोधित",
 	"ipinfo-globalblocklist": "वैश्विक अवरोध सूची",
+	"ipinfo-globalcontribs": "अस्थायी खाता योगदान",
 	"results-limited": "प्रति विकि $1 परिणाम तक सीमित ।",
 	"results-lag-warning": "परिणाममे सबसे हालके सम्पादन अनुपस्थित सक हे । क्लाउट सेवाके विकि प्रतिकृति वर्तमानमे पिछड़ल हे । [https://replag.toolforge.org/ Replag] देखथिन ।"
 }

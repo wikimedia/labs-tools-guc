@@ -20,6 +20,7 @@
 	"form-submit": "ค้นหา",
 	"ipinfo-globalblock": "บล็อกข้ามโครงการ",
 	"ipinfo-globalblocklist": "รายชื่อบล็อกข้ามโครงการ",
+	"ipinfo-globalcontribs": "การมีส่วนร่วมของบัญชีชั่วคราว",
 	"results-limited": "จำกัดผลลัพธ์ไว้ที่ $1 รายการต่อวิกิ",
-	"results-lag-warning": "ผลลัพธ์อาจไม่มีการแก้ไขล่าสุด ขณะนี้การแสดงข้อมูลสำหรับเครื่องมือมีความล่าช้า โปรดดู [https://tools.wmflabs.org/replag/ Replag]"
+	"results-lag-warning": "ผลลัพธ์อาจไม่มีการแก้ไขล่าสุด ขณะนี้การแสดงข้อมูลสำหรับเครื่องมือมีความล่าช้า โปรดดู [https://replag.toolforge.org/ Replag]"
 }

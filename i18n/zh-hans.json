@@ -1,12 +1,15 @@
 {
 	"@metadata": {
 		"authors": [
+			"Anterdc99",
 			"GuoPC",
 			"Lantx",
 			"Liuxinyu970226",
-			"Mishidexfc"
+			"Mishidexfc",
+			"Ouclie"
 		]
 	},
+	"title": "全域用户贡献",
 	"description": "显示来自所有维基媒体wiki的用户贡献。",
 	"form-user": "IP地址或用户名",
 	"form-isPrefixPattern": "启用前缀搜索",

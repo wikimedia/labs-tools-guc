@@ -20,6 +20,7 @@
 	"form-submit": "Эзләү",
 	"ipinfo-globalblock": "гомуми блоклау",
 	"ipinfo-globalblocklist": "гомуми блоклау исемлеге",
+	"ipinfo-globalcontribs": "вак. х-язма кертеме",
 	"results-limited": "Бер викидән $1 нәтиҗә белән чикләнелгән.",
 	"results-lag-warning": "Нәтиҗәләрдә иң соңгы төзәтмәләр булмаска мөмкин. Хәзерге вакытта Wiki болыт хезмәтләренең реплика мәгълүматлар базалары теркәлә. [https://replag.toolforge.org/ Replug] битен карагыз."
 }

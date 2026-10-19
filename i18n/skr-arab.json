@@ -1,12 +1,24 @@
 {
 	"@metadata": {
 		"authors": [
-			"Saraiki"
+			"Saraiki",
+			"Tauqeerkhansurani"
 		]
 	},
+	"description": "سارے Wikimedia وکیاں وچوں ورتیوݨ آلی دیاں ونگاراں ݙکھاؤ۔",
+	"form-user": "آئی پی پتہ یا ورتݨ آلا ناں",
+	"form-isPrefixPattern": "پریفکس تلاش چالو کرو",
+	"form-from": "ایں توں نتیجے شامل کرو",
 	"form-from-all": "ساریاں ونگاراں",
+	"form-from-rc": "صرف حالیہ تبدیلیاں (پچھلے 30 ݙینہہ)",
 	"form-from-hr": "صرف چھیکڑی گھنٹہ",
+	"form-sort": "نتیجے ترتیب ݙیو",
 	"form-sort-wiki": "وکی نال",
 	"form-sort-date": "تریخ نال",
-	"form-submit": "ڳولو"
+	"form-submit": "ڳولو",
+	"ipinfo-globalblock": "عالمی پابندی",
+	"ipinfo-globalblocklist": "عالمی پابندی فہرست",
+	"ipinfo-globalcontribs": "عارضی کھاتے دیاں ونگاراں",
+	"results-limited": "ہر وکی وچ $1 نتیجیاں تک محدود۔",
+	"results-lag-warning": "ہو سڳدا ہے جو نتائج وچ تازہ ترین ترامیم شامل نہ ہوون۔ Cloud Services دے وکی ریپلیکا ڈیٹابیس فی الحال پیچھے ہن۔ [https://replag.toolforge.org/ Replag] ݙیکھو۔"
 }

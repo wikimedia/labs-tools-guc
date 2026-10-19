@@ -3,6 +3,7 @@
 		"authors": [
 			"Dušan Kreheľ",
 			"Jaroslav.micek",
+			"KormiSK",
 			"Wizzard",
 			"Yardom78"
 		]
@@ -20,6 +21,7 @@
 	"form-submit": "Hľadať",
 	"ipinfo-globalblock": "globálne blokovanie",
 	"ipinfo-globalblocklist": "zoznam globálnych blokovaní",
+	"ipinfo-globalcontribs": "príspevky dočasného účtu",
 	"results-limited": "Počet výsledkov z každej wiki: $1",
 	"results-lag-warning": "Vo výsledkoch môžu chýbať nedávne úpravy. Cloudové repliky pre Services sú momentálne spomalené. Viď [https://tools.wmflabs.org/replag/ Replag]."
 }

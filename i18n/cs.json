@@ -2,6 +2,7 @@
 	"@metadata": {
 		"authors": [
 			"Jan Myšák",
+			"Kendo13",
 			"Mormegil",
 			"Patriccck",
 			"Patrik L.",
@@ -21,6 +22,7 @@
 	"form-submit": "Hledat",
 	"ipinfo-globalblock": "globální bloky",
 	"ipinfo-globalblocklist": "seznam globálních zablokování",
+	"ipinfo-globalcontribs": "příspěvky dočasného účtu",
 	"results-limited": "Omezeno na $1 výsledků na wiki",
 	"results-lag-warning": "Ve výsledcích mohou chybět nejnovější editace. Databázové repliky wiki cloudových služeb jsou momentálně zpožděné. Vizte [https://replag.toolforge.org/ Replag]."
 }

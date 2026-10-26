@@ -17,6 +17,7 @@
 	"form-submit": "Cuardaigh",
 	"ipinfo-globalblock": "blocáil ar fud an domhain",
 	"ipinfo-globalblocklist": "liosta bloc domhanda",
+	"ipinfo-globalcontribs": "ranníocaíochtaí cuntais shealadacha",
 	"results-limited": "Teoranta do $1 torthaí in aghaidh an vicí.",
 	"results-lag-warning": "B’fhéidir go bhfuil na heagarthóireachtaí is déanaí ar iarraidh sna torthaí. Tá moill faoi láthair ar bhunachair shonraí macasamhla vicí Cloud Services. Féach [https://replag.toolforge.org/ Replag]."
 }

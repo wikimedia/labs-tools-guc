@@ -19,6 +19,7 @@
 	"form-submit": "חיפוש",
 	"ipinfo-globalblock": "חסימה גלובלית",
 	"ipinfo-globalblocklist": "רשימת חסימה גלובלית",
+	"ipinfo-globalcontribs": "תרומות מחשבונות זמניים",
 	"results-limited": "מוגבל ל־$1 תוצאות לוויקי.",
 	"results-lag-warning": "ייתכן שתוצאות עבור העריכות החדשות ביותר. שכפולי מסד נתונים עבור שירותי ענן כרגע מעוכבים. ר' [https://replag.toolforge.org/ Replag]."
 }
